@@ -1,0 +1,13 @@
+# Unused large local font bundle
+fonts/*.ttc
+
+# Keep personal in-game screenshots local only (do not publish to GitHub)
+assets/screenshots/
+
+# OS & editor junk
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+*.tmp
+*.bak

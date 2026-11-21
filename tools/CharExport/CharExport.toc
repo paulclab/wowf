@@ -1,0 +1,7 @@
+## Interface: 16001
+## Title: CharExport
+## Notes: /ce 명령어로 캐릭터 스탯·특성·장비(마부/키트)·버프·스킬·전문기술 도안을 복사창으로 출력
+## Version: 2.0.0
+## SavedVariablesPerCharacter: CharExportDB
+
+CharExport.lua
