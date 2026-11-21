@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141824" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-title" content="WoW Forever Wiki">
 <title>WoW Forever (1.60.1) — 비전 마법사 커맨드 덱 (Editorial Memphis)</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
@@ -2978,6 +2980,25 @@
     line-height: 1.5;
   }
 
+
+  /* ===== UPGRADE v3.7: iOS STANDALONE WEBAPP SAFE-AREA FIX (ZERO IMPACT ON SAFARI/PC) ===== */
+  .topbar {
+    padding-top: calc(8px + env(safe-area-inset-top, 0px)) !important;
+  }
+  .sidebar {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  @media (max-width: 720px) {
+    .topbar {
+      padding-top: calc(8px + env(safe-area-inset-top, 0px)) !important;
+    }
+    body.force-card-tables tbody td > span,
+    body.force-card-tables tbody td > code,
+    body.force-card-tables tbody td > strong {
+      display: inline;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -3139,7 +3160,7 @@
           </div>
           <div class="kpi-grid" style="margin-bottom:0;">
             <div class="kpi"><div class="label">HP / MP</div><div class="val">905 / 1,833</div><div class="sub">방어도 434 · 회피 4.3%</div></div>
-            <div class="kpi"><div class="label">비전 유효 주문력</div><div class="val" style="color:var(--arcane);">+142</div><div class="sub">일반 67 + 비전 75 (오일 +150)</div></div>
+            <div class="kpi"><div class="label">비전 유효 주문력</div><div class="val" style="color:var(--arcane);">+142</div><div class="sub">일반 67 + 비전 75</div></div>
             <div class="kpi"><div class="label">체력 / 지능 / 정신</div><div class="val">69 / 100 / 67</div><div class="sub">치명 5.7% · 비시전 MP5 73 · 관통 15</div></div>
             <div class="kpi"><div class="label">전문 · 보조 기술</div><div class="val" style="color:var(--gold);">마부 71 · 무두 152</div><div class="sub">요리 76 · 응급 91 · 낚시 5</div></div>
           </div>
@@ -3664,7 +3685,7 @@
       <!-- TAB: GEAR & UPGRADES -->
       <section id="tab-gear" class="tab">
         <div class="callout">
-          <strong><code>2026-11-21</code> 실측 업그레이드 (15/17 슬롯 완료 ✅):</strong> <strong><code>빚 수금인</code>(+34)</strong>, <strong><code>마술사의 현자 지팡이</code>(체+3/지+5/주문+3)</strong>, <strong><code>독수리의 녹옥 부적</code>(체+5/지+5)</strong>, <strong><code>독수리의 모자</code>(체+8/지+8)</strong>, <strong><code>성난 비전의 현인 장화</code>(비전+11 · 체+4/방+32)</strong>, <strong><code>현인 장갑</code>·<code>집정관의 바지</code> <code>신비한 고급 방어구 키트</code>(주문+4/방+24)</strong> 반영! <strong>HP 905 / MP 1,833 / 일반 67 + 비전 전용 75 = 총 비전 +142</strong>(오일 +150) 100% 일치 달성!
+          <strong><code>2026-11-21</code> 실측 업그레이드 (15/17 슬롯 완료 ✅):</strong> <strong><code>빚 수금인</code>(+34)</strong>, <strong><code>마술사의 현자 지팡이</code>(체+3/지+5/주문+3)</strong>, <strong><code>독수리의 녹옥 부적</code>(체+5/지+5)</strong>, <strong><code>독수리의 모자</code>(체+8/지+8)</strong>, <strong><code>성난 비전의 현인 장화</code>(비전+11 · 체+4/방+32)</strong>, <strong><code>현인 장갑</code>·<code>집정관의 바지</code> <code>신비한 고급 방어구 키트</code>(주문+4/방+24)</strong> 반영! <strong>HP 905 / MP 1,833 / 일반 67 + 비전 전용 75 = 총 비전 +142</strong>100% 일치 달성!
         </div>
 
         <div class="card">
@@ -3734,10 +3755,10 @@
         </div>
       </section>
 
-      <!-- TAB: PROFESSIONS (ENCHANTING MAIN + COST ANALYSIS -> TAILORING DEFERRED TO BOTTOM) -->
+      <!-- TAB: PROFESSIONS (ENCHANTING MAIN + CLEAR ACQUISITION + TOGGLEABLE FAVOR & TAILORING GUIDES) -->
       <section id="tab-prof" class="tab">
         <div class="kpi-grid">
-          <div class="kpi"><div class="label">마법부여 (주력 유지)</div><div class="val" style="color: var(--arcane);">71 &rarr; 175</div><div class="sub">상급 마법의 정수 6.70s 분해 최저가!</div></div>
+          <div class="kpi"><div class="label">마법부여 (주력 유지)</div><div class="val" style="color: var(--arcane);">71 &rarr; 175</div><div class="sub">상급 마법의 정수 6.70s 분해 최저가</div></div>
           <div class="kpi"><div class="label">71&rarr;140 / 175 최저가</div><div class="val" style="color: var(--verified);">~3.24g / ~5.38g</div><div class="sub">보유 재료 차감 시 실지출 ~1.77g / ~3.91g</div></div>
           <div class="kpi"><div class="label">무두질 / 요리</div><div class="val" style="color: var(--gold);">152 / 76</div><div class="sub">무두 유지(골드) · 요리 포만감 XP +5%</div></div>
           <div class="kpi"><div class="label">응급치료 / 낚시</div><div class="val">91 / 5</div><div class="sub">125 돌파: 스트롬가드 / 무법항</div></div>
@@ -3747,74 +3768,71 @@
         <div class="card">
           <h2>마법부여 <code>71</code> &rarr; <code>175</code> 최저가 효율 육성 루트 <span class="badge verified">상급 마법의 정수 6.70s 반영</span></h2>
           <div class="callout verified" style="margin-top:0; margin-bottom:12px;">
-            <strong>💡 핵심 초저가 비법 (<code>상급 마법의 정수 6s 70c</code> 분해):</strong> 경매장에서 <code>하급 마법의 정수(~10s 90c)</code>를 직구하지 말고 <strong><code>상급 마법의 정수 (6s 70c)</code>를 사서 우클릭 분해 &rarr; <code>하급 마법의 정수 3개 (개당 2s 23c)</code></strong>로 쓰세요! 1포인트당 <code>2s 23c</code>로 <code>이상한 가루 2개(3s 20c~3s 70c)</code>보다도 저렴해 <strong>숙련 105까지 <code>가슴 - 최하급 흡수</code>로 1골드 미만(<code>~89s</code>)에 돌파</strong>할 수 있습니다! <em>(⚠️ <code>상급 마술봉</code>은 상점가 1코퍼 너프로 절대 비추천)</em>
+            <strong>💡 핵심 초저가 비법 (<code>상급 마법의 정수 6s 70c</code> 분해):</strong> 경매장에서 <code>하급 마법의 정수(~10s 90c)</code>를 직구하지 말고 <strong><code>상급 마법의 정수 (6s 70c)</code>를 사서 우클릭 분해 &rarr; <code>하급 마법의 정수 3개 (개당 2s 23c)</code></strong>로 쓰세요! 1포인트당 <code>2s 23c</code>로 <code>이상한 가루 2개(3s 20c~3s 70c)</code>보다도 저렴해 <strong>숙련 105까지 <code>가슴 - 최하급 흡수</code>로 1골드 미만(<code>~89s</code>)에 돌파</strong>할 수 있습니다. <em>(⚠️ <code>상급 마술봉</code>은 상점가 1코퍼 너프로 비추천)</em>
           </div>
           <div class="table-wrap" style="margin-bottom:12px;">
             <table>
               <thead>
-                <tr><th>구간</th><th>추천 레시피</th><th>1회 재료 &amp; 원가</th><th>예상 시도 (색상)</th><th>구간 예상비</th><th>핵심 절약 &amp; 체크포인트</th></tr>
+                <tr><th>구간</th><th>추천 레시피</th><th>1회 재료 &amp; 원가</th><th>예상 시도 (색상)</th><th>구간 예상비</th><th>핵심 절약 &amp; 승급 NPC</th></tr>
               </thead>
               <tbody>
-                <tr><td><strong>71 &rarr; 90</strong> <small>(19pt)</small></td><td><code>가슴 - 최하급 흡수</code> <small>(또는 <code>손목 - 최하급 지능 +3</code>)</small></td><td><code>하급 마법의 정수</code> 1 (<strong><code>2s 23c</code></strong> &larr; 상급 분해)</td><td>19회 <em>(주황 확정)</em></td><td><strong><code>42s 43c</code></strong> <small>(상급 7개)</small></td><td><strong>1pt당 2.23s 최강 가성비!</strong> 미승급 시 스톰윈드 <code>루칸 코델(43.0, 64.4)</code> 5s 승급</td></tr>
-                <tr><td><strong>90 &rarr; 105</strong> <small>(15pt)</small></td><td><code>가슴 - 최하급 흡수</code> 계속!</td><td><code>하급 마법의 정수</code> 1 (<strong><code>2s 23c</code></strong>)</td><td>~21회 <em>(노랑 90~110)</em></td><td><strong><code>46s 90c</code></strong> <small>(상급 7개)</small></td><td>노랑 평균 ~1.4회/pt &approx; <code>3.12s/pt</code> &rarr; <strong>가루 2개보다 저렴!</strong></td></tr>
-                <tr><td><strong>105 &rarr; 130</strong> <small>(25pt)</small></td><td><strong><code>망토 - 최하급 보호</code></strong> (+10 방어)</td><td><code>이상한 가루</code> 2 (<strong><code>3s 20c ~ 3s 70c</code></strong>)</td><td>~34회 <em>(110 주황 / ~130 노랑)</em></td><td><strong><code>1g 08s ~ 1g 26s</code></strong> <small>(가루 68개)</small></td><td>110 이후 <code>최하급 흡수</code>는 초록색이라 전환! <strong>숙련 125</strong>에 아조라의 탑 <code>키타 파이어윈드(64.8, 70.4)</code> 전문(225) 승급(<strong><code>50s</code></strong>)</td></tr>
-                <tr><td><strong>130 &rarr; 131</strong> <small>(필수)</small></td><td><strong><code>룬문자 은마법막대</code></strong></td><td>은마법막대 1(<code>2s</code>) + 가루 6(<code>~10s</code>) + <strong>상급 정수 3(<code>20s 10c</code>)</strong></td><td>1회 <em>(주황 확정)</em></td><td><strong><code>31s 70c ~ 33s 20c</code></strong></td><td>와우 포에버는 숙련 130에 은마법막대 제작 (상위 마부 필수 도구)</td></tr>
-                <tr><td><strong>131 &rarr; 140</strong> <small>(9pt)</small></td><td><strong><code>손목 - 하급 체력 (+4)</code></strong></td><td><code>영혼 가루</code> 1 (<strong><code>4s 86c</code></strong>)</td><td>9회 <em>(주황 확정)</em></td><td><strong><code>43s 74c</code></strong> <small>(영혼 9개)</small></td><td><strong>140 달성!</strong> 내 손목 마부 +3&rarr;<strong>+4</strong> 즉시 업글 + 무기 <code>계시/통찰</code> 해금</td></tr>
-                <tr><td><strong>140 &rarr; 175</strong> <small>(35pt)</small></td><td><strong><code>손목 - 하급 체력 (+4)</code></strong> 계속!</td><td><code>영혼 가루</code> 1 (<strong><code>4s 86c</code></strong>)</td><td>~44회 <em>(155 주황 / ~175 노랑)</em></td><td><strong><code>2g 13s 84c</code></strong> <small>(영혼 44개)</small></td><td>가루 1개 최고 효율! Lv.30+ 녹템 방어구 직접 추출 시 현금 지출 대폭 감소</td></tr>
+                <tr><td><strong>71 &rarr; 90</strong> <small>(19pt)</small></td><td><code>가슴 - 최하급 흡수</code></td><td><code>하급 마법의 정수</code> 1 (<strong><code>2s 23c</code></strong> &larr; 상급 분해)</td><td>19회 <em>(주황 확정)</em></td><td><strong><code>42s 43c</code></strong> <small>(상급 7개)</small></td><td>미승급 시 스톰윈드 마법사 지구 <code>루칸 코델 (43.0, 64.4)</code>에게 숙련(150) 승급 (5s)</td></tr>
+                <tr><td><strong>90 &rarr; 105</strong> <small>(15pt)</small></td><td><code>가슴 - 최하급 흡수</code> 계속</td><td><code>하급 마법의 정수</code> 1 (<strong><code>2s 23c</code></strong>)</td><td>~21회 <em>(노랑 90~110)</em></td><td><strong><code>46s 90c</code></strong> <small>(상급 7개)</small></td><td>노랑 구간 기대값 ~<code>3.12s/pt</code> &rarr; 가루 2개보다 저렴</td></tr>
+                <tr><td><strong>105 &rarr; 130</strong> <small>(25pt)</small></td><td><strong><code>망토 - 최하급 보호</code></strong> (+10 방어)</td><td><code>이상한 가루</code> 2 (<strong><code>3s 20c ~ 3s 70c</code></strong>)</td><td>~34회 <em>(110 주황 / ~130 노랑)</em></td><td><strong><code>1g 08s ~ 1g 26s</code></strong> <small>(가루 68개)</small></td><td><strong>숙련 125</strong> 달성 시 엘윈 숲 아조라의 탑 <code>키타 파이어윈드 (64.8, 70.4)</code> 전문(225) 승급 (<strong><code>50s</code></strong>)</td></tr>
+                <tr><td><strong>130 &rarr; 131</strong> <small>(필수)</small></td><td><strong><code>룬문자 은마법막대</code></strong></td><td>은마법막대 1(<code>2s</code>) + 가루 6(<code>~10s</code>) + <strong>상급 정수 3(<code>20s 10c</code>)</strong></td><td>1회 <em>(주황 확정)</em></td><td><strong><code>31s 70c ~ 33s 20c</code></strong></td><td>130~175 상위 마법부여 필수 도구</td></tr>
+                <tr><td><strong>131 &rarr; 140</strong> <small>(9pt)</small></td><td><strong><code>손목 - 하급 체력 (+4)</code></strong></td><td><code>영혼 가루</code> 1 (<strong><code>4s 86c</code></strong>)</td><td>9회 <em>(주황 확정)</em></td><td><strong><code>43s 74c</code></strong> <small>(영혼 9개)</small></td><td>내 손목 마부 +3&rarr;+4 갱신 &middot; 무기 <code>계시/통찰</code> 제작 구간 진입</td></tr>
+                <tr><td><strong>140 &rarr; 175</strong> <small>(35pt)</small></td><td><strong><code>손목 - 하급 체력 (+4)</code></strong> 계속</td><td><code>영혼 가루</code> 1 (<strong><code>4s 86c</code></strong>)</td><td>~44회 <em>(155 주황 / ~175 노랑)</em></td><td><strong><code>2g 13s 84c</code></strong> <small>(영혼 44개)</small></td><td>Lv.30+ 녹템 방어구 직접 마력 추출 시 현금 지출 대폭 감소</td></tr>
               </tbody>
             </table>
           </div>
           <div class="callout" style="margin-bottom:0;">
             <strong>📊 구간별 총 원가 요약 (전문 승급비 <code>50s</code> + <code>룬문자 은마법막대</code> 포함):</strong><br>
-            &bull; <strong>71 &rarr; 130:</strong> 전액 구매 <strong><code>~2g 80s ~ 2g 98s</code></strong> / 보유분(하급15&middot;상급4&middot;가루34) 차감 시 <strong>실지출 <code>~1g 48s</code></strong><br>
-            &bull; <strong>71 &rarr; 140 (<code>계시/통찰</code> 해금):</strong> 전액 구매 <strong><code>~3g 24s ~ 3g 42s</code></strong> / 보유분 차감 시 <strong>실지출 <code>~1g 77s</code></strong><br>
-            &bull; <strong>71 &rarr; 175 (마나 오일&middot;손목+4 완성):</strong> 전액 구매 <strong><code>~5g 38s ~ 5g 56s</code></strong> / 보유분 차감 시 <strong>실지출 <code>~3g 91s</code></strong>
+            &bull; <strong>71 &rarr; 130:</strong> 전액 구매 <strong><code>~2g 80s ~ 2g 98s</code></strong> / 보유분 차감 시 <strong>실지출 <code>~1g 48s</code></strong><br>
+            &bull; <strong>71 &rarr; 140:</strong> 전액 구매 <strong><code>~3g 24s ~ 3g 42s</code></strong> / 보유분 차감 시 <strong>실지출 <code>~1g 77s</code></strong><br>
+            &bull; <strong>71 &rarr; 175:</strong> 전액 구매 <strong><code>~5g 38s ~ 5g 56s</code></strong> / 보유분 차감 시 <strong>실지출 <code>~3g 91s</code></strong>
           </div>
         </div>
 
-        <!-- 2. BEST ENCHANTS & OILS FOR MY LV.30 ARCANE MAGE + REAL CRAFTING COSTS -->
+        <!-- 2. BEST ENCHANTS & OILS FOR MY LV.30 MAGE (CLEAR EFFECTS + EXACT ACQUISITION NPC) -->
         <div class="card">
-          <h2>내 캐릭터에 유용한 마법부여 기술 &amp; 실전 제작 비용표 <span class="badge arcane">현재 보유 포함 · 시세 실측</span></h2>
+          <h2>내 캐릭터에 유용한 마법부여 기술 · 획득처 &amp; 제작 원가 <span class="badge arcane">현재 보유 포함</span></h2>
           <p style="margin-top:0;"><em>기준 시세:</em> <code>상급 마법의 정수 6s 70c</code>(&rarr;하급 <code>2s 23c</code>) &middot; <code>이상한 가루 1s 60~85c</code> &middot; <code>영혼 가루 4s 86c</code> &middot; <code>상급 별의 정수 18s</code> &middot; <code>희미하게 빛나는 큰 결정 52s 50c</code> &middot; <code>감청색 염료 89s</code></p>
           <div class="table-wrap" style="margin-bottom:14px;">
             <table>
               <thead>
-                <tr><th>숙련</th><th>기술 / 제작품 (부위)</th><th>실전 효과 (휴먼 비전 기준)</th><th>필요 재료</th><th>1회 원가 (시세)</th><th>상태 / 추천도</th></tr>
+                <tr><th>숙련</th><th>기술 / 제작품</th><th>효과</th><th>획득처 (NPC &middot; 위치 &middot; 조건)</th><th>필요 재료 &amp; 1회 원가</th><th>상태 / 추천도</th></tr>
               </thead>
               <tbody>
-                <tr><td><strong>5</strong></td><td><strong><code>최하급 마술사 오일</code></strong> <small>(무기 임시)</small></td><td><strong>모든 주문력 +8</strong> (30분&times;5회 = 2.5시간) &rarr; 비전 <strong>142 &rarr; 150</strong>!</td><td>이상한 가루 1 + 단풍나무 씨앗 1 + 유리 약병 1</td><td><strong><code>~2s</code></strong> <small>(30분 40c)</small></td><td><span class="badge verified">✅ 보유 · 상시 필수 ⭐</span></td></tr>
-                <tr><td><strong>50</strong></td><td><code>손목 - 최하급 체력</code></td><td>손목 <strong>체력 +3</strong> (+30 HP)</td><td>이상한 가루 3</td><td><code>~5s</code></td><td><span class="badge verified">✅ 현재 적용 중</span></td></tr>
-                <tr><td><strong>70</strong></td><td><code>손목 - 최하급 지능</code> <small>(드랍 도안)</small></td><td>손목 <strong>지능 +3</strong> (마나+45 &middot; 비작/비격 시너지)</td><td><code>하급 마법의 정수</code> 1 (상급 분해)</td><td><strong><code>2s 23c</code></strong></td><td><span class="badge db">체력 vs 지능 선택</span></td></tr>
-                <tr><td><strong>80 / 135</strong></td><td><strong><code>망토 - 최하급 / 하급 지능</code></strong> <small>(포에버)</small></td><td>현재 방어도+10 교체 &rarr; <strong>지능 +2 / +3</strong></td><td>저&middot;중급 마부 재료</td><td><code>~3~15s</code> <small>(추정)</small></td><td><span class="badge arcane">🔥 1순위 즉시 업글</span></td></tr>
-                <tr><td><strong>95 / 145</strong></td><td><strong><code>목걸이 - 최하급 / 하급 체력</code></strong> <small>(포에버)</small></td><td>빈 <code>독수리의 녹옥 부적</code>에 <strong>체력 +2 / +4</strong></td><td>저&middot;중급 마부 재료</td><td><code>~5~20s</code> <small>(추정)</small></td><td><span class="badge arcane">🔥 1순위 즉시 업글</span></td></tr>
-                <tr><td><strong>100 / 155</strong></td><td><strong><code>보조장비 - 최하급 / 하급 지능</code></strong> <small>(포에버)</small></td><td>빈 <code>마술사의 현자 지팡이</code>에 <strong>지능 +2 / +4</strong></td><td>저&middot;중급 마부 재료</td><td><code>~5~25s</code> <small>(추정)</small></td><td><span class="badge arcane">🔥 1순위 즉시 업글</span></td></tr>
-                <tr><td><strong>110 / 140</strong></td><td><strong><code>무기 - 계시 (Revelation)</code></strong> <small>(호의 45)</small></td><td>비치명 직접 주문 시 확률 발동 &rarr; 다음 직접 주문 <strong>치명타 +100%</strong>!</td><td>영혼8(<code>39s</code>)+큰결정6(<code>3.15g</code>)+상급별2(<code>36s</code>)+감청염료4(<code>3.56g</code>)+유황산4</td><td><strong><code>~7g 46s+</code></strong> <small>(유황산 별도)</small></td><td><span class="badge gold">⭐ 딜러 종결 무기 마부</span></td></tr>
-                <tr><td><strong>125</strong></td><td><code>수습생의 보주</code> <small>(BoP 보조 &middot; 호의 10)</small></td><td>마부사 전용 희귀 보조장비 (지능&middot;주문력)</td><td>중급 마부 재료</td><td>도안 확인</td><td><code>현자 지팡이</code>와 비교</td></tr>
-                <tr><td><strong>130</strong></td><td><strong><code>손목 - 하급 체력</code></strong> <small>(교관)</small></td><td>현재 손목 +3 &rarr; <strong>체력 +4</strong> (+40 HP)</td><td><code>영혼 가루</code> 1</td><td><strong><code>4s 86c</code></strong></td><td><span class="badge verified">✅ 육성 겸 공짜 업글</span></td></tr>
-                <tr><td><strong>140</strong></td><td><strong><code>무기 - 통찰 (Insight)</code></strong> <small>(호의 45)</small></td><td>주문 시전 시 확률로 <strong>10초간 정신력 +100% (2배)</strong></td><td>가루10(<code>18.5s</code>)+큰결정4(<code>2.1g</code>)+상급별4(<code>72s</code>)+황철석4+주름진이끼4</td><td><strong><code>~3g 01s+</code></strong> <small>(광석/이끼 별도)</small></td><td><span class="badge db">가성비 마나 유지용</span></td></tr>
-                <tr><td><strong>150</strong></td><td><strong><code>최하급 마나 오일</code></strong> <small>(무기 임시)</small></td><td><strong>MP5 +4~5</strong> (30분&times;5회) &mdash; 인던 장기전 스왑</td><td>영혼 가루 1(<code>4.86s</code>) + 단풍나무 씨앗 2 + 납 약병 1</td><td><strong><code>~5s 50c</code></strong> <small>(30분 1.1s)</small></td><td><span class="badge db">장기전 오일 스왑</span></td></tr>
-                <tr><td><strong>165</strong></td><td><code>장갑 - 하급 비전 마력</code> <small>(키트 덮어씀)</small></td><td>비전 주문력 <strong>+6</strong> (현재 키트 모든주문+4/방+24 대비)</td><td>중급 마부 재료</td><td>도안 확인</td><td><span class="badge warn">235 비전+10까지 키트 유지</span></td></tr>
-                <tr><td><strong>200</strong></td><td><strong><code>하급 마술사 오일</code></strong> <small>(요구 Lv.30!)</small></td><td><strong>모든 주문력 +16</strong> (30분&times;5회) &rarr; 비전 <strong>142 &rarr; 158</strong>!!</td><td>환상 가루 1 + 가시덤불 씨앗 2 + 납 약병 1</td><td>환상 가루 시세 <small>(저렴)</small></td><td><span class="badge arcane">🔥 Lv.30~40 최강 목표</span></td></tr>
-                <tr><td><strong>210</strong></td><td><strong><code>목걸이 - 주문력 (+6)</code></strong> <small>(호의 120)</small></td><td>목걸이에 <strong>모든 주문력 +6</strong> 영구 부여</td><td>상급황천5 + 큰찬란3 + 꿈가루8 + 염료8</td><td>후반 고가 <small>(40+ 목표)</small></td><td><span class="badge gold">중후반 핵심 마부</span></td></tr>
+                <tr><td><strong>5</strong></td><td><strong><code>최하급 마술사 오일</code></strong></td><td><strong>모든 주문력 +8</strong> (30분 &middot; 5회)</td><td>스톰윈드 마법사 지구 마법부여 교관 <code>루칸 코델 (43.0, 64.4)</code> 학습</td><td>이상한 가루 1 + 단풍나무 씨앗 1 + 유리 약병 1 &mdash; <strong><code>~2s</code></strong></td><td><span class="badge verified">✅ 보유 · 상시 필수</span></td></tr>
+                <tr><td><strong>50</strong></td><td><code>손목 - 최하급 체력</code></td><td><strong>체력 +3</strong></td><td>스톰윈드 마법사 지구 교관 <code>루칸 코델 (43.0, 64.4)</code> 학습</td><td>이상한 가루 3 &mdash; <code>~5s</code></td><td><span class="badge verified">✅ 현재 적용 중</span></td></tr>
+                <tr><td><strong>70</strong></td><td><code>손목 - 최하급 지능</code></td><td><strong>지능 +3</strong></td><td>몬스터 드랍 주문식 (어둠의 해안 <code>바다프렌지</code> &middot; 은빛소나무 <code>멀록</code>) 또는 경매장 구매</td><td>하급 마법의 정수 1 (상급 분해) &mdash; <strong><code>2s 23c</code></strong></td><td><span class="badge db">체력 vs 지능 선택</span></td></tr>
+                <tr><td><strong>110 / 130+</strong></td><td><strong><code>무기 - 계시 (Revelation)</code></strong></td><td>비치명 직접 주문 시 확률 발동 &rarr; 다음 직접 주문 <strong>치명타 +100%</strong></td><td>붉은마루 산맥 남서쪽 삼거리 <code>(11.2, 71.5)</code> 상인 <strong><code>알린시아</code></strong>에게 <strong>상인의 호의 45개</strong>로 구매 <em>(하단 가이드 참고)</em></td><td>영혼 8 + 큰 결정 6 + 상급 별 2 + 감청 염료 4 + 유황산 4 &mdash; <strong><code>~7g 46s+</code></strong></td><td><span class="badge gold">⭐ 딜러 종결 무기 마부</span></td></tr>
+                <tr><td><strong>125</strong></td><td><code>수습생의 보주</code> <small>(BoP 보조장비)</small></td><td>마법부여 전용 희귀 보조장비 (지능&middot;주문력)</td><td>붉은마루 삼거리 <code>(11.2, 71.5)</code> 상인 <strong><code>알린시아</code></strong>에게 <strong>상인의 호의 10개</strong>로 도안 구매</td><td>중급 마부 재료 (도안 구매 후 확인)</td><td><code>현자 지팡이</code>와 비교</td></tr>
+                <tr><td><strong>130</strong></td><td><strong><code>손목 - 하급 체력</code></strong></td><td><strong>체력 +4</strong></td><td>엘윈 숲 아조라의 탑 전문 교관 <code>키타 파이어윈드 (64.8, 70.4)</code> 학습</td><td>영혼 가루 1 &mdash; <strong><code>4s 86c</code></strong></td><td><span class="badge verified">✅ 육성 겸 업글</span></td></tr>
+                <tr><td><strong>140</strong></td><td><strong><code>무기 - 통찰 (Insight)</code></strong></td><td>주문 시전 시 확률 발동 &rarr; <strong>10초간 정신력 +100%</strong></td><td>붉은마루 삼거리 <code>(11.2, 71.5)</code> 상인 <strong><code>알린시아</code></strong>에게 <strong>상인의 호의 45개</strong>로 구매</td><td>이상한 가루 10 + 큰 결정 4 + 상급 별 4 + 황철석 4 + 주름진 이끼 4 &mdash; <strong><code>~3g 01s+</code></strong></td><td><span class="badge db">장기전 마나 유지</span></td></tr>
+                <tr><td><strong>150</strong></td><td><strong><code>최하급 마나 오일</code></strong></td><td><strong>5초당 마나 회복 +4~5</strong> (30분 &middot; 5회)</td><td>스톰윈드 마법사 지구 마법부여 용품 상인 <code>카니아 (43.1, 63.6)</code> 주문식 구매</td><td>영혼 가루 1 + 단풍나무 씨앗 2 + 납 약병 1 &mdash; <strong><code>~5s 50c</code></strong></td><td><span class="badge db">인던 장기전 스왑</span></td></tr>
+                <tr><td><strong>200</strong></td><td><strong><code>하급 마술사 오일</code></strong> <small>(요구 Lv.30)</small></td><td><strong>모든 주문력 +16</strong> (30분 &middot; 5회)</td><td>스톰윈드 마법사 지구 상인 <code>카니아 (43.1, 63.6)</code> 등 마법부여 용품 상인 주문식 구매</td><td>환상 가루 1 + 가시덤불 씨앗 2 + 납 약병 1 &mdash; 환상 가루 시세</td><td><span class="badge arcane">🔥 30~40 최강 오일 목표</span></td></tr>
+                <tr><td><strong>210</strong></td><td><strong><code>목걸이 - 주문력</code></strong></td><td><strong>모든 주문력 +6</strong></td><td>붉은마루 삼거리 <code>(11.2, 71.5)</code> 상인 <strong><code>알린시아</code></strong>에게 <strong>상인의 호의 120개</strong>로 구매</td><td>상급 황천 5 + 큰 찬란 3 + 꿈가루 8 + 염료 8 &mdash; 후반 고가</td><td><span class="badge gold">중후반 핵심 마부</span></td></tr>
+                <tr><td><strong>240+</strong></td><td><strong><code>보조장비 - 지혜</code></strong></td><td><strong>지능 +6 &middot; 정신력 +5</strong></td><td>붉은마루 삼거리 <code>(11.2, 71.5)</code> 상인 <strong><code>알린시아</code></strong>에게 <strong>상인의 호의 240개</strong>로 구매</td><td>큰 눈부신 결정 6 + 환상 가루 18 + 바람/물의 정수 각 1 &mdash; 만렙 구간</td><td><span class="badge gold">후반 보조장비 마부</span></td></tr>
               </tbody>
             </table>
           </div>
 
-          <h3>✨ 포에버 신규 무기 마부 3종 상세 (<code>알린시아 11.2, 71.6</code> &middot; 상인의 호의 45개)</h3>
+          <h3>✨ 붉은마루 삼거리 <code>알린시아 (11.2, 71.5)</code> 무기 마부 3종 상세</h3>
           <div class="grid-3" style="margin-bottom:0;">
             <div class="callout arcane" style="margin:0;">
               <strong>✨ 무기 마법부여 - 계시 (Revelation)</strong> <span class="badge verified">딜러 추천</span><br>
-              <small>습득 숙련 110 (노랑 140) &middot; 은마법막대 필요 &middot; <strong>원가 ~7g 46s+</strong></small><br><br>
-              비주기적 직접 피해 주문이 <strong>치명타로 적중하지 않을 때 확률 발동</strong> &rarr; 다음 직접 피해 주문 <strong>치명타 +100%</strong> <em>(치명 5.7%로 낮아 발동 효율 우수!)</em>
+              <small>습득 110 / 은마법막대 130+ &middot; 상인의 호의 45개 &middot; <strong>원가 ~7g 46s+</strong></small><br><br>
+              비주기적 직접 피해 주문이 <strong>치명타로 적중하지 않을 때 확률 발동</strong> &rarr; 다음 직접 피해 주문 <strong>치명타 +100%</strong> <em>(기본 치명이 낮을수록 발동률 상승)</em>
             </div>
             <div class="callout gold" style="margin:0;">
               <strong>💧 무기 마법부여 - 통찰 (Insight)</strong> <span class="badge gold">유지력용</span><br>
-              <small>요구 숙련 140 &middot; 은마법막대 필요 &middot; <strong>원가 ~3g 01s+</strong></small><br><br>
-              주문 시전 시 확률 발동 &rarr; <strong>10초간 정신력 +100% (2배)</strong>. <code>신비한 명상</code> + <code>마법사 갑옷</code>과 시너지 극대화!
+              <small>요구 140 / 은마법막대 130+ &middot; 상인의 호의 45개 &middot; <strong>원가 ~3g 01s+</strong></small><br><br>
+              주문 시전 시 확률 발동 &rarr; <strong>10초간 정신력 +100%</strong>. <code>신비한 명상</code> + <code>마법사 갑옷</code>과 시너지 우수.
             </div>
             <div class="callout" style="margin:0;">
               <strong>🛡️ 무기 마법부여 - 회복 (Recovery)</strong> <span class="badge">근접/탱용</span><br>
-              <small>요구 숙련 140 &middot; 은마법막대 필요</small><br><br>
+              <small>요구 140 / 은마법막대 130+ &middot; 상인의 호의 45개</small><br><br>
               물리 공격이 회피/무기 막기 당할 시 <strong>최대 생명력 5% 회복</strong> (쿨 10초). <em>(물리 전용 &mdash; 마법사 불필요)</em>
             </div>
           </div>
@@ -3822,23 +3840,23 @@
 
         <div class="grid-2">
           <div class="card">
-            <h2>1순위 마법부여 도감 (방어구 키트 미적용 5부위)</h2>
+            <h2>1순위 마법부여 부위 (방어구 키트 미적용 5부위)</h2>
             <ul>
-              <li><strong>손목:</strong> 체력(<strong>+3</strong>/+4/+6/+9/+12 — 현재 최하급 체력 +3), 지능(+3/+5/+7), 포에버 신규 <strong><code>주문력 +12</code></strong>(숙련 270).</li>
-              <li><strong>망토 [포에버 신규]:</strong> 최하급/하급/일반/상급 <strong><code>지능 +2/+3/+5/+7</code></strong> (숙련 80/135/195/265).</li>
-              <li><strong>보조장비 [포에버 신규]:</strong> 최하급/하급/일반/상급 <strong><code>지능 +2/+4/+6/+8</code></strong> (숙련 100/155/205/280).</li>
-              <li><strong>목걸이 [포에버 신규]:</strong> 체력(+2/+4/+6), <strong><code>주문력 +6/+8/+11</code></strong> (숙련 210/225/290).</li>
-              <li><strong>무기 &amp; 오일:</strong> <code>계시</code>/<code>통찰</code>(140), 무기 주문력(+40), <strong><code>최하급 마술사 오일</code>(+8)</strong> &rarr; <strong><code>하급 마술사 오일</code>(+16, Lv.30)</strong>.</li>
+              <li><strong>손목:</strong> 체력(<strong>+3</strong>/+4/+6/+9/+12), 지능(+3/+5/+7), 주문력(+12, 숙련 270).</li>
+              <li><strong>무기 &amp; 오일:</strong> <code>계시</code>/<code>통찰</code>(알린시아, 상인의 호의 45개), 무기 주문력(+40, 화산 심장부), <strong><code>최하급 마술사 오일</code>(+8)</strong> &rarr; <strong><code>하급 마술사 오일</code>(+16)</strong>.</li>
+              <li><strong>목걸이:</strong> 숙련 210+ 붉은마루 <code>알린시아</code> 도안(<strong>주문력 +6</strong> 등, 상인의 호의 120개).</li>
+              <li><strong>보조장비:</strong> 숙련 225+ 붉은마루 <code>알린시아</code> 도안(<strong>지혜: 지능+6/정신+5</strong> 등, 상인의 호의 240개).</li>
+              <li><strong>망토:</strong> 저항력 &middot; 방어도 &middot; 위협 감소(미묘함) 등 유틸 마법부여.</li>
             </ul>
           </div>
           <div class="card">
-            <h2>후순위 (방어구 키트 적용 4부위) &amp; 신규 BoP 장비</h2>
-            <p>현재 <strong>가슴</strong>(<code>체+3/방+24</code>), <strong>장갑&middot;다리</strong>(<code>신비한 고급 키트: 주문+4/방+24</code>), <strong>장화</strong>(<code>고급 키트: 체+4/방+32</code>)가 적용 중이므로 중후반까지 키트를 유지합니다.</p>
+            <h2>후순위 (가죽세공 방어구 키트 4부위) &amp; 제작 보조장비</h2>
+            <p>현재 <strong>가슴</strong>(<code>체+3/방+24</code>), <strong>장갑&middot;다리</strong>(<code>신비한 고급 방어구 키트: 주문+4/방+24</code>), <strong>장화</strong>(<code>고급 방어구 키트: 체+4/방+32</code>)가 적용 중이므로 중후반까지 키트를 유지합니다.</p>
             <ul>
-              <li><strong>가슴:</strong> 최하급/하급/일반/상급 지능 (+3/+5/+7/+10), 일급 생명력 (+100).</li>
-              <li><strong>장갑 [포에버 신규]:</strong> <code>하급 비전 마력</code>(+6, 숙련 165), <code>비전 마력</code>(+10, 숙련 235), <code>상급 주문력</code>(+15, 숙련 295).</li>
-              <li><strong>장화:</strong> 체력(+3/+5/+7/+9), <code>최하급 속도</code>(이동속도 +8%, 숙련 225).</li>
-              <li><strong>신규 BoP 제작 (숙련 125, 상인의 호의 10개):</strong> <code>초보자의/수습생의 지팡이 &amp; 보주</code>(요구 Lv.25).</li>
+              <li><strong>가슴:</strong> 지능(+3/+5/+7/+10), 일급 생명력(+100).</li>
+              <li><strong>장갑:</strong> 후반 주문력/속성 마력 마법부여 전까지 <code>신비한 고급 키트(주문+4/방+24)</code> 유지.</li>
+              <li><strong>장화:</strong> 체력(+5/+7), <code>최하급 속도</code>(이동속도 +8%, 숙련 225).</li>
+              <li><strong>제작 보조장비 (숙련 125):</strong> 붉은마루 <code>알린시아</code>에게 상인의 호의 10개로 도안 구매 (<code>수습생의 보주</code> 등).</li>
             </ul>
           </div>
         </div>
@@ -3860,43 +3878,81 @@
             </table>
           </div>
           <div class="callout gold" style="margin-bottom:0;">
-            <strong>캠핑 버프 <code>생선 그릇 (Fish Bowl)</code>:</strong> 5대 기본 능력치(힘·민·체·지·정) 총합에 <strong>+8%</strong> 적용 (<code>왕의 축복</code>과 비중첩). 주문 공격력(+67/+75) 자체는 직접 +8% 되지 않지만, 지능 상승분만큼 최대 마나·치명타 및 <code>비전 작렬</code> 지능 12% 주문력 전환이 간접 상승합니다.
+            <strong>캠핑 버프 <code>생선 그릇 (Fish Bowl)</code>:</strong> 5대 기본 능력치(힘·민·체·지·정) 총합에 <strong>+8%</strong> 적용 (<code>왕의 축복</code>과 비중첩). 주문 공격력 자체는 직접 +8% 되지 않지만, 지능 상승분만큼 마나·치명타 및 <code>비전 작렬</code> 지능 12% 전환이 간접 상승합니다.
           </div>
         </div>
 
-        <!-- 4. DEFERRED / LOWER PRIORITY: TAILORING SWITCH (1 -> 125) & DISENCHANT BREAKEVEN -->
-        <div class="card">
-          <h2>[후순위 · 보류] 마부 &rarr; 재봉술 전환 (<code>1</code> &rarr; <code>125</code>) 최저가 루트 &amp; 제작품 참고 <span class="badge">후순위 보관</span></h2>
-          <p style="margin-top:0;"><strong>교관 위치:</strong> <code>셀란두스</code> [스톰윈드 마법사 지구 '던칸의 옷감 가게' (<code>42.0, 76.2</code>)] (1~150) &middot; <code>조지오 볼레로</code> (<code>43.2, 73.6</code>) (125~225). <strong>절약 팁:</strong> 옷감만 경매장에서 사고, 실타래는 반드시 재봉 용품 상인(<code>10c</code>/<code>1s</code>)에게 직구!</p>
-          <div class="table-wrap" style="margin-bottom:12px;">
-            <table>
-              <thead>
-                <tr><th>구간</th><th>추천 제작 아이템 (수량)</th><th>필요 재료</th><th>시세 기준 원가 (실타래 NPC vs 경매장)</th><th>핵심 포인트</th></tr>
-              </thead>
-              <tbody>
-                <tr><td><strong>1 &rarr; 45</strong></td><td><code>리넨 두루마리</code> &times; 102</td><td><code>리넨 옷감</code> 204개 (<code>@26c</code>)</td><td><strong><code>53s 04c</code></strong> <em>(두루마리 직구 시 89s 76c)</em></td><td>45 달성 시 중단. (110까지 총 <strong>132개</strong> 필요해 30개분 60장 추가 제작)</td></tr>
-                <tr><td><strong>45 &rarr; 70</strong></td><td><code>두꺼운 리넨 장갑</code> &times; 35</td><td><code>리넨 두루마리</code> 70 + <code>굵은 실타래</code> 35</td><td>NPC 실타래 <strong><code>3s 50c</code></strong> <em>(경매장 31s 50c)</em></td><td><strong>숙련 50</strong>에 <code>수습 재봉사</code>(150) 승급</td></tr>
-                <tr><td><strong>70 &rarr; 75</strong></td><td><code>강화 리넨 망토</code> &times; 5</td><td><code>리넨 두루마리</code> 10 + <code>굵은 실타래</code> 15</td><td>NPC 실타래 <strong><code>1s 50c</code></strong> <em>(경매장 13s 50c)</em></td><td>상점 되팔기로 일부 회수</td></tr>
-                <tr><td><strong>75 &rarr; 100</strong></td><td><code>양모 두루마리</code> &times; 45</td><td><code>양모 옷감</code> 135개 (<code>@2s</code>)</td><td><strong><code>2g 70s</code></strong> <em>(두루마리 직구 시 4g 5s)</em></td><td>100 달성 시 중단 &rarr; 110~125 재료 소모</td></tr>
-                <tr><td><strong>100 &rarr; 110</strong></td><td><code>수수한 킬트</code> &times; 13</td><td><code>리넨 두루마리</code> 52 <em>(+60장 <code>15s 60c</code>)</em> + <code>가는 실타래</code> 13</td><td>재료+NPC <strong><code>28s 60c</code></strong> <em>(경매장 실 +3s 77c)</em></td><td>가장 싼 리넨으로 10pt 돌파</td></tr>
-                <tr><td><strong>110 &rarr; 125</strong></td><td><code>이중 바느질 양모 어깨보호구</code> &times; 15</td><td><code>양모 두루마리</code> 45 + <code>가는 실타래</code> 30</td><td>NPC 실타래 <strong><code>30s</code></strong> <em>(경매장 38s 70c)</em></td><td><strong>125 달성!</strong> <code>조지오 볼레로</code> 전문(225) 승급</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="grid-2" style="margin-bottom:0;">
-            <div class="callout" style="margin:0;">
-              <strong>1&rarr;125 총 재료비 비교 (훈련비 ~55s 10c 별도):</strong><br>
-              &bull; <strong>최저가 (옷감 직구 + 실타래 NPC):</strong> <strong><code>3g 86s 64c</code></strong> (보유분 차감 <code>2g 58s 90c</code>)<br>
-              &bull; 실타래 경매장 구매 시: <code>4g 39s 11c</code> / 두루마리 직구 시: <code>6g 21s 63c</code><br>
-              &bull; <strong>마부 삭제 전 녹템 방어구 역추출 손익분기 (<code>이상한 가루 @1s 60c</code>):</strong> iLv 5~10 <code>1s 80c↓</code> · iLv 11~15 <code>3s↓</code> · iLv 16~25 <code>4s 20c↓</code> <em>(류트는 마부 20 제한 주의)</em>
+        <!-- 4. COLLAPSIBLE DEEP-DIVE GUIDES (MERCHANT'S FAVOR + DEFERRED TAILORING) -->
+        <div class="wide-fold-row" style="grid-template-columns: 1fr;">
+          <details class="fold-card">
+            <summary>🪙 '상인의 호의 (Merchant's Favor)' &amp; 아제로스 상업 관리국 시스템 완벽 가이드 (클릭해서 열기)</summary>
+            <div class="fold-body">
+              <div class="callout arcane" style="margin-top:0;">
+                <strong>한 줄 요약:</strong> 와우 포에버 전용 전문기술 특수 도안(마법부여 <code>계시/통찰</code>, 목걸이&middot;보조장비 마부, 재봉 <code>진줏빛</code> 세트 등)을 사기 위한 <strong>전용 화폐(상인의 호의)</strong>와 <strong>평판 세력(아제로스 상업 관리국)</strong> 시스템입니다.
+              </div>
+              <div class="grid-2" style="margin-bottom:12px;">
+                <div class="callout" style="margin:0;">
+                  <strong>📍 얼라이언스 야영지 위치 &amp; 핵심 NPC</strong><br>
+                  &bull; <strong>위치:</strong> <code>동부왕국 &gt; 붉은마루 산맥 남서쪽 '붉은마루 삼거리' 야영지 (11.2, 71.5)</code> <em>(엘윈 숲 &middot; 그늘숲 경계)</em><br>
+                  &bull; <strong>보급품 상자 반납 NPC:</strong> <strong><code>마시 베커 (Marcy Baker)</code></strong><br>
+                  &bull; <strong>마법부여 도안 상인:</strong> <strong><code>알린시아 (Alynsia)</code></strong> (<code>수습생의 보주</code> 10개 &middot; <code>계시/통찰</code> 45개 &middot; <code>목걸이 주문력</code> 120개 &middot; <code>보조장비 지혜</code> 240개)<br>
+                  &bull; <strong>재봉술 도안 상인:</strong> <strong><code>미빈 섀도위브</code></strong> (<code>진줏빛</code> 세트 등)
+                </div>
+                <div class="callout verified" style="margin:0;">
+                  <strong>⭐ 꼭 알아야 할 핵심 꿀팁 2가지</strong><br>
+                  1. <strong>인생 첫 상자 반납 보너스 (+50 호의!):</strong> 아무 <code>잘못 놓인 보급품 상자</code>나 딱 1개만 채워서 반납하면 <strong><code>배송 라벨 (Shipping Label)</code></strong> 퀘스트 아이템이 나오며, 반납 시 <strong>1회성 보너스 <code>상인의 호의 +50개</code> + <code>평판 +2,000</code></strong>을 즉시 줍니다! (이것만으로 <code>계시/통찰</code> 45개 바로 구매 가능!)<br>
+                  2. <strong>녹색 상자 2배 효율:</strong> 원재료(흰색 상자)보다 <strong>가공품(녹색 상자 &mdash; 옷감&middot;부품 등)</strong>이 같은 등급 대비 <strong>상인의 호의를 2배</strong> 줍니다.
+                </div>
+              </div>
+              <div class="table-wrap" style="margin-bottom:0;">
+                <table>
+                  <thead>
+                    <tr><th>구분 (2가지 자원 분리)</th><th>역할</th><th>획득 방법 (단계별)</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>① 상인의 호의<br><small>(Merchant's Favor · 화폐)</small></strong></td><td>특수 도안&middot;주문식&middot;탈것을 <strong>구매하는 화폐</strong></td><td>1) 필드 드랍 또는 <strong>경매장</strong>에서 빈 <code>잘못 놓인 보급품 상자</code> 확보<br>2) 상자가 요구하는 재료(옷감&middot;광석&middot;부품 등)를 가방에 넣고 상자 클릭 &rarr; <strong>봉인된 상자</strong> 완성<br>3) 붉은마루 삼거리 <code>마시 베커 (11.2, 71.5)</code>에게 반납해 호의 수령</td></tr>
+                    <tr><td><strong>② 아제로스 상업 관리국<br><small>(평판 단계)</small></strong></td><td>상위 등급 도안 구매를 위한 <strong>평판 해금 조건</strong></td><td>&bull; <strong>초반:</strong> 드랍/경매장 <strong><code>장인의 계약서</code></strong> 완료 반납 (+75 평판) + 첫 반납 <code>배송 라벨</code> (+2,000 평판)<br>&bull; <strong>약간 우호적 이후:</strong> 야영지 상인이 파는 <strong><code>위조된 배송 영수증</code></strong>으로 빈 상자 + 소량의 호의를 평판으로 바로 전환 가능</td></tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-            <div class="callout arcane" style="margin:0;">
-              <strong>재봉술 전환 시 추천 제작품 참고:</strong><br>
-              &bull; <code>진줏빛 화장복</code> (재봉 110, 지+7/체+6/정+4/비전+13): <strong><code>6g 91s 14c</code></strong><br>
-              &bull; <code>세공된 진줏빛 머리장식</code> (재봉 125, 체+12/비전+14): <strong><code>2g 52s 56c</code></strong><br>
-              &bull; Lv.35~45+: <code>꿈매듭</code>(190~225) · 가방(10~14칸) &rarr; 만렙 <code>대마법사의 로브</code>(300) (125&rarr;225 추가 약 <code>22~28g</code>)
+          </details>
+
+          <details class="fold-card">
+            <summary>🧵 [후순위 · 보류] 마부 &rarr; 재봉술 전환 (1 &rarr; 125) 최저가 루트 &amp; 제작품 참고 (클릭해서 열기)</summary>
+            <div class="fold-body">
+              <p style="margin-top:0;"><strong>교관 위치:</strong> <code>셀란두스</code> [스톰윈드 마법사 지구 '던칸의 옷감 가게' (<code>42.0, 76.2</code>)] (1~150) &middot; <code>조지오 볼레로</code> (<code>43.2, 73.6</code>) (125~225). <strong>절약 팁:</strong> 옷감만 경매장에서 사고, 실타래는 반드시 재봉 용품 상인(<code>10c</code>/<code>1s</code>)에게 직구!</p>
+              <div class="table-wrap" style="margin-bottom:12px;">
+                <table>
+                  <thead>
+                    <tr><th>구간</th><th>추천 제작 아이템 (수량)</th><th>필요 재료</th><th>시세 기준 원가 (실타래 NPC vs 경매장)</th><th>핵심 포인트</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>1 &rarr; 45</strong></td><td><code>리넨 두루마리</code> &times; 102</td><td><code>리넨 옷감</code> 204개 (<code>@26c</code>)</td><td><strong><code>53s 04c</code></strong> <em>(두루마리 직구 시 89s 76c)</em></td><td>45 달성 시 중단 (110까지 총 132개 필요해 30개분 60장 추가 제작)</td></tr>
+                    <tr><td><strong>45 &rarr; 70</strong></td><td><code>두꺼운 리넨 장갑</code> &times; 35</td><td><code>리넨 두루마리</code> 70 + <code>굵은 실타래</code> 35</td><td>NPC 실타래 <strong><code>3s 50c</code></strong> <em>(경매장 31s 50c)</em></td><td><strong>숙련 50</strong>에 <code>수습 재봉사</code>(150) 승급</td></tr>
+                    <tr><td><strong>70 &rarr; 75</strong></td><td><code>강화 리넨 망토</code> &times; 5</td><td><code>리넨 두루마리</code> 10 + <code>굵은 실타래</code> 15</td><td>NPC 실타래 <strong><code>1s 50c</code></strong> <em>(경매장 13s 50c)</em></td><td>상점 되팔기로 일부 회수</td></tr>
+                    <tr><td><strong>75 &rarr; 100</strong></td><td><code>양모 두루마리</code> &times; 45</td><td><code>양모 옷감</code> 135개 (<code>@2s</code>)</td><td><strong><code>2g 70s</code></strong> <em>(두루마리 직구 시 4g 5s)</em></td><td>100 달성 시 중단 &rarr; 110~125 재료 소모</td></tr>
+                    <tr><td><strong>100 &rarr; 110</strong></td><td><code>수수한 킬트</code> &times; 13</td><td><code>리넨 두루마리</code> 52 <em>(+60장 <code>15s 60c</code>)</em> + <code>가는 실타래</code> 13</td><td>재료+NPC <strong><code>28s 60c</code></strong> <em>(경매장 실 +3s 77c)</em></td><td>가장 싼 리넨으로 10pt 돌파</td></tr>
+                    <tr><td><strong>110 &rarr; 125</strong></td><td><code>이중 바느질 양모 어깨보호구</code> &times; 15</td><td><code>양모 두루마리</code> 45 + <code>가는 실타래</code> 30</td><td>NPC 실타래 <strong><code>30s</code></strong> <em>(경매장 38s 70c)</em></td><td><strong>125 달성!</strong> <code>조지오 볼레로</code> 전문(225) 승급</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="grid-2" style="margin-bottom:0;">
+                <div class="callout" style="margin:0;">
+                  <strong>1&rarr;125 총 재료비 비교 (훈련비 ~55s 10c 별도):</strong><br>
+                  &bull; <strong>최저가 (옷감 직구 + 실타래 NPC):</strong> <strong><code>3g 86s 64c</code></strong> (보유분 차감 <code>2g 58s 90c</code>)<br>
+                  &bull; 실타래 경매장 구매 시: <code>4g 39s 11c</code> / 두루마리 직구 시: <code>6g 21s 63c</code><br>
+                  &bull; <strong>마부 삭제 전 녹템 방어구 역추출 손익분기 (<code>이상한 가루 @1s 60c</code>):</strong> iLv 5~10 <code>1s 80c↓</code> · iLv 11~15 <code>3s↓</code> · iLv 16~25 <code>4s 20c↓</code> <em>(류트는 마부 20 제한 주의)</em>
+                </div>
+                <div class="callout arcane" style="margin:0;">
+                  <strong>재봉술 전환 시 추천 제작품 참고:</strong><br>
+                  &bull; <code>진줏빛 화장복</code> (재봉 110, 붉은마루 <code>미빈 섀도위브</code> 호의 30개): 지+7/체+6/정+4/비전+13 &mdash; <strong><code>6g 91s 14c</code></strong><br>
+                  &bull; <code>세공된 진줏빛 머리장식</code> (재봉 125, 던전 드랍 도안): 체+12/비전+14 &mdash; <strong><code>2g 52s 56c</code></strong><br>
+                  &bull; Lv.35~45+: <code>꿈매듭</code>(190~225) · 가방(10~14칸) &rarr; 만렙 <code>대마법사의 로브</code>(300) (125&rarr;225 추가 약 <code>22~28g</code>)
+                </div>
+              </div>
             </div>
-          </div>
+          </details>
         </div>
       </section>
 
@@ -4261,7 +4317,7 @@
       <!-- TAB: MECHANICS & DAMAGE -->
       <section id="tab-mech" class="tab">
         <div class="kpi-grid">
-          <div class="kpi"><div class="label">비전 유효 주문력</div><div class="val" style="color:var(--arcane);">+142</div><div class="sub">일반 67 + 비전 75 (오일 +150)</div></div>
+          <div class="kpi"><div class="label">비전 유효 주문력</div><div class="val" style="color:var(--arcane);">+142</div><div class="sub">일반 67 + 비전 75</div></div>
           <div class="kpi"><div class="label">마법봉 쿨타임</div><div class="val">1.10s &rarr; 0.96s</div><div class="sub">하늘부름 1.60 - 0.50 (15% 가속)</div></div>
           <div class="kpi"><div class="label">주문 치명타 / 관통</div><div class="val">5.7% / 15</div><div class="sub">무자비 +1% / 신비한 미묘함(2/2)</div></div>
           <div class="kpi"><div class="label">기본 GCD / 화작</div><div class="val">1.50s (On)</div><div class="sub">Off-GCD: 마차, 냉정, 신마강</div></div>
@@ -6639,15 +6695,15 @@ const WOW_DB = {
   '독수리의 모자': {
     en: 'Hat of the Eagle', kind: '머리 · 천 · 고급 · 현재 착용 ✅', quality: 'uncommon', icon: 'inv_helmet_52',
     rows: [['머리 · 천', '귀속 아이템'], ['2026-11-21 착용 확인', '다음: 놈리건 기가볼트']],
-    stats: ['체력 +8 (+80 HP)', '지능 +8 (+120 MP · 비작 중첩 +0.96 SP)'],
+    stats: ['체력 +8', '지능 +8'],
     note: '✅ 현재 착용 중 (WearingGear_261121 실측 · 장비 지능 +36 합계 완벽 일치!)'
   },
   '독수리 모자': { alias: '독수리의 모자' },
   '독수리의 녹옥 부적': {
     en: 'Jade Talisman of the Eagle', kind: '목 · 고급 · 현재 착용 ✅', quality: 'uncommon', icon: 'inv_jewelry_necklace_01',
     rows: [['목', '귀속 아이템'], ['최소 요구 레벨 30', '상점가 53실버 95코퍼 (구매가 69s)']],
-    stats: ['체력 +5 (+50 HP)', '지능 +5 (+75 MP)'],
-    desc: '기존 [지능의 유령 목걸이](지능 +6)에서 지능 1을 내주는 대신 체력 +5(+50 HP)를 확보한 균형형 목걸이입니다.',
+    stats: ['체력 +5', '지능 +5'],
+    desc: '기존 [지능의 유령 목걸이](지능 +6)에서 지능 1을 내주는 대신 체력 +5를 확보한 균형형 목걸이입니다.',
     note: '✅ 2026-11-21 Lv.30 신규 착용 (WearingGear_261121 실측) · 포에버 신규 목걸이 마부 가능'
   },
   '지능의 유령 목걸이': {
@@ -6792,16 +6848,16 @@ const WOW_DB = {
   },
   '수습생의 보주': {
     en: "Apprentice's Orb", kind: '보조장비 · 마부 제작 · 희귀', quality: 'rare', icon: 'inv_misc_orb_03',
-    rows: [['보조장비', '최소 요구 레벨 25 · 획득 시 귀속'], ['마법부여 숙련 125 제작', '도안: 상인의 호의 10개']],
+    rows: [['보조장비', '최소 요구 레벨 25 · 획득 시 귀속'], ['마법부여 숙련 125 제작', '붉은마루 삼거리 알린시아 (상인의 호의 10개)']],
     stats: ['지능 및 주문력 상승 (와우 포에버 마부사 전용 BoP)'],
     desc: '와우 포에버 신규 마법부여사 전용 제작 희귀 보조장비로 현재 [성난 비전의 미명 마법봉](+7)의 중기 교체 목표입니다.',
-    note: '📍 획득: 마법부여 숙련 125 달성 후 전문 상인 도안 구매 제작'
+    note: '📍 획득: 붉은마루 삼거리(11.2, 71.5) 알린시아에게 상인의 호의 10개로 도안 구매 후 제작'
   },
   '초보자의 보주': { alias: '수습생의 보주' },
   '집정관의 바지': {
     en: "Magistrate's Pantaloons", kind: '다리 · 천 · 희귀 · 현재 착용 ✅', quality: 'rare', icon: 'inv_pants_02',
     rows: [['다리 · 천', '방어도 41 · 아이템 레벨 29'], ['스톰윈드 지하감옥 [격노] 보상', '획득 시 귀속']],
-    stats: ['지능 +13 (+195 MP · 비작 중첩 +1.56 SP · 비격 +9.75)'],
+    stats: ['지능 +13'],
     effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 7만큼 증가합니다.', '마법부여(키트): 주문력 +4 / 방어도 +24 ✅'],
     note: '✅ 2026-11-21 실측 확정! 다리 단일 부위 지능 +13 · 모든 주문 +11 · 방어도 65'
   },
@@ -8019,7 +8075,7 @@ function renderSingleSpellTable() {
       mana: '185',
       time: '즉시 (' + (1.5 / env.haste).toFixed(2) + 's GCD)',
       coeff: '<span class="coeff-pill">14.3%</span> <em style="font-size:11px;">광역 즉시 시전</em>',
-      dmg: `<strong>~${aeDmg} / 대상</strong>` + (stAe > 0 ? ` <em>(+${Math.round(stAe * env.abStepSp * 0.1429)})</em>` : ' <em>(3마리 시 ~' + (aeDmg*3) + ')</em>'),
+      dmg: `<strong>~${aeDmg} / 대상</strong>` + (stAe > 0 ? ` <em>(+${Math.round(stAe * env.abStepSp * 0.1429)})</em>` : ' <em>(반경 10m 광역)</em>'),
       dps: `${(aeDmg / (1.5 / env.haste)).toFixed(1)} DPS (단일)`
     },
     {
