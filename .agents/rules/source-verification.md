@@ -12,4 +12,4 @@ description: "와우 포에버(WoW Forever) 데이터 검증, 출처 표기, 매
 6. **패치노트 최상단 캐릭터 영향 요약 고정**: `docs/01-system/06-patch-notes-kst.md` 및 `dashboard.html`의 패치노트 섹션을 갱신할 때는 반드시 **최상단에 현재 캐릭터(Lv.26 인간 비전 마법사 · 전문/보조기술)에 직·간접적으로 영향을 미치는 중요사항 요약**을 먼저 배치하고 모든 일시를 **KST**로 표기합니다.
 7. **퀘스트 정보 작성 시 마법사용 득템 리스트 필수 병기**: 던전 및 주요 퀘스트 가이드를 작성·갱신할 때는 반드시 **해당 던전/연퀘에서 마법사가 노릴 수 있는 퀘스트 보상 및 보스 드랍 득템 리스트**(부위·드랍처·핵심 스탯·착용 가능 여부·현재 장비 대비 가치 비교)를 함께 정리합니다.
 8. **애드온 직접 스캔 의무**: 애드온 현황·충돌·추천 질문 시 사용자에게 스크린샷을 요청하지 않고 `C:\Program Files (x86)\World of Warcraft\_forever_\Interface\AddOns` 및 `...\WTF\Account\*\*\폴-최\AddOns.txt`를 직접 스캔하여 `docs/01-system/03-settings-and-addons.md`와 `dashboard.html`에 기록·답변합니다.
-9. **단일 통합 대시보드 & 배포 수동 승인 원칙**: 대시보드는 **Memphis Edition 단일 파일(`dashboard.html`)**로만 관리하며(`index.html`은 GitHub Pages 진입점), Git 커밋/GitHub Pages 푸시 및 외부 동기화는 사용자가 최종 검증 후 요청할 때 반영합니다.
+9. **단일 통합 대시보드 & GitHub Pages 자동 푸시 원칙**: 대시보드는 **Memphis Edition 단일 파일(`dashboard.html`)**로만 관리하며(`index.html`은 GitHub Pages 진입점), 수정 및 검증 완료 후 **사용자에게 묻지 않고 즉시 커밋 & `git push origin main`하여 GitHub Pages(`https://paulclab.github.io/wowf/`)에 반영합니다.** (Google Drive 등 별도 외부 동기화는 명시적 요청 시에만 수행)
