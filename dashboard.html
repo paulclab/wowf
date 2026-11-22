@@ -4771,32 +4771,46 @@
               <div class="table-wrap" style="margin-bottom:12px;">
                 <table>
                   <thead>
-                    <tr><th>구간</th><th>추천 제작 아이템 (수량)</th><th>필요 재료</th><th><code>11/22 23:14</code> 기준 원가</th><th>핵심 포인트</th></tr>
+                    <tr><th>구간</th><th>제작 아이템 (수량)</th><th>필요 재료 · 개당 단가</th><th>재료비 소계</th><th>핵심 포인트</th></tr>
                   </thead>
                   <tbody>
-                    <tr><td><strong>1 &rarr; 45</strong></td><td><code>리넨 두루마리</code> &times; 132</td><td><code>리넨 옷감</code> 264개 (<code>@19c</code>)</td><td><strong><code>50s 16c</code></strong> <em>(두루마리 직구 <code>@47c</code> 대비 20%↓)</em></td><td>총 132개 미리 제작 (45 도달 후 남는 분량은 45~70 / 100~110 소모)</td></tr>
-                    <tr><td><strong>45 &rarr; 70</strong></td><td><code>두꺼운 리넨 장갑</code> &times; 35</td><td><code>리넨 두루마리</code> 70 + <code>굵은 실타래</code> 35</td><td>NPC 실타래 <strong><code>3s 50c</code></strong></td><td><strong>숙련 50</strong>에 <code>수습 재봉사</code>(150) 승급</td></tr>
-                    <tr><td><strong>70 &rarr; 75</strong></td><td><code>강화 리넨 망토</code> &times; 5</td><td><code>리넨 두루마리</code> 10 + <code>굵은 실타래</code> 15</td><td>NPC 실타래 <strong><code>1s 50c</code></strong></td><td>상점 되팔기로 일부 회수</td></tr>
-                    <tr><td><strong>75 &rarr; 100</strong></td><td><code>양모 두루마리</code> &times; 45</td><td><code>양모 옷감</code> 135개 (<code>@88c</code>)</td><td><strong><code>1g 18s 80c</code></strong></td><td>100 달성 시 중단 &rarr; 110~125 재료 소모</td></tr>
-                    <tr><td><strong>100 &rarr; 110</strong></td><td><code>수수한 킬트</code> &times; 13</td><td><code>리넨 두루마리</code> 52 + <code>가는 실타래</code> 13</td><td>NPC 실타래 <strong><code>13s</code></strong></td><td>가장 싼 리넨으로 10pt 돌파</td></tr>
-                    <tr><td><strong>110 &rarr; 125</strong></td><td><code>이중 바느질 양모 어깨보호구</code> &times; 15</td><td><code>양모 두루마리</code> 45 + <code>가는 실타래</code> 30</td><td>NPC 실타래 <strong><code>30s</code></strong></td><td><strong>125 달성!</strong> <code>조지오 볼레로</code> 전문(225) 승급 <em>(125&rarr;145 비단 160장 = +2g 24s)</em></td></tr>
+                    <tr><td><strong>1 &rarr; 45</strong></td><td><code>리넨 두루마리</code> &times; 132<br><small>(45까지 102 + 예비 30)</small></td><td><code>리넨 옷감</code> 264개 &times; <strong><code>19c</code></strong></td><td><strong><code>50s 16c</code></strong><br><small>(두루마리 직구 <code>47c</code> 대비 20%↓)</small></td><td>예비 30개분 포함 일괄 감기</td></tr>
+                    <tr><td><strong>45 &rarr; 70</strong></td><td><code>두꺼운 리넨 장갑</code> &times; 35</td><td><code>리넨 두루마리</code> 70(기제작)<br>+ <code>굵은 실타래</code> 35개 &times; <strong><code>10c</code></strong> (NPC)</td><td><strong><code>3s 50c</code></strong></td><td><strong>숙련 50</strong>에 <code>수습 재봉사</code>(150) 승급</td></tr>
+                    <tr><td><strong>70 &rarr; 75</strong></td><td><code>강화 리넨 망토</code> &times; 5</td><td><code>리넨 두루마리</code> 10(기제작)<br>+ <code>굵은 실타래</code> 15개 &times; <strong><code>10c</code></strong> (NPC)</td><td><strong><code>1s 50c</code></strong></td><td>상점 되팔기로 소액 회수</td></tr>
+                    <tr><td><strong>75 &rarr; 100</strong></td><td><code>양모 두루마리</code> &times; 45</td><td><code>양모 옷감</code> 135개 &times; <strong><code>88c</code></strong></td><td><strong><code>1g 18s 80c</code></strong></td><td>100 달성 시 중단 &rarr; 110~125 재료 소모</td></tr>
+                    <tr><td><strong>100 &rarr; 110</strong></td><td><code>수수한 킬트</code> &times; 13</td><td><code>리넨 두루마리</code> 52(기제작)<br>+ <code>가는 실타래</code> 13개 &times; <strong><code>1s</code></strong> (NPC)</td><td><strong><code>13s 0c</code></strong></td><td>가장 싼 리넨으로 10pt 돌파</td></tr>
+                    <tr><td><strong>110 &rarr; 125</strong></td><td><code>이중 바느질 양모 어깨</code> &times; 15</td><td><code>양모 두루마리</code> 45(기제작)<br>+ <code>가는 실타래</code> 30개 &times; <strong><code>1s</code></strong> (NPC)</td><td><strong><code>30s 0c</code></strong></td><td><strong>125 달성!</strong> <code>조지오 볼레로</code> 전문(225) 승급</td></tr>
+                    <tr><td><strong>125 &rarr; 145</strong><br><small>(선택 확장)</small></td><td><code>비단 두루마리</code> &times; 40</td><td><code>비단 옷감</code> 160개 &times; <strong><code>1s 40c</code></strong></td><td><strong><code>2g 24s 0c</code></strong></td><td>비단 완제품(<code>7s 40c</code>) 대비 직접 감기(<code>5s 60c</code>) 24%↓</td></tr>
                   </tbody>
                 </table>
               </div>
-              <div class="grid-2" style="margin-bottom:0;">
-                <div class="callout" style="margin:0;">
-                  <strong><code>1 &rarr; 125</code> 총 비용 (<code>11/22 23:14</code>):</strong><br>
-                  &bull; <strong>재료비 합계:</strong> <strong><code>2g 16s 96c</code></strong> <em>(기존 3g 86s 대비 대폭 하락!)</em><br>
-                  &bull; <strong>교관 훈련비(~55s 10c) 포함 총합:</strong> <strong><code>~2g 72s</code></strong><br>
-                  &bull; <strong>마부 삭제 전 녹템 방어구 역추출 손익분기 (<code>이상한 가루 @1s 39c</code>):</strong> iLv 5~10 <code>1s 56c↓</code> &middot; iLv 11~15 <code>2s 60c↓</code> &middot; iLv 16~25 <code>3s 64c↓</code>
-                </div>
-                <div class="callout gold" style="margin:0;">
-                  <strong>Lv.31+ 재봉 제작품 원가 &amp; 가성비 (<code>11/22 23:14</code>):</strong><br>
-                  &bull; <code>세공된 진줏빛 머리장식</code> (125, BoP, 체12/비전+14): <strong><code>2g 62s 60c</code></strong> (+도안값)<br>
-                  &bull; <code>진줏빛 화장복</code> (110, BoP, 지7/체6/정4/비전+13): <strong><code>7g 31s 56c+</code></strong> (+은괴2/호의30 &rarr; ❌)<br>
-                  &bull; <code>거미줄 허리띠</code> (145, BoE, 지8): <strong><code>37s 40c+</code></strong> / <code>꿈매듭 조끼</code> (190, Lv.40 BoE): <strong><code>2g 97s 46c</code></strong><br>
-                  &bull; <code>황천광채 어깨보호구</code> (195, Lv.42 BoP, 비전+17): <strong><code>72g 66s 48c</code></strong> (황금진주 8개 &rarr; ❌)
-                </div>
+
+              <h3 style="margin-top:4px;">제작 가능 장비별 재료 단가 &amp; 총 원가 비교 <span class="badge gold">11/22 23:14 시세</span></h3>
+              <div class="table-wrap" style="margin-bottom:14px;">
+                <table>
+                  <thead>
+                    <tr><th>아이템 (숙련/Lv · 귀속)</th><th>재료 수량 &times; 개당 단가</th><th>총 제작 원가</th><th>현재 장비 대비 판정</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong><code>세공된 진줏빛 머리장식</code></strong><br><small>125 / Lv.25 · <strong>BoP</strong></small></td><td>비단 32(<code>@1s 40c</code>=44s 80c) + 가는 실 4(<code>@1s</code>=4s) + <code>감청색 염료</code> 2(<code>@1g 90c</code>=2g 1s 80c) + <code>작은 진주</code> 6(<code>@2s</code>=12s)</td><td><strong><code>2g 62s 60c</code></strong><br><small>(+도안값 별도)</small></td><td>🟡 체12/비전+14 vs <code>독수리 모자</code>(체8/지8) &mdash; 놈리건 무료 대안 존재</td></tr>
+                    <tr><td><strong><code>진줏빛 화장복</code></strong><br><small>110 / Lv.22 · <strong>BoP</strong></small></td><td>비단 48(<code>@1s 40c</code>=67s 20c) + 비단 실 2(<code>@5s</code>=10s) + <code>감청색 염료</code> 6(<code>@1g 90c</code>=6g 5s 40c) + <code>작은 진주</code> 6(<code>@2s</code>=12s) + <code>상급 별</code> 2(<code>@18s 48c</code>=36s 96c) + 은괴 2</td><td><strong><code>7g 31s 56c+</code></strong><br><small>(+은괴2·호의30)</small></td><td>❌ 비전+13으로 현 <code>담쟁이 튜닉</code>(비전+16) 대비 손해</td></tr>
+                    <tr><td><strong><code>거미줄 허리띠</code></strong><br><small>145 / Lv.31 · <strong>BoE</strong></small></td><td>비단 16(<code>@1s 40c</code>=22s 40c) + <code>굵은 거미줄</code> 2(<code>@7s 50c</code>=15s) + 철제 죔쇠 1</td><td><strong><code>37s 40c+</code></strong><br><small>(+철제 죔쇠 1)</small></td><td>🟡 지8 + 이동불가 해제 스왑용 (BoE라 경매/의뢰 가능)</td></tr>
+                    <tr><td><strong><code>꿈매듭 조끼</code></strong><br><small>190 / Lv.40 · <strong>BoE</strong></small></td><td>마법 옷감 30(<code>@6s 42c</code>=1g 92s 60c) + <code>야생덩굴</code> 6(<code>@9s 48c</code>=56s 88c) + <code>야생의 싹</code> 2(<code>@3s 99c</code>=7s 98c) + 큰 비단 실 2(<code>@20s</code>=40s)</td><td><strong><code>2g 97s 46c</code></strong></td><td>🟢 Lv.40 초고효율 (BoE라 재봉 없이도 구매 가능)</td></tr>
+                    <tr><td><strong><code>황천광채 어깨보호구</code></strong><br><small>195 / Lv.42 · <strong>BoP</strong></small></td><td>마법 80(5g 13s 60c) + 큰 실 3(60s) + <code>자홍</code> 4(<code>@1g 37s 49c</code>=5g 49s 96c) + <code>감청</code> 3(3g 2s 70c) + <strong><code>황금 진주</code> 8(<code>@6g 98s</code>=55g 84s)</strong> + <code>상급 황천</code> 2(2g 56s 22c)</td><td><strong><code>72g 66s 48c</code></strong></td><td>❌ 황금 진주 폭등으로 절대 비추천</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h3>재봉술 주요 재료 가격 추이 <span class="badge gold">실측 시세 꺾은선 그래프 · 단위: 실버(s)</span></h3>
+              <p style="margin-top:0; font-size:12.4px; opacity:0.82;">리넨·양모는 급락해 지금 선매집 적기인 반면, 염료·진주류는 고점입니다. (단일 시점 재료는 11/22 기준선 표시)</p>
+              <div id="tailoringPriceChartGrid" class="price-chart-grid" style="margin-bottom:14px;"></div>
+
+              <div class="callout gold" style="margin-bottom:0;">
+                <strong>🧾 최종 총 비용 요약 (<code>11/22 23:14</code> 경매장 + NPC 실타래 기준):</strong><br>
+                &bull; <strong><code>1 &rarr; 125</code> 순수 재료비:</strong> <strong><code>2g 16s 96c</code></strong> + 교관 승급·훈련비(<code>~55s 10c</code>) = <strong>총 <code>~2g 72s 6c</code></strong><br>
+                &bull; <strong><code>1 &rarr; 145</code> (비단 확장 포함) 재료비:</strong> <strong><code>4g 40s 96c</code></strong> + 교관 훈련비(<code>~55s 10c</code>) = <strong>총 <code>~4g 96s 6c</code></strong><br>
+                &bull; <strong>Lv.31 추천 실속 풀세트(<code>1&rarr;125</code> 전환 + <code>세공된 진줏빛 머리장식</code> 1개 제작 기준):</strong> 약 <strong><code>5g 35s</code></strong> (+도안값) / <em>머리장식 생략·만렙 대비만 전환 시 <strong><code>~2g 72s</code></strong>!</em><br>
+                &bull; <strong>마부 삭제 전 녹템 방어구 역추출 손익분기 (<code>이상한 가루 @1s 39c</code>):</strong> iLv 5~10 <code>1s 56c↓</code> &middot; iLv 11~15 <code>2s 60c↓</code> &middot; iLv 16~25 <code>3s 64c↓</code>
               </div>
             </div>
           </details>
@@ -10882,13 +10896,66 @@ const MAT_PRICE_HISTORY = [
   }
 ];
 
-function renderMatPriceCharts() {
-  const mount = document.getElementById('matPriceChartGrid');
+const TAILORING_PRICE_HISTORY = [
+  {
+    name: '리넨 옷감', color: '#059669',
+    points: [
+      { d: '11/20', v: 0.26 },
+      { d: '11/22', v: 0.19 }
+    ]
+  },
+  {
+    name: '양모 옷감', color: '#2563eb',
+    points: [
+      { d: '11/20', v: 2.00 },
+      { d: '11/22', v: 0.88 }
+    ]
+  },
+  {
+    name: '비단 옷감', color: '#0284c7',
+    points: [
+      { d: '11/22', v: 1.40 }
+    ]
+  },
+  {
+    name: '마법 옷감', color: '#d97706',
+    points: [
+      { d: '11/22', v: 6.42 }
+    ]
+  },
+  {
+    name: '룬무늬 옷감', color: '#7c3aed',
+    points: [
+      { d: '11/22', v: 4.99 }
+    ]
+  },
+  {
+    name: '감청색 염료', color: '#4f46e5',
+    points: [
+      { d: '11/20', v: 89.00 },
+      { d: '11/21', v: 94.00 },
+      { d: '11/22', v: 100.90 },
+      { d: '11/23', v: 106.00 }
+    ]
+  },
+  {
+    name: '상급 별의 정수', color: '#db2777',
+    points: [
+      { d: '11/21 오전', v: 18.00 },
+      { d: '11/21 오후', v: 17.70 },
+      { d: '11/22', v: 18.48 },
+      { d: '11/23', v: 18.43 }
+    ]
+  }
+];
+
+function renderPriceChartsInto(mountId, historyArr) {
+  const mount = document.getElementById(mountId);
   if (!mount) return;
   const W = 220, H = 104, padL = 32, padR = 14, padT = 18, padB = 22;
   const plotW = W - padL - padR, plotH = H - padT - padB;
 
-  mount.innerHTML = MAT_PRICE_HISTORY.map(m => {
+  mount.innerHTML = historyArr.map(m => {
     const pts = m.points;
     const vals = pts.map(p => p.v);
     const cur = vals[vals.length - 1];
@@ -10896,7 +10963,7 @@ function renderMatPriceCharts() {
     const diff = cur - prev;
     const pct = prev > 0 ? (diff / prev) * 100 : 0;
     const dCls = diff < -0.005 ? 'down' : (diff > 0.005 ? 'up' : 'flat');
-    const dTxt = Math.abs(diff) < 0.005 ? '보합' : `${diff > 0 ? '▲' : '▼'}${Math.abs(pct).toFixed(0)}%`;
+    const dTxt = pts.length === 1 ? '11/22 기준' : (Math.abs(diff) < 0.005 ? '보합' : `${diff > 0 ? '▲' : '▼'}${Math.abs(pct).toFixed(0)}%`);
 
     let minV = Math.min(...vals), maxV = Math.max(...vals);
     if (maxV - minV < 0.2) { minV = Math.max(0, minV - 0.5); maxV = maxV + 0.5; }
@@ -10921,7 +10988,7 @@ function renderMatPriceCharts() {
     }).join('');
 
     const dotsAndLabels = coords.map((c, idx) => {
-      const anchor = idx === 0 ? 'start' : (idx === coords.length - 1 ? 'end' : 'middle');
+      const anchor = pts.length === 1 ? 'middle' : (idx === 0 ? 'start' : (idx === coords.length - 1 ? 'end' : 'middle'));
       const vFmt = c.v >= 10 ? c.v.toFixed(1) : c.v.toFixed(2);
       return `<circle class="pchart-dot" cx="${c.x.toFixed(1)}" cy="${c.y.toFixed(1)}" r="4" fill="${m.color}"><title>${m.name} (${c.d}): ${c.v.toFixed(2)}실버</title></circle>` +
         `<text class="pchart-val-lbl" x="${c.x.toFixed(1)}" y="${(c.y - 7).toFixed(1)}" text-anchor="${anchor}">${vFmt}</text>` +
@@ -10944,6 +11011,11 @@ function renderMatPriceCharts() {
   if (typeof hydrateWowTooltipsIn === 'function') hydrateWowTooltipsIn(mount);
 }
 
+function renderMatPriceCharts() {
+  renderPriceChartsInto('matPriceChartGrid', MAT_PRICE_HISTORY);
+  renderPriceChartsInto('tailoringPriceChartGrid', TAILORING_PRICE_HISTORY);
+}
+
 /* ===== CUTE RECENTLY UPDATED MENU "N" BADGE (CLICK TO DISMISS) ===== */
 // 대시보드 메뉴 수정 시 최근 업데이트된 탭 ID와 버전(v)을 갱신하면
 // 사이드바(.nav-btn) 및 모바일 퀵탭(.q-pill) 메뉴 제목 우측 위에 귀여운 N 뱃지가 표시되며,
@@ -10958,8 +11030,8 @@ const RECENTLY_UPDATED_TABS = {
     text: '11/23 장비 갱신: 인간사냥꾼 망토(+10) · 가슴 키트(주문+4/방+24) · 내구력 모자 정정'
   },
   'tab-prof': {
-    v: '2026-11-23-v1',
-    text: '11/23 시세·숙련 반영: 마부 127 · 무두 200 · 요리 150 · 낚시 20 · Auctionator 최신 시세'
+    v: '2026-11-23-v2',
+    text: '최근 업데이트 (11/23): 재봉술 단계별 단가·총액 상세표 + 재봉 재료 시세 추이 꺾은선 그래프 · 총 비용 요약 추가'
   },
   'tab-quests': {
     v: '2026-11-23-v1',
