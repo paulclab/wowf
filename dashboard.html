@@ -3307,10 +3307,16 @@
   .ti-tag.boost { border-color: #7c3aed; color: var(--arcane); }
 
   /* ===== MOBILE RIGHT-BOTTOM FLOATING MENU BUTTON (FAB) & SIDEBAR REFRESH ===== */
+  .sidebar {
+    height: 100vh;
+    height: 100dvh;
+  }
+  .nav-tree { flex: 1 0 auto; }
   .sidebar-footer {
-    padding: 10px 14px calc(14px + env(safe-area-inset-bottom, 0px));
+    padding: 12px 14px calc(40px + env(safe-area-inset-bottom, 22px));
     border-top: 1.5px solid var(--rd-line-2);
     margin-top: auto;
+    flex-shrink: 0;
   }
   .sidebar-refresh-btn {
     width: 100%;
@@ -3398,11 +3404,153 @@
     .content {
       padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px)) !important;
     }
+    .kbd-hint { display: none !important; }
+  }
+
+  /* ===== MOBILE POLISH v4.1: AUTO-HIDE HEADER, CRISP CARD-TABLES, NO-SPLIT CHIPS ===== */
+  .ios-safe-top-mask {
+    display: none;
+  }
+  .sticky-header-shell {
+    position: sticky;
+    top: 0;
+    z-index: 35;
+    transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+  .sticky-header-shell .topbar {
+    position: static;
+  }
+  .sticky-header-shell.header-hidden {
+    transform: translateY(calc(-100% - 4px));
+  }
+  @media (max-width: 1140px) {
+    .ios-safe-top-mask {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: env(safe-area-inset-top, 0px);
+      background: var(--rd-paper);
+      z-index: 41;
+      pointer-events: none;
+    }
+    html[data-theme="dark"] .ios-safe-top-mask {
+      background: #161922;
+    }
+  }
+
+  /* Prevent WoW item/skill chips from splitting mid-word across lines */
+  .wow-ref {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    white-space: nowrap;
+    vertical-align: middle;
+    line-height: 1.35;
+  }
+  .wow-ico-inline {
+    margin-right: 0;
+    vertical-align: middle;
+    flex-shrink: 0;
+  }
+
+  /* Crisp Mobile Card-Tables: hide empty dash/slash cells & never stretch inline badges */
+  body.force-card-tables tbody td.cell-empty {
+    display: none !important;
+  }
+  body.force-card-tables tbody td .td-val {
+    min-width: 0;
+    line-height: 1.5;
+  }
+  body.force-card-tables tbody td .badge,
+  body.force-card-tables tbody td code {
+    display: inline-flex;
+    width: auto;
+    max-width: 100%;
+    vertical-align: middle;
+  }
+  @media (max-width: 760px) {
+    body:not(.force-classic-tables) tbody td.cell-empty {
+      display: none !important;
+    }
+    body:not(.force-classic-tables) tbody td {
+      padding: 8px 12px;
+      align-items: baseline;
+    }
+    body:not(.force-classic-tables) tbody td .td-val {
+      min-width: 0;
+      line-height: 1.5;
+    }
+    body:not(.force-classic-tables) tbody td .badge,
+    body:not(.force-classic-tables) tbody td code {
+      display: inline-flex;
+      width: auto;
+      max-width: 100%;
+      vertical-align: middle;
+    }
+  }
+  @media (max-width: 560px) {
+    body:not(.force-classic-tables) tbody td {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 3px;
+      padding: 7px 12px;
+    }
+    body:not(.force-classic-tables) tbody td:first-child {
+      display: block;
+      padding: 8px 12px;
+    }
+    body:not(.force-classic-tables) tbody td::before {
+      padding-top: 0;
+      font-size: 11.2px;
+    }
+    body:not(.force-classic-tables) tbody td .td-val {
+      width: 100%;
+      display: block;
+    }
+    .gear-summary-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+      margin-top: 8px;
+    }
+  }
+  .gear-summary-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    margin-top: 8px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .gear-summary-chip {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 3px 8px;
+    border-radius: 8px;
+    background: var(--rd-paper);
+    border: 1px solid var(--rd-line-2);
+  }
+  .gear-review-list {
+    margin: 0;
+    padding-left: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .gear-review-list li {
+    line-height: 1.62;
   }
 
 </style>
 </head>
 <body>
+<div class="ios-safe-top-mask" aria-hidden="true"></div>
 <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="closeDrawer()"></div>
 <button type="button" class="mobile-menu-fab" id="mobileMenuFab" onclick="toggleSidebar()" aria-label="메뉴 열기/닫기" title="메뉴 보기">
   <svg class="fab-ico-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
@@ -3504,6 +3652,7 @@
 
   <!-- MAIN AREA -->
   <div class="content-wrap">
+    <div class="sticky-header-shell" id="stickyHeaderShell">
     <header class="topbar">
       <div class="topbar-left">
         <button class="icon-btn" id="menuToggleBtn" onclick="toggleSidebar()" aria-label="사이드바 토글" title="사이드바 열기/접기">☰</button>
@@ -3539,6 +3688,7 @@
       <button class="q-pill" data-tab="tab-mech" onclick="openTab('tab-mech')">메커니즘</button>
       <button class="q-pill" data-tab="tab-books" onclick="openTab('tab-books')">도서관</button>
       <button class="q-pill" data-tab="tab-zones" onclick="openTab('tab-zones')">사냥터</button>
+    </div>
     </div>
 
     <main>
@@ -4094,16 +4244,25 @@
       <!-- TAB: GEAR & UPGRADES -->
       <section id="tab-gear" class="tab">
         <div class="callout">
-          <strong><code>2026-11-21</code> 실측 업그레이드 (15/17 슬롯 완료 ✅):</strong> <strong><code>빚 수금인</code>(+34)</strong>, <strong><code>마술사의 현자 지팡이</code>(체+3/지+5/주문+3)</strong>, <strong><code>독수리의 녹옥 부적</code>(체+5/지+5)</strong>, <strong><code>독수리의 모자</code>(체+8/지+8)</strong>, <strong><code>성난 비전의 현인 장화</code>(비전+11 · 체+4/방+32)</strong>, <strong><code>현인 장갑</code>·<code>집정관의 바지</code> <code>신비한 고급 방어구 키트</code>(주문+4/방+24)</strong> 반영! <strong>HP 905 / MP 1,833 / 일반 67 + 비전 전용 75 = 총 비전 +142</strong>100% 일치 달성!
+          <strong><code>2026-11-21</code> 실측 업그레이드 (15/17 슬롯 완료 ✅)</strong><br>
+          <span style="font-size:13.2px;"><strong>HP 905 · MP 1,833 · 일반 주문력 67 + 비전 전용 75 = 총 비전 +142</strong> (100% 일치)</span>
+          <div class="gear-summary-list">
+            <span class="gear-summary-chip"><code>빚 수금인</code> <strong>주문 +34</strong></span>
+            <span class="gear-summary-chip"><code>마술사의 현자 지팡이</code> 체+3 · 지+5 · 주문+3</span>
+            <span class="gear-summary-chip"><code>독수리의 녹옥 부적</code> 체+5 · 지+5</span>
+            <span class="gear-summary-chip"><code>독수리의 모자</code> 체+8 · 지+8</span>
+            <span class="gear-summary-chip"><code>성난 비전의 현인 장화</code> 비전+11 · 키트 체+4·방+32</span>
+            <span class="gear-summary-chip"><code>현인 장갑</code>·<code>집정관의 바지</code> <code>신비한 고급 방어구 키트</code> 주문+4·방+24</span>
+          </div>
         </div>
 
         <div class="card">
           <h2><code>2026-11-21</code> 장비 갱신 &middot; 변경 리뷰 <span class="badge verified">✅ 스샷 6종 실측</span></h2>
-          <ul>
-            <li><strong>주장비 (<code>261121</code> 교체 ✅):</strong> <code>벌목기 칼날</code>(+22) &rarr; <strong><code>빚 수금인</code> (희귀 i31 / Lv.26 / 한손 도검 24-43 / 모든 주문 +34)</strong> — 지하감옥 막넴 <code>바질 스레드</code> 드랍! 단일 부위 <strong>일반 주문력 +12↑</strong> + 주문 저항 시 HP6/MP2 회복.</li>
-            <li><strong>원거리 (유지 ✅):</strong> <strong><code>하늘부름 마법봉</code> (희귀 i21 / 속도 1.60 / 기본 24-45 &rarr; 전문화 2/2 반영 30-57 / 비전 +6)</strong> — 비전 전용 주문력 +6이 정확히 합산되어 총 비전 전용 75 완성! (다음 교체: <code>묘비의 홀</code> 또는 Lv.30 <code>타베사</code> <code>황천의 마법봉</code>)</li>
-            <li><strong>목 &middot; 머리 &middot; 보조장비 (<code>261121</code> 교체 ✅):</strong> <strong><code>독수리의 녹옥 부적</code></strong>(Lv.30, 체+5/지+5, 구매가 69s), <strong><code>독수리의 모자</code></strong>(체+8/지+8), <strong><code>마술사의 현자 지팡이</code></strong>(체+3/지+5/모든 주문+3) 장착 완료 — 지능 장비 합계 <code>+36</code>(총 100) 완벽 일치!</li>
-            <li><strong>다리 키트 실측 정정 (<code>261121</code> ✅):</strong> <strong><code>집정관의 바지</code></strong>(지+13/모든 주문+7)에 적용된 키트는 <strong><code>주문력 +4 / 방어도 +24</code></strong>로 실측 정정(기존 +2/+16 오기 수정) &rarr; 다리 단일 부위에서 <strong>지능 +13 &middot; 주문력 +11 &middot; 방어도 65</strong> 확보!</li>
+          <ul class="gear-review-list">
+            <li><strong>주장비 교체 ✅:</strong> <code>벌목기 칼날</code>(+22) &rarr; <strong><code>빚 수금인</code></strong> (희귀 i31 · Lv.26 · <strong>모든 주문 +34</strong>)<br><small style="opacity:0.84;">지하감옥 <code>바질 스레드</code> 드랍 — 단일 부위 일반 주문력 <strong>+12↑</strong> + 주문 저항 시 HP6·MP2 회복.</small></li>
+            <li><strong>원거리 유지 ✅:</strong> <strong><code>하늘부름 마법봉</code></strong> (희귀 i21 · 속도 1.60 · 전문화 30-57 · <strong>비전 +6</strong>)<br><small style="opacity:0.84;">총 비전 전용 75 정확 합산! 다음 교체: <code>묘비의 홀</code> 또는 Lv.30 <code>타베사</code> <code>황천의 마법봉</code>.</small></li>
+            <li><strong>목 &middot; 머리 &middot; 보조장비 교체 ✅:</strong> <code>독수리의 녹옥 부적</code>(체+5·지+5), <code>독수리의 모자</code>(체+8·지+8), <code>마술사의 현자 지팡이</code>(체+3·지+5·주문+3)<br><small style="opacity:0.84;">장비 지능 합계 <code>+36</code>(총 100) 완벽 일치!</small></li>
+            <li><strong>다리 키트 정정 ✅:</strong> <code>집정관의 바지</code>(지+13·주문+7)에 적용된 키트는 <strong>주문력 +4 · 방어도 +24</strong>로 실측 반영<br><small style="opacity:0.84;">다리 단일 부위에서 <strong>지능 +13 · 주문력 +11 · 방어도 65</strong> 확보!</small></li>
           </ul>
         </div>
 
@@ -5469,6 +5628,7 @@ function openTab(id, btn, opts) {
 
   safeStorageSet('wowf_active_tab_v2', id);
   if (!silent && typeof dismissNavUpdatedBadge === 'function') dismissNavUpdatedBadge(id);
+  document.getElementById('stickyHeaderShell')?.classList.remove('header-hidden');
   if (isDrawerMode()) closeDrawer();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -5512,9 +5672,70 @@ function injectTableLabels() {
     tbl.querySelectorAll('tbody tr').forEach(tr => {
       Array.from(tr.children).forEach((td, idx) => {
         if (headers[idx]) td.setAttribute('data-label', headers[idx]);
+        if (idx === 0) return;
+        const txt = (td.textContent || '').replace(/\u00a0/g, ' ').trim();
+        const isEmptyPlaceholder = !txt || txt === '—' || txt === '-' || txt === '–' || txt === '/';
+        td.classList.toggle('cell-empty', isEmptyPlaceholder);
+        if (!td.querySelector(':scope > .td-val')) {
+          const wrap = document.createElement('div');
+          wrap.className = 'td-val';
+          while (td.firstChild) wrap.appendChild(td.firstChild);
+          td.appendChild(wrap);
+        }
       });
     });
   });
+}
+
+function initAutoHideHeader() {
+  const shell = document.getElementById('stickyHeaderShell');
+  if (!shell || window.__wowfAutoHideBound) return;
+  window.__wowfAutoHideBound = true;
+
+  let lastY = window.scrollY || 0;
+  let ticking = false;
+
+  const update = () => {
+    ticking = false;
+    const y = Math.max(0, window.scrollY || 0);
+    // Keep desktop wide-screen header calmly visible; auto-hide on mobile/tablet
+    if (!isDrawerMode()) {
+      shell.classList.remove('header-hidden');
+      lastY = y;
+      return;
+    }
+    const drawerOpen = document.getElementById('sidebar')?.classList.contains('open');
+    const searchFocused = document.activeElement && document.activeElement.id === 'globalSearch';
+    if (drawerOpen || searchFocused || y <= 24) {
+      shell.classList.remove('header-hidden');
+      lastY = y;
+      return;
+    }
+    // Ignore iOS rubber-band bounce at very bottom of page
+    const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+    if (maxScroll > 0 && y >= maxScroll - 16) {
+      lastY = y;
+      return;
+    }
+    const delta = y - lastY;
+    if (delta >= 10 && y > 64) {
+      shell.classList.add('header-hidden');
+      lastY = y;
+    } else if (delta <= -6) {
+      shell.classList.remove('header-hidden');
+      lastY = y;
+    }
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }
+  }, { passive: true });
+  window.addEventListener('resize', () => {
+    if (!isDrawerMode()) shell.classList.remove('header-hidden');
+  }, { passive: true });
 }
 
 function applyTableMode() {
@@ -10203,6 +10424,7 @@ function bootDashboard() {
     document.body.classList.add('sidebar-collapsed');
   }
   runSafe('injectTableLabels', injectTableLabels);
+  runSafe('initAutoHideHeader', initAutoHideHeader);
   runSafe('initMemphisTheme', typeof initMemphisTheme === 'function' ? initMemphisTheme : null);
   runSafe('applyNavUpdatedBadges', applyNavUpdatedBadges);
   runSafe('renderInGameTalentTrees', renderInGameTalentTrees);
