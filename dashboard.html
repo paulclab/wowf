@@ -8,6 +8,9 @@
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#141824" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-title" content="WoW Forever Wiki">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>WoW Forever (1.60.1) — 비전 마법사 커맨드 덱 (Editorial Memphis)</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
@@ -3303,10 +3306,109 @@
   }
   .ti-tag.boost { border-color: #7c3aed; color: var(--arcane); }
 
+  /* ===== MOBILE RIGHT-BOTTOM FLOATING MENU BUTTON (FAB) & SIDEBAR REFRESH ===== */
+  .sidebar-footer {
+    padding: 10px 14px calc(14px + env(safe-area-inset-bottom, 0px));
+    border-top: 1.5px solid var(--rd-line-2);
+    margin-top: auto;
+  }
+  .sidebar-refresh-btn {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1.5px solid var(--rd-ink);
+    background: var(--rd-paper);
+    color: var(--rd-ink);
+    font-size: 12.6px;
+    font-weight: 800;
+    font-family: var(--font-ui);
+    cursor: pointer;
+    box-shadow: 2px 2px 0 var(--rd-ink);
+    transition: transform 0.1s, background 0.12s;
+  }
+  .sidebar-refresh-btn:hover { background: var(--rd-yellow); color: #17181a; }
+  .sidebar-refresh-btn:active { transform: translate(1px, 1px); }
+  html[data-theme="dark"] .sidebar-refresh-btn {
+    background: #1f2432;
+    color: #f3f0e8;
+    border-color: #f3f0e8;
+    box-shadow: 2px 2px 0 #000000;
+  }
+  .mobile-menu-fab { display: none; }
+  @media (max-width: 1140px) {
+    .mobile-menu-fab {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      right: calc(16px + env(safe-area-inset-right, 0px));
+      bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--rd-yellow, #ffd700);
+      color: #17181a;
+      border: 2px solid #17181a;
+      box-shadow: 3px 3px 0 #17181a, 0 6px 16px rgba(23, 24, 26, 0.22);
+      z-index: 52;
+      cursor: pointer;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 0.14s ease, background 0.15s ease, color 0.15s ease;
+    }
+    .mobile-menu-fab:active { transform: scale(0.93); }
+    .mobile-menu-fab.drawer-open {
+      background: #17181a;
+      color: #ffffff;
+    }
+    .mobile-menu-fab svg {
+      width: 22px;
+      height: 22px;
+      display: block;
+    }
+    .mobile-menu-fab .fab-ico-close { display: none; }
+    .mobile-menu-fab.drawer-open .fab-ico-menu { display: none; }
+    .mobile-menu-fab.drawer-open .fab-ico-close { display: block; }
+    .mobile-menu-fab .fab-dot {
+      display: none;
+      position: absolute;
+      top: 1px;
+      right: 1px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #ff4b6e;
+      border: 2px solid #ffffff;
+    }
+    .mobile-menu-fab.has-unseen:not(.drawer-open) .fab-dot { display: block; }
+    html[data-theme="dark"] .mobile-menu-fab {
+      background: #ffd700;
+      color: #11131a;
+      border-color: #0b0e14;
+      box-shadow: 3px 3px 0 #000000, 0 6px 18px rgba(0, 0, 0, 0.45);
+    }
+    html[data-theme="dark"] .mobile-menu-fab.drawer-open {
+      background: #f3f0e8;
+      color: #11131a;
+    }
+    .content {
+      padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px)) !important;
+    }
+  }
+
 </style>
 </head>
 <body>
 <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="closeDrawer()"></div>
+<button type="button" class="mobile-menu-fab" id="mobileMenuFab" onclick="toggleSidebar()" aria-label="메뉴 열기/닫기" title="메뉴 보기">
+  <svg class="fab-ico-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+  <svg class="fab-ico-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+  <span class="fab-dot" aria-hidden="true"></span>
+</button>
 <div class="app-shell">
   <!-- LEFT SIDEBAR -->
   <aside class="sidebar" id="sidebar">
@@ -3393,6 +3495,11 @@
         </button>
       </div>
     </nav>
+    <div class="sidebar-footer">
+      <button type="button" class="sidebar-refresh-btn" onclick="forceReloadDashboard()" title="캐시를 비우고 최신 대시보드를 즉시 불러옵니다">
+        <span>↻</span><span>최신 버전 새로고침</span>
+      </button>
+    </div>
   </aside>
 
   <!-- MAIN AREA -->
@@ -5369,10 +5476,12 @@ function openTab(id, btn, opts) {
 function toggleSidebar() {
   const sb = document.getElementById('sidebar');
   const bd = document.getElementById('sidebarBackdrop');
+  const fab = document.getElementById('mobileMenuFab');
   if (isDrawerMode()) {
     const opening = !sb.classList.contains('open');
     sb.classList.toggle('open', opening);
     bd.classList.toggle('show', opening);
+    if (fab) fab.classList.toggle('drawer-open', opening);
   } else {
     document.body.classList.toggle('sidebar-collapsed');
     safeStorageSet('wowf_sidebar_collapsed', document.body.classList.contains('sidebar-collapsed') ? '1' : '0');
@@ -5380,8 +5489,18 @@ function toggleSidebar() {
 }
 
 function closeDrawer() {
-  document.getElementById('sidebar').classList.remove('open');
-  document.getElementById('sidebarBackdrop').classList.remove('show');
+  document.getElementById('sidebar')?.classList.remove('open');
+  document.getElementById('sidebarBackdrop')?.classList.remove('show');
+  document.getElementById('mobileMenuFab')?.classList.remove('drawer-open');
+}
+
+function forceReloadDashboard() {
+  try {
+    const url = window.location.pathname + '?v=' + Date.now();
+    window.location.replace(url);
+  } catch (e) {
+    window.location.reload();
+  }
 }
 
 /* Auto data-label injector for responsive card-tables + 3-way view toggle (auto / card / table) */
@@ -10011,6 +10130,13 @@ function isTabUpdateUnseen(tabId) {
   return seen[tabId] !== info.v;
 }
 
+function syncMobileFabDot() {
+  const fab = document.getElementById('mobileMenuFab');
+  if (!fab) return;
+  const anyUnseen = Object.keys(RECENTLY_UPDATED_TABS).some(isTabUpdateUnseen);
+  fab.classList.toggle('has-unseen', anyUnseen);
+}
+
 function dismissNavUpdatedBadge(tabId) {
   const info = RECENTLY_UPDATED_TABS[tabId];
   if (!info) return;
@@ -10023,6 +10149,7 @@ function dismissNavUpdatedBadge(tabId) {
     badge.classList.add('dismissing');
     setTimeout(() => badge.remove(), 170);
   });
+  syncMobileFabDot();
 }
 
 function createCuteNBadge(tabId, summary) {
@@ -10058,6 +10185,7 @@ function applyNavUpdatedBadges() {
     if (!isTabUpdateUnseen(tabId)) return;
     pill.appendChild(createCuteNBadge(tabId, RECENTLY_UPDATED_TABS[tabId].text));
   });
+  syncMobileFabDot();
 }
 
 function bootDashboard() {
