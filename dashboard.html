@@ -3407,15 +3407,15 @@
     .kbd-hint { display: none !important; }
   }
 
-  /* ===== MOBILE POLISH v4.1: AUTO-HIDE HEADER, CRISP CARD-TABLES, NO-SPLIT CHIPS ===== */
+  /* ===== MOBILE POLISH v4.2: FLOATING FIXED AUTO-HIDE HEADER, CRISP CARD-TABLES, NO-SPLIT CHIPS ===== */
   .ios-safe-top-mask {
     display: none;
   }
   .sticky-header-shell {
     position: sticky;
     top: 0;
-    z-index: 35;
-    transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 40;
+    transition: transform 0.16s cubic-bezier(0.2, 0.85, 0.3, 1);
     will-change: transform;
   }
   .sticky-header-shell .topbar {
@@ -3425,6 +3425,23 @@
     transform: translateY(calc(-100% - 4px));
   }
   @media (max-width: 1140px) {
+    .sticky-header-shell {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 40;
+      box-shadow: 0 4px 16px rgba(23, 24, 26, 0.10);
+    }
+    .sticky-header-shell.header-hidden {
+      box-shadow: none;
+    }
+    html[data-theme="dark"] .sticky-header-shell {
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.38);
+    }
+    .content-wrap main {
+      padding-top: calc(var(--mobile-header-h, 138px) + 12px) !important;
+    }
     .ios-safe-top-mask {
       display: block;
       position: fixed;
@@ -3433,12 +3450,40 @@
       right: 0;
       height: env(safe-area-inset-top, 0px);
       background: var(--rd-paper);
-      z-index: 41;
+      z-index: 42;
       pointer-events: none;
     }
     html[data-theme="dark"] .ios-safe-top-mask {
       background: #161922;
     }
+  }
+  .jump-highlight {
+    outline: 3px solid var(--rd-yellow, #ffd700) !important;
+    box-shadow: 0 0 0 6px rgba(255, 215, 0, 0.28) !important;
+    transition: box-shadow 0.3s ease, outline 0.3s ease;
+  }
+  .quest-jump-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 9px;
+    margin-top: 4px;
+    border-radius: 999px;
+    border: 1.5px solid var(--rd-ink);
+    background: var(--rd-yellow, #ffd700);
+    color: #17181a;
+    font-size: 11.4px;
+    font-weight: 800;
+    font-family: var(--font-ui);
+    cursor: pointer;
+    box-shadow: 1.5px 1.5px 0 var(--rd-ink);
+    transition: transform 0.1s;
+    white-space: nowrap;
+  }
+  .quest-jump-btn:hover { transform: translate(-1px, -1px); }
+  html[data-theme="dark"] .quest-jump-btn {
+    border-color: #0b0e14;
+    box-shadow: 1.5px 1.5px 0 #000000;
   }
 
   /* Prevent WoW item/skill chips from splitting mid-word across lines */
@@ -3590,8 +3635,8 @@
         <button class="nav-btn" data-tab="tab-zones" data-group="성장" data-title="사냥터 로드맵" onclick="openTab('tab-zones', this)">
           <span>사냥터</span><span class="pill">루트</span>
         </button>
-        <button class="nav-btn" data-tab="tab-gear" data-group="성장" data-title="착용 장비 (261121) &amp; 추천 템" onclick="openTab('tab-gear', this)">
-          <span>착용 장비 &amp; 추천 아이템</span><span class="pill">15/17</span>
+        <button class="nav-btn" data-tab="tab-gear" data-group="성장" data-title="장비 &amp; 득템" onclick="openTab('tab-gear', this)">
+          <span>장비 &amp; 득템</span><span class="pill">15/17</span>
         </button>
       </div>
 
@@ -3679,7 +3724,7 @@
     <div class="quick-strip" id="quickStrip">
       <button class="q-pill active" data-tab="tab-talent" onclick="openTab('tab-talent')">캐릭터</button>
       <button class="q-pill" data-tab="tab-skills" onclick="openTab('tab-skills')">스킬</button>
-      <button class="q-pill" data-tab="tab-gear" onclick="openTab('tab-gear')">장비</button>
+      <button class="q-pill" data-tab="tab-gear" onclick="openTab('tab-gear')">장비&amp;득템</button>
       <button class="q-pill" data-tab="tab-patches" onclick="openTab('tab-patches')">패치노트</button>
       <button class="q-pill" data-tab="tab-quests" onclick="openTab('tab-quests')">던전&amp;퀘스트</button>
       <button class="q-pill" data-tab="tab-maps" onclick="openTab('tab-maps')">지도</button>
@@ -4242,84 +4287,153 @@
       </section>
 
       <!-- TAB: GEAR & UPGRADES -->
+      <!-- TAB: GEAR & BIS LOOT -->
       <section id="tab-gear" class="tab">
-        <div class="callout">
-          <strong><code>2026-11-21</code> 실측 업그레이드 (15/17 슬롯 완료 ✅)</strong><br>
-          <span style="font-size:13.2px;"><strong>HP 905 · MP 1,833 · 일반 주문력 67 + 비전 전용 75 = 총 비전 +142</strong> (100% 일치)</span>
+        <!-- 1. INTEGRATED UPGRADE SUMMARY BANNER -->
+        <div class="callout verified" style="margin-top:0;">
+          <strong>✨ 최근 장비 업그레이드 요약 (15 / 17 슬롯 장착)</strong><br>
+          <span style="font-size:13.2px;"><strong>HP 905 · MP 1,833 · 일반 주문력 67 + 비전 전용 75 = 총 비전 +142</strong> (지능 100 · 방어도 434)</span>
           <div class="gear-summary-list">
-            <span class="gear-summary-chip"><code>빚 수금인</code> <strong>주문 +34</strong></span>
-            <span class="gear-summary-chip"><code>마술사의 현자 지팡이</code> 체+3 · 지+5 · 주문+3</span>
-            <span class="gear-summary-chip"><code>독수리의 녹옥 부적</code> 체+5 · 지+5</span>
-            <span class="gear-summary-chip"><code>독수리의 모자</code> 체+8 · 지+8</span>
-            <span class="gear-summary-chip"><code>성난 비전의 현인 장화</code> 비전+11 · 키트 체+4·방+32</span>
-            <span class="gear-summary-chip"><code>현인 장갑</code>·<code>집정관의 바지</code> <code>신비한 고급 방어구 키트</code> 주문+4·방+24</span>
+            <span class="gear-summary-chip">주장비 <code>빚 수금인</code> <strong>모든 주문 +34</strong> (+12↑)</span>
+            <span class="gear-summary-chip">보조 <code>마술사의 현자 지팡이</code> 체+3 · 지+5 · 주문+3</span>
+            <span class="gear-summary-chip">머리 <code>독수리의 모자</code> 체+8 · 지+8</span>
+            <span class="gear-summary-chip">목 <code>독수리의 녹옥 부적</code> 체+5 · 지+5</span>
+            <span class="gear-summary-chip">발 <code>성난 비전의 현인 장화</code> 비전+11 · 키트 체+4·방+32</span>
+            <span class="gear-summary-chip">손·다리 <code>신비한 고급 방어구 키트</code> 각 주문+4·방+24</span>
           </div>
         </div>
 
+        <!-- 2. EQUIPPED GEAR FULL TABLE (CLEAN ENCHANT/KIT STATUS, NO DATES OR NEXT GOALS) -->
         <div class="card">
-          <h2><code>2026-11-21</code> 장비 갱신 &middot; 변경 리뷰 <span class="badge verified">✅ 스샷 6종 실측</span></h2>
-          <ul class="gear-review-list">
-            <li><strong>주장비 교체 ✅:</strong> <code>벌목기 칼날</code>(+22) &rarr; <strong><code>빚 수금인</code></strong> (희귀 i31 · Lv.26 · <strong>모든 주문 +34</strong>)<br><small style="opacity:0.84;">지하감옥 <code>바질 스레드</code> 드랍 — 단일 부위 일반 주문력 <strong>+12↑</strong> + 주문 저항 시 HP6·MP2 회복.</small></li>
-            <li><strong>원거리 유지 ✅:</strong> <strong><code>하늘부름 마법봉</code></strong> (희귀 i21 · 속도 1.60 · 전문화 30-57 · <strong>비전 +6</strong>)<br><small style="opacity:0.84;">총 비전 전용 75 정확 합산! 다음 교체: <code>묘비의 홀</code> 또는 Lv.30 <code>타베사</code> <code>황천의 마법봉</code>.</small></li>
-            <li><strong>목 &middot; 머리 &middot; 보조장비 교체 ✅:</strong> <code>독수리의 녹옥 부적</code>(체+5·지+5), <code>독수리의 모자</code>(체+8·지+8), <code>마술사의 현자 지팡이</code>(체+3·지+5·주문+3)<br><small style="opacity:0.84;">장비 지능 합계 <code>+36</code>(총 100) 완벽 일치!</small></li>
-            <li><strong>다리 키트 정정 ✅:</strong> <code>집정관의 바지</code>(지+13·주문+7)에 적용된 키트는 <strong>주문력 +4 · 방어도 +24</strong>로 실측 반영<br><small style="opacity:0.84;">다리 단일 부위에서 <strong>지능 +13 · 주문력 +11 · 방어도 65</strong> 확보!</small></li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h2>착용 장비 전수 분석표 (<code>2026-11-21</code> 실측) <span class="badge verified">✅ 15 / 17 슬롯 반영</span></h2>
+          <h2>현재 착용 장비 <span class="badge verified">15 / 17 슬롯</span></h2>
           <div class="table-wrap">
             <table>
               <thead>
-                <tr><th>부위</th><th>아이템 명칭 (등급 / 템렙 / Lv)</th><th>기본 스탯</th><th>주문력 / 특수효과</th><th>현재 마부 / 키트 상태</th></tr>
+                <tr><th>부위</th><th>아이템 명칭</th><th>기본 스탯</th><th>주문력 / 특수효과</th><th>마부 / 키트 상태</th></tr>
               </thead>
               <tbody>
-                <tr><td><strong>머리</strong></td><td><strong><code>독수리의 모자</code></strong> (고급 / 천)</td><td><strong>체력 +8 &middot; 지능 +8</strong></td><td>&mdash;</td><td><span class="badge verified">261121 착용 ✅</span> (다음: 놈리건 기가볼트)</td></tr>
-                <tr><td><strong>목</strong></td><td><strong><code>독수리의 녹옥 부적</code></strong> (고급 / Lv.30)</td><td><strong>체력 +5 &middot; 지능 +5</strong></td><td>&mdash;</td><td><span class="badge verified">261121 교체 ✅</span> (포에버 신규 목걸이 마부 가능)</td></tr>
-                <tr><td><strong>어깨</strong></td><td><strong><code>장미 어깨보호대</code></strong> (고급 / i27 / 방어도 30)</td><td>지능 +5</td><td>모든 주문 +5</td><td>&mdash;</td></tr>
-                <tr><td><strong>등 (망토)</strong></td><td><strong><code>성난 비전의 비늘 망토</code></strong> (i29 / Lv.24 / 방어도 21)</td><td>&mdash;</td><td><strong>비전 +9</strong></td><td><span class="badge verified">마부: 방어도 +10</span> (숙련 80 지능+2 추천)</td></tr>
-                <tr><td><strong>가슴</strong></td><td><code>성난 비전의 담쟁이덩굴 튜닉</code> (i29 / Lv.24)</td><td>&mdash;</td><td>비전 +16</td><td><span class="badge verified">방어구 키트 적용</span></td></tr>
-                <tr><td><strong>손목</strong></td><td><code>성난 비전의 현인 팔보호구</code> (i28 / Lv.23)</td><td>&mdash;</td><td>비전 +9</td><td><span class="badge verified">마부: 최하급 체력 +3</span></td></tr>
-                <tr><td><strong>손</strong></td><td><strong><code>성난 비전의 현인 장갑</code></strong> (i29 / Lv.24 / 방어도 26)</td><td>&mdash;</td><td><strong>비전 +11</strong></td><td><span class="badge verified">키트: 주문력 +4 / 방어도 +24 ✅</span></td></tr>
-                <tr><td><strong>허리</strong></td><td><strong><code>성난 비전의 장로 장식띠</code></strong> (i31 / Lv.26 / 방어도 25)</td><td>&mdash;</td><td><strong>비전 +13</strong></td><td>&mdash;</td></tr>
-                <tr><td><strong>다리</strong></td><td><strong><code>집정관의 바지</code></strong> (희귀 / i29 / 방어도 41)</td><td><strong>지능 +13</strong></td><td><strong>모든 주문 +7</strong></td><td><span class="badge verified">키트: 주문력 +4 / 방어도 +24 ✅</span></td></tr>
-                <tr><td><strong>발</strong></td><td><strong><code>성난 비전의 현인 장화</code></strong> (고급 / Lv.23 / 방어도 29)</td><td>&mdash;</td><td><strong>비전 +11</strong> <span class="badge arcane">+2↑</span></td><td><span class="badge verified">키트: 체력 +4 / 방어도 +32 ✅</span></td></tr>
-                <tr><td><strong>손가락 1</strong></td><td><strong><code>암흑 호드 고리</code></strong> (희귀 / i26 / Lv.21)</td><td><strong>체력 +6</strong></td><td><strong>모든 주문 +6</strong></td><td><span class="badge verified">종결 유지 ✅</span> (지하감옥 타고르)</td></tr>
-                <tr><td><strong>손가락 2</strong></td><td><strong><code>악성 뿌리</code></strong> (희귀 / i32 / Lv 무제한)</td><td><strong>체력 +7</strong></td><td><strong>모든 주문 +4</strong> · 전투력 +8</td><td><span class="badge verified">종결 유지 ✅</span> (저습지 레시엘)</td></tr>
-                <tr><td><strong>장신구 1·2</strong></td><td><em>(모두 빈 슬롯)</em></td><td>&mdash;</td><td>&mdash;</td><td><span class="badge warn">유일한 공석 (2슬롯)</span></td></tr>
-                <tr><td><strong>주장비</strong></td><td><strong><code>빚 수금인</code></strong> (희귀 / i31 / Lv.26, 한손 도검 24-43)</td><td>&mdash;</td><td><strong>모든 주문 +34</strong> · 저항 시 HP6/MP2</td><td><span class="badge verified">261121 장착 ✅</span> (`최하급 마술사 오일` +8 추천)</td></tr>
-                <tr><td><strong>보조장비</strong></td><td><strong><code>마술사의 현자 지팡이</code></strong> (고급 / i32 / Lv.27)</td><td><strong>체력 +3 &middot; 지능 +5</strong></td><td><strong>모든 주문 +3</strong></td><td><span class="badge verified">261121 장착 ✅</span> (숙련 125 `수습생의 보주` 목표)</td></tr>
-                <tr><td><strong>원거리</strong></td><td><strong><code>하늘부름 마법봉</code></strong> (희귀 / i21 / Lv.16 / 속도 1.60)</td><td>&mdash;</td><td><strong>비전 +6</strong> &middot; 30-57(전문화 반영)</td><td><span class="badge verified">현재 착용 ✅</span> (다음: <code>묘비의 홀</code> / <code>황천의 마법봉</code>)</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <p style="margin:8px 0 0; font-size:12px; opacity:0.8;">※ 실측 스탯창 합계는 <strong>일반 주문력 67 / 총 비전 주문력 142 (비전 전용 +75)</strong>이며, <strong>부위 합계 100% 일치 ✅:</strong> 일반 주문력 <strong>67</strong>(어깨5+장갑키트4+바지7+바지키트4+반지10+빚수금인34+현자지팡이3) + 비전 전용 <strong>75</strong>(등9+가슴16+손목9+손11+허리13+발11+<code>하늘부름 마법봉</code>6) = <strong>총 비전 주문력 142</strong>!</p>
-        </div>
-
-        <div class="card">
-          <h2>30~40레벨 추천 업그레이드 로드맵</h2>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr><th>우선순위 · 부위</th><th>추천 아이템</th><th>획득처 및 비고</th></tr>
-              </thead>
-              <tbody>
-                <tr><td><strong>1순위 · 머리 / 어깨</strong></td><td><strong><code>기가볼트 전자반응기</code></strong>(Lv.31) / <strong><code>담녹색 어깨보호대</code></strong>(어깨)</td><td>놈리건 막넴 <code>멕기니어</code> (지+8/정+9/주+8) / 가시덩굴 우리 <code>가시덩굴 우리의 대모</code> (체+5/지+10/주+7)</td></tr>
-                <tr><td><strong>2순위 · 원거리</strong></td><td><strong><code>황천의 마법봉</code></strong>(비전+9) / <strong><code>별똥별 마법봉</code></strong>(월드 BoE)</td><td>먼지진흙 <code>타베사</code>(46.0, 57.0) 직업 연퀘(DPS 37.3) / 경매장·월드드랍 <code>별똥별 마법봉</code>(DPS 32.9/지+4/비전+6)</td></tr>
-                <tr><td><strong>3순위 · 보조 / 양손</strong></td><td><strong><code>랩터의 시선</code></strong>(보조) &rarr; <strong><code>수습생의 보주</code></strong> / <strong><code>죽음의 예언자 가시</code></strong>(지팡이)</td><td>발굴현장 <code>그늘이빨</code>(체4/지4/주+8) / 가시덩굴 <code>저주의가시 아겜</code>(체11/MP5+5/주+34, 생존·장기전 스왑)</td></tr>
-                <tr><td><strong>4순위 · 발 / 가슴</strong></td><td><strong><code>산성 장화</code></strong> / <strong><code>반짝눈 덧신</code></strong> / <code>선민의 로브</code></td><td>놈리건 <code>방사성 폐기물</code>(지8/정4/주5) / 발굴현장 <code>소금가시</code>(체9/정6/주7) / <code>대배반</code></td></tr>
-                <tr><td><strong>5순위 · 반지 (스왑)</strong></td><td><strong><code>암흑 호드 고리</code> + <code>악성 뿌리</code></strong> 유지 &middot; <strong><code>뱀고리</code></strong>(지+5/주+6)</td><td>가시덩굴 우리 호위 <code>수입업자 윌릭스</code> 보상 <code>뱀고리</code> 확보 시 딜·마나 세팅 스왑 가능!</td></tr>
+                <tr><td><strong>머리</strong></td><td><strong><code>독수리의 모자</code></strong> (고급 · 천)</td><td><strong>체력 +8 &middot; 지능 +8</strong></td><td>&mdash;</td><td><span class="badge">부여 불가 (현 구간 마부·키트 없음)</span></td></tr>
+                <tr><td><strong>목</strong></td><td><strong><code>독수리의 녹옥 부적</code></strong> (고급 · Lv.30)</td><td><strong>체력 +5 &middot; 지능 +5</strong></td><td>&mdash;</td><td><span class="badge warn">부여 필요</span> 추천: <code>목걸이 - 주문력</code> (+6)</td></tr>
+                <tr><td><strong>어깨</strong></td><td><strong><code>장미 어깨보호대</code></strong> (고급 · i27 · 방어 30)</td><td>지능 +5</td><td>모든 주문 +5</td><td><span class="badge">부여 불가 (만렙 평판 마부 전 없음)</span></td></tr>
+                <tr><td><strong>등 (망토)</strong></td><td><strong><code>성난 비전의 비늘 망토</code></strong> (i29 · Lv.24 · 방어 21)</td><td>&mdash;</td><td><strong>비전 +9</strong></td><td><span class="badge verified">마부 적용: 방어도 +10</span> (대안: <code>망토 - 하급 저항력</code>)</td></tr>
+                <tr><td><strong>가슴</strong></td><td><code>성난 비전의 담쟁이덩굴 튜닉</code> (i29 · Lv.24)</td><td>&mdash;</td><td>비전 +16</td><td><span class="badge verified">키트 적용: 체력 +3 · 방어도 +24 ✅</span></td></tr>
+                <tr><td><strong>손목</strong></td><td><code>성난 비전의 현인 팔보호구</code> (i28 · Lv.23)</td><td>&mdash;</td><td>비전 +9</td><td><span class="badge verified">마부 적용: 체력 +3 ✅</span> (업글 추천: <code>손목 - 하급 체력</code> +4 / <code>손목 - 체력</code> +6)</td></tr>
+                <tr><td><strong>손</strong></td><td><strong><code>성난 비전의 현인 장갑</code></strong> (i29 · Lv.24 · 방어 26)</td><td>&mdash;</td><td><strong>비전 +11</strong></td><td><span class="badge verified">키트 적용: 주문력 +4 · 방어도 +24 ✅</span></td></tr>
+                <tr><td><strong>허리</strong></td><td><strong><code>성난 비전의 장로 장식띠</code></strong> (i31 · Lv.26 · 방어 25)</td><td>&mdash;</td><td><strong>비전 +13</strong></td><td><span class="badge">부여 불가 (마부·키트 불가 부위)</span></td></tr>
+                <tr><td><strong>다리</strong></td><td><strong><code>집정관의 바지</code></strong> (희귀 · i29 · 방어 41)</td><td><strong>지능 +13</strong></td><td><strong>모든 주문 +7</strong></td><td><span class="badge verified">키트 적용: 주문력 +4 · 방어도 +24 ✅</span></td></tr>
+                <tr><td><strong>발</strong></td><td><strong><code>성난 비전의 현인 장화</code></strong> (고급 · Lv.23 · 방어 29)</td><td>&mdash;</td><td><strong>비전 +11</strong></td><td><span class="badge verified">키트 적용: 체력 +4 · 방어도 +32 ✅</span></td></tr>
+                <tr><td><strong>손가락 1</strong></td><td><strong><code>암흑 호드 고리</code></strong> (희귀 · i26 · Lv.21)</td><td><strong>체력 +6</strong></td><td><strong>모든 주문 +6</strong></td><td><span class="badge">부여 불가 (마부·키트 불가 부위)</span></td></tr>
+                <tr><td><strong>손가락 2</strong></td><td><strong><code>악성 뿌리</code></strong> (희귀 · i32)</td><td><strong>체력 +7</strong></td><td><strong>모든 주문 +4</strong> · 전투력 +8</td><td><span class="badge">부여 불가 (마부·키트 불가 부위)</span></td></tr>
+                <tr><td><strong>장신구 1·2</strong></td><td><em>(빈 슬롯 2칸)</em></td><td>&mdash;</td><td>&mdash;</td><td><span class="badge warn">부여 불가 · 슬롯 비어 있음</span></td></tr>
+                <tr><td><strong>주장비</strong></td><td><strong><code>빚 수금인</code></strong> (희귀 · i31 · Lv.26 · 한손 도검)</td><td>&mdash;</td><td><strong>모든 주문 +34</strong> · 저항 시 HP6·MP2</td><td><span class="badge warn">부여 필요</span> 추천: <code>최하급 마술사 오일</code> (+8) · <code>무기 - 계시</code></td></tr>
+                <tr><td><strong>보조장비</strong></td><td><strong><code>마술사의 현자 지팡이</code></strong> (고급 · i32 · Lv.27)</td><td><strong>체력 +3 &middot; 지능 +5</strong></td><td><strong>모든 주문 +3</strong></td><td><span class="badge warn">부여 필요</span> 추천: <code>보조장비 - 지혜</code> (포에버 마부)</td></tr>
+                <tr><td><strong>원거리</strong></td><td><strong><code>하늘부름 마법봉</code></strong> (희귀 · i21 · 속도 1.60)</td><td>&mdash;</td><td><strong>비전 +6</strong> &middot; 30-57 (전문화 반영)</td><td><span class="badge">부여 불가 (마부·키트 불가 부위)</span></td></tr>
               </tbody>
             </table>
           </div>
         </div>
 
+        <!-- 3. LV.30~38 BIS LOOT LIST WITH TOOLTIPS, COORDS & DIRECT LINKS TO DUNGEONS/QUESTS -->
         <div class="card">
-          <h2>어둠의 해안 <code>남작 마리노스</code> (<code>#98028</code>) 보조장비 보상 참고 <span class="badge db">📘 DB 확인</span></h2>
-          <ul>
-            <li><strong>반납 NPC:</strong> <code>오누 (Onu)</code> [칼림도어 북서부 &gt; 어둠의 해안 남부 고대정령의 숲 (<code>43.5, 76.3</code>)]</li>
-            <li><strong>현재 판단:</strong> 보상 <code>마시스트라 정신 집중 보주</code>(체+3/지+5)보다 현재 착용 중인 <strong><code>마술사의 현자 지팡이</code>(체+3/지+5/모든 주문+3)</strong>가 완벽한 상위 호환이므로 반납 후 마력 추출/상점 처분 권장.</li>
-          </ul>
+          <h2>🎯 내 레벨 BiS 득템 리스트 (Lv.30~38) <span class="badge gold">툴팁 · 좌표 · 던전/퀘스트 직통</span></h2>
+          <p style="margin-top:0; font-size:12.6px; opacity:0.84;">아이템 이름을 탭/호버하면 <strong>상세 능력치·현 장비 대비 비교 툴팁</strong>이 열리며, 버튼으로 <strong>던전 &amp; 퀘스트</strong> 공략 항목으로 바로 이동합니다.</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>우선순위 · 부위</th><th>BiS 아이템 (툴팁)</th><th>핵심 스탯 &amp; 교체 가치</th><th>득템 위치 · 좌표 &amp; 연관 공략</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>1순위 · 보조장비</strong></td>
+                  <td><strong><code>랩터의 시선</code></strong> (희귀 · Lv.26)</td>
+                  <td><strong>체+4 · 지+4 · 모든 주문 +8</strong><br><small>현 <code>마술사의 현자 지팡이</code>(+3) 대비 <strong>주문 +5↑ 최우선</strong></small></td>
+                  <td><strong>발굴 현장: 저습지</strong> 2넴 <code>그늘이빨</code><br><small>동부왕국 &gt; 저습지 텔겐 바위(<code>53.2, 65.8</code>) &rarr; 푸른 안개 포탈(<code>47.7, 56.2</code>)</small><br><button type="button" class="quest-jump-btn" onclick="jumpToTabAnchor('tab-quests','q-sec-excav')">🔗 던전&amp;퀘스트: 발굴 현장</button></td>
+                </tr>
+                <tr>
+                  <td><strong>1순위 · 원거리</strong></td>
+                  <td><strong><code>황천의 마법봉</code></strong> / <code>맹위의 얼음마법봉</code> (Lv.30)</td>
+                  <td><strong>DPS 37.3 · 지+3 · 비전 +9</strong> (또는 냉기 +9)<br><small>현 <code>하늘부름 마법봉</code>(비전+6) 완벽 상위 호환</small></td>
+                  <td><strong>마법사 직업 연퀘</strong> <code>습지대로의 여정</code> &rarr; <code>마력의 의식</code><br><small>스톰윈드 <code>제니아 캐논</code>(<code>38.6, 79.4</code>) &rarr; 칼림도어 먼지진흙 <code>타베사</code>(<code>46.0, 57.0</code>)</small><br><button type="button" class="quest-jump-btn" onclick="jumpToTabAnchor('tab-quests','q-sec-mage-chain')">🔗 던전&amp;퀘스트: 마법사 연퀘</button></td>
+                </tr>
+                <tr>
+                  <td><strong>1순위 · 머리</strong></td>
+                  <td><strong><code>기가볼트 전자반응기</code></strong> (희귀 · Lv.31)</td>
+                  <td><strong>지+8 · 정+9 · 모든 주문 +8</strong><br><small>현 <code>독수리의 모자</code>(체8·지8) 대비 주문력·정신 대폭 상승</small></td>
+                  <td><strong>놈리건</strong> 막넴 <code>멕기니어</code><br><small>동부왕국 &gt; 던 모로 신 땜장이 마을 승강기(<code>24.4, 39.6</code>) 지하 포탈</small><br><button type="button" class="quest-jump-btn" onclick="jumpToTabAnchor('tab-quests','q-sec-gnomer')">🔗 던전&amp;퀘스트: 놈리건</button></td>
+                </tr>
+                <tr>
+                  <td><strong>1순위 · 어깨</strong></td>
+                  <td><strong><code>담녹색 어깨보호대</code></strong> (희귀 · 요구 Lv.29)</td>
+                  <td><strong>체+5 · 지+10 · 모든 주문 +7</strong><br><small>현 <code>장미 어깨보호대</code>(지5·주5) 대비 <strong>전 스탯 대폭 업글</strong></small></td>
+                  <td><strong>가시덩굴 우리</strong> 퀘스트 <code>가시덩굴 우리의 대모</code><br><small>페랄라스 탈라나르 <code>팔핀델</code> &rarr; 칼림도어 불모의 땅 남단(<code>42.9, 90.2</code>) <code>차를가</code></small><br><button type="button" class="quest-jump-btn" onclick="jumpToTabAnchor('tab-quests','q-sec-rfk')">🔗 던전&amp;퀘스트: 가시덩굴 우리</button></td>
+                </tr>
+                <tr>
+                  <td><strong>2순위 · 장신구</strong></td>
+                  <td><strong><code>루구그의 절단된 머리카락</code></strong> (희귀)</td>
+                  <td><strong>정신력 +6</strong><br><small>현재 <strong>비어 있는 장신구 슬롯</strong> 첫 확보 + 신비한 명상 시너지</small></td>
+                  <td><strong>가시덩굴 우리</strong> 보스 <code>루구그</code><br><small>칼림도어 &gt; 불모의 땅 최남단 가시 통로 끝(<code>42.9, 90.2</code>)</small><br><button type="button" class="quest-jump-btn" onclick="jumpToTabAnchor('tab-quests','q-sec-rfk')">🔗 던전&amp;퀘스트: 가시덩굴 우리</button></td>
+                </tr>
+                <tr>
+                  <td><strong>2순위 · 반지</strong></td>
+                  <td><strong><code>뱀고리</code></strong> / <strong><code>힘 조율의 반지</code></strong></td>
+                  <td><code>뱀고리</code> <strong>지+5·주문+6</strong> / <code>힘 조율</code> <strong>MP5+3·주문+6</strong><br><small><code>악성 뿌리</code>(체7·주4) 대비 딜·마나 세팅 스왑</small></td>
+                  <td><strong>가시덩굴 우리</strong> 호위 <code>수입업자 윌릭스</code>(<code>42.9, 90.2</code>)<br><strong>발굴 현장: 저습지</strong> 막넴 <code>유물 수호자</code>(<code>47.7, 56.2</code>)<br><button type="button" class="quest-jump-btn" onclick="jumpToTabAnchor('tab-quests','q-sec-rfk')">🔗 가시덩굴 우리</button> <button type="button" class="quest-jump-btn" onclick="jumpToTabAnchor('tab-quests','q-sec-excav')">🔗 발굴 현장</button></td>
+                </tr>
+                <tr>
+                  <td><strong>2순위 · 발</strong></td>
+                  <td><strong><code>반짝눈 덧신</code></strong> / <strong><code>산성 장화</code></strong></td>
+                  <td><code>반짝눈</code> <strong>체+9·정+6·주문+7</strong> / <code>산성</code> <strong>지+8·정+4·주문+5</strong><br><small>생존·일반 주문력(냉기 겸용) 스왑 최상급</small></td>
+                  <td><strong>발굴 현장</strong> 1넴 <code>소금가시</code>(<code>47.7, 56.2</code>) / <strong>놈리건</strong> <code>방사성 폐기물</code>(<code>24.4, 39.6</code>)<br><button type="button" class="quest-jump-btn" onclick="jumpToTabAnchor('tab-quests','q-sec-excav')">🔗 발굴 현장</button> <button type="button" class="quest-jump-btn" onclick="jumpToTabAnchor('tab-quests','q-sec-gnomer')">🔗 놈리건</button></td>
+                </tr>
+                <tr>
+                  <td><strong>3순위 · 양손/스왑</strong></td>
+                  <td><strong><code>죽음의 예언자 가시</code></strong> (희귀 · 지팡이)</td>
+                  <td><strong>체+11 · MP5 +5 · 모든 주문 +34</strong><br><small>현 <code>빚 수금인+현자 지팡이</code>(+37) 대비 생존·장기전 스왑</small></td>
+                  <td><strong>가시덩굴 우리</strong> <code>저주의가시 아겜</code> (2.5%)<br><small>칼림도어 &gt; 불모의 땅 최남단 가시 통로(<code>42.9, 90.2</code>)</small><br><button type="button" class="quest-jump-btn" onclick="jumpToTabAnchor('tab-quests','q-sec-rfk')">🔗 던전&amp;퀘스트: 가시덩굴 우리</button></td>
+                </tr>
+                <tr>
+                  <td><strong>3순위 · 등/가슴</strong></td>
+                  <td><code>가시직조 외투</code> / <code>선민의 로브</code></td>
+                  <td><code>외투</code> 정+6·주문+7 / <code>로브</code> 주문+9·치유+26<br><small>일반 주문력·냉기 전환 대비 스왑용</small></td>
+                  <td><strong>가시덩굴 우리</strong> <code>루구그</code>(<code>42.9, 90.2</code>) / <strong>놈리건</strong> <code>대배반</code>(<code>69.0, 49.5</code>)<br><button type="button" class="quest-jump-btn" onclick="jumpToTabAnchor('tab-quests','q-sec-rfk')">🔗 가시덩굴 우리</button> <button type="button" class="quest-jump-btn" onclick="jumpToTabAnchor('tab-quests','q-sec-gnomer')">🔗 놈리건</button></td>
+                </tr>
+                <tr>
+                  <td><strong>대안 · 원거리/보조</strong></td>
+                  <td><code>별똥별 마법봉</code> (BoE) / <code>수습생의 보주</code> (마부 125)</td>
+                  <td><code>별똥별</code> DPS 32.9·지+4·비전+6 / <code>보주</code> 마부 전용 희귀<br><small>경매장 또는 마법부여 직접 제작 확보 가능</small></td>
+                  <td>경매장 / 붉은마루 삼거리 <code>알린시아</code>(<code>11.2, 71.5</code>, 호의 10개)<br><button type="button" class="quest-jump-btn" onclick="openTab('tab-prof')">🔗 전문기술 확인</button></td>
+                </tr>
+                <tr>
+                  <td><strong>다음 구간 (Lv.34~39)</strong></td>
+                  <td><code>환영의 지팡이</code> · <code>최면의 단검</code> · <code>화이트메인의 모자</code></td>
+                  <td>30대 후반 붉은십자군 도서관·예배당 캐스터 핵심 드랍</td>
+                  <td><strong>붉은십자군 수도원</strong><br><small>동부왕국 &gt; 티리스팔 숲 북동부 성채(<code>84.8, 32.9</code>)</small><br><button type="button" class="quest-jump-btn" onclick="jumpToTabAnchor('tab-quests','q-sec-sm')">🔗 던전&amp;퀘스트: 수도원</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 4. COLLAPSIBLE ARCHIVE FOR PAST GEAR UPDATES & MISC NOTES -->
+        <div class="wide-fold-row" style="grid-template-columns: 1fr;">
+          <details class="fold-card">
+            <summary>📦 과거 장비 변경 아카이브 &amp; 참고 기록 (클릭해서 열기)</summary>
+            <div class="fold-body">
+              <div class="callout" style="margin-top:0;">
+                <strong>2026-11-21 (Lv.30 대규모 교체 기록):</strong>
+                <ul class="gear-review-list" style="margin-top:6px;">
+                  <li><strong>주장비:</strong> <code>벌목기 칼날</code>(+22) &rarr; <code>빚 수금인</code>(+34, 지하감옥 막넴 <code>바질 스레드</code>)</li>
+                  <li><strong>목 · 머리 · 보조:</strong> <code>지능의 유령 목걸이</code> &rarr; <code>독수리의 녹옥 부적</code>(69s), <code>독수리의 모자</code>, <code>마술사의 현자 지팡이</code> 장착</li>
+                  <li><strong>발 · 손 · 다리 키트:</strong> <code>담쟁이덩굴 장화</code>(+9) &rarr; <code>성난 비전의 현인 장화</code>(+11, 키트 체+4·방+32), <code>현인 장갑</code>·<code>집정관의 바지</code> 키트(주문+4·방+24) 확인</li>
+                  <li><strong>원거리 확정:</strong> <code>하늘부름 마법봉</code> (기본 24-45 &rarr; 전문화 2/2 반영 30-57, 비전 +6)</li>
+                </ul>
+              </div>
+              <div class="callout" style="margin-bottom:0;">
+                <strong>어둠의 해안 <code>남작 마리노스</code> (<code>#98028</code>) 보상 참고:</strong><br>
+                반납 NPC <code>오누</code> [칼림도어 &gt; 어둠의 해안 (<code>43.5, 76.3</code>)]의 보상 <code>마시스트라 정신 집중 보주</code>(체+3·지+5)보다 현 <code>마술사의 현자 지팡이</code>(체+3·지+5·주문+3)가 상위 호환이므로 반납 후 마력 추출/처분 권장.
+              </div>
+            </div>
+          </details>
         </div>
       </section>
 
@@ -4524,7 +4638,7 @@
       <!-- TAB: QUESTS -->
       <section id="tab-quests" class="tab">
         <div class="card">
-          <h2>1. 다음 목표 인던 &mdash; 발굴 현장: 저습지 (Excavation Site: Wetlands, Lv.26~33) <span class="badge gold">다음 목표 ⭐</span></h2>
+          <h2 id="q-sec-excav">1. 다음 목표 인던 &mdash; 발굴 현장: 저습지 (Excavation Site: Wetlands, Lv.26~33) <span class="badge gold">다음 목표 ⭐</span></h2>
           <div class="callout" style="margin-top:0;">
             <strong>와우 포에버 전용 신규 5인 인스턴스 던전(인던):</strong> 오리지널 클래식의 야외 필드(<code>웰가르의 발굴현장</code>)와 달리, 포에버에서는 별도 포탈로 입장하는 <strong>5인 전용 인던</strong>으로 구현되어 있습니다 (<code>📘 애드온 DB 실측</code>: <code>ForeverDungeonJournal</code>).<br>
             &bull; <strong>외부 1차 이정표(만남의 돌):</strong> <code>동부왕국 &gt; 저습지 남동부 &gt; 텔겐 바위 (Thelgen Rock) 거미 동굴 앞 (53.2, 65.8)</code><br>
@@ -4609,13 +4723,13 @@
                   <td><strong><code>뱀고리</code></strong>(호위 <code>수입업자 윌릭스</code>, 지5/주6), <strong><code>죽음의 예언자 가시</code></strong>(<code>저주의가시 아겜</code>, 체11/MP5+5/주34), <strong><code>담녹색 어깨보호대</code></strong></td>
                 </tr>
                 <tr>
-                  <td><strong>놈리건 (Gnomeregan)</strong><br><button class="map-jump-btn macro" onclick="jumpToMacroNode('gnomer')">🌍 대륙 맵</button></td>
+                  <td id="q-sec-gnomer"><strong>놈리건 (Gnomeregan)</strong><br><button class="map-jump-btn macro" onclick="jumpToMacroNode('gnomer')">🌍 대륙 맵</button></td>
                   <td><strong>Lv.28~35</strong><br><span class="badge db">병행 추천</span></td>
                   <td>동부왕국 &gt; 던 모로 서부 신 땜장이 마을 지상 승강기(<code>24.4, 39.6</code>) 지하 하강 &rarr; 비인던 방사능 통로 통과 후 포탈</td>
                   <td>머리 <strong><code>기가볼트 전자반응기</code></strong>(지능+8/주문+8), <code>수력지팡이</code>(주문+36), <code>산성 장화</code>(발), <code>선민의 로브</code></td>
                 </tr>
                 <tr>
-                  <td><strong>붉은십자군 수도원 (SM)</strong><br><button class="map-jump-btn macro" onclick="jumpToMacroNode('sm')">🌍 대륙 맵</button></td>
+                  <td id="q-sec-sm"><strong>붉은십자군 수도원 (SM)</strong><br><button class="map-jump-btn macro" onclick="jumpToMacroNode('sm')">🌍 대륙 맵</button></td>
                   <td><strong>Lv.30~42</strong></td>
                   <td>동부왕국 북부 &gt; 티리스팔 숲 북동부(<code>84.8, 32.9</code>) 성채 대문 &rarr; 중앙 회랑에서 <strong>4개 별도 문(묘지·도서관 / 무기고·예배당)</strong> 분기</td>
                   <td>도서관/예배당 캐스터 지팡이(<code>환영의 지팡이</code>)·단검(<code>최면의 단검</code>)·모자(<code>화이트메인의 모자</code> Lv.39)</td>
@@ -4644,7 +4758,7 @@
         </div>
 
         <div class="card">
-          <h2>3. 추천 &mdash; 가시덩굴 우리 BiS 획득 계획 &amp; 30~40레벨 퀘스트·직업 연퀘 <span class="badge db">추천 순위</span></h2>
+          <h2 id="q-sec-rfk">3. 추천 &mdash; 가시덩굴 우리 BiS 획득 계획 &amp; 30~40레벨 퀘스트·직업 연퀘 <span class="badge db">추천 순위</span></h2>
           <div class="callout" style="margin-top:0;">
             <strong>🎯 가시덩굴 우리 (Razorfen Kraul, Lv.29~38) BiS 획득 계획:</strong> <code>발굴 현장: 저습지</code> 이후 <strong><code>뱀고리</code>(반지)</strong> + <strong><code>죽음의 예언자 가시</code>(양손 지팡이)</strong> + <strong><code>담녹색 어깨보호대</code></strong>를 한 번에 노리는 칼림도어 남부 파밍 코스입니다! (비행 거점 <code>톱니항</code> 착지 후 남서쪽 불모의 땅 남단 가시 통로 <code>42.9, 90.2</code> 진입)
           </div>
@@ -4687,7 +4801,7 @@
               <tbody>
                 <tr><td><strong>발굴 현장: 저습지 (Lv.26~33)</strong> <span class="badge gold">다음 목표</span></td><td><code>고원 가죽</code>, <code>송블레이드 수색</code>, <code>고원의 공포</code>, <code>갈대로 엮은 마음</code>, <code>태고의 분광경</code></td><td>메네실 항구 <code>제임스 할로란(8.0,55.0)</code> · <code>레시엘(56.2,40.6)</code> · <code>웰가르(38.8,52.4)</code></td><td><strong><code>랩터의 시선</code></strong>(보조 주문+8), <strong><code>반짝눈 덧신</code></strong>(발 체9/주문+7), <strong><code>힘 조율의 반지</code></strong>(MP5+3/주문+6)</td></tr>
                 <tr><td><strong>가시덩굴 우리 (Lv.29~38)</strong> <span class="badge arcane">BiS 파밍</span></td><td><code>수입업자 윌릭스</code>, <code>가시덩굴 우리의 대모</code>, <code>청엽수 줄기</code>, <code>꺼져가는 생명의 불씨</code></td><td>던전 내 <code>수입업자 윌릭스</code> / 톱니항 <code>메복 미지릭스</code> / 탈라나르 <code>팔핀델 웨이워더</code></td><td><strong><code>뱀고리</code></strong>(지5/주6), <strong><code>죽음의 예언자 가시</code></strong>(<code>저주의가시 아겜</code>, 체11/MP5+5/주34), <strong><code>담녹색 어깨보호대</code></strong>(체5/지10/주7)</td></tr>
-                <tr><td><strong>마법사 직업 (Lv.30~40)</strong></td><td>Lv.30 <strong><code>습지대로의 여정</code> &rarr; <code>마력의 의식</code></strong> &rarr; Lv.40 <strong><code>천공의 힘</code></strong></td><td><code>제니아 캐논</code> [스톰윈드 성소 (<code>38.6, 79.4</code>)] &rarr; <code>타베사</code> [먼지진흙 습지대 (<code>46.0, 57.0</code>)]</td><td><strong><code>황천의 마법봉</code></strong>(비전+9/지+3) &middot; <strong><code>맹위의 얼음마법봉</code></strong>(냉기+9/지+3) / Lv.40 <strong><code>천공의 보주</code></strong>(보조, 주문+13/지+3/마나 회복)</td></tr>
+                <tr id="q-sec-mage-chain"><td><strong>마법사 직업 (Lv.30~40)</strong></td><td>Lv.30 <strong><code>습지대로의 여정</code> &rarr; <code>마력의 의식</code></strong> &rarr; Lv.40 <strong><code>천공의 힘</code></strong></td><td><code>제니아 캐논</code> [스톰윈드 성소 (<code>38.6, 79.4</code>)] &rarr; <code>타베사</code> [먼지진흙 습지대 (<code>46.0, 57.0</code>)]</td><td><strong><code>황천의 마법봉</code></strong>(비전+9/지+3) &middot; <strong><code>맹위의 얼음마법봉</code></strong>(냉기+9/지+3) / Lv.40 <strong><code>천공의 보주</code></strong>(보조, 주문+13/지+3/마나 회복)</td></tr>
                 <tr><td><strong>놈리건 (Lv.28~35)</strong></td><td><code>대배반</code>, <code>유일한 치료법</code>, <code>자료 회수</code></td><td><code>겔빈 멕카토크</code> [아이언포지 땜장이 마을 (<code>69.0, 49.5</code>)]</td><td><strong><code>기가볼트 전자반응기</code></strong>(머리 천, 지능+8/정신+9/주문+8), <strong><code>수력지팡이</code></strong>(지팡이, 주문+36), <strong><code>산성 장화</code></strong>(발 천, 지능+8/주문+5), <strong><code>선민의 로브</code></strong>(가슴 천, 주문+9/치유+26)</td></tr>
                 <tr><td><strong>붉은십자군 수도원</strong> (Lv.30~42)</td><td><code>티탄의 신화</code>, <code>빛의 이름으로!</code></td><td><code>메이 페일더스트</code> [아이언포지 탐험가의 전당] / <code>추모자 롤리</code> [사우스쇼어 (<code>51.0, 56.0</code>)]</td><td><strong><code>환영의 지팡이</code></strong>(지팡이, 체력+10/지능+6/치명+1.4%), <strong><code>최면의 단검</code></strong>(단검, 지능+8/주문+9), <strong><code>화이트메인의 모자</code></strong>(머리 천, 지능+10/체력+9/주문+7)</td></tr>
               </tbody>
@@ -5687,10 +5801,22 @@ function injectTableLabels() {
   });
 }
 
+function syncMobileHeaderHeight() {
+  const shell = document.getElementById('stickyHeaderShell');
+  if (!shell) return;
+  if (isDrawerMode()) {
+    const h = Math.ceil(shell.getBoundingClientRect().height || 136);
+    document.documentElement.style.setProperty('--mobile-header-h', h + 'px');
+  } else {
+    document.documentElement.style.removeProperty('--mobile-header-h');
+  }
+}
+
 function initAutoHideHeader() {
   const shell = document.getElementById('stickyHeaderShell');
   if (!shell || window.__wowfAutoHideBound) return;
   window.__wowfAutoHideBound = true;
+  syncMobileHeaderHeight();
 
   let lastY = window.scrollY || 0;
   let ticking = false;
@@ -5698,7 +5824,6 @@ function initAutoHideHeader() {
   const update = () => {
     ticking = false;
     const y = Math.max(0, window.scrollY || 0);
-    // Keep desktop wide-screen header calmly visible; auto-hide on mobile/tablet
     if (!isDrawerMode()) {
       shell.classList.remove('header-hidden');
       lastY = y;
@@ -5706,22 +5831,21 @@ function initAutoHideHeader() {
     }
     const drawerOpen = document.getElementById('sidebar')?.classList.contains('open');
     const searchFocused = document.activeElement && document.activeElement.id === 'globalSearch';
-    if (drawerOpen || searchFocused || y <= 24) {
+    if (drawerOpen || searchFocused || y <= 16) {
       shell.classList.remove('header-hidden');
       lastY = y;
       return;
     }
-    // Ignore iOS rubber-band bounce at very bottom of page
     const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-    if (maxScroll > 0 && y >= maxScroll - 16) {
+    if (maxScroll > 0 && y >= maxScroll - 14) {
       lastY = y;
       return;
     }
     const delta = y - lastY;
-    if (delta >= 10 && y > 64) {
+    if (delta >= 4 && y > 36) {
       shell.classList.add('header-hidden');
       lastY = y;
-    } else if (delta <= -6) {
+    } else if (delta <= -3) {
       shell.classList.remove('header-hidden');
       lastY = y;
     }
@@ -5734,8 +5858,20 @@ function initAutoHideHeader() {
     }
   }, { passive: true });
   window.addEventListener('resize', () => {
+    syncMobileHeaderHeight();
     if (!isDrawerMode()) shell.classList.remove('header-hidden');
   }, { passive: true });
+}
+
+function jumpToTabAnchor(tabId, anchorId) {
+  openTab(tabId);
+  setTimeout(() => {
+    const el = document.getElementById(anchorId);
+    if (!el) return;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    el.classList.add('jump-highlight');
+    setTimeout(() => el.classList.remove('jump-highlight'), 1800);
+  }, 70);
 }
 
 function applyTableMode() {
@@ -7856,6 +7992,76 @@ const WOW_DB = {
     note: '⚠️ 마법부여 마력 추출 또는 상점 판매 권장'
   },
   // === ENCHANTING RECIPES (전문기술 레시피 통합 툴팁 · 획득처/귀속/재료 완비) ===
+  // === LV.30~38 BIS ITEMS (장비 & 득템 · 던전 & 퀘스트 공통 툴팁) ===
+  '랩터의 시선': {
+    en: "Raptor's Gaze", kind: '보조장비 · 희귀 · 발굴 현장 2넴', quality: 'rare', icon: 'inv_misc_orb_03',
+    rows: [['보조장비', '최소 요구 레벨 26'], ['획득처', '발굴 현장: 저습지 2넴 그늘이빨']],
+    stats: ['체력 +4', '지능 +4'],
+    effects: ['착용 효과: 모든 주문 공격력 및 치유량이 최대 8만큼 증가합니다.'],
+    note: '📍 동부왕국 > 저습지 텔겐 바위(53.2, 65.8) → 푸른 안개 포탈(47.7, 56.2) · 현 현자 지팡이(+3) 대비 주문력 +5 최우선 업글!'
+  },
+  '반짝눈 덧신': {
+    en: 'Glinteye Slippers', kind: '발 · 천 · 희귀 · 발굴 현장 1넴', quality: 'rare', icon: 'inv_boots_05',
+    rows: [['발 · 천', '최소 요구 레벨 26'], ['획득처', '발굴 현장: 저습지 1넴 소금가시']],
+    stats: ['체력 +9', '정신력 +6'],
+    effects: ['착용 효과: 모든 주문 공격력 및 치유량이 최대 7만큼 증가합니다.'],
+    note: '📍 동부왕국 > 저습지 푸른 안개 포탈(47.7, 56.2) · 생존·냉기 스왑용 최상급 장화'
+  },
+  '힘 조율의 반지': {
+    en: 'Ring of Attuned Power', kind: '손가락 · 희귀 · 발굴 현장 막넴', quality: 'rare', icon: 'inv_jewelry_ring_07',
+    rows: [['손가락', '최소 요구 레벨 28'], ['획득처', '발굴 현장: 저습지 막넴 유물 수호자']],
+    effects: ['착용 효과: 모든 주문 공격력 및 치유량이 최대 6만큼 증가합니다.', '착용 효과: 매 5초마다 3의 마나가 회복됩니다.'],
+    note: '📍 동부왕국 > 저습지 푸른 안개 포탈(47.7, 56.2) · 장기전 마나 유지 반지 스왑'
+  },
+  '뱀고리': {
+    en: 'Snake Hoop', kind: '손가락 · 희귀 · 가시덩굴 우리 호위 보상', quality: 'rare', icon: 'inv_jewelry_ring_05',
+    rows: [['손가락', '퀘스트 보상 (요구 Lv.23)'], ['획득처', '가시덩굴 우리 [수입업자 윌릭스] 호위']],
+    stats: ['지능 +5'],
+    effects: ['착용 효과: 모든 주문 공격력 및 치유량이 최대 6만큼 증가합니다.'],
+    note: '📍 칼림도어 > 불모의 땅 최남단 가시 통로(42.9, 90.2) · 악성 뿌리(체7/주4) 대비 딜·마나 업글 스왑'
+  },
+  '죽음의 예언자 가시': {
+    en: "Death Speaker's Thorn", kind: '양손 지팡이 · 희귀 · 가시덩굴 우리 드랍', quality: 'rare', icon: 'inv_staff_13',
+    rows: [['양손 지팡이', '가시덩굴 우리 보스 드랍'], ['획득처', '저주의가시 아겜 (2.5%)']],
+    stats: ['체력 +11'],
+    effects: ['착용 효과: 모든 주문 공격력 및 치유량이 최대 34만큼 증가합니다.', '착용 효과: 매 5초마다 5의 마나가 회복됩니다.'],
+    note: '📍 칼림도어 > 불모의 땅 최남단 가시 통로(42.9, 90.2) · 체력·MP5 특화 장기전/생존 스왑 지팡이'
+  },
+  '담녹색 어깨보호대': {
+    en: 'Berylline Pads', kind: '어깨 · 천 · 희귀 · 가시덩굴 우리 연퀘', quality: 'rare', icon: 'inv_shoulder_09',
+    rows: [['어깨 · 천', '퀘스트 보상 (요구 Lv.29)'], ['획득처', '[가시덩굴 우리의 대모] 보상']],
+    stats: ['체력 +5', '지능 +10'],
+    effects: ['착용 효과: 모든 주문 공격력 및 치유량이 최대 7만큼 증가합니다.'],
+    note: '📍 수락: 페랄라스 탈라나르 [팔핀델 웨이워더] → 가시덩굴 우리(42.9, 90.2) 막넴 서슬깃 차를가 · 현 장미 어깨(지5/주5) 대비 대폭 업글!'
+  },
+  '루구그의 절단된 머리카락': {
+    en: "Roogug's Severed Lock", kind: '장신구 · 희귀 · 가시덩굴 우리 드랍', quality: 'rare', icon: 'inv_misc_pelt_bear_01',
+    rows: [['장신구', '가시덩굴 우리 보스 드랍'], ['획득처', '보스 루구그']],
+    stats: ['정신력 +6'],
+    desc: '현재 비어 있는 장신구 슬롯을 채워 시전 중 마나 재생(신비한 명상 50%)을 즉시 끌어올릴 수 있습니다.',
+    note: '📍 칼림도어 > 불모의 땅 최남단 가시 통로(42.9, 90.2) · 빈 장신구 슬롯 첫 확보 후보!'
+  },
+  '가시직조 외투': {
+    en: 'Briarweave Mantle', kind: '등 · 희귀 · 가시덩굴 우리 드랍', quality: 'rare', icon: 'inv_misc_cape_02',
+    rows: [['등 (망토)', '가시덩굴 우리 보스 드랍'], ['획득처', '보스 루구그']],
+    stats: ['정신력 +6'],
+    effects: ['착용 효과: 모든 주문 공격력 및 치유량이 최대 7만큼 증가합니다.'],
+    note: '📍 칼림도어 > 불모의 땅 최남단 가시 통로(42.9, 90.2) · 냉기 전환/정신력 스왑 망토'
+  },
+  '선민의 로브': {
+    en: 'Robes of the Elect', kind: '가슴 · 천 · 희귀 · 놈리건 퀘스트', quality: 'rare', icon: 'inv_chest_cloth_07',
+    rows: [['가슴 · 천', '놈리건 퀘스트 [대배반] 보상'], ['획득처', '아이언포지 겔빈 멕카토크 (69.0, 49.5)']],
+    effects: ['착용 효과: 모든 주문 공격력 +9 · 치유량 +26'],
+    note: '📍 동부왕국 > 던 모로 놈리건(24.4, 39.6) · 놈리건 완주 시 일반 주문력 스왑용'
+  },
+  '별똥별 마법봉': {
+    en: 'Starfaller', kind: '원거리 · 마법봉 · 희귀 (BoE)', quality: 'rare', icon: 'inv_wand_07',
+    rows: [['원거리 · 마법봉', 'DPS 32.9 (경매장 거래 가능)'], ['획득처', '30대 필드·던전 월드 드랍 / 경매장']],
+    stats: ['지능 +4'],
+    effects: ['착용 효과: 비전 주문 공격력이 최대 6만큼 증가합니다.'],
+    note: '📍 경매장 구매 가능 · 타베사 직업 연퀘 전후로 노릴 수 있는 비전 특화 마법봉'
+  },
+
   // === ENCHANTING MATERIALS & EXTRA RECIPES (261121 최신 시세 + 획득처 완비) ===
   '상급 마법의 정수': {
     en: 'Greater Magic Essence', kind: '마법부여 재료 · 시세 4.90s', quality: 'uncommon', icon: 'inv_misc_gem_emerald_01',
