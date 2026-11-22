@@ -13,3 +13,4 @@ description: "와우 포에버(WoW Forever) 데이터 검증, 출처 표기, 매
 7. **퀘스트 정보 작성 시 마법사용 득템 리스트 필수 병기**: 던전 및 주요 퀘스트 가이드를 작성·갱신할 때는 반드시 **해당 던전/연퀘에서 마법사가 노릴 수 있는 퀘스트 보상 및 보스 드랍 득템 리스트**(부위·드랍처·핵심 스탯·착용 가능 여부·현재 장비 대비 가치 비교)를 함께 정리합니다.
 8. **애드온 직접 스캔 의무**: 애드온 현황·충돌·추천 질문 시 사용자에게 스크린샷을 요청하지 않고 `C:\Program Files (x86)\World of Warcraft\_forever_\Interface\AddOns` 및 `...\WTF\Account\*\*\폴-최\AddOns.txt`를 직접 스캔하여 `docs/01-system/03-settings-and-addons.md`와 `dashboard.html`에 기록·답변합니다.
 9. **단일 통합 대시보드 & GitHub Pages 자동 푸시 원칙**: 대시보드는 **Memphis Edition 단일 파일(`dashboard.html`)**로만 관리하며(`index.html`은 GitHub Pages 진입점), 수정 및 검증 완료 후 **사용자에게 묻지 않고 즉시 커밋 & `git push origin main`하여 GitHub Pages(`https://paulclab.github.io/wowf/`)에 반영합니다.** (Google Drive 등 별도 외부 동기화는 명시적 요청 시에만 수행)
+10. **최근 업데이트 메뉴 `N` 뱃지 유지 원칙**: `dashboard.html`에서 특정 메뉴(탭) 내용을 수정·추가할 때마다 `RECENTLY_UPDATED_TABS`에 해당 탭 ID와 변경 요약을 갱신해 사이드바(`.nav-btn`)와 모바일 퀵탭(`.q-pill`)의 **메뉴 제목 우측 위**에 `N` 뱃지가 표시되도록 유지합니다.

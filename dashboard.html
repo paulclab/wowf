@@ -3058,6 +3058,56 @@
   .pchart-dot { stroke: var(--rd-paper, #fff); stroke-width: 1.8; cursor: pointer; }
   .pchart-val-lbl { fill: currentColor; font-size: 9.8px; font-weight: 800; font-family: var(--font-mono); }
 
+  /* ===== RECENTLY UPDATED MENU "N" BADGE ===== */
+  .nav-title-wrap {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 2px;
+    min-width: 0;
+    line-height: 1.28;
+  }
+  .nav-new-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--rd-red, #ff0033);
+    color: #ffffff;
+    font-size: 9px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 0;
+    border: 1.5px solid #17181a;
+    box-shadow: 1.5px 1.5px 0 #17181a;
+    transform: translateY(-4px);
+    flex-shrink: 0;
+    font-family: var(--font-ui);
+    user-select: none;
+  }
+  .q-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+  }
+  .q-pill .nav-new-badge {
+    width: 13px;
+    height: 13px;
+    font-size: 8.5px;
+    border-width: 1.2px;
+    box-shadow: 1px 1px 0 #17181a;
+    transform: translateY(-3px);
+  }
+  html[data-theme="dark"] .nav-new-badge {
+    background: #ff3b5c;
+    border-color: #0b0e14;
+    box-shadow: 1.5px 1.5px 0 #000000;
+  }
+  html[data-theme="dark"] .q-pill .nav-new-badge {
+    box-shadow: 1px 1px 0 #000000;
+  }
+
 </style>
 </head>
 <body>
@@ -3092,8 +3142,8 @@
         <button class="nav-btn" data-tab="tab-skills" data-group="성장" data-title="스킬" onclick="openTab('tab-skills', this)">
           <span>스킬</span><span class="pill">딜·계수</span>
         </button>
-        <button class="nav-btn" data-tab="tab-zones" data-group="성장" data-title="사냥터 &amp; 던전 로드맵" onclick="openTab('tab-zones', this)">
-          <span>사냥터 &amp; 던전</span><span class="pill">루트</span>
+        <button class="nav-btn" data-tab="tab-zones" data-group="성장" data-title="사냥터 로드맵" onclick="openTab('tab-zones', this)">
+          <span>사냥터</span><span class="pill">루트</span>
         </button>
         <button class="nav-btn" data-tab="tab-gear" data-group="성장" data-title="착용 장비 (261121) &amp; 추천 템" onclick="openTab('tab-gear', this)">
           <span>착용 장비 &amp; 추천 아이템</span><span class="pill">15/17</span>
@@ -3105,8 +3155,8 @@
         <button class="nav-btn" data-tab="tab-prof" data-group="모험" data-title="전문기술" onclick="openTab('tab-prof', this)">
           <span>전문기술</span><span class="pill">마부 71</span>
         </button>
-        <button class="nav-btn" data-tab="tab-quests" data-group="모험" data-title="퀘스트 현황 (진행 중 · 추천 · 완료)" onclick="openTab('tab-quests', this)">
-          <span>퀘스트 &amp; 직업 연퀘</span><span class="pill">놈리건</span>
+        <button class="nav-btn" data-tab="tab-quests" data-group="모험" data-title="던전 &amp; 퀘스트 (다음 목표 · 5인 던전 · 연퀘 · 완료)" onclick="openTab('tab-quests', this)">
+          <span>던전 &amp; 퀘스트</span><span class="pill">발굴현장</span>
         </button>
         <button class="nav-btn" data-tab="tab-books" data-group="모험" data-title="도서관 책 찾기 &amp; 연구/두루마리" onclick="openTab('tab-books', this)">
           <span>도서관 책찾기 &amp; 연구</span><span class="pill">40권</span>
@@ -3180,7 +3230,7 @@
       <button class="q-pill" data-tab="tab-skills" onclick="openTab('tab-skills')">스킬</button>
       <button class="q-pill" data-tab="tab-gear" onclick="openTab('tab-gear')">장비</button>
       <button class="q-pill" data-tab="tab-patches" onclick="openTab('tab-patches')">패치노트</button>
-      <button class="q-pill" data-tab="tab-quests" onclick="openTab('tab-quests')">퀘스트</button>
+      <button class="q-pill" data-tab="tab-quests" onclick="openTab('tab-quests')">던전&amp;퀘스트</button>
       <button class="q-pill" data-tab="tab-maps" onclick="openTab('tab-maps')">지도</button>
       <button class="q-pill" data-tab="tab-prof" onclick="openTab('tab-prof')">전문기술</button>
       <button class="q-pill" data-tab="tab-macro" onclick="openTab('tab-macro')">매크로</button>
@@ -3213,7 +3263,7 @@
             </div>
             <div class="hero-actions">
               <button class="action-chip" onclick="openTab('tab-skills')"><strong>비전 +142</strong> 딜 시뮬레이터</button>
-              <button class="action-chip" onclick="openTab('tab-zones')"><strong>다음 인던</strong> 놈리건 &amp; 타베사 연퀘</button>
+              <button class="action-chip" onclick="openTab('tab-quests')"><strong>다음 인던</strong> 발굴현장:저습지 &amp; 타베사</button>
               <button class="action-chip" onclick="openTab('tab-gear')"><strong>신규 장착</strong> 빚 수금인 &middot; 현인 장갑/장화 &middot; 녹옥 부적</button>
             </div>
           </div>
@@ -3612,20 +3662,23 @@
 
       <!-- TAB: ZONES & DUNGEONS -->
       <section id="tab-zones" class="tab">
-        <div class="wide-grid-2">
         <div class="card">
           <h2>사냥터 추천 루트 (위치·좌표 &amp; 지도 직통 연결)</h2>
+          <div class="callout" style="margin-top:0;">
+            <strong>던전 가이드 이동 안내:</strong> 5인 인던 로드맵 및 다음 목표(<strong><code>발굴 현장: 저습지</code></strong>)는 좌측 <strong><code>던전 &amp; 퀘스트</code></strong> 탭으로 통합되었습니다.
+            <button class="map-jump-btn" onclick="openTab('tab-quests')" style="margin-left:6px;">🏰 던전 &amp; 퀘스트 바로가기</button>
+          </div>
           <div class="table-wrap">
             <table>
               <thead>
-                <tr><th>레벨 구간</th><th>1순위 추천 사냥터 (위치 · 좌표 · 지도 링크)</th><th>병행 지역 (좌표 · 지도)</th><th>무두질(152+) · 옷감 &amp; 파밍 포인트</th></tr>
+                <tr><th>레벨 구간</th><th>1순위 추천 사냥터 (위치 · 좌표 · 지도 링크)</th><th>병행 지역 (좌표 · 지도)</th><th>무두질(164/225) · 옷감 &amp; 파밍 포인트</th></tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>Lv.26~29</strong><br><span class="badge verified">현재 구간</span></td>
+                  <td><strong>Lv.26~29</strong><br><span class="badge verified">통과</span></td>
                   <td>
                     <strong>저습지 (Wetlands)</strong> — 동부왕국 중부<br>
-                    랩터·악어 벌판 (<code>40~65, 35~58</code>) · <code>녹색지기 레시엘</code> (<code>56.2, 40.6</code>)<br>
+                    랩터·거대한 악어 (<code>16.3, 61.3</code> · <code>57.0, 36.0</code>) · <code>녹색지기 레시엘</code> (<code>56.2, 40.6</code>)<br>
                     <button class="map-jump-btn" onclick="jumpToMicroZone('menethil','hz_wet_raptors')">🗺️ 저습지 사냥터 영역</button>
                     <button class="map-jump-btn" onclick="jumpToMicroZone('menethil','hz_wet_dunmodr')">🗺️ 던 모드르</button>
                     <br style="margin-bottom:4px;">
@@ -3640,22 +3693,22 @@
                     잿빛골짜기 아스트라나르 (<code>34.4, 48.0</code>)<br>
                     <button class="map-jump-btn macro" onclick="jumpToMacroNode('astranaar')">🌍 대륙 맵</button>
                   </td>
-                  <td>저습지 랩터·악어(Lv.23~27)로 <strong>무두질 152&rarr;185</strong> 급상승 + 그늘숲 인간형 <code>양모/비단 옷감</code> 대량 수급</td>
+                  <td>저습지 일반 악어는 Lv.30 기준 초록/회색(0 XP)이라 <strong>신규 인던 <code>발굴 현장: 저습지</code>(Lv.26~33)</strong> 내부 야수·퀘스트 병행 권장</td>
                 </tr>
                 <tr>
-                  <td><strong>Lv.29~33</strong></td>
+                  <td><strong>Lv.29~33</strong><br><span class="badge verified">현재 구간 (Lv.30 ✅)</span></td>
                   <td>
                     <strong>힐스브래드 구릉지 (사우스쇼어)</strong> — 동부왕국 북부<br>
-                    강가 거북이 (<code>60~78, 48~75</code>) · 북부 설인·사자 (<code>40~58, 26~44</code>)<br>
+                    무쇠턱거북 강변 (<code>19.0, 49.0</code> · <code>32.0, 31.0</code>) · 북부 사자 (<code>28~40, 45~50</code>)<br>
                     <button class="map-jump-btn" onclick="jumpToMicroZone('southshore','hz_hb_turtles')">🗺️ 강가 거북이 영역</button>
                     <button class="map-jump-btn" onclick="jumpToMicroZone('southshore','hz_hb_yeti')">🗺️ 설인·사자 영역</button>
                   </td>
                   <td>
                     <strong>버섯구름 봉우리 (소금 평원)</strong> — 칼림도어 남동부<br>
-                    신기루 경주장 (<code>78.0, 77.0</code>)<br>
+                    바실리스크·신기루 경주장 (<code>78.0, 74.0 ~ 78.2, 87.8</code>)<br>
                     <button class="map-jump-btn macro" onclick="jumpToMacroNode('mirage')">🌍 소금 평원 대륙 맵</button>
                   </td>
-                  <td>사우스쇼어 거북이·사자 <code>요리</code> 재료 + 소금 평원 야수 무한 젠으로 <strong>무두질 200</strong> 돌파 &rarr; 스톰윈드 대가(300) 승급</td>
+                  <td>무두질 <code>164</code>(최대 Lv.32 야수) 기준 <strong><code>질긴 가죽</code>(Heavy Leather)</strong> 골드·숙련 200 돌파 핵심 구간 + 거북이 요리 재료</td>
                 </tr>
                 <tr>
                   <td><strong>Lv.33~37</strong></td>
@@ -3686,58 +3739,14 @@
                   </td>
                   <td>
                     <strong>먼지진흙 습지대</strong> — 칼림도어 동부<br>
-                    <code>타베사</code> (<code>46.0, 57.0</code>) · 테라모어 (<code>67.8, 49.0</code>)<br>
+                    <code>타베사</code> (<code>46.0, 57.0</code>) · 테라모어 (<code>67.8, 49.0</code>) · 늪지 악어 (Lv.35~42)<br>
                     <button class="map-jump-btn macro" onclick="jumpToMacroNode('npc_tabetha')">🌍 타베사 대륙 맵</button>
                   </td>
-                  <td>40레벨 탈것 골드 마련 구간 (<code>두꺼운 가죽</code> 경매·상점 처분) + Lv.30+ 마법사 타베사 직업 연퀘 병행</td>
+                  <td>40레벨 탈것 골드 마련 구간 (<code>두꺼운 가죽</code> · Lv.35+ 먼지진흙 악어 무두질) + 마법사 타베사 직업 연퀘 병행</td>
                 </tr>
               </tbody>
             </table>
           </div>
-        </div>
-
-        <div class="card">
-          <h2>26~40레벨 핵심 5인 던전 (외부 입구 &rarr; 내부 포탈 동선 &amp; 지도 연동)</h2>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr><th>던전</th><th>적정 레벨</th><th>외부 입구 &rarr; 내부 포탈 진입 동선</th><th>비전 마법사 핵심 목표</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>스톰윈드 지하감옥</strong><br><button class="map-jump-btn" onclick="jumpToMicroItem('sw','sw_stock')">🗺️ 스톰윈드 맵</button></td>
-                  <td><strong>Lv.24~32</strong><br><span class="badge verified">완료 ✅</span></td>
-                  <td>동부왕국 &gt; 스톰윈드 운하변(<code>41.2, 58.0</code>) 정문 진입 &rarr; 계단·복도 직진 끝에 바로 포탈</td>
-                  <td>퀘스트 6종 완주 ✅ &middot; <strong><code>암흑 호드 고리</code></strong>(체+6/주+6) &amp; <strong><code>집정관의 바지</code></strong>(지+13/주+7) 획득·착용!</td>
-                </tr>
-                <tr>
-                  <td><strong>검은심연의 나락 (BFD)</strong><br><button class="map-jump-btn macro" onclick="jumpToMacroNode('bfd')">🌍 대륙 맵</button></td>
-                  <td>Lv.24~32<br><span class="badge verified">완료 ✅</span></td>
-                  <td>칼림도어 &gt; 잿빛골짜기 조람 해안 신전(<code>14.2, 14.1</code>) 계단 하강 &rarr; <strong>수중 터널 잠수 통과</strong> &rarr; 안쪽 동굴 포탈(<code>13.4, 12.8</code>)</td>
-                  <td>퀘스트 보상 마법봉 <code>묘비의 홀</code> 및 캐스터 천 방어구</td>
-                </tr>
-                <tr>
-                  <td><strong>놈리건 (Gnomeregan)</strong><br><button class="map-jump-btn macro" onclick="jumpToMacroNode('gnomer')">🌍 대륙 맵</button></td>
-                  <td><strong>Lv.28~35</strong><br><span class="badge gold">다음 인던 ⭐</span></td>
-                  <td>동부왕국 &gt; 던 모로 서부 신 땜장이 마을 지상 승강기(<code>24.4, 39.6</code>) 지하 하강 &rarr; 비인던 방사능 통로 통과 후 포탈</td>
-                  <td>머리 <strong><code>기가볼트 전자반응기</code></strong>(지능+8/주문+8), <code>수력지팡이</code>(주문+36), <code>산성 장화</code>(발), <code>선민의 로브</code></td>
-                </tr>
-                <tr>
-                  <td><strong>붉은십자군 수도원 (SM)</strong><br><button class="map-jump-btn macro" onclick="jumpToMacroNode('sm')">🌍 대륙 맵</button></td>
-                  <td><strong>Lv.30~42</strong></td>
-                  <td>동부왕국 북부 &gt; 티리스팔 숲 북동부(<code>84.8, 32.9</code>) 성채 대문 &rarr; 중앙 회랑에서 <strong>4개 별도 문(묘지·도서관 / 무기고·예배당)</strong> 분기</td>
-                  <td>도서관/예배당 캐스터 지팡이(<code>환영의 지팡이</code>)·단검(<code>최면의 단검</code>)·모자(<code>화이트메인의 모자</code> Lv.39)</td>
-                </tr>
-                <tr>
-                  <td><strong>울다만 (Uldaman)</strong><br><button class="map-jump-btn macro" onclick="jumpToMacroNode('ulda')">🌍 대륙 맵</button></td>
-                  <td><strong>Lv.35~45</strong></td>
-                  <td>동부왕국 &gt; 황야의 땅 정문 발굴지(<code>42.6, 12.2</code>) 지하 동굴 / 비밀 후문 동쪽 바위 틈(<code>65.3, 42.6</code>, 마부 안노라 근접)</td>
-                  <td>내부 <strong>대가 <code>마법부여</code> 교관 <code>안노라</code>(225&rarr;300)</strong> 승급</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
         </div>
       </section>
 
@@ -8983,6 +8992,46 @@ function renderMatPriceCharts() {
   if (typeof hydrateWowTooltipsIn === 'function') hydrateWowTooltipsIn(mount);
 }
 
+/* ===== RECENTLY UPDATED MENU "N" BADGE REGISTRY ===== */
+// 대시보드 메뉴 수정 시 최근 업데이트된 탭 ID를 이곳에 등록하면
+// 사이드바(.nav-btn) 및 모바일 퀵탭(.q-pill)의 메뉴 제목 우측 위에 N 뱃지가 자동 표시됩니다.
+const RECENTLY_UPDATED_TABS = {
+  'tab-prof': '최근 업데이트 (11/21): 최신 시세 · 재료별 시세 차트 · 재료 툴팁 · 마부 18종 · 상인의 호의 확인법'
+};
+
+function applyNavUpdatedBadges() {
+  document.querySelectorAll('.nav-new-badge').forEach(el => el.remove());
+
+  // 1) 사이드바 메뉴 제목 우측 위
+  document.querySelectorAll('.nav-btn[data-tab]').forEach(btn => {
+    const tabId = btn.getAttribute('data-tab');
+    const summary = RECENTLY_UPDATED_TABS[tabId];
+    const titleSpan = btn.querySelector('span:first-child');
+    if (!titleSpan) return;
+    titleSpan.classList.toggle('nav-title-wrap', Boolean(summary));
+    if (!summary) return;
+    const badge = document.createElement('span');
+    badge.className = 'nav-new-badge';
+    badge.textContent = 'N';
+    badge.setAttribute('aria-label', '최근 업데이트');
+    badge.title = summary;
+    titleSpan.appendChild(badge);
+  });
+
+  // 2) 모바일/좁은 화면 상단 퀵탭 메뉴 제목 우측 위
+  document.querySelectorAll('.q-pill[data-tab]').forEach(pill => {
+    const tabId = pill.getAttribute('data-tab');
+    const summary = RECENTLY_UPDATED_TABS[tabId];
+    if (!summary) return;
+    const badge = document.createElement('span');
+    badge.className = 'nav-new-badge';
+    badge.textContent = 'N';
+    badge.setAttribute('aria-label', '최근 업데이트');
+    badge.title = summary;
+    pill.appendChild(badge);
+  });
+}
+
 function bootDashboard() {
   if (window.__wowfBooted) return;
   window.__wowfBooted = true;
@@ -8999,6 +9048,7 @@ function bootDashboard() {
   }
   runSafe('injectTableLabels', injectTableLabels);
   runSafe('initMemphisTheme', typeof initMemphisTheme === 'function' ? initMemphisTheme : null);
+  runSafe('applyNavUpdatedBadges', applyNavUpdatedBadges);
   runSafe('renderInGameTalentTrees', renderInGameTalentTrees);
   runSafe('updateCharStatLab', updateCharStatLab);
   runSafe('updateAllSim', updateAllSim);
