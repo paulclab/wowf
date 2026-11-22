@@ -3058,11 +3058,11 @@
   .pchart-dot { stroke: var(--rd-paper, #fff); stroke-width: 1.8; cursor: pointer; }
   .pchart-val-lbl { fill: currentColor; font-size: 9.8px; font-weight: 800; font-family: var(--font-mono); }
 
-  /* ===== RECENTLY UPDATED MENU "N" BADGE ===== */
+  /* ===== CUTE SIMPLE "N" BADGE (CLICK TO DISMISS) ===== */
   .nav-title-wrap {
     display: inline-flex;
     align-items: flex-start;
-    gap: 2px;
+    gap: 3px;
     min-width: 0;
     line-height: 1.28;
   }
@@ -3070,43 +3070,238 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: var(--rd-red, #ff0033);
-    color: #ffffff;
-    font-size: 9px;
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: 0;
-    border: 1.5px solid #17181a;
-    box-shadow: 1.5px 1.5px 0 #17181a;
-    transform: translateY(-4px);
+    width: 15px;
+    height: 15px;
     flex-shrink: 0;
-    font-family: var(--font-ui);
+    transform: translateY(-4px);
     user-select: none;
+    cursor: pointer;
+    transition: transform 0.16s ease, opacity 0.16s ease;
+    filter: drop-shadow(0 1px 2px rgba(255, 75, 110, 0.35));
+  }
+  .nav-new-badge svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .nav-new-badge:hover {
+    transform: translateY(-4px) scale(1.12);
+  }
+  .nav-new-badge.dismissing {
+    transform: translateY(-6px) scale(0.35);
+    opacity: 0;
   }
   .q-pill {
     display: inline-flex;
     align-items: center;
-    gap: 2px;
+    gap: 3px;
   }
   .q-pill .nav-new-badge {
     width: 13px;
     height: 13px;
-    font-size: 8.5px;
-    border-width: 1.2px;
-    box-shadow: 1px 1px 0 #17181a;
     transform: translateY(-3px);
   }
-  html[data-theme="dark"] .nav-new-badge {
-    background: #ff3b5c;
-    border-color: #0b0e14;
-    box-shadow: 1.5px 1.5px 0 #000000;
+
+  /* ===== ADVANCED INTERACTIVE TALENT SIMULATOR CONTROLS ===== */
+  .talent-card-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px 14px;
+    margin-bottom: 10px;
   }
-  html[data-theme="dark"] .q-pill .nav-new-badge {
-    box-shadow: 1px 1px 0 #000000;
+  .talent-card-head h2 {
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
   }
+  .talent-toggle-bar {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .memphis-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 11px 5px 8px;
+    border-radius: 999px;
+    border: 2px solid var(--rd-ink);
+    background: var(--rd-paper);
+    box-shadow: 2px 2px 0 var(--rd-ink);
+    cursor: pointer;
+    user-select: none;
+    font-size: 12.6px;
+    font-weight: 800;
+    color: var(--rd-ink);
+    transition: transform 0.1s, background 0.15s;
+  }
+  .memphis-switch:hover { transform: translate(-1px, -1px); }
+  .memphis-switch input { position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none; }
+  .memphis-switch .sw-track {
+    position: relative;
+    width: 34px;
+    height: 19px;
+    border-radius: 999px;
+    background: #cbd5e1;
+    border: 1.5px solid var(--rd-ink);
+    transition: background 0.16s ease;
+    flex-shrink: 0;
+  }
+  .memphis-switch .sw-thumb {
+    position: absolute;
+    top: 1.5px;
+    left: 1.5px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1.5px solid var(--rd-ink);
+    transition: transform 0.16s ease;
+  }
+  .memphis-switch input:checked + .sw-track { background: #7c3aed; }
+  .memphis-switch.unlimited input:checked + .sw-track { background: #ff4b6e; }
+  .memphis-switch input:checked + .sw-track .sw-thumb { transform: translateX(15px); }
+  html[data-theme="dark"] .memphis-switch {
+    background: #1f2432;
+    border-color: #f3f0e8;
+    box-shadow: 2px 2px 0 #000000;
+    color: #f3f0e8;
+  }
+  html[data-theme="dark"] .memphis-switch .sw-track {
+    background: #3a4259;
+    border-color: #f3f0e8;
+  }
+  html[data-theme="dark"] .memphis-switch .sw-thumb { border-color: #0b0e14; }
+
+  .talent-sim-bar {
+    display: none;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 12px;
+    padding: 9px 12px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 2px solid var(--rd-ink);
+    background: var(--arcane-bg, #f3e8ff);
+  }
+  .talent-sim-bar.active { display: flex; }
+  .talent-sim-bar.unlim-on { background: #fff0f3; border-color: #ff4b6e; }
+  html[data-theme="dark"] .talent-sim-bar {
+    background: rgba(124, 58, 237, 0.18);
+    border-color: #c084fc;
+  }
+  html[data-theme="dark"] .talent-sim-bar.unlim-on {
+    background: rgba(255, 75, 110, 0.18);
+    border-color: #ff5c7c;
+  }
+  .talent-sim-meta {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 12.8px;
+    font-weight: 750;
+  }
+  .talent-sim-actions {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .sim-dir-group {
+    display: inline-flex;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1.5px solid var(--rd-ink);
+    background: var(--rd-paper);
+  }
+  .sim-dir-btn {
+    border: none;
+    background: transparent;
+    color: var(--rd-ink-2);
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 800;
+    font-family: var(--font-ui);
+    cursor: pointer;
+  }
+  .sim-dir-btn.active {
+    background: var(--rd-yellow);
+    color: #17181a;
+  }
+  .ig-slot.sim-clickable { cursor: pointer; }
+  .ig-slot.sim-clickable:active { transform: scale(0.96); }
+
+  /* Live Talent Impact Grid */
+  .talent-impact-box {
+    margin-top: 12px;
+    padding: 12px 13px;
+    border-radius: 12px;
+    border: 2px solid var(--rd-ink);
+    background: var(--rd-paper-2);
+  }
+  .talent-impact-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 9px;
+  }
+  .talent-impact-head strong { font-size: 13.6px; }
+  .talent-impact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+    gap: 8px;
+  }
+  .ti-card {
+    padding: 8px 10px;
+    border-radius: 9px;
+    border: 1.5px solid var(--rd-line-2);
+    background: var(--rd-paper);
+  }
+  .ti-card.changed {
+    border-color: #7c3aed;
+    box-shadow: 2px 2px 0 rgba(124, 58, 237, 0.22);
+  }
+  .ti-lbl { font-size: 11.2px; font-weight: 750; color: var(--rd-ink-3); }
+  .ti-val { font-size: 14.5px; font-weight: 850; margin-top: 2px; font-variant-numeric: tabular-nums; }
+  .ti-sub { font-size: 11.2px; color: var(--rd-ink-2); margin-top: 2px; line-height: 1.35; }
+  .ti-delta {
+    display: inline-block;
+    font-size: 10.6px;
+    font-weight: 800;
+    padding: 1px 5px;
+    border-radius: 5px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .ti-delta.up { background: rgba(16, 185, 129, 0.16); color: #059669; }
+  .ti-delta.down { background: rgba(239, 68, 68, 0.15); color: #dc2626; }
+  html[data-theme="dark"] .ti-delta.up { color: #34d399; }
+  html[data-theme="dark"] .ti-delta.down { color: #f87171; }
+  .ti-active-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 9px;
+  }
+  .ti-tag {
+    font-size: 11.4px;
+    font-weight: 750;
+    padding: 2px 8px;
+    border-radius: 999px;
+    border: 1.5px solid var(--rd-line-2);
+    background: var(--rd-paper);
+    color: var(--rd-ink-2);
+  }
+  .ti-tag.boost { border-color: #7c3aed; color: var(--arcane); }
 
 </style>
 </head>
@@ -3137,7 +3332,7 @@
       <div class="nav-group">
         <div class="nav-group-label">01. 성장 (Growth)</div>
         <button class="nav-btn active" data-tab="tab-talent" data-group="성장" data-title="캐릭터" onclick="openTab('tab-talent', this)">
-          <span>캐릭터</span><span class="pill">20/0/0</span>
+          <span>캐릭터</span><span class="pill">21/0/0</span>
         </button>
         <button class="nav-btn" data-tab="tab-skills" data-group="성장" data-title="스킬" onclick="openTab('tab-skills', this)">
           <span>스킬</span><span class="pill">딜·계수</span>
@@ -3259,7 +3454,7 @@
           <div class="hero-top">
             <div class="hero-id">
               <h2>휴먼 비전 <span class="badge verified">✅ 261121 실측</span></h2>
-              <p>레벨 <strong>30</strong> · 특성 <strong>20/0/0 + 1pt</strong> (Lv.30 <code>냉정 1/1</code> 해금) · <strong>HP 905 / MP 1,833</strong> · <strong>69체 / 100지 / 67정</strong> · 비전 <strong>+142</strong> (일반 67 + 비전 75) · <code>비전 작렬 2레벨</code> &middot; <code>화염 작렬 4레벨</code> &middot; <code>신비한 폭발 3레벨</code> ✅</p>
+              <p>레벨 <strong>30</strong> · 특성 <strong>21/0/0</strong> (<code>신비한 명상 3/3</code> 마스터) · <strong>HP 905 / MP 1,833</strong> · <strong>69체 / 100지 / 67정</strong> · 비전 <strong>+142</strong> (일반 67 + 비전 75) · <code>비전 작렬 2레벨</code> &middot; <code>화염 작렬 4레벨</code> &middot; <code>신비한 폭발 3레벨</code> ✅</p>
             </div>
             <div class="hero-actions">
               <button class="action-chip" onclick="openTab('tab-skills')"><strong>비전 +142</strong> 딜 시뮬레이터</button>
@@ -3463,8 +3658,8 @@
               <select id="stMed" onchange="updateCharStatLab()">
                 <option value="0">0% (미투자)</option>
                 <option value="0.17">17% (1/3)</option>
-                <option value="0.33" selected>33% (2/3 현재)</option>
-                <option value="0.50">50% (3/3)</option>
+                <option value="0.33">33% (2/3)</option>
+                <option value="0.50" selected>50% (3/3 현재)</option>
               </select>
             </label>
             <label class="stat-field" style="justify-content:center;"><span>마법사 갑옷 (+50%)</span><input type="checkbox" id="stMageArmor" style="width:18px;height:18px;margin-top:3px;" onchange="updateCharStatLab()"></label>
@@ -3476,7 +3671,7 @@
               <div class="kpi-grid" style="grid-template-columns:repeat(2,minmax(0,1fr)); margin-bottom:10px;">
                 <div class="kpi"><div class="label">예상 HP / MP</div><div class="val" id="outStaInt">905 HP / 1,833 MP</div><div class="sub" id="outStaIntSub">체력 69 · 지능 100 (64+36)</div></div>
                 <div class="kpi"><div class="label">비작 중첩 SP &amp; 비격 5%</div><div class="val" id="outIntScale">+12.0 ~ +48.0 SP</div><div class="sub" id="outIntCritSub">비작 1중 +12.0(전학파) · 비격 +92 SP</div></div>
-                <div class="kpi"><div class="label">정신력 재생 (비시전 &rarr; 시전)</div><div class="val" id="outSpiRegen">MP5 73.0 (2s 29.2)</div><div class="sub" id="outSpiCombat">전투 MP5 24.1 (33% 유지)</div></div>
+                <div class="kpi"><div class="label">정신력 재생 (비시전 &rarr; 시전)</div><div class="val" id="outSpiRegen">MP5 73.0 (2s 29.2)</div><div class="sub" id="outSpiCombat">전투 MP5 36.5 (50% 유지)</div></div>
                 <div class="kpi"><div class="label">가속 시전 &amp; GCD</div><div class="val" id="outHasteGcd">GCD 1.50s</div><div class="sub" id="outHasteCap">하늘부름 1.10s · 하한 1.00s</div></div>
               </div>
               <div class="insight-grid" id="charInsightsMount"></div>
@@ -3499,19 +3694,49 @@
 
         <!-- 3. FULL 3-TREE IN-GAME TALENT SIMULATOR (3 COLS ON WIDE, TABBED ON HALF-SCREEN) -->
         <div class="card">
-          <h2>인게임 특성 트리 (<code>20 / 0 / 0</code>) <span class="badge gold">✅ 3특성 동시 표시 (넓은 화면)</span></h2>
+          <div class="talent-card-head">
+            <h2>인게임 특성 트리 (<code id="igBuildSummary">21 / 0 / 0</code>) <span class="badge gold" id="igModeBadge">✅ 실제 Lv.30 적용</span></h2>
+            <div class="talent-toggle-bar">
+              <label class="memphis-switch" title="특성 포인트를 직접 투자하고 빼며 세부 수치 변화를 실시간 시뮬레이션합니다">
+                <input type="checkbox" id="talentSimToggle" onchange="toggleTalentSim(this.checked)">
+                <span class="sw-track"><span class="sw-thumb"></span></span>
+                <span class="sw-label">시뮬레이션</span>
+              </label>
+              <label class="memphis-switch unlimited" title="트리 순서·선행 특성·포인트 제한 없이 자유롭게 찍어 수치 상승폭을 바로 확인합니다">
+                <input type="checkbox" id="talentUnlimToggle" onchange="toggleTalentUnlimited(this.checked)">
+                <span class="sw-track"><span class="sw-thumb"></span></span>
+                <span class="sw-label">무제한</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="talent-sim-bar" id="talentSimBar">
+            <div class="talent-sim-meta">
+              <span id="talentSimPtsText">투자: <strong>21</strong> / 51pt <small>(현재 Lv.30 기준 21pt)</small></span>
+              <span style="opacity:0.75; font-size:11.8px;" id="talentSimHint">클릭 +1 · 우클릭 -1 (모바일: 아래 +/- 선택)</span>
+            </div>
+            <div class="talent-sim-actions">
+              <div class="sim-dir-group" role="group" aria-label="터치 클릭 동작">
+                <button type="button" class="sim-dir-btn active" id="simDirAdd" onclick="setTalentClickDir(1)">+ 찍기</button>
+                <button type="button" class="sim-dir-btn" id="simDirSub" onclick="setTalentClickDir(-1)">- 빼기</button>
+              </div>
+              <button type="button" class="sim-btn primary" onclick="resetTalentSimToActual()">내 Lv.30 복원 (21pt)</button>
+              <button type="button" class="sim-btn" onclick="clearTalentSimAll()">초기화 (0pt)</button>
+            </div>
+          </div>
+
           <div class="talent-spec-tabs mobile-only-tabs" role="tablist" aria-label="마법사 특성 트리 전환">
             <button class="spec-tab-btn active" data-spec="arcane" onclick="switchTalentTree('arcane', this)">
               <img src="https://wow.zamimg.com/images/wow/icons/large/spell_arcane_blast.jpg" alt="">
-              <span>비전</span><span class="spec-pts">20</span>
+              <span>비전</span><span class="spec-pts" id="specTabPts-arcane">21</span>
             </button>
             <button class="spec-tab-btn" data-spec="fire" onclick="switchTalentTree('fire', this)">
               <img src="https://wow.zamimg.com/images/wow/icons/large/spell_fire_fireball.jpg" alt="">
-              <span>화염</span><span class="spec-pts">0</span>
+              <span>화염</span><span class="spec-pts" id="specTabPts-fire">0</span>
             </button>
             <button class="spec-tab-btn" data-spec="frost" onclick="switchTalentTree('frost', this)">
               <img src="https://wow.zamimg.com/images/wow/icons/large/spell_frost_frostnova.jpg" alt="">
-              <span>냉기</span><span class="spec-pts">0</span>
+              <span>냉기</span><span class="spec-pts" id="specTabPts-frost">0</span>
             </button>
           </div>
 
@@ -3519,10 +3744,19 @@
             <span><i class="ig-dot" style="background:#ffd100;"></i>마스터</span>
             <span><i class="ig-dot" style="background:#22c55e;"></i>진행중</span>
             <span><i class="ig-dot" style="background:#8b95a8;"></i>가능</span>
-            <span><i class="ig-dot" style="background:#444b5a;"></i>잠김 · <strong>모든 특성 아이콘 호버 시 상세 툴팁!</strong></span>
+            <span><i class="ig-dot" style="background:#444b5a;"></i>잠김 · <strong id="igLegendTip">아이콘 호버/탭 시 등급별 수치 툴팁!</strong></span>
           </div>
 
           <div id="igTalentMount" class="ig-trees-3col"></div>
+
+          <div class="talent-impact-box" id="talentImpactBox">
+            <div class="talent-impact-head">
+              <strong>📊 특성 반영 세부 수치 (실측 Lv.30 <code>21/0/0</code> 대비 실시간 비교)</strong>
+              <span class="badge arcane" id="talentImpactBadge">실제 Lv.30 기준</span>
+            </div>
+            <div class="talent-impact-grid" id="talentImpactGrid"></div>
+            <div class="ti-active-tags" id="talentActiveTags"></div>
+          </div>
         </div>
 
         <!-- 4. FOLDED REFERENCE CARDS (SYSTEM STAT FORMULAS + TALENT ROADMAP + STAT PRIORITY) -->
@@ -3557,10 +3791,10 @@
             <summary>🧭 29~40레벨 특성 로드맵</summary>
             <div class="fold-body">
               <ol style="margin-top:0;">
-                <li><strong>Lv.29 (20pt — 현재 ✅):</strong> <code>신비한 명상</code> <strong>2/3 완료</strong> &rarr; 5티어 <code>냉정</code> 잠금 해제 완료 (20포인트 도달).</li>
-                <li><strong>Lv.30 (21pt — 다음 핵심 전환점):</strong> 5티어 2열 <strong><code>냉정</code> (1/1)</strong> 최우선 습득 &rarr; 3.5초 시전 <code>비전 격노</code>를 Off-GCD 즉시 시전으로 압축!</li>
-                <li><strong>Lv.31 (22pt):</strong> <code>신비한 명상</code> <strong>3/3 마스터</strong> &rarr; 향후 Lv.32~34 <code>마법사 갑옷</code>과 시전 중 마나 재생 100% 완성.</li>
-                <li><strong>Lv.32~40 (23~31pt):</strong> <code>신비한 정신</code>(최대 지능 % &rarr; 비작 12% &amp; 격노 마나 5% 이중 시너지) &rarr; <code>신비한 불안정성</code> &rarr; <strong>Lv.40 <code>신비의 마법 강화</code></strong> 완성.</li>
+                <li><strong>Lv.30 (21pt — 현재 ✅):</strong> <code>신비한 명상</code> <strong>3/3 마스터 완료</strong> &rarr; 시전 중 정신력 마나 재생 <strong>50%</strong> 유지 (향후 Lv.32~34 <code>마법사 갑옷</code> +50%와 합연산 100% 완성 준비).</li>
+                <li><strong>Lv.31 (22pt — 다음 핵심 전환점):</strong> 5티어 2열 <strong><code>냉정</code> (1/1)</strong> 최우선 습득 &rarr; 3.5초 시전 <code>비전 격노</code>를 Off-GCD 즉시 시전으로 압축!</li>
+                <li><strong>Lv.32~36 (23~27pt):</strong> <code>신비한 정신</code> 5/5 (총 지능 +10% &amp; 비전 치명타 피해 보너스 +100% &rarr; 치명 배율 <strong>200%</strong>!).</li>
+                <li><strong>Lv.37~40 (28~31pt):</strong> <code>신비한 불안정성</code> 3/3 (피해·치명 +3%) &rarr; <strong>Lv.40 <code>신비의 마법 강화</code></strong> 완성.</li>
               </ol>
             </div>
           </details>
@@ -5064,7 +5298,8 @@ function isDrawerMode() {
   return window.innerWidth <= 1140;
 }
 
-function openTab(id, btn) {
+function openTab(id, btn, opts) {
+  const silent = Boolean(opts && opts.silent);
   if (id === 'tab-stats') id = 'tab-talent';
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -5085,6 +5320,7 @@ function openTab(id, btn) {
   }
 
   safeStorageSet('wowf_active_tab_v2', id);
+  if (!silent && typeof dismissNavUpdatedBadge === 'function') dismissNavUpdatedBadge(id);
   if (isDrawerMode()) closeDrawer();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -6823,7 +7059,7 @@ const WOW_DB = {
   },
   '신비한 명상': {
     en: 'Arcane Meditation', kind: '비전 특성 · 4티어 3열', quality: 'talent', icon: 'spell_shadow_siphonmana',
-    rows: [['현재 투자: 1 / 3 (Lv.28 진입 ✅)', 'Lv.29에 2/3 목표']],
+    rows: [['현재 투자: 3 / 3 ★ (Lv.30 마스터 ✅)', '시전 중 마나 재생 50% 유지']],
     desc: '주문 시전 중에도 정신력 기반 마나 재생을 최대 50% 유지합니다. Lv.32~34 마법사 갑옷(50%)과 합연산 시 시전 중 100% 마나 재생 완성!',
     note: '⭐ 현재 마나통(1,380) 유지력 보완 최핵심 특성'
   },
@@ -7943,132 +8179,587 @@ function toggleMemphisTheme() {
   applyMemphisTheme(next);
 }
 
-/* --- IN-GAME 3-TREE TALENT DATA (Grounded in 2026-11-19 Screenshot + Lv.29 20/0/0 Update) --- */
+/* --- IN-GAME 3-TREE TALENT DATA & INTERACTIVE SIMULATOR (Lv.30 21/0/0 · 신비한 명상 3/3 마스터) --- */
 const IG_TALENT_TREES = {
   arcane: {
-    name: '비전 (Arcane)', pts: 20, icon: 'spell_arcane_blast', bg: 'bg-arcane',
+    name: '비전 (Arcane)', pts: 21, icon: 'spell_arcane_blast', bg: 'bg-arcane',
     arrows: [
-      { r1: 2, c1: 3, r2: 4, c2: 3, active: true },  // 신비한 정신 집중 -> 신비한 명상
-      { r1: 3, c1: 4, r2: 4, c2: 4, active: true },  // 비전 작렬 -> 비전 격노
-      { r1: 5, c1: 2, r2: 7, c2: 2, active: false }  // 냉정 -> 신비의 마법 강화
+      { r1: 2, c1: 3, r2: 4, c2: 3 },  // 신비한 정신 집중 -> 신비한 명상
+      { r1: 3, c1: 4, r2: 4, c2: 4 },  // 비전 작렬 -> 비전 격노
+      { r1: 5, c1: 2, r2: 7, c2: 2 }   // 냉정 -> 신비의 마법 강화
     ],
     nodes: [
-      { r:1, c:1, cur:2, max:2, key:'신비한 미묘함', icon:'spell_holy_dispelmagic' },
-      { r:1, c:2, cur:5, max:5, key:'정신 집중 연마', icon:'spell_holy_devotion' },
-      { r:1, c:3, cur:0, max:3, key:'신비한 인내', icon:'spell_magearmor', en:'Arcane Resilience', desc:'지능의 일정 비율만큼 방어도를 증가시켜 천 계열 생존력을 높입니다.' },
-      { r:2, c:1, cur:2, max:2, key:'마법봉 전문화', icon:'inv_wand_01' },
-      { r:2, c:2, cur:0, max:5, key:'마법 흡수', icon:'spell_arcane_blink', en:'Magic Absorption', desc:'모든 마법 저항력을 높이고 주문 저항 시 최대 마나의 일정 비율을 즉시 회복합니다.' },
-      { r:2, c:3, cur:5, max:5, key:'신비한 정신 집중', icon:'spell_shadow_manaburn' },
-      { r:2, c:4, cur:2, max:2, key:'화살 탄막', icon:'ability_mage_missilebarrage' },
-      { r:3, c:1, cur:0, max:2, key:'마법 조율', icon:'spell_nature_removecurse', en:'Magic Attunement', desc:'마법 증폭 및 마법 감쇠 효과를 증가시키고 비전 주문 사거리를 늘립니다.' },
-      { r:3, c:2, cur:0, max:3, key:'신비한 충돌', icon:'spell_nature_wispsplode' },
-      { r:3, c:4, cur:1, max:1, key:'비전 작렬', icon:'spell_arcane_blast' },
-      { r:4, c:1, cur:0, max:2, key:'마법 차단 연마', icon:'spell_frost_iceshock' },
-      { r:4, c:2, cur:0, max:2, key:'마나 보호막 연마', icon:'spell_shadow_charm', en:'Improved Mana Shield', desc:'마나 보호막 활성화 시 흡수 피해당 소모되는 마나 비율을 크게 낮춥니다.' },
-      { r:4, c:3, cur:2, max:3, key:'신비한 명상', icon:'spell_shadow_siphonmana' },
-      { r:4, c:4, cur:1, max:1, key:'비전 격노', icon:'ability_mage_arcanebarrage' },
-      { r:5, c:2, cur:0, max:1, key:'냉정', icon:'spell_nature_enchantarmor' },
-      { r:5, c:3, cur:0, max:5, key:'신비한 정신', icon:'spell_shadow_charm' },
-      { r:6, c:3, cur:0, max:3, key:'신비한 불안정성', icon:'spell_shadow_teleport', locked:true },
-      { r:7, c:2, cur:0, max:1, key:'신비의 마법 강화', icon:'spell_nature_lightning', locked:true }
+      { r:1, c:1, base:2, cur:2, max:2, key:'신비한 미묘함', icon:'spell_holy_dispelmagic', en:'Arcane Subtlety',
+        steps:['관통 +8 · 위협 -20%','관통 +15 · 위협 -40%'],
+        fmt: r => `대상의 모든 마법 저항력을 ${[0,8,15][r]} 감소(주문 관통력 +${[0,8,15][r]})시키고 비전 주문 위협 수준을 ${[0,20,40][r]}% 감소시킵니다.` },
+      { r:1, c:2, base:5, cur:5, max:5, key:'정신 집중 연마', icon:'spell_holy_devotion', en:'Improved Channeling',
+        steps:['밀림 저항 20%','40%','60%','80%','100%'],
+        fmt: r => `신비한 화살·비전 작렬·비전 격노 시전 중 피격 시 시전 밀림 저항 확률이 ${r*20}% 증가합니다.` },
+      { r:1, c:3, base:0, cur:0, max:3, key:'신비한 인내', icon:'spell_magearmor', en:'Arcane Resilience',
+        steps:['지능 25% 방어','50%','75%'],
+        fmt: r => `총 지능의 ${r*25}%만큼 방어도가 증가합니다.` },
+      { r:2, c:1, base:2, cur:2, max:2, key:'마법봉 전문화', icon:'inv_wand_01', en:'Wand Specialization',
+        steps:['마법봉 +13%','+25%'],
+        fmt: r => `마법봉 공격력이 ${[0,13,25][r]}% 증가합니다.` },
+      { r:2, c:2, base:0, cur:0, max:5, key:'마법 흡수', icon:'spell_arcane_blink', en:'Magic Absorption',
+        steps:['저항 +2 · 마나 1%','+4 · 2%','+6 · 3%','+8 · 4%','+10 · 5%'],
+        fmt: r => `모든 마법 저항력이 ${r*2} 증가하고 주문 완전 저항 시 최대 마나의 ${r}%를 회복합니다.` },
+      { r:2, c:3, base:5, cur:5, max:5, key:'신비한 정신 집중', icon:'spell_shadow_manaburn', en:'Arcane Concentration',
+        steps:['정신 집중 2%','4%','6%','8%','10%'],
+        fmt: r => `공격 주문 적중 시 ${r*2}% 확률로 정신 집중(다음 공격 주문 마나 소모 0, 5초 규칙 미초기화)이 발동합니다.` },
+      { r:2, c:4, base:2, cur:2, max:2, key:'화살 탄막', icon:'ability_mage_missilebarrage', en:'Missile Barrage',
+        steps:['프록 20%','40%'],
+        fmt: r => `비전 작렬·비전 격노 시전 시 ${r*20}% 확률로 다음 신비한 화살을 마나 소모 없이 2.5초 고속 발사합니다.` },
+      { r:3, c:1, base:0, cur:0, max:2, key:'마법 조율', icon:'spell_nature_removecurse', en:'Magic Attunement',
+        steps:['효과 +25% · 사거리 +3m','+50% · +6m'],
+        fmt: r => `마법 증폭·마법 감쇠 효과가 ${r*25}% 증가하고 비전 주문 사거리가 ${r*3}m 늘어납니다.` },
+      { r:3, c:2, base:0, cur:0, max:3, key:'신비한 충돌', icon:'spell_nature_wispsplode', en:'Arcane Impact',
+        steps:['비전 치명 +2%','+4%','+6%'],
+        fmt: r => `신비한 폭발 및 핵심 비전 주문의 극대화 적중률이 ${r*2}% 증가합니다.` },
+      { r:3, c:4, base:1, cur:1, max:1, key:'비전 작렬', icon:'spell_arcane_blast', en:'Arcane Blast',
+        steps:['습득 (중첩당 지능 12% SP)'],
+        fmt: () => `1.5초 시전 비전 주력기 습득. 중첩당 지능의 12%만큼 전 학파 주문력 증가 & 비전 작렬 마나 소모 +100% (최대 4중첩).` },
+      { r:4, c:1, base:0, cur:0, max:2, key:'마법 차단 연마', icon:'spell_frost_iceshock', en:'Improved Counterspell',
+        steps:['4초 침묵 50%','100%'],
+        fmt: r => `마법 차단 시 ${r*50}% 확률로 대상을 4초간 침묵시킵니다.` },
+      { r:4, c:2, base:0, cur:0, max:2, key:'마나 보호막 연마', icon:'spell_shadow_charm', en:'Improved Mana Shield',
+        steps:['마나 소모 -10%','-20%'],
+        fmt: r => `마나 보호막 활성화 시 흡수 피해당 소모되는 마나량이 ${r*10}% 감소합니다.` },
+      { r:4, c:3, base:3, cur:3, max:3, key:'신비한 명상', icon:'spell_shadow_siphonmana', en:'Arcane Meditation',
+        req:{ r:2, c:3 },
+        steps:['시전 중 재생 17%','33%','50%'],
+        fmt: r => `주문 시전 중에도 정신력 기반 마나 재생의 ${[0,17,33,50][r]}%가 유지됩니다. (마법사 갑옷 +50%와 합연산 최대 100%)` },
+      { r:4, c:4, base:1, cur:1, max:1, key:'비전 격노', icon:'ability_mage_arcanebarrage', en:'Arcane Wrath',
+        req:{ r:3, c:4 },
+        steps:['습득 (최대 마나 5% SP)'],
+        fmt: () => `3.5초 시전 / 6초 쿨 비전 마무리 주력기 습득. 최대 마나의 5%만큼 추가 주문 공격력이 반영됩니다.` },
+      { r:5, c:2, base:0, cur:0, max:1, key:'냉정', icon:'spell_nature_enchantarmor', en:'Presence of Mind',
+        steps:['습득 (다음 주문 즉시 시전 · 3분 쿨)'],
+        fmt: () => `활성화 시 시전 시간 10초 미만 다음 마법사 주문을 즉시 시전으로 만듭니다 (Off-GCD, 쿨 3분).` },
+      { r:5, c:3, base:0, cur:0, max:5, key:'신비한 정신', icon:'spell_shadow_charm', en:'Arcane Mind',
+        steps:['지능 +2% · 비전 치명피해 +20%','+4% · +40%','+6% · +60%','+8% · +80%','+10% · +100%'],
+        fmt: r => `총 지능이 ${r*2}% 증가하고, 비전 주문의 치명타 피해 보너스가 ${r*20}% 증가(치명 배율 ${150 + r*10}%)합니다.` },
+      { r:6, c:3, base:0, cur:0, max:3, key:'신비한 불안정성', icon:'spell_shadow_teleport', en:'Arcane Instability',
+        steps:['피해 +1% · 치명 +1%','+2% · +2%','+3% · +3%'],
+        fmt: r => `모든 주문의 공격력이 ${r}% 증가하고 모든 주문의 극대화 적중률이 ${r}% 증가합니다.` },
+      { r:7, c:2, base:0, cur:0, max:1, key:'신비의 마법 강화', icon:'spell_nature_lightning', en:'Arcane Power',
+        req:{ r:5, c:2 },
+        steps:['습득 (15초 주문력 +30% / 마나 +30%)'],
+        fmt: () => `활성화 시 15초간 모든 주문 공격력이 30% 증가하고 마나 소모량이 30% 증가합니다 (Off-GCD, 쿨 3분).` }
     ]
   },
   fire: {
     name: '화염 (Fire)', pts: 0, icon: 'spell_fire_fireball', bg: 'bg-fire',
     arrows: [
-      { r1: 3, c1: 3, r2: 4, c2: 3, active: false }, // 불덩이 작렬 -> 열기
-      { r1: 5, c1: 2, r2: 7, c2: 2, active: false }  // 임계 질량 -> 발화
+      { r1: 3, c1: 3, r2: 4, c2: 3 }, // 불덩이 작렬 -> 열기
+      { r1: 5, c1: 2, r2: 7, c2: 2 }  // 임계 질량 -> 발화
     ],
     nodes: [
-      { r:1, c:2, cur:0, max:5, key:'촉진제 (화염구 연마)', icon:'spell_fire_fireball', en:'Accelerant', desc:'화염구, 서리불꽃 화살, 비전 격노의 시전 시간을 최대 0.5초 단축합니다. (와우 포에버 개편)' },
-      { r:1, c:3, cur:0, max:5, key:'충돌', icon:'spell_fire_soulburn', en:'Impact', desc:'화염 주문 적중 시 최대 10% 확률로 대상을 2초간 기절시킵니다.' },
-      { r:2, c:1, cur:0, max:5, key:'작열', icon:'spell_fire_selfdestruct', en:'Ignite', locked:true, desc:'화염 주문 극대화 시 4초에 걸쳐 피해의 최대 40%를 추가 화염 지속 피해로 입힙니다.' },
-      { r:2, c:2, cur:0, max:2, key:'화염 투척', icon:'spell_fire_fireball', en:'Flame Throwing', locked:true, desc:'모든 화염 주문의 유효 사거리를 최대 6미터 증가시킵니다.' },
-      { r:2, c:3, cur:0, max:3, key:'화염 작렬 연마', icon:'spell_fire_fireball', en:'Improved Fire Blast', locked:true, desc:'화염 작렬의 재사용 대기시간을 최대 1.5초 단축합니다.' },
-      { r:3, c:1, cur:0, max:2, key:'소각', icon:'spell_fire_soulburn', en:'Incineration', locked:true, desc:'화염 작렬, 불태우기, 비전 작렬, 얼음 창의 극대화 적중률을 증가시킵니다.' },
-      { r:3, c:2, cur:0, max:3, key:'불기둥 연마', icon:'spell_fire_selfdestruct', en:'Improved Flamestrike', locked:true, desc:'불기둥의 극대화 적중률을 최대 15% 증가시킵니다.' },
-      { r:3, c:3, cur:0, max:1, key:'불덩이 작렬', icon:'spell_fire_fireball', en:'Pyroblast', locked:true, desc:'거대한 화염 바위를 던져 막대한 즉발 및 12초 지속 화염 피해를 입힙니다. (하단 열기 특성 선행)' },
-      { r:3, c:4, cur:0, max:2, key:'불타는 영혼', icon:'spell_fire_firearmor', en:'Burning Soul', locked:true, desc:'화염 주문 시전 중 피격 밀림을 방지하고 위협 수준을 감소시킵니다.' },
-      { r:4, c:1, cur:0, max:3, key:'불태우기 연마', icon:'spell_fire_soulburn', en:'Improved Scorch', locked:true, desc:'불태우기 적중 시 대상이 받는 화염 피해를 최대 15%까지 중첩 증가시킵니다.' },
-      { r:4, c:2, cur:0, max:2, key:'화염계 수호 연마', icon:'spell_fire_firearmor', en:'Improved Fire Ward', locked:true, desc:'화염계 수호 활성화 중 일정 확률로 화염 주문을 반사합니다.' },
-      { r:4, c:3, cur:0, max:1, key:'열기 (Heating Up)', icon:'spell_fire_selfdestruct', en:'Heating Up', locked:true, desc:'와우 포에버 신규 핵심 프록! 화염 주문 극대화(및 화염 작렬) 시 다음 불덩이 작렬 시전 시간을 중첩당 25% 단축(최대 3중첩).' },
-      { r:4, c:4, cur:0, max:3, key:'원소의 대가', icon:'spell_fire_firearmor', en:'Master of Elements', locked:true, desc:'화염 및 냉기 주문 극대화 시 기본 마나 소모량의 최대 30%를 돌려받습니다.' },
-      { r:5, c:2, cur:0, max:3, key:'임계 질량', icon:'spell_fire_soulburn', en:'Critical Mass', locked:true, desc:'화염 주문의 극대화 적중률을 최대 6% 증가시킵니다. (하단 발화 선행)' },
-      { r:5, c:3, cur:0, max:1, key:'화염 폭풍', icon:'spell_fire_selfdestruct', en:'Blast Wave', locked:true, desc:'즉시 주위에 화염 파동을 방출해 광역 화염 피해와 감속·넉백을 부여합니다.' },
-      { r:6, c:3, cur:0, max:5, key:'화염 마법 강화', icon:'spell_fire_fireball', en:'Fire Power', locked:true, desc:'모든 화염 주문의 공격력을 최대 10% 증가시킵니다.' },
-      { r:7, c:2, cur:0, max:1, key:'발화', icon:'spell_fire_firearmor', en:'Combustion', locked:true, desc:'활성화 시 화염 주문 적중마다 극대화율이 10%씩 누적 증가하며, 극대화 3회 달성 시 종료되는 최종 버스트 쿨기.' }
+      { r:1, c:2, base:0, cur:0, max:5, key:'촉진제 (화염구 연마)', icon:'spell_fire_fireball', en:'Accelerant',
+        steps:['시전 -0.1초','-0.2초','-0.3초','-0.4초','-0.5초'],
+        fmt: r => `화염구·서리불꽃 화살·비전 격노의 시전 시간을 ${(r*0.1).toFixed(1)}초 단축합니다. (와우 포에버 개편)` },
+      { r:1, c:3, base:0, cur:0, max:5, key:'충돌', icon:'spell_fire_soulburn', en:'Impact',
+        steps:['2초 기절 2%','4%','6%','8%','10%'],
+        fmt: r => `화염 주문 적중 시 ${r*2}% 확률로 대상을 2초간 기절시킵니다.` },
+      { r:2, c:1, base:0, cur:0, max:5, key:'작열', icon:'spell_fire_selfdestruct', en:'Ignite',
+        steps:['추가 DoT 8%','16%','24%','32%','40%'],
+        fmt: r => `화염 주문 극대화 시 4초에 걸쳐 피해의 ${r*8}%를 추가 화염 지속 피해로 입힙니다.` },
+      { r:2, c:2, base:0, cur:0, max:2, key:'화염 투척', icon:'spell_fire_fireball', en:'Flame Throwing',
+        steps:['사거리 +3m','+6m'],
+        fmt: r => `모든 화염 주문의 유효 사거리가 ${r*3}m 증가합니다.` },
+      { r:2, c:3, base:0, cur:0, max:3, key:'화염 작렬 연마', icon:'spell_fire_fireball', en:'Improved Fire Blast',
+        steps:['쿨 -0.5초','-1.0초','-1.5초'],
+        fmt: r => `화염 작렬 재사용 대기시간이 ${(r*0.5).toFixed(1)}초 단축됩니다 (8.0초 → ${(8 - r*0.5).toFixed(1)}초).` },
+      { r:3, c:1, base:0, cur:0, max:2, key:'소각', icon:'spell_fire_soulburn', en:'Incineration',
+        steps:['치명 +2%','+4%'],
+        fmt: r => `화염 작렬·불태우기·비전 작렬·얼음 창의 극대화 적중률이 ${r*2}% 증가합니다.` },
+      { r:3, c:2, base:0, cur:0, max:3, key:'불기둥 연마', icon:'spell_fire_selfdestruct', en:'Improved Flamestrike',
+        steps:['치명 +5%','+10%','+15%'],
+        fmt: r => `불기둥의 극대화 적중률이 ${r*5}% 증가합니다.` },
+      { r:3, c:3, base:0, cur:0, max:1, key:'불덩이 작렬', icon:'spell_fire_fireball', en:'Pyroblast',
+        steps:['습득 (6초 시전 화염 폭딜 + DoT)'],
+        fmt: () => `거대한 화염 바위를 던져 막대한 즉발 및 12초 지속 화염 피해를 입힙니다. (열기 선행)` },
+      { r:3, c:4, base:0, cur:0, max:2, key:'불타는 영혼', icon:'spell_fire_firearmor', en:'Burning Soul',
+        steps:['밀림 저항 35% · 위협 -15%','70% · -30%'],
+        fmt: r => `화염 주문 시전 중 피격 밀림 저항 ${r*35}%, 화염 주문 위협 수준 ${r*15}% 감소.` },
+      { r:4, c:1, base:0, cur:0, max:3, key:'불태우기 연마', icon:'spell_fire_soulburn', en:'Improved Scorch',
+        steps:['화염 취약 33%','66%','100%'],
+        fmt: r => `불태우기 적중 시 ${[0,33,66,100][r]}% 확률로 대상이 받는 화염 피해를 3%씩 최대 15%(5중첩) 증가시킵니다.` },
+      { r:4, c:2, base:0, cur:0, max:2, key:'화염계 수호 연마', icon:'spell_fire_firearmor', en:'Improved Fire Ward',
+        steps:['반사 10%','20%'],
+        fmt: r => `화염계 수호 활성화 중 ${r*10}% 확률로 화염 주문을 반사합니다.` },
+      { r:4, c:3, base:0, cur:0, max:1, key:'열기 (Heating Up)', icon:'spell_fire_selfdestruct', en:'Heating Up',
+        req:{ r:3, c:3 },
+        steps:['습득 (불덩이 시전 -25%/중첩, 최대 3중첩)'],
+        fmt: () => `화염 주문 극대화 및 화염 작렬 시 다음 불덩이 작렬 시전 시간이 중첩당 25% 단축(최대 3중첩)됩니다.` },
+      { r:4, c:4, base:0, cur:0, max:3, key:'원소의 대가', icon:'spell_fire_firearmor', en:'Master of Elements',
+        steps:['기본 마나 환급 10%','20%','30%'],
+        fmt: r => `화염 및 냉기 주문 극대화 시 기본 마나 소모량의 ${r*10}%를 돌려받습니다.` },
+      { r:5, c:2, base:0, cur:0, max:3, key:'임계 질량', icon:'spell_fire_soulburn', en:'Critical Mass',
+        steps:['화염 치명 +2%','+4%','+6%'],
+        fmt: r => `화염 주문의 극대화 적중률이 ${r*2}% 증가합니다. (발화 선행)` },
+      { r:5, c:3, base:0, cur:0, max:1, key:'화염 폭풍', icon:'spell_fire_selfdestruct', en:'Blast Wave',
+        steps:['습득 (즉시 광역 화염 + 6초 감속)'],
+        fmt: () => `즉시 주위에 화염 파동을 방출해 광역 화염 피해와 6초간 50% 감속·넉백을 부여합니다.` },
+      { r:6, c:3, base:0, cur:0, max:5, key:'화염 마법 강화', icon:'spell_fire_fireball', en:'Fire Power',
+        steps:['화염 피해 +2%','+4%','+6%','+8%','+10%'],
+        fmt: r => `모든 화염 주문의 공격력이 ${r*2}% 증가합니다.` },
+      { r:7, c:2, base:0, cur:0, max:1, key:'발화', icon:'spell_fire_firearmor', en:'Combustion',
+        req:{ r:5, c:2 },
+        steps:['습득 (화염 적중당 치명 +10% 누적, 3치명 유지)'],
+        fmt: () => `활성화 시 화염 주문 적중마다 극대화율이 10%씩 누적 증가하며, 극대화 3회 달성 시 종료됩니다.` }
     ]
   },
   frost: {
     name: '냉기 (Frost)', pts: 0, icon: 'spell_frost_frostnova', bg: 'bg-frost',
     arrows: [
-      { r1: 2, c1: 3, r2: 5, c2: 3, active: false }, // 얼음 회오리 연마 -> 산산조각
-      { r1: 5, c1: 2, r2: 7, c2: 2, active: false }  // 얼음 방패 -> 얼음 보호막
+      { r1: 2, c1: 3, r2: 5, c2: 3 }, // 얼음 회오리 연마 -> 산산조각
+      { r1: 5, c1: 2, r2: 7, c2: 2 }  // 얼음 방패 -> 얼음 보호막
     ],
     nodes: [
-      { r:1, c:1, cur:0, max:2, key:'얼음 방어', icon:'spell_frost_frostarmor02', en:'Frost Warding', desc:'냉기·얼음 갑옷 방어도 및 저항력을 높이고 냉기계 수호 시 일정 확률로 냉기 주문을 반사합니다.' },
-      { r:1, c:2, cur:0, max:5, key:'얼음 화살 연마', icon:'spell_frost_frostshock', en:'Improved Frostbolt', desc:'얼음 화살의 시전 시간을 최대 0.5초 단축합니다.' },
-      { r:1, c:3, cur:0, max:3, key:'원소의 정밀함', icon:'spell_frost_iceshock', en:'Elemental Precision', desc:'냉기 및 화염 주문의 적중률을 최대 6% 증가시킵니다.' },
-      { r:2, c:1, cur:0, max:5, key:'얼음 파편', icon:'spell_frost_frostshock', en:'Ice Shards', locked:true, desc:'냉기 주문 극대화 피해 보너스를 최대 100%까지 증가시킵니다.' },
-      { r:2, c:2, cur:0, max:3, key:'동상', icon:'spell_frost_frostnova', en:'Frostbite', locked:true, desc:'냉기 감속 효과 적용 시 최대 15% 확률로 대상을 5초간 제자리에 얼립니다.' },
-      { r:2, c:3, cur:0, max:2, key:'얼음 회오리 연마', icon:'spell_frost_frostnova', en:'Improved Frost Nova', locked:true, desc:'얼음 회오리 재사용 대기시간을 최대 4초 단축합니다. (하단 산산조각 선행)' },
-      { r:2, c:4, cur:0, max:3, key:'영구 결빙', icon:'spell_frost_frostarmor02', en:'Permafrost', locked:true, desc:'냉기 감속 지속 시간을 늘리고 이동 속도 감소율을 추가로 강화합니다.' },
-      { r:3, c:1, cur:0, max:3, key:'사무치는 냉기', icon:'spell_frost_frostshock', en:'Piercing Ice', locked:true, desc:'모든 냉기 주문 공격력을 최대 6% 증가시킵니다.' },
-      { r:3, c:2, cur:0, max:1, key:'매서운 한파', icon:'spell_frost_frost', en:'Cold Snap', locked:true, desc:'활성화 시 최근 사용한 모든 냉기 주문의 재사용 대기시간을 즉시 초기화합니다.' },
-      { r:3, c:3, cur:0, max:3, key:'눈보라 연마', icon:'spell_frost_icestorm', en:'Improved Blizzard', locked:true, desc:'눈보라에 강력한 이동 속도 감소(감속) 효과를 부여해 광역 사냥의 핵심이 됩니다.' },
-      { r:4, c:1, cur:0, max:2, key:'혹한의 손길', icon:'spell_frost_iceshock', en:'Arctic Reach', locked:true, desc:'얼음 화살·눈보라·얼음 회오리·냉기 돌풍의 사거리와 반경을 최대 20% 증가시킵니다.' },
-      { r:4, c:2, cur:0, max:3, key:'냉기 집중', icon:'spell_frost_frostarmor02', en:'Frost Channeling', locked:true, desc:'냉기 주문의 마나 소모량을 최대 15% 감소시키고 위협 수준을 낮춥니다.' },
-      { r:4, c:4, cur:0, max:3, key:'서리의 손가락', icon:'spell_frost_frostshock', en:'Fingers of Frost', locked:true, desc:'와우 포에버 핵심 냉기 프록! 감속 효과 적용 시 다음 주문(얼음 창 등)이 빙결 대상처럼 산산조각 판정을 받습니다.' },
-      { r:5, c:1, cur:0, max:3, key:'냉기 돌풍 연마', icon:'spell_frost_icestorm', en:'Improved Cone of Cold', locked:true, desc:'냉기 돌풍의 공격력을 최대 35% 증가시킵니다.' },
-      { r:5, c:2, cur:0, max:1, key:'얼음 방패', icon:'spell_frost_frost', locked:true },
-      { r:5, c:3, cur:0, max:3, key:'산산조각', icon:'spell_frost_frostshock', locked:true },
-      { r:6, c:3, cur:0, max:5, key:'혹한의 추위', icon:'spell_frost_icestorm', en:"Winter's Chill", locked:true, desc:'와우 포에버 개편! 얼음 화살·얼음 창으로 중첩을 쌓아 다음 냉기 돌풍의 피해를 대폭 증폭합니다.' },
-      { r:7, c:2, cur:0, max:1, key:'얼음 보호막', icon:'spell_frost_frostarmor02', en:'Ice Barrier', locked:true, desc:'와우 포에버 상향! 피해를 흡수하는 보호막을 두르며 시전 밀림 방지 + 냉기 공격력 +15%(유지 중 +5% 추가) 버프를 제공합니다.' }
+      { r:1, c:1, base:0, cur:0, max:2, key:'얼음 방어', icon:'spell_frost_frostarmor02', en:'Frost Warding',
+        steps:['갑옷 방어/저항 +15% · 반사 10%','+30% · 20%'],
+        fmt: r => `냉기·얼음 갑옷 방어도 및 저항력이 ${r*15}% 증가하고 냉기계 수호 시 ${r*10}% 확률로 반사합니다.` },
+      { r:1, c:2, base:0, cur:0, max:5, key:'얼음 화살 연마', icon:'spell_frost_frostshock', en:'Improved Frostbolt',
+        steps:['시전 -0.1초','-0.2초','-0.3초','-0.4초','-0.5초'],
+        fmt: r => `얼음 화살의 시전 시간을 ${(r*0.1).toFixed(1)}초 단축합니다.` },
+      { r:1, c:3, base:0, cur:0, max:3, key:'원소의 정밀함', icon:'spell_frost_iceshock', en:'Elemental Precision',
+        steps:['냉기·화염 적중 +2%','+4%','+6%'],
+        fmt: r => `냉기 및 화염 주문의 적중률이 ${r*2}% 증가합니다.` },
+      { r:2, c:1, base:0, cur:0, max:5, key:'얼음 파편', icon:'spell_frost_frostshock', en:'Ice Shards',
+        steps:['냉기 치명피해 +20%','+40%','+60%','+80%','+100%'],
+        fmt: r => `냉기 주문의 치명타 피해 보너스가 ${r*20}% 증가(치명 배율 ${150 + r*10}%)합니다.` },
+      { r:2, c:2, base:0, cur:0, max:3, key:'동상', icon:'spell_frost_frostnova', en:'Frostbite',
+        steps:['5초 빙결 5%','10%','15%'],
+        fmt: r => `냉기 감속 효과 적용 시 ${r*5}% 확률로 대상을 5초간 제자리에 얼립니다.` },
+      { r:2, c:3, base:0, cur:0, max:2, key:'얼음 회오리 연마', icon:'spell_frost_frostnova', en:'Improved Frost Nova',
+        steps:['쿨 -2초','-4초'],
+        fmt: r => `얼음 회오리 재사용 대기시간이 ${r*2}초 단축됩니다. (산산조각 선행)` },
+      { r:2, c:4, base:0, cur:0, max:3, key:'영구 결빙', icon:'spell_frost_frostarmor02', en:'Permafrost',
+        steps:['지속 +1초 · 감속 +4%','+2초 · +7%','+3초 · +10%'],
+        fmt: r => `냉기 감속 지속 시간이 ${r}초 늘어나고 이동 속도 감소 효과가 ${[0,4,7,10][r]}% 추가 강화됩니다.` },
+      { r:3, c:1, base:0, cur:0, max:3, key:'사무치는 냉기', icon:'spell_frost_frostshock', en:'Piercing Ice',
+        steps:['냉기 피해 +2%','+4%','+6%'],
+        fmt: r => `모든 냉기 주문 공격력이 ${r*2}% 증가합니다.` },
+      { r:3, c:2, base:0, cur:0, max:1, key:'매서운 한파', icon:'spell_frost_frost', en:'Cold Snap',
+        steps:['습득 (냉기 주문 쿨 즉시 초기화)'],
+        fmt: () => `활성화 시 최근 사용한 모든 냉기 주문의 재사용 대기시간을 즉시 초기화합니다.` },
+      { r:3, c:3, base:0, cur:0, max:3, key:'눈보라 연마', icon:'spell_frost_icestorm', en:'Improved Blizzard',
+        steps:['감속 30%','50%','65%'],
+        fmt: r => `눈보라 적중 시 대상 이동 속도를 ${[0,30,50,65][r]}% 감소시킵니다.` },
+      { r:4, c:1, base:0, cur:0, max:2, key:'혹한의 손길', icon:'spell_frost_iceshock', en:'Arctic Reach',
+        steps:['사거리·반경 +10%','+20%'],
+        fmt: r => `얼음 화살·눈보라·얼음 회오리·냉기 돌풍의 사거리와 반경이 ${r*10}% 증가합니다.` },
+      { r:4, c:2, base:0, cur:0, max:3, key:'냉기 집중', icon:'spell_frost_frostarmor02', en:'Frost Channeling',
+        steps:['마나 -5% · 위협 -10%','-10% · -20%','-15% · -30%'],
+        fmt: r => `냉기 주문의 마나 소모량이 ${r*5}% 감소하고 위협 수준이 ${r*10}% 낮아집니다.` },
+      { r:4, c:4, base:0, cur:0, max:3, key:'서리의 손가락', icon:'spell_frost_frostshock', en:'Fingers of Frost',
+        steps:['빙결 판정 5%','10%','15%'],
+        fmt: r => `감속 효과 적용 시 ${r*5}% 확률로 다음 주문이 빙결(산산조각) 판정을 받습니다.` },
+      { r:5, c:1, base:0, cur:0, max:3, key:'냉기 돌풍 연마', icon:'spell_frost_icestorm', en:'Improved Cone of Cold',
+        steps:['냉기 돌풍 +15%','+25%','+35%'],
+        fmt: r => `냉기 돌풍의 공격력이 ${[0,15,25,35][r]}% 증가합니다.` },
+      { r:5, c:2, base:0, cur:0, max:1, key:'얼음 방패', icon:'spell_frost_frost', en:'Ice Block',
+        steps:['습득 (10초 완전 면역 · 5분 쿨)'],
+        fmt: () => `10초간 모든 물리·마법 피해와 디버프에 완전 면역이 됩니다. (얼음 보호막 선행)` },
+      { r:5, c:3, base:0, cur:0, max:3, key:'산산조각', icon:'spell_frost_frostshock', en:'Shatter',
+        req:{ r:2, c:3 },
+        steps:['빙결 대상 치명 +17%','+34%','+50%'],
+        fmt: r => `얼어붙은 대상에 대한 모든 주문의 극대화 적중률이 ${[0,17,34,50][r]}% 증가합니다.` },
+      { r:6, c:3, base:0, cur:0, max:5, key:'혹한의 추위', icon:'spell_frost_icestorm', en:"Winter's Chill",
+        steps:['중첩 확률 20%','40%','60%','80%','100%'],
+        fmt: r => `얼음 화살·얼음 창 적중 시 ${r*20}% 확률로 다음 냉기 돌풍 피해를 증폭하는 중첩을 부여합니다.` },
+      { r:7, c:2, base:0, cur:0, max:1, key:'얼음 보호막', icon:'spell_frost_frostarmor02', en:'Ice Barrier',
+        req:{ r:5, c:2 },
+        steps:['습득 (보호막 + 밀림 방지 + 냉기 피해 +15%)'],
+        fmt: () => `피해를 흡수하는 보호막을 두르며 시전 밀림 방지 + 냉기 공격력 +15%(유지 중 +5% 추가)를 제공합니다.` }
     ]
   }
 };
+
+const TALENT_SIM_STATE = {
+  simMode: false,
+  unlimited: false,
+  clickDir: 1, // 1: +찍기, -1: -빼기
+  maxTotal: 51,
+  activeSpec: 'arcane'
+};
+
+function getTreePoints(specId) {
+  return IG_TALENT_TREES[specId].nodes.reduce((sum, n) => sum + n.cur, 0);
+}
+
+function getTreePointsBeforeRow(specId, row) {
+  return IG_TALENT_TREES[specId].nodes.reduce((sum, n) => sum + (n.r < row ? n.cur : 0), 0);
+}
+
+function getTotalTalentPoints() {
+  return getTreePoints('arcane') + getTreePoints('fire') + getTreePoints('frost');
+}
+
+function findTalentNode(specId, key) {
+  return IG_TALENT_TREES[specId]?.nodes.find(n => n.key === key) || null;
+}
+
+function getTalentRank(key) {
+  for (const specId of Object.keys(IG_TALENT_TREES)) {
+    const n = findTalentNode(specId, key);
+    if (n) return n.cur;
+  }
+  return 0;
+}
+
+function isTalentUnlocked(specId, node) {
+  if (TALENT_SIM_STATE.simMode && TALENT_SIM_STATE.unlimited) return true;
+  const reqPts = (node.r - 1) * 5;
+  if (getTreePointsBeforeRow(specId, node.r) < reqPts) return false;
+  if (node.req) {
+    const parent = IG_TALENT_TREES[specId].nodes.find(x => x.r === node.req.r && x.c === node.req.c);
+    if (parent && parent.cur < parent.max) return false;
+  }
+  return true;
+}
+
+function canDecrementTalent(specId, node) {
+  if (node.cur <= 0) return false;
+  if (TALENT_SIM_STATE.unlimited) return true;
+  const nodes = IG_TALENT_TREES[specId].nodes;
+  // Check child prerequisite dependency
+  const child = nodes.find(x => x.req && x.req.r === node.r && x.req.c === node.c && x.cur > 0);
+  if (child && node.cur - 1 < node.max) return false;
+  // Check higher-row tier point integrity
+  const maxInvestedRow = nodes.reduce((m, x) => (x.cur > 0 ? Math.max(m, x.r) : m), 0);
+  for (let row = node.r + 1; row <= maxInvestedRow; row++) {
+    const hasInRow = nodes.some(x => x.r === row && x.cur > 0);
+    if (!hasInRow) continue;
+    if (getTreePointsBeforeRow(specId, row) - 1 < (row - 1) * 5) return false;
+  }
+  return true;
+}
+
+function syncTalentEntryToWowDb(specId, node) {
+  const tree = IG_TALENT_TREES[specId];
+  const unlocked = isTalentUnlocked(specId, node);
+  const statusTxt = node.cur >= node.max
+    ? '마스터 완료 ★'
+    : (node.cur > 0 ? '투자 중' : (unlocked ? '투자 가능' : `${(node.r - 1) * 5}pt / 선행 필요`));
+  const rows = [
+    [`등급: ${node.cur} / ${node.max}`, statusTxt],
+    [`위치: ${tree.name}`, `${node.r}티어 ${node.c}열`]
+  ];
+  const effects = [];
+  if (node.cur > 0) {
+    effects.push(`현재 (${node.cur}/${node.max}): ${node.fmt(node.cur)}`);
+  }
+  if (node.cur < node.max) {
+    effects.push(`다음 (${node.cur + 1}/${node.max}): ${node.fmt(node.cur + 1)}`);
+  }
+  const stepsSummary = (node.steps && node.steps.length > 1)
+    ? '단계별 수치: ' + node.steps.map((s, idx) => (idx + 1 === node.cur ? `[${idx+1}:${s}]` : `${idx+1}:${s}`)).join(' → ')
+    : '';
+  const simHint = TALENT_SIM_STATE.simMode
+    ? (TALENT_SIM_STATE.unlimited ? '🔓 무제한 시뮬레이션 ON — 클릭 +1 / 우클릭 -1' : '🧪 시뮬레이션 ON — 클릭 +1 / 우클릭 -1')
+    : '📘 실제 Lv.30 기준 · 상단 [시뮬레이션] 토글로 수치 실험 가능';
+
+  WOW_DB[node.key] = {
+    en: node.en || node.key,
+    kind: `${tree.name} 특성 · ${node.r}티어 ${node.c}열`,
+    quality: 'talent',
+    icon: node.icon,
+    rows,
+    effects,
+    desc: stepsSummary,
+    note: simHint
+  };
+}
+
+function getActiveTalentMods() {
+  const rSubtlety = getTalentRank('신비한 미묘함');
+  const rResil = getTalentRank('신비한 인내');
+  const rWand = getTalentRank('마법봉 전문화');
+  const rAbsorb = getTalentRank('마법 흡수');
+  const rClear = getTalentRank('신비한 정신 집중');
+  const rBarrage = getTalentRank('화살 탄막');
+  const rImpact = getTalentRank('신비한 충돌');
+  const rMed = getTalentRank('신비한 명상');
+  const rMind = getTalentRank('신비한 정신');
+  const rInstab = getTalentRank('신비한 불안정성');
+  const rAP = getTalentRank('신비의 마법 강화');
+  const rPoM = getTalentRank('냉정');
+
+  const rAccel = getTalentRank('촉진제 (화염구 연마)');
+  const rImpFbl = getTalentRank('화염 작렬 연마');
+  const rIncin = getTalentRank('소각');
+  const rCritMass = getTalentRank('임계 질량');
+  const rFirePow = getTalentRank('화염 마법 강화');
+
+  const rImpFb = getTalentRank('얼음 화살 연마');
+  const rElemHit = getTalentRank('원소의 정밀함');
+  const rIceShards = getTalentRank('얼음 파편');
+  const rPiercing = getTalentRank('사무치는 냉기');
+  const rShatter = getTalentRank('산산조각');
+  const rIceBar = getTalentRank('얼음 보호막');
+
+  return {
+    rSubtlety, rResil, rWand, rAbsorb, rClear, rBarrage, rImpact, rMed, rMind, rInstab, rAP, rPoM,
+    rAccel, rImpFbl, rIncin, rCritMass, rFirePow,
+    rImpFb, rElemHit, rIceShards, rPiercing, rShatter, rIceBar,
+    intPct: rMind * 0.02,
+    arcaneCritBonus: 0.50 * (1 + rMind * 0.20),
+    frostCritBonus: 0.50 * (1 + rIceShards * 0.20),
+    armorFromIntPct: rResil * 0.25,
+    spellPen: [0, 8, 15][rSubtlety] || 0,
+    allRes: rAbsorb * 2,
+    meditation: [0, 0.17, 0.33, 0.50][rMed] || 0,
+    wandPct: [0, 13, 25][rWand] || 0,
+    allDmgPct: rInstab * 0.01,
+    allCritPct: rInstab * 1.0,
+    arcaneExtraCrit: rImpact * 2.0,
+    abFblExtraCrit: rIncin * 2.0,
+    fireExtraCrit: rCritMass * 2.0,
+    fireDmgPct: rFirePow * 0.02,
+    fireBlastCd: 8.0 - rImpFbl * 0.5,
+    wrathCastReduce: rAccel * 0.1,
+    frostCastReduce: rImpFb * 0.1,
+    frostDmgPct: rPiercing * 0.02 + (rIceBar ? 0.15 : 0),
+    elemHitPct: rElemHit * 2.0,
+    shatterPct: [0, 17, 34, 50][rShatter] || 0
+  };
+}
+
+function renderTalentImpactSummary() {
+  const grid = document.getElementById('talentImpactGrid');
+  const tags = document.getElementById('talentActiveTags');
+  const badge = document.getElementById('talentImpactBadge');
+  if (!grid || !tags) return;
+
+  const m = getActiveTalentMods();
+  const baseInt = Number(document.getElementById('stInt')?.value) || 100;
+  const baseSpi = Number(document.getElementById('stSpi')?.value) || 67;
+  const baseGenSp = Number(document.getElementById('stGenSp')?.value) || 67;
+  const baseArcSp = Number(document.getElementById('stArcSp')?.value) || 75;
+  const baseCrit = Number(document.getElementById('stCrit')?.value) || 5.7;
+  const mageArmor = document.getElementById('stMageArmor')?.checked ? 0.50 : 0;
+
+  // Baseline Lv.30 (21/0/0: 신비한 명상 3/3, 마법봉 2/2, 미묘함 2/2)
+  const intBonus = Math.round(baseInt * m.intPct);
+  const effInt = baseInt + intBonus;
+  const effMp = 1833 + (effInt - 100) * 15;
+  const baseMp = 1833 + (baseInt - 100) * 15;
+  const armorBonus = Math.round(effInt * m.armorFromIntPct);
+  const effArmor = 434 + armorBonus;
+
+  const outCastMp5 = Math.round((baseSpi === 67 ? 73.0 : (13 + baseSpi / 4) * 2.5) * 10) / 10;
+  const combatKeep = Math.min(1, m.meditation + mageArmor);
+  const baseCombatKeep = Math.min(1, 0.50 + mageArmor);
+  const combatMp5 = outCastMp5 * combatKeep;
+  const baseCombatMp5 = outCastMp5 * baseCombatKeep;
+
+  const critFromInt = intBonus / 60;
+  const effAllCrit = baseCrit + m.allCritPct + critFromInt;
+  const effAbCrit = effAllCrit + m.abFblExtraCrit;
+  const effArcCritMult = 1 + m.arcaneCritBonus; // 1.50 ~ 2.00
+
+  const totalArcSp = baseGenSp + baseArcSp;
+  const deltaArc = totalArcSp - 142;
+  const deltaGen = baseGenSp - 67;
+  const allMul = 1 + m.allDmgPct;
+  const abStep = effInt * 0.12;
+  const ab0 = (145.4 + deltaArc * 0.4286) * allMul;
+  const ab0Base = 145.4 + deltaArc * 0.4286;
+  const ab0Exp = ab0 * (1 + (effAbCrit / 100) * m.arcaneCritBonus);
+  const ab0BaseExp = ab0Base * (1 + (baseCrit / 100) * 0.50);
+
+  const awDmg = ((266.5 + deltaArc) + effMp * 0.05) * allMul;
+  const awBase = (266.5 + deltaArc) + baseMp * 0.05;
+  const awCast = Math.max(1.0, 3.5 - m.wrathCastReduce);
+
+  const wandAvg = 34.8 * (1 + m.wandPct / 100);
+  const fblDmg = (191.7 + deltaGen * 0.4286) * allMul * (1 + m.fireDmgPct);
+  const fblBase = 191.7 + deltaGen * 0.4286;
+
+  const dBadge = (diff, unit, digits = 0) => {
+    if (Math.abs(diff) < 0.05) return '';
+    const sign = diff > 0 ? '+' : '';
+    return `<span class="ti-delta ${diff > 0 ? 'up' : 'down'}">${sign}${diff.toFixed(digits)}${unit}</span>`;
+  };
+
+  if (badge) {
+    if (!TALENT_SIM_STATE.simMode) {
+      badge.textContent = '실제 Lv.30 기준 (21/0/0)';
+      badge.className = 'badge gold';
+    } else if (TALENT_SIM_STATE.unlimited) {
+      badge.textContent = '🔓 무제한 시뮬레이션 반영 중';
+      badge.className = 'badge warn';
+    } else {
+      badge.textContent = '🧪 시뮬레이션 실시간 반영 중';
+      badge.className = 'badge arcane';
+    }
+  }
+
+  const cards = [
+    {
+      lbl: '지능 / 최대 마나',
+      val: `${effInt} 지능 · ${Math.round(effMp).toLocaleString()} MP`,
+      delta: dBadge(intBonus, ' 지능'),
+      sub: `신비한 정신 +${Math.round(m.intPct*100)}% (비작 +${abStep.toFixed(1)}SP/중첩)`,
+      changed: intBonus !== 0
+    },
+    {
+      lbl: '시전 중 마나 재생 (MP5)',
+      val: `${combatMp5.toFixed(1)} MP5 (${Math.round(combatKeep*100)}%)`,
+      delta: dBadge(combatMp5 - baseCombatMp5, '', 1),
+      sub: `신비한 명상 ${Math.round(m.meditation*100)}%${mageArmor ? ' + 갑옷 50%' : ''}`,
+      changed: Math.abs(combatMp5 - baseCombatMp5) >= 0.05
+    },
+    {
+      lbl: '비전 치명타율 & 배율',
+      val: `${effAbCrit.toFixed(1)}% · ×${Math.round(effArcCritMult*100)}%`,
+      delta: dBadge(effArcCritMult*100 - 150, '%배율'),
+      sub: `공용 ${effAllCrit.toFixed(1)}% · 비작 +${m.abFblExtraCrit}% · 충돌 +${m.arcaneExtraCrit}%`,
+      changed: Math.abs(effAbCrit - baseCrit) >= 0.05 || effArcCritMult !== 1.5
+    },
+    {
+      lbl: '비전 작렬 (0중 기대값)',
+      val: `~${Math.round(ab0)} (기대 ${Math.round(ab0Exp)})`,
+      delta: dBadge(ab0Exp - ab0BaseExp, ' dmg'),
+      sub: `주문 피해 +${Math.round(m.allDmgPct*100)}%${m.rAP ? ' · 신마강 ON 시 +30%' : ''}`,
+      changed: Math.abs(ab0Exp - ab0BaseExp) >= 0.5
+    },
+    {
+      lbl: '비전 격노 (시전 · 피해)',
+      val: `~${Math.round(awDmg)} (${awCast.toFixed(1)}초)`,
+      delta: dBadge(awDmg - awBase, ' dmg'),
+      sub: `최대 마나 5% (+${Math.round(effMp*0.05)} SP)${m.wrathCastReduce ? ' · 촉진제 단축!' : ''}`,
+      changed: Math.abs(awDmg - awBase) >= 0.5 || m.wrathCastReduce > 0
+    },
+    {
+      lbl: '관통 · 방어 · 마법봉 · 화작',
+      val: `관통 ${m.spellPen} · 방어 ${effArmor}`,
+      delta: dBadge(armorBonus, ' 방어'),
+      sub: `법봉 ~${wandAvg.toFixed(1)}(+${m.wandPct}%) · 화작 ~${Math.round(fblDmg)}(쿨 ${m.fireBlastCd.toFixed(1)}s)`,
+      changed: m.spellPen !== 15 || armorBonus !== 0 || m.wandPct !== 25 || Math.abs(fblDmg - fblBase) >= 0.5 || m.fireBlastCd !== 8.0
+    }
+  ];
+
+  grid.innerHTML = cards.map(c => `
+    <div class="ti-card ${c.changed ? 'changed' : ''}">
+      <div class="ti-lbl">${c.lbl}</div>
+      <div class="ti-val">${c.val}${c.delta}</div>
+      <div class="ti-sub">${c.sub}</div>
+    </div>
+  `).join('');
+
+  const activeEffects = [];
+  if (m.rPoM) activeEffects.push('⚡ 냉정 (Off-GCD 즉시 시전)');
+  if (m.rAP) activeEffects.push('🔥 신비의 마법 강화 (+30% 피해 / 15초)');
+  if (m.rClear) activeEffects.push(`✨ 정신 집중 ${m.rClear*2}%`);
+  if (m.rBarrage) activeEffects.push(`☄️ 화살 탄막 ${m.rBarrage*20}%`);
+  if (m.allRes) activeEffects.push(`🛡️ 모든 저항 +${m.allRes}`);
+  if (m.elemHitPct) activeEffects.push(`🎯 화염·냉기 적중 +${m.elemHitPct}%`);
+  if (m.fireDmgPct) activeEffects.push(`🔥 화염 피해 +${Math.round(m.fireDmgPct*100)}%`);
+  if (m.fireExtraCrit) activeEffects.push(`💥 화염 치명 +${m.fireExtraCrit}%`);
+  if (m.frostDmgPct) activeEffects.push(`❄️ 냉기 피해 +${Math.round(m.frostDmgPct*100)}%`);
+  if (m.rIceShards) activeEffects.push(`🧊 냉기 치명배율 ${150 + m.rIceShards*10}%`);
+  if (m.shatterPct) activeEffects.push(`❄️ 산산조각(빙결 치명 +${m.shatterPct}%)`);
+  if (m.frostCastReduce) activeEffects.push(`⏱️ 얼음 화살 -${m.frostCastReduce.toFixed(1)}초`);
+
+  tags.innerHTML = activeEffects.map(t => `<span class="ti-tag ${TALENT_SIM_STATE.simMode ? 'boost' : ''}">${t}</span>`).join('');
+}
+
+function updateTalentChromeUI() {
+  const aPts = getTreePoints('arcane');
+  const fPts = getTreePoints('fire');
+  const frPts = getTreePoints('frost');
+  const total = aPts + fPts + frPts;
+
+  const sumEl = document.getElementById('igBuildSummary');
+  if (sumEl) sumEl.textContent = `${aPts} / ${fPts} / ${frPts}`;
+  const setPts = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+  setPts('specTabPts-arcane', aPts);
+  setPts('specTabPts-fire', fPts);
+  setPts('specTabPts-frost', frPts);
+
+  const modeBadge = document.getElementById('igModeBadge');
+  const simBar = document.getElementById('talentSimBar');
+  const ptsTxt = document.getElementById('talentSimPtsText');
+  const legendTip = document.getElementById('igLegendTip');
+
+  if (simBar) {
+    simBar.classList.toggle('active', TALENT_SIM_STATE.simMode);
+    simBar.classList.toggle('unlim-on', TALENT_SIM_STATE.simMode && TALENT_SIM_STATE.unlimited);
+  }
+  if (modeBadge) {
+    if (!TALENT_SIM_STATE.simMode) {
+      modeBadge.textContent = '✅ 실제 Lv.30 적용';
+      modeBadge.className = 'badge gold';
+    } else if (TALENT_SIM_STATE.unlimited) {
+      modeBadge.textContent = '🔓 무제한 시뮬레이션';
+      modeBadge.className = 'badge warn';
+    } else {
+      modeBadge.textContent = '🧪 시뮬레이션 모드';
+      modeBadge.className = 'badge arcane';
+    }
+  }
+  if (ptsTxt) {
+    ptsTxt.innerHTML = TALENT_SIM_STATE.unlimited
+      ? `무제한 투자: <strong>${total}pt</strong> <small>(트리 순서·포인트 한도 해제됨)</small>`
+      : `투자: <strong>${total}</strong> / ${TALENT_SIM_STATE.maxTotal}pt <small>(현재 Lv.30 기준 21pt)</small>`;
+  }
+  if (legendTip) {
+    legendTip.textContent = TALENT_SIM_STATE.simMode
+      ? '클릭으로 투자/차감 · 호버 시 실시간 등급 수치 확인!'
+      : '아이콘 호버/탭 시 등급별 수치 툴팁!';
+  }
+
+  // Sync Char Stat Lab stMed dropdown when simulating
+  const medSel = document.getElementById('stMed');
+  if (medSel) {
+    const m = getActiveTalentMods();
+    const targetVal = m.meditation === 0 ? '0' : m.meditation.toFixed(2);
+    if (medSel.value !== targetVal) medSel.value = targetVal;
+  }
+
+  renderTalentImpactSummary();
+  if (typeof updateCharStatLab === 'function') updateCharStatLab();
+}
 
 function renderInGameTalentTrees() {
   const mount = document.getElementById('igTalentMount');
   if (!mount) return;
   let html = '';
-  Object.entries(IG_TALENT_TREES).forEach(([specId, tree], idx) => {
-    // Register any tree-only talent entries into WOW_DB so hover tooltips work seamlessly!
-    tree.nodes.forEach(n => {
-      if (!WOW_DB[n.key]) {
-        WOW_DB[n.key] = {
-          en: n.en || n.key,
-          kind: `${tree.name} · ${n.r}티어 ${n.c}열`,
-          quality: 'talent',
-          icon: n.icon,
-          rows: [[`투자: ${n.cur} / ${n.max}`, n.locked ? '티어/선행 잠김' : '투자 가능']],
-          desc: n.desc || '',
-          note: '📘 와우 포에버(1.60.1) 인게임 특성 트리 기준'
-        };
-      }
-    });
+  Object.entries(IG_TALENT_TREES).forEach(([specId, tree]) => {
+    tree.pts = getTreePoints(specId);
+    tree.nodes.forEach(n => syncTalentEntryToWowDb(specId, n));
 
-    const cellX = c => (c - 0.5) * 25; // % in 0..100 viewBox
+    const cellX = c => (c - 0.5) * 25;
     const cellY = r => (r - 0.5) * (100 / 7);
     const arrowSvg = tree.arrows.map(a => {
+      const parent = tree.nodes.find(n => n.r === a.r1 && n.c === a.c1);
+      const child = tree.nodes.find(n => n.r === a.r2 && n.c === a.c2);
+      const isActive = TALENT_SIM_STATE.unlimited || (parent && parent.cur >= parent.max && child && isTalentUnlocked(specId, child));
       const x1 = cellX(a.c1);
       const y1 = cellY(a.r1) + 4.8;
       const y2 = cellY(a.r2) - 5.2;
-      const stroke = a.active ? '#ffd100' : 'rgba(180,190,210,0.45)';
+      const stroke = isActive ? '#ffd100' : 'rgba(180,190,210,0.45)';
       const head = `${x1-1.9},${y2-2.2} ${x1+1.9},${y2-2.2} ${x1},${y2+0.6}`;
       return `<line x1="${x1}" y1="${y1}" x2="${x1}" y2="${y2-1.4}" stroke="${stroke}" stroke-width="1.35" stroke-linecap="round"/>
               <polygon points="${head}" fill="${stroke}"/>`;
     }).join('');
 
     const slotsHtml = tree.nodes.map(n => {
-      const state = n.cur >= n.max ? 'maxed' : (n.cur > 0 ? 'partial' : (n.locked ? 'locked' : 'available'));
-      return `<div class="ig-slot ${state}" style="grid-column:${n.c};grid-row:${n.r};" data-wow="${escapeHtml(n.key)}" tabindex="0" aria-label="${escapeHtml(n.key)} ${n.cur}/${n.max}">
-        <img src="${WOW_ICON_BASE}${n.icon}.jpg" alt="${escapeHtml(n.key)}" loading="lazy" onerror="this.style.display='none'">
+      const unlocked = isTalentUnlocked(specId, n);
+      const state = n.cur >= n.max ? 'maxed' : (n.cur > 0 ? 'partial' : (unlocked ? 'available' : 'locked'));
+      const simCls = TALENT_SIM_STATE.simMode ? ' sim-clickable' : '';
+      const safeKey = escapeHtml(n.key);
+      const jsKey = n.key.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+      return `<div class="ig-slot ${state}${simCls}" style="grid-column:${n.c};grid-row:${n.r};" data-wow="${safeKey}" data-spec="${specId}" tabindex="0" aria-label="${safeKey} ${n.cur}/${n.max}" onclick="onTalentSlotClick('${specId}','${jsKey}',event)" oncontextmenu="return onTalentSlotContext('${specId}','${jsKey}',event)">
+        <img src="${WOW_ICON_BASE}${n.icon}.jpg" alt="${safeKey}" loading="lazy" onerror="this.style.display='none'">
         <span class="ig-rank">${n.cur}/${n.max}</span>
       </div>`;
     }).join('');
 
-    html += `<div class="ig-talent-panel ${idx === 0 ? 'active' : ''}" id="igTree-${specId}">
+    html += `<div class="ig-talent-panel ${TALENT_SIM_STATE.activeSpec === specId ? 'active' : ''}" id="igTree-${specId}">
       <div class="ig-talent-frame ${tree.bg}">
         <div class="ig-tree-header">
           <span class="tree-title-left"><img src="${WOW_ICON_BASE}${tree.icon}.jpg" alt=""><span>${tree.name}</span></span>
@@ -8082,9 +8773,115 @@ function renderInGameTalentTrees() {
     </div>`;
   });
   mount.innerHTML = html;
+  updateTalentChromeUI();
+}
+
+function adjustTalentRank(specId, key, delta, ev) {
+  if (!TALENT_SIM_STATE.simMode) return false;
+  const node = findTalentNode(specId, key);
+  if (!node) return false;
+  let changed = false;
+  if (delta > 0) {
+    if (node.cur < node.max && isTalentUnlocked(specId, node)) {
+      if (TALENT_SIM_STATE.unlimited || getTotalTalentPoints() < TALENT_SIM_STATE.maxTotal) {
+        node.cur += 1;
+        changed = true;
+      }
+    }
+  } else if (delta < 0) {
+    if (canDecrementTalent(specId, node)) {
+      node.cur -= 1;
+      changed = true;
+    }
+  }
+  if (changed) {
+    renderInGameTalentTrees();
+    // Refresh live tooltip immediately so user sees numbers climb in real time
+    const entry = resolveWowEntry(key);
+    const updatedSlot = document.querySelector(`.ig-slot[data-spec="${specId}"][data-wow="${CSS.escape ? CSS.escape(key) : key}"]`);
+    if (entry && updatedSlot) {
+      activeWowTarget = updatedSlot;
+      renderWowTooltip(entry);
+      if (ev && typeof ev.clientX === 'number' && ev.clientX > 0) {
+        positionWowTooltip(ev.clientX, ev.clientY, updatedSlot.getBoundingClientRect());
+      } else {
+        positionWowTooltip(null, null, updatedSlot.getBoundingClientRect());
+      }
+    }
+  }
+  return changed;
+}
+
+function onTalentSlotClick(specId, key, ev) {
+  if (!TALENT_SIM_STATE.simMode) return;
+  if (ev) ev.stopPropagation();
+  const delta = (ev && ev.shiftKey) ? -1 : TALENT_SIM_STATE.clickDir;
+  const changed = adjustTalentRank(specId, key, delta, ev);
+  if (!changed) {
+    const entry = resolveWowEntry(key);
+    const slot = ev?.currentTarget;
+    if (entry && slot) {
+      activeWowTarget = slot;
+      renderWowTooltip(entry);
+      positionWowTooltip(null, null, slot.getBoundingClientRect());
+    }
+  }
+}
+
+function onTalentSlotContext(specId, key, ev) {
+  if (!TALENT_SIM_STATE.simMode) return true;
+  if (ev) ev.preventDefault();
+  adjustTalentRank(specId, key, -1, ev);
+  return false;
+}
+
+function toggleTalentSim(on) {
+  TALENT_SIM_STATE.simMode = Boolean(on);
+  if (!TALENT_SIM_STATE.simMode) {
+    TALENT_SIM_STATE.unlimited = false;
+    const uEl = document.getElementById('talentUnlimToggle');
+    if (uEl) uEl.checked = false;
+    restoreActualTalentsDataOnly();
+  }
+  renderInGameTalentTrees();
+}
+
+function toggleTalentUnlimited(on) {
+  TALENT_SIM_STATE.unlimited = Boolean(on);
+  if (TALENT_SIM_STATE.unlimited && !TALENT_SIM_STATE.simMode) {
+    TALENT_SIM_STATE.simMode = true;
+    const sEl = document.getElementById('talentSimToggle');
+    if (sEl) sEl.checked = true;
+  }
+  renderInGameTalentTrees();
+}
+
+function setTalentClickDir(dir) {
+  TALENT_SIM_STATE.clickDir = dir < 0 ? -1 : 1;
+  document.getElementById('simDirAdd')?.classList.toggle('active', TALENT_SIM_STATE.clickDir > 0);
+  document.getElementById('simDirSub')?.classList.toggle('active', TALENT_SIM_STATE.clickDir < 0);
+}
+
+function restoreActualTalentsDataOnly() {
+  Object.values(IG_TALENT_TREES).forEach(tree => {
+    tree.nodes.forEach(n => { n.cur = n.base; });
+  });
+}
+
+function resetTalentSimToActual() {
+  restoreActualTalentsDataOnly();
+  renderInGameTalentTrees();
+}
+
+function clearTalentSimAll() {
+  Object.values(IG_TALENT_TREES).forEach(tree => {
+    tree.nodes.forEach(n => { n.cur = 0; });
+  });
+  renderInGameTalentTrees();
 }
 
 function switchTalentTree(specId, btn) {
+  TALENT_SIM_STATE.activeSpec = specId;
   document.querySelectorAll('.spec-tab-btn').forEach(b => b.classList.remove('active'));
   if (btn) btn.classList.add('active');
   document.querySelectorAll('.ig-talent-panel').forEach(p => p.classList.remove('active'));
@@ -8859,7 +9656,8 @@ function applyCharPreset(mode) {
   const setVal = (id, v) => { const el = document.getElementById(id); if (el) el.value = v; };
   setVal('stSta', 69); setVal('stInt', 100); setVal('stSpi', 67);
   setVal('stGenSp', 67); setVal('stArcSp', 75); setVal('stCrit', 5.7); setVal('stHaste', 0);
-  setVal('stMed', '0.33');
+  const medDefault = (typeof getActiveTalentMods === 'function') ? getActiveTalentMods().meditation : 0.50;
+  setVal('stMed', medDefault === 0 ? '0' : medDefault.toFixed(2));
   const ma = document.getElementById('stMageArmor'); if (ma) ma.checked = false;
 
   if (mode === 'haste') { setVal('stHaste', 15); setVal('stSta', 99); } // 스톰윈드의 힘: +300 HP(체력 +30 환산), +15% 가속
@@ -8871,14 +9669,24 @@ function applyCharPreset(mode) {
 
 function updateCharStatLab() {
   const sta = Number(document.getElementById('stSta')?.value) || 0;
-  const intel = Number(document.getElementById('stInt')?.value) || 0;
+  const baseIntel = Number(document.getElementById('stInt')?.value) || 0;
   const spi = Number(document.getElementById('stSpi')?.value) || 0;
   const genSp = Number(document.getElementById('stGenSp')?.value) || 0;
   const arcOnlySp = Number(document.getElementById('stArcSp')?.value) || 0;
-  const critPct = Number(document.getElementById('stCrit')?.value) || 0;
+  const baseCritPct = Number(document.getElementById('stCrit')?.value) || 0;
   const hastePct = Number(document.getElementById('stHaste')?.value) || 0;
   const med = Number(document.getElementById('stMed')?.value) || 0;
   const mageArmor = document.getElementById('stMageArmor')?.checked ? 0.50 : 0;
+
+  // Apply live talent modifiers from Talent Simulator
+  const tm = (typeof getActiveTalentMods === 'function') ? getActiveTalentMods() : {
+    intPct: 0, arcaneCritBonus: 0.50, frostCritBonus: 0.50, wandPct: 25,
+    allDmgPct: 0, allCritPct: 0, arcaneExtraCrit: 0, abFblExtraCrit: 0,
+    fireExtraCrit: 0, fireDmgPct: 0, wrathCastReduce: 0, frostCastReduce: 0, frostDmgPct: 0, rWand: 2
+  };
+  const intFromTalent = Math.round(baseIntel * tm.intPct);
+  const intel = baseIntel + intFromTalent;
+  const critPct = baseCritPct + tm.allCritPct + (intFromTalent / 60);
 
   const totalArcSp = genSp + arcOnlySp;
   const deltaArc = totalArcSp - 142;
@@ -8890,7 +9698,11 @@ function updateCharStatLab() {
   const wrathMpBonus = estMaxMp * 0.05;
   const abStep = intel * 0.12;
   const hasteMul = 1 + hastePct / 100;
+  const allMul = 1 + tm.allDmgPct;
   const critMul = 1 + (critPct / 100) * 0.5;
+  const arcCritMul = (extraCrit = 0) => 1 + ((critPct + extraCrit) / 100) * tm.arcaneCritBonus;
+  const fireCritMul = (extraCrit = 0) => 1 + ((critPct + extraCrit) / 100) * 0.5;
+  const frostCritMul = 1 + (critPct / 100) * tm.frostCritBonus;
 
   // KPI outputs
   const tickRegen = 13 + spi / 4;
@@ -8902,7 +9714,7 @@ function updateCharStatLab() {
 
   const setTxt = (id, txt) => { const el = document.getElementById(id); if (el) el.textContent = txt; };
   setTxt('outStaInt', `${Math.round(estMaxHp).toLocaleString()} HP / ${Math.round(estMaxMp).toLocaleString()} MP`);
-  setTxt('outStaIntSub', `체력 ${sta} · 지능 ${intel} (장비 +${Math.max(0, intel-64)}) · 비전 SP +${totalArcSp}`);
+  setTxt('outStaIntSub', `체력 ${sta} · 지능 ${intel}${intFromTalent ? ` (특성 +${intFromTalent})` : ''} · 비전 SP +${totalArcSp}`);
   setTxt('outIntScale', `+${abStep.toFixed(1)} ~ +${(abStep*4).toFixed(1)} SP`);
   setTxt('outIntCritSub', `비작 1중 +${abStep.toFixed(1)}(전학파) · 비격 마나5% +${Math.round(wrathMpBonus)} SP`);
   setTxt('outSpiRegen', `MP5 ${outCastMp5.toFixed(1)} (2s ${(outCastMp5/2.5).toFixed(1)})`);
@@ -8910,31 +9722,35 @@ function updateCharStatLab() {
   setTxt('outHasteGcd', `GCD ${effGcd.toFixed(2)}s`);
   setTxt('outHasteCap', `하늘부름 쿨 ${effWand.toFixed(2)}s · 하한 1.00s`);
 
+  if (typeof renderTalentImpactSummary === 'function') renderTalentImpactSummary();
+
   // Representative skill live damage & DPS table
   const tbody = document.getElementById('charSkillDpsBody');
   if (tbody) {
-    const ab0 = 145.4 + deltaArc * 0.4286;
-    const ab1 = ab0 + abStep * 0.4286;
-    const awDmg = (266.5 + deltaArc) + wrathMpBonus;
-    const amDmg = 437.0 + deltaArc;
+    const ab0 = (145.4 + deltaArc * 0.4286) * allMul;
+    const ab1 = (145.4 + deltaArc * 0.4286 + abStep * 0.4286) * allMul;
+    const awDmg = ((266.5 + deltaArc) + wrathMpBonus) * allMul;
+    const amDmg = (437.0 + deltaArc) * allMul;
     const amPer = amDmg / 5;
-    const fblDmg = 191.7 + deltaGen * 0.4286;
-    const aeDmg = 121.3 + deltaArc * 0.1429;
-    const wandDmg = 43.5;
-    const fb1Dmg = 41.9 + deltaGen * 0.33;
+    const fblDmg = (191.7 + deltaGen * 0.4286) * allMul * (1 + tm.fireDmgPct);
+    const aeDmg = (121.3 + deltaArc * 0.1429) * allMul;
+    const wandDmg = 34.8 * (1 + tm.wandPct / 100);
+    const wandMin = Math.round(24 * (1 + tm.wandPct / 100));
+    const wandMax = Math.round(45 * (1 + tm.wandPct / 100));
+    const fb1Dmg = (41.9 + deltaGen * 0.33) * allMul * (1 + tm.frostDmgPct);
 
     const skills = [
-      { name: '비전 작렬 (2 레벨 · 0→1중)', cast: 1.5 / hasteMul, dmg: ab0, dmgText: `<strong>~${Math.round(ab0)}</strong> → ~${Math.round(ab1)}` },
-      { name: '비전 격노 (1 레벨)', cast: 3.5 / hasteMul, dmg: awDmg, dmgText: `<strong>~${Math.round(awDmg)}</strong>` },
-      { name: '신비한 화살 (3 레벨)', cast: 5.0 / hasteMul, dmg: amDmg, dmgText: `<strong>${Math.round(amDmg)}</strong> <em style="font-size:11px;opacity:0.82;">(발당 ~${amPer.toFixed(1)})</em>` },
-      { name: '신비한 화살 (화살 탄막)', cast: 2.5 / hasteMul, dmg: amDmg, dmgText: `<strong>${Math.round(amDmg)}</strong> <em style="font-size:11px;opacity:0.82;">(발당 ~${amPer.toFixed(1)})</em>` },
-      { name: '화염 작렬 (4 레벨)', cast: effGcd, dmg: fblDmg, dmgText: `<strong>~${Math.round(fblDmg)}</strong>` },
-      { name: '신비한 폭발 (3 레벨 · 광역)', cast: effGcd, dmg: aeDmg, dmgText: `~${Math.round(aeDmg)} <em style="font-size:11px;opacity:0.82;">/ 대상</em>` },
-      { name: '하늘부름 마법봉 (전문화 2/2)', cast: 1.6 / hasteMul, dmg: wandDmg, dmgText: `~${wandDmg.toFixed(1)} <em style="font-size:11px;opacity:0.82;">(30-57)</em>` },
-      { name: '얼음 화살 (1 레벨)', cast: 1.5 / hasteMul, dmg: fb1Dmg, dmgText: `~${Math.round(fb1Dmg)}` }
+      { name: '비전 작렬 (2 레벨 · 0→1중)', cast: 1.5 / hasteMul, dmg: ab0, mul: arcCritMul(tm.abFblExtraCrit), dmgText: `<strong>~${Math.round(ab0)}</strong> → ~${Math.round(ab1)}` },
+      { name: '비전 격노 (1 레벨)', cast: Math.max(1.0, 3.5 - tm.wrathCastReduce) / hasteMul, dmg: awDmg, mul: arcCritMul(0), dmgText: `<strong>~${Math.round(awDmg)}</strong>` },
+      { name: '신비한 화살 (3 레벨)', cast: 5.0 / hasteMul, dmg: amDmg, mul: arcCritMul(0), dmgText: `<strong>${Math.round(amDmg)}</strong> <em style="font-size:11px;opacity:0.82;">(발당 ~${amPer.toFixed(1)})</em>` },
+      { name: '신비한 화살 (화살 탄막)', cast: 2.5 / hasteMul, dmg: amDmg, mul: arcCritMul(0), dmgText: `<strong>${Math.round(amDmg)}</strong> <em style="font-size:11px;opacity:0.82;">(발당 ~${amPer.toFixed(1)})</em>` },
+      { name: '화염 작렬 (4 레벨)', cast: effGcd, dmg: fblDmg, mul: fireCritMul(tm.abFblExtraCrit + tm.fireExtraCrit), dmgText: `<strong>~${Math.round(fblDmg)}</strong>` },
+      { name: '신비한 폭발 (3 레벨 · 광역)', cast: effGcd, dmg: aeDmg, mul: arcCritMul(tm.arcaneExtraCrit), dmgText: `~${Math.round(aeDmg)} <em style="font-size:11px;opacity:0.82;">/ 대상</em>` },
+      { name: `하늘부름 마법봉 (전문화 ${tm.rWand}/2)`, cast: 1.6 / hasteMul, dmg: wandDmg, mul: critMul, dmgText: `~${wandDmg.toFixed(1)} <em style="font-size:11px;opacity:0.82;">(${wandMin}-${wandMax})</em>` },
+      { name: '얼음 화살 (1 레벨)', cast: Math.max(1.0, 1.5 - tm.frostCastReduce) / hasteMul, dmg: fb1Dmg, mul: frostCritMul, dmgText: `~${Math.round(fb1Dmg)}` }
     ];
     tbody.innerHTML = skills.map(s => {
-      const expDps = (s.dmg * critMul) / s.cast;
+      const expDps = (s.dmg * s.mul) / s.cast;
       return `<tr>
         <td data-label="대표 스킬"><strong>${s.name}</strong></td>
         <td data-label="시전">${s.cast.toFixed(2)}초</td>
@@ -9106,14 +9922,64 @@ function renderMatPriceCharts() {
   if (typeof hydrateWowTooltipsIn === 'function') hydrateWowTooltipsIn(mount);
 }
 
-/* ===== RECENTLY UPDATED MENU "N" BADGE REGISTRY ===== */
-// 대시보드 메뉴 수정 시 최근 업데이트된 탭 ID를 이곳에 등록하면
-// 사이드바(.nav-btn) 및 모바일 퀵탭(.q-pill)의 메뉴 제목 우측 위에 N 뱃지가 자동 표시됩니다.
+/* ===== CUTE RECENTLY UPDATED MENU "N" BADGE (CLICK TO DISMISS) ===== */
+// 대시보드 메뉴 수정 시 최근 업데이트된 탭 ID와 버전(v)을 갱신하면
+// 사이드바(.nav-btn) 및 모바일 퀵탭(.q-pill) 메뉴 제목 우측 위에 귀여운 N 뱃지가 표시되며,
+// 사용자가 해당 메뉴(또는 N 마크)를 클릭하면 사라지고 같은 버전에서는 다시 뜨지 않습니다.
 const RECENTLY_UPDATED_TABS = {
-  'tab-quests': '최근 업데이트 (11/22): 던전&퀘스트 통합 · 발굴 현장: 저습지 다음 목표 추가',
-  'tab-zones': '최근 업데이트 (11/22): 사냥터 단독 메뉴 분리 · Lv.30 추천 구간 반영',
-  'tab-addons': '최근 업데이트 (11/22): ForeverLevelingBiS v1.4.5 · CharExport v2.2 추가 (24종 49폴더)'
+  'tab-talent': {
+    v: '2026-11-22-v1',
+    text: '최근 업데이트 (11/22): Lv.30 신비한 명상 3/3 (21/0/0) · 특성 트리 시뮬레이션/무제한 모드'
+  },
+  'tab-prof': {
+    v: '2026-11-21-v2',
+    text: '최근 업데이트 (11/21): 최신 시세 · 재료별 시세 차트 · 재료 툴팁 · 마부 18종 · 상인의 호의 확인법'
+  }
 };
+
+const CUTE_N_BADGE_SVG = `<svg viewBox="0 0 20 20" aria-hidden="true"><rect x="1" y="1" width="18" height="18" rx="6.5" fill="#ff4b6e"/><path d="M6.4 13.8V6.2L13.6 13.8V6.2" fill="none" stroke="#ffffff" stroke-width="2.35" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+function getSeenUpdateMap() {
+  try {
+    return JSON.parse(safeStorageGet('wowf_seen_updates_v1', '{}') || '{}') || {};
+  } catch (e) {
+    return {};
+  }
+}
+
+function isTabUpdateUnseen(tabId) {
+  const info = RECENTLY_UPDATED_TABS[tabId];
+  if (!info) return false;
+  const seen = getSeenUpdateMap();
+  return seen[tabId] !== info.v;
+}
+
+function dismissNavUpdatedBadge(tabId) {
+  const info = RECENTLY_UPDATED_TABS[tabId];
+  if (!info) return;
+  const seen = getSeenUpdateMap();
+  if (seen[tabId] !== info.v) {
+    seen[tabId] = info.v;
+    safeStorageSet('wowf_seen_updates_v1', JSON.stringify(seen));
+  }
+  document.querySelectorAll(`.nav-btn[data-tab="${tabId}"] .nav-new-badge, .q-pill[data-tab="${tabId}"] .nav-new-badge`).forEach(badge => {
+    badge.classList.add('dismissing');
+    setTimeout(() => badge.remove(), 170);
+  });
+}
+
+function createCuteNBadge(tabId, summary) {
+  const badge = document.createElement('span');
+  badge.className = 'nav-new-badge';
+  badge.innerHTML = CUTE_N_BADGE_SVG;
+  badge.setAttribute('aria-label', '최근 업데이트');
+  badge.title = summary + ' (클릭하면 사라짐)';
+  badge.addEventListener('click', ev => {
+    ev.stopPropagation();
+    dismissNavUpdatedBadge(tabId);
+  });
+  return badge;
+}
 
 function applyNavUpdatedBadges() {
   document.querySelectorAll('.nav-new-badge').forEach(el => el.remove());
@@ -9121,30 +9987,19 @@ function applyNavUpdatedBadges() {
   // 1) 사이드바 메뉴 제목 우측 위
   document.querySelectorAll('.nav-btn[data-tab]').forEach(btn => {
     const tabId = btn.getAttribute('data-tab');
-    const summary = RECENTLY_UPDATED_TABS[tabId];
+    const show = isTabUpdateUnseen(tabId);
     const titleSpan = btn.querySelector('span:first-child');
     if (!titleSpan) return;
-    titleSpan.classList.toggle('nav-title-wrap', Boolean(summary));
-    if (!summary) return;
-    const badge = document.createElement('span');
-    badge.className = 'nav-new-badge';
-    badge.textContent = 'N';
-    badge.setAttribute('aria-label', '최근 업데이트');
-    badge.title = summary;
-    titleSpan.appendChild(badge);
+    titleSpan.classList.toggle('nav-title-wrap', show);
+    if (!show) return;
+    titleSpan.appendChild(createCuteNBadge(tabId, RECENTLY_UPDATED_TABS[tabId].text));
   });
 
   // 2) 모바일/좁은 화면 상단 퀵탭 메뉴 제목 우측 위
   document.querySelectorAll('.q-pill[data-tab]').forEach(pill => {
     const tabId = pill.getAttribute('data-tab');
-    const summary = RECENTLY_UPDATED_TABS[tabId];
-    if (!summary) return;
-    const badge = document.createElement('span');
-    badge.className = 'nav-new-badge';
-    badge.textContent = 'N';
-    badge.setAttribute('aria-label', '최근 업데이트');
-    badge.title = summary;
-    pill.appendChild(badge);
+    if (!isTabUpdateUnseen(tabId)) return;
+    pill.appendChild(createCuteNBadge(tabId, RECENTLY_UPDATED_TABS[tabId].text));
   });
 }
 
@@ -9181,7 +10036,7 @@ function bootDashboard() {
 
   const saved = safeStorageGet('wowf_active_tab_v2', null);
   if (saved && document.getElementById(saved)) {
-    runSafe('openTab', () => openTab(saved));
+    runSafe('openTab', () => openTab(saved, null, { silent: true }));
   }
 }
 
