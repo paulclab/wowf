@@ -3181,7 +3181,7 @@
           <span>인게임 설정</span><span class="pill">1.60.1</span>
         </button>
         <button class="nav-btn" data-tab="tab-addons" data-group="시스템" data-title="애드온 현황 · 충돌 진단 · LFG 복구" onclick="openTab('tab-addons', this)">
-          <span>애드온</span><span class="pill">22종·46</span>
+          <span>애드온</span><span class="pill">24종·49</span>
         </button>
         <button class="nav-btn" data-tab="tab-patches" data-group="시스템" data-title="패치노트 &amp; 핫픽스 (KST)" onclick="openTab('tab-patches', this)">
           <span>패치노트 &amp; 핫픽스</span><span class="pill">11/20</span>
@@ -4860,30 +4860,27 @@
       <!-- TAB: ADDONS (DEDICATED SYSTEM SUB-TAB · LIVE SCANNED FROM LOCAL ADDONS DIR) -->
       <section id="tab-addons" class="tab">
         <div class="kpi-grid">
-          <div class="kpi"><div class="label">설치 애드온 (1.60.1 실측)</div><div class="val" style="color: var(--arcane);">22종 (46폴더)</div><div class="sub">46/46 전원 Interface 16001 공식 지원 ✅</div></div>
-          <div class="kpi"><div class="label">충돌 진단 (261121 스캔)</div><div class="val" style="color: var(--verified);">0충돌 ✅</div><div class="sub">Forever Minimap 제거 &rarr; SquareMinimap 단독</div></div>
-          <div class="kpi"><div class="label">폴-최 활성 체크</div><div class="val" style="color: var(--verified);">전원 정상 활성 ✅</div><div class="sub">RangeDisplay(적대 전용) · Shadowflare · Questie</div></div>
-          <div class="kpi"><div class="label">신규 감지 완료</div><div class="val" style="color: var(--arcane);">Books · Tooltip</div><div class="sub">Books_on_map_Forever(2.3.2) 설치 확인!</div></div>
+          <div class="kpi"><div class="label">설치 애드온 (1.60.1 실측)</div><div class="val" style="color: var(--arcane);">24종 (49폴더)</div><div class="sub">48/49 Interface 16001 지원 ✅ (BBF만 구버전 체크)</div></div>
+          <div class="kpi"><div class="label">충돌 진단 (261122 스캔)</div><div class="val" style="color: var(--verified);">0충돌 ✅</div><div class="sub">Forever Minimap 제거 &rarr; SquareMinimap 단독</div></div>
+          <div class="kpi"><div class="label">신규 설치 감지 (11/22)</div><div class="val" style="color: var(--arcane);">BiS · CharExport</div><div class="sub">ForeverLevelingBiS(v1.4.5) · CharExport(v2.2)</div></div>
+          <div class="kpi"><div class="label">기존 신규 확인</div><div class="val" style="color: var(--verified);">Books · BBF · Tooltip</div><div class="sub">Books(2.3.2) · BetterBlizzFrames(v2.2.3c)</div></div>
         </div>
 
         <div class="callout" style="margin-top:0;">
           <strong>📂 영구 등록 로컬 스캔 경로:</strong> <code>C:\Program Files (x86)\World of Warcraft\_forever_\Interface\AddOns</code> &middot; 캐릭터 설정: <code>...\WTF\Account\<계정>\<서버>\폴-최\AddOns.txt</code><br>
-          앞으로 애드온 질문·추천·충돌 점검 시 캡처 없이 위 로컬 폴더를 직접 스캔해 최신 상태로 답변합니다.
+          <strong>🆕 `ForeverLevelingBiS` BoE(착용 시 귀속) 출처 미표기 안내:</strong> 이 애드온은 코드 구조상 던전/퀘스트 고정 드랍만 출처를 표시하고 <strong>월드 드랍 BoE 아이템(예: <code>별똥별 마법봉</code>, <code>마법의 정수 장갑</code>)은 출처 텍스트를 생략</strong>합니다 → 경매장(<code>Auctionator</code>) 또는 <code>Mastercraft</code> 시세로 확인하세요!
         </div>
 
         <div class="grid-2">
           <div class="card">
-            <h2>✅ 실측 진단 &amp; 최적화 포인트 (<code>2026-11-21</code> 직접 스캔)</h2>
+            <h2>✅ 실측 진단 &amp; 최적화 포인트 (<code>2026-11-22</code> 직접 스캔)</h2>
             <ul>
-              <li><span class="badge verified">✅ 충돌 완전 해소 (0건)</span><br>기존 미니맵 정면 충돌 원인이었던 <code>Forever Minimap</code>이 제거되어 <strong><code>SquareMinimap (v1.4.6)</code> 단독 구성</strong>으로 정리되었습니다. <code>Books_on_map_Forever (v2.3.2)</code> · <code>ForeverMouseTooltip</code> · <code>Mastercraft_Inbox (v2.0.6)</code>도 신규 설치 확인!</li>
-              <li><span class="badge verified">✅ <code>RangeDisplay (v6.3.7)</code> — 폴-최 활성 확인</span><br><code>AddOns.txt</code>에서 <code>enabled</code> 확인! <code>SavedVariables</code>상 적대적 대상 전용(<code>enemyOnly = true</code>, <code>lrSection = 33m</code>)으로 설정되어 있습니다. (비전 30m에 맞춰 <code>30</code> 조정 추천)</li>
-              <li><span class="badge gold">🟡 메모리/로딩 경량화 선택 정리 (꺼도 본 기능 유지)</span><br>
-                &bull; <code>SpokenQuestsAudioHorde_koKR (v0.0.3)</code>: 얼라이언스(<code>폴-최</code>) 전용 시 해제 가능.<br>
-                &bull; <code>QuestieTrace (v1.13.0)</code> &amp; <code>SpokenContributions (v3.10.1)</code>: 개발자 DB 수집 로거.<br>
-                &bull; <code>Details_Streamer</code> / <code>Details_Vanguard</code>: 방송·탱커 전용 플러그인.
-              </li>
-              <li><span class="badge verified">✅ 정상 짝꿍 조합</span><br>
-                <code>OpenMap</code> + <code>OpenMap_NoDungeonMap</code> / <code>Questie</code> + <code>QuestieDB</code> / <code>Baganator</code> + <code>Syndicator</code> / <code>Mastercraft</code> + <code>Mastercraft_Inbox</code>.
+              <li><span class="badge arcane">🆕 <code>ForeverLevelingBiS (v1.4.5)</code> 설치 ✅</span><br>현재 레벨·직업·특성에 맞는 퀘스트·던전·제작·BoE BiS 추천 UI. *(단, BoE 월드드랍 템은 애드온상 출처가 비어있어 필드 랜덤드랍/경매장 구매 필요)*</li>
+              <li><span class="badge arcane">🆕 <code>CharExport (v2.2.0)</code> + Auctionator 연동 ✅</span><br>인게임 <code>/ce</code>(캐릭터+시세 요약) · <code>/ce ah</code> 또는 <code>/cea</code>(가방/재료 경매가·추출기댓값 전용) 복사창 출력!</li>
+              <li><span class="badge verified">✅ 충돌 완전 해소 (0건) · <code>RangeDisplay (v6.3.7)</code></span><br><code>SquareMinimap (v1.4.6)</code> 단독 구성 · <code>RangeDisplay</code> 적대 전용(<code>33m</code> → <code>30m</code> 조정 추천).</li>
+              <li><span class="badge gold">🟡 경량화 &amp; 버전 주의</span><br>
+                &bull; <code>BetterBlizzFrames (v2.2.3c)</code>: <code>.toc</code>가 <code>120105</code> 기준이라 접속 시 '구버전 애드온 불러오기' 체크 필요.<br>
+                &bull; <code>SpokenQuestsAudioHorde_koKR</code> · <code>QuestieTrace</code> · <code>SpokenContributions</code>: 필요 시 비활성화 가능.
               </li>
             </ul>
           </div>
@@ -4892,7 +4889,7 @@
             <h2>➕ 미설치 추가 추천 &amp; LFG 응급 복구 명령어</h2>
             <ul style="margin-top:0;">
               <li><strong><a href="https://www.curseforge.com/wow/addons/better-spell-power-tooltips" target="_blank">Better Spell Power Tooltips</a></strong>: 현재 비전 주문력(<code>+142</code>)과 <code>비전 작렬</code> 중첩이 반영된 실시간 예상 피해량을 스킬 툴팁에 표시.</li>
-              <li><strong><a href="https://www.curseforge.com/wow/addons/findparty" target="_blank">FindParty Forever</a></strong> / <strong>LFG Bulletin Board</strong>: 채팅 파티 모집글을 놈리건·수도원 등 던전별로 자동 분류.</li>
+              <li><strong><a href="https://www.curseforge.com/wow/addons/findparty" target="_blank">FindParty Forever</a></strong> / <strong>LFG Bulletin Board</strong>: 채팅 파티 모집글을 발굴현장·놈리건·수도원 등 던전별로 자동 분류.</li>
               <li><strong>MinimapButtonButton (또는 HidingBar)</strong>: <code>SquareMinimap</code> 테두리 애드온 아이콘이 많아질 때 하나로 깔끔하게 정리.</li>
               <li><strong>Plater Nameplates (선택)</strong>: 30+ 던전·광역 시 적 시전바(<code>마법 차단</code>) 및 <code>변이</code>·<code>얼음 회오리</code> 디버프 타이머 강화.</li>
             </ul>
@@ -4904,7 +4901,7 @@
         </div>
 
         <div class="card">
-          <h2>현재 설치된 애드온 22종 (46폴더) 실측 전체 목록 <span class="badge verified">✅ 2026-11-21 로컬 스캔</span></h2>
+          <h2>현재 설치된 애드온 24종 (49폴더) 실측 전체 목록 <span class="badge verified">✅ 2026-11-22 로컬 스캔</span></h2>
           <div class="table-wrap">
             <table>
               <thead>
@@ -4917,7 +4914,7 @@
                 <tr><td><strong><code>RangeDisplay</code></strong> <small>(+_Options)</small></td><td><code>v6.3.7</code></td><td>대상 30m 사거리 실시간 표시 (적대적 대상 전용 설정)</td><td><span class="badge verified">✅ 활성 (적대 전용)</span></td></tr>
 
                 <tr><td rowspan="8"><strong>지도 · 퀘스트 · 던전 · 도서관</strong><br><small>(8종 / 11폴더)</small></td><td><strong><code>Questie</code></strong> + <code>QuestieDB</code> + <code>QuestieTrace</code></td><td><code>12.11.1</code> / <code>1.1.3</code> / <code>1.13.0</code></td><td>포에버 퀘스트 핀/추적 + DB (<code>Trace</code>는 수집 로거)</td><td><span class="badge verified">✅ 활성</span></td></tr>
-                <tr><td><strong><code>Books_on_map_Forever</code></strong></td><td><code>v2.3.2</code></td><td><strong>와우 포에버 도서관 책 40권 월드맵 핀 표시!</strong></td><td><span class="badge arcane">🆕 신규 설치 ✅</span></td></tr>
+                <tr><td><strong><code>Books_on_map_Forever</code></strong></td><td><code>v2.3.2</code></td><td>와우 포에버 도서관 책 40권 월드맵 핀 표시</td><td><span class="badge verified">✅ 활성</span></td></tr>
                 <tr><td><strong><code>OpenMap</code></strong> + <code>OpenMap_NoDungeonMap</code></td><td><code>v0.8.10</code> / <code>v1.2</code></td><td>끊김 없는 통합 세계 지도 + 던전 도감 호환 패치</td><td><span class="badge verified">✅ 활성</span></td></tr>
                 <tr><td><strong><code>SquareMinimap</code></strong></td><td><code>v1.4.6</code></td><td>포에버 전용 사각 브론즈 프레임 미니맵 (단독 구성)</td><td><span class="badge verified">✅ 단독 정상</span></td></tr>
                 <tr><td><strong><code>TomTom</code></strong></td><td><code>v4.4.1-release</code></td><td><code>/way</code> 좌표 화살표 내비게이션</td><td><span class="badge verified">✅ 활성</span></td></tr>
@@ -4925,14 +4922,17 @@
                 <tr><td><strong><code>Attune</code></strong></td><td><code>16001-44</code></td><td>던전·공격대 입장 선행 연퀘 진행률 추적</td><td><span class="badge verified">✅ 활성</span></td></tr>
                 <tr><td><strong><code>ForeverLootSparkles</code></strong></td><td><code>v2.0.0</code></td><td>루팅·퀘스트 오브젝트 반짝임 효과 상시 유지</td><td><span class="badge verified">✅ 활성</span></td></tr>
 
-                <tr><td rowspan="4"><strong>경제 · 가방 · 전문기술 · 성장</strong><br><small>(5종 / 6폴더)</small></td><td><strong><code>Auctionator</code></strong></td><td><code>v349</code></td><td>경매장 스캔·최저가 출품·시세 툴팁</td><td><span class="badge verified">✅ 활성</span></td></tr>
+                <tr><td rowspan="6"><strong>경제 · 가방 · 전문기술 · 성장</strong><br><small>(6종 / 8폴더)</small></td><td><strong><code>ForeverLevelingBiS</code></strong></td><td><code>v1.4.5</code></td><td><strong>레벨·직업·특성별 레벨링 BiS 장비 추천 및 스탯 비교</strong></td><td><span class="badge arcane">🆕 신규 설치 ✅</span></td></tr>
+                <tr><td><strong><code>CharExport</code></strong> <small>(로컬 커스텀)</small></td><td><code>v2.2.0</code></td><td><strong><code>/ce</code> 스탯·특성·장비·스킬 + <code>Auctionator</code> 시세(<code>/cea</code>) 복사 출력</strong></td><td><span class="badge arcane">🆕 로컬 개발 ✅</span></td></tr>
+                <tr><td><strong><code>Auctionator</code></strong></td><td><code>v349</code></td><td>경매장 스캔·최저가 출품·시세 툴팁</td><td><span class="badge verified">✅ 활성</span></td></tr>
                 <tr><td><strong><code>Mastercraft</code></strong> + <code>_Inbox</code></td><td><code>v2.0.7</code> / <code>v2.0.6</code></td><td>전문기술 가이드·수익·<strong>마력 추출 vs 상점가 자동 비교</strong></td><td><span class="badge verified">✅ 활성</span></td></tr>
                 <tr><td><strong><code>Baganator</code></strong> + <code>Syndicator</code></td><td><code>v866</code> / <code>v291</code></td><td>통합 가방 UI + 계정/은행 전체 재고 툴팁 추적</td><td><span class="badge verified">✅ 활성</span></td></tr>
                 <tr><td><strong><code>WhatsTraining</code></strong></td><td><code>v11.4.9</code></td><td>마법책에 향후 레벨별 배울 스킬 &amp; 비용 미리보기</td><td><span class="badge verified">✅ 활성</span></td></tr>
 
-                <tr><td rowspan="5"><strong>UI · 편의 · 한국어 음성</strong><br><small>(5종 / 17폴더)</small></td><td><strong><code>DialogueUI</code></strong></td><td><code>v1.0.7 c</code></td><td>몰입형 카드형 퀘스트 대화창 &amp; 키보드 단축 선택</td><td><span class="badge verified">✅ 활성</span></td></tr>
+                <tr><td rowspan="6"><strong>UI · 편의 · 한국어 음성</strong><br><small>(6종 / 18폴더)</small></td><td><strong><code>DialogueUI</code></strong></td><td><code>v1.0.7 c</code></td><td>몰입형 카드형 퀘스트 대화창 &amp; 키보드 단축 선택</td><td><span class="badge verified">✅ 활성</span></td></tr>
                 <tr><td><strong><code>ForeverMove</code></strong></td><td><code>v1.6.4</code></td><td>모든 블리자드 UI 창 자유 드래그 이동 (<code>/fm</code>)</td><td><span class="badge verified">✅ 활성</span></td></tr>
-                <tr><td><strong><code>ForeverMouseTooltip</code></strong></td><td><code>16001</code></td><td>기본 게임 툴팁을 마우스 커서 위치에 고정</td><td><span class="badge arcane">🆕 신규 설치 ✅</span></td></tr>
+                <tr><td><strong><code>ForeverMouseTooltip</code></strong></td><td><code>16001</code></td><td>기본 게임 툴팁을 마우스 커서 위치에 고정</td><td><span class="badge verified">✅ 활성</span></td></tr>
+                <tr><td><strong><code>BetterBlizzFrames</code></strong></td><td><code>v2.2.3c</code></td><td>블리자드 기본 프레임 버프 필터·전투 표시 등 커스터마이즈</td><td><span class="badge gold">120105 TOC 확인</span></td></tr>
                 <tr><td><strong><code>WhisperMessenger</code></strong></td><td><code>v2.1.8</code></td><td>귓속말 메신저 탭 통합 관리·응답</td><td><span class="badge verified">✅ 활성</span></td></tr>
                 <tr><td><strong><code>Spoken</code></strong> <small>(+5 코어 · +7 한국어 음성팩)</small></td><td><code>v3.10.1</code> / <code>koKR</code></td><td>퀘스트·책·지역·보스 한국어 음성 내레이션</td><td><span class="badge gold">Horde팩 해제 가능</span></td></tr>
               </tbody>
@@ -9110,7 +9110,9 @@ function renderMatPriceCharts() {
 // 대시보드 메뉴 수정 시 최근 업데이트된 탭 ID를 이곳에 등록하면
 // 사이드바(.nav-btn) 및 모바일 퀵탭(.q-pill)의 메뉴 제목 우측 위에 N 뱃지가 자동 표시됩니다.
 const RECENTLY_UPDATED_TABS = {
-  'tab-prof': '최근 업데이트 (11/21): 최신 시세 · 재료별 시세 차트 · 재료 툴팁 · 마부 18종 · 상인의 호의 확인법'
+  'tab-quests': '최근 업데이트 (11/22): 던전&퀘스트 통합 · 발굴 현장: 저습지 다음 목표 추가',
+  'tab-zones': '최근 업데이트 (11/22): 사냥터 단독 메뉴 분리 · Lv.30 추천 구간 반영',
+  'tab-addons': '최근 업데이트 (11/22): ForeverLevelingBiS v1.4.5 · CharExport v2.2 추가 (24종 49폴더)'
 };
 
 function applyNavUpdatedBadges() {
