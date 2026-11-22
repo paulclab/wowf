@@ -40,45 +40,40 @@
    - `QuestieTrace (v1.13.0)` & `SpokenContributions (v3.10.1)`: 개발자 DB 제보/수집용 로거이므로 기여 목적이 아니면 비활성화해도 본 기능 정상 작동.
    - `Details_Streamer` / `Details_Vanguard`: 방송/탱커 전용 플러그인이라 평소 꺼둬도 무방.
 
-### B. 전체 설치 애드온 24종 (49폴더) 실측 목록 (`2026-11-22` 기준)
+### B. 전체 설치 애드온 24종 (49폴더) 실측 목록 (`2026-11-23` 기준)
 
-| 분류 | 스위트 / 폴더명 | 설치 버전 (`.toc`) | `16001` | `폴-최` 상태 및 핵심 역할 |
+| 분류 | 스위트 / 폴더명 | 설치 버전 (`.toc`) | `16001` | 상태 및 핵심 역할 |
 | :--- | :--- | :--- | :---: | :--- |
 | **전투 · 프록 · 딜미터** (4종 / 12폴더) | **`Details!`** (+7 플러그인: `Compare2`, `DataStorage`, `EncounterDetails`, `RaidCheck`, `Streamer`, `TinyThreat`, `Vanguard`) | `20261109.15410.172` | ✅ | 활성 · 실시간 DPS·주문별 비중·어그로(`TinyThreat`)·차단 분석 |
-| | **`Shadowflare`** | `v0.25.0` | ✅ | **활성 (`enabled`)** · 포에버 전용 프록 알림 (`화살 탄막` · `신비한 정신 집중`) |
-| | **`ForeverCombatText`** | `v0.16.2` | ✅ | **활성 (`enabled`)** · 네임플레이트 주문 학파 색상 전투 피해 텍스트 |
+| | **`Shadowflare`** | `0.25.0` | ✅ | **활성 (`enabled`)** · 포에버 전용 프록 알림 (`화살 탄막` · `신비한 정신 집중`) |
+| | **`ForeverCombatText`** | `0.17.0` | ✅ | **활성 (`enabled`)** · 네임플레이트 주문 학파 색상 전투 피해 텍스트 |
 | | **`RangeDisplay`** (+`_Options`) | `v6.3.7` | ✅ | **활성 (`enabled`)** · 적대적 대상 전용 (`enemyOnly = true`, 33m 경계) |
-| **지도 · 퀘스트 · 던전 · 도서관** (8종 / 11폴더) | **`Questie`** + **`QuestieDB`** + **`QuestieTrace`** | `v12.11.1` / `1.1.3` / `1.13.0` | ✅ | **활성 (`enabled`)** · 포에버 퀘스트 핀/추적 + DB (`Trace`는 수집 로거) |
-| | **`Books_on_map_Forever`** *(신규 설치 ✅)* | `v2.3.2` | ✅ | 활성 · **와우 포에버 도서관 책 40권 월드맵 핀 표시!** |
-| | **`OpenMap`** + **`OpenMap_NoDungeonMap`** | `v0.8.10` / `v1.2` | ✅ | 활성 · 끊김 없는 통합 세계 지도 + 던전 도감 호환 패치 |
-| | **`SquareMinimap`** | `v1.4.6` | ✅ | 활성 · 포에버 사각 브론즈 프레임 미니맵 (**단독 구성 → 충돌 해소 ✅**) |
+| **지도 · 퀘스트 · 던전 · 도서관** (8종 / 11폴더) | **`Questie`** + **`QuestieDB`** + **`QuestieTrace`** | `12.12.0` / `1.1.4` / `1.13.2` | ✅ | **활성 (`enabled`)** · 포에버 퀘스트 핀/추적 + DB (`Trace`는 수집 로거) |
+| | **`Books_on_map_Forever`** | `2.3.3` | ✅ | 활성 · **와우 포에버 도서관 책 월드맵 핀 표시!** |
+| | **`OpenMap`** + **`OpenMap_NoDungeonMap`** | `v0.8.12` / `v1.2` | ✅ | 활성 · 끊김 없는 통합 세계 지도 + 던전 도감 호환 패치 |
+| | **`SquareMinimap`** | `1.4.7` | ✅ | 활성 · 포에버 사각 브론즈 프레임 미니맵 (**단독 구성 → 충돌 해소 ✅**) |
 | | **`TomTom`** | `v4.4.1-release` | ✅ | 활성 · `/way` 좌표 화살표 내비게이션 |
-| | **`ForeverDungeonJournal`** | `v2.1.0` | ✅ | 활성 · 클래식/포에버 던전 보스·드랍템·퀘스트 도감 |
+| | **`ForeverDungeonJournal`** | `2.1.3` | ✅ | 활성 · 클래식/포에버 던전 보스·드랍템·퀘스트 도감 |
 | | **`Attune`** | `16001-44` | ✅ | **활성 (`enabled`)** · 던전·공격대 입장 연퀘 진행도 추적 |
 | | **`ForeverLootSparkles`** | `v2.0.0` | ✅ | 활성 · 루팅·퀘스트 오브젝트 반짝임 효과 상시 유지 |
-| **경제 · 가방 · 전문기술 · 성장** (6종 / 8폴더) | **`ForeverLevelingBiS`** *(신규 설치 ✅)* | `v1.4.5` | ✅ | 활성 · **레벨·직업·특성별 레벨링 BiS 추천 UI** |
-| | **`CharExport`** *(로컬 커스텀 ✅)* | `v2.3.0` | ✅ | 활성 · **`/ce` 캐릭터 스냅샷 + `/cea` 가죽(27)·마부(52)·재봉(35) 114종 재료 시세 출력** |
-| | **`Auctionator`** | `v349` | ✅ | 활성 · 경매장 스캔·최저가 출품·시세 툴팁 |
-| | **`Mastercraft`** + **`Mastercraft_Inbox`** | `v2.0.7` / `v2.0.6` | ✅ | 활성 · 전문기술 가이드·수익·**마력 추출 vs 상점가 자동 비교** |
-| | **`Baganator`** + **`Syndicator`** | `v866` / `v291` | ✅ | 활성 · 통합 가방 UI + 계정/은행 전체 재고 추적 |
-| | **`WhatsTraining`** | `v11.4.9` | ✅ | 활성 · 마법책에 레벨별 습득 가능 스킬 & 비용 미리보기 |
-| **UI · 편의 · 한국어 음성** (6종 / 18폴더) | **`DialogueUI`** | `v1.0.7 c` | ✅ | 활성 · 몰입형 카드 퀘스트 대화창 & 키보드 단축 선택 |
-| | **`ForeverMove`** | `v1.6.4` | ✅ | 활성 · 블리자드 모든 UI 창 자유 드래그 이동 (`/fm`) |
+| **경제 · 가방 · 전문기술 · 성장** (6종 / 8폴더) | **`ForeverLevelingBiS`** | `v1.4.5` | ✅ | 활성 · **레벨·직업·특성별 레벨링 BiS 추천 UI** |
+| | **`CharExport`** *(로컬 커스텀 ✅)* | `2.3.0` | ✅ | 활성 · **`/ce` 캐릭터 스냅샷 + `/cea` 가죽(27)·마부(52)·재봉(35) 114종 재료 시세 출력** |
+| | **`Auctionator`** | `351` | ✅ | 활성 · 경매장 스캔·최저가 출품·시세 툴팁 (`IsForever` 패치) |
+| | **`Mastercraft`** + **`Mastercraft_Inbox`** | `2.0.9-hotfix` / `2.0.6` | ✅ | 활성 · 전문기술 가이드·수익·**마력 추출 vs 상점가 자동 비교** |
+| | **`Baganator`** + **`Syndicator`** | `868` / `293` | ✅ | 활성 · 통합 가방 UI + 계정/은행 전체 재고 추적 |
+| | **`WhatsTraining`** | `11.4.9` | ✅ | 활성 · 마법책에 레벨별 습득 가능 스킬 & 비용 미리보기 |
+| **UI · 편의 · 한국어 음성** (6종 / 18폴더) | **`DialogueUI`** | `1.0.7 c` | ✅ | 활성 · 몰입형 카드 퀘스트 대화창 & 키보드 단축 선택 |
+| | **`ForeverMove`** | `1.6.4` | ✅ | 활성 · 블리자드 모든 UI 창 자유 드래그 이동 (`/fm`) |
 | | **`ForeverMouseTooltip`** | `16001` | ✅ | 활성 · 기본 게임 툴팁을 마우스 커서 위치에 고정 |
 | | **`BetterBlizzFrames`** | `v2.2.3c` | `120105` | 블리자드 기본 프레임 버프 필터·전투 표시 커스터마이즈 |
-| | **`WhisperMessenger`** | `v2.1.8` | ✅ | 활성 · 귓속말 메신저 통합 기록/응답 |
-| | **`Spoken`** (`Bosses`·`Places`·`Quests`·`Readables`·`Contributions` + 한국어 음성팩 7종) | `v3.10.1` / `koKR` | ✅ | 활성 · 퀘스트/책/지역/보스 한국어 음성 내레이션 (`Horde` 팩은 선택 해제 가능) |
+| | **`WhisperMessenger`** | `v2.1.9` | ✅ | 활성 · 귓속말 메신저 통합 기록/응답 |
+| | **`Spoken`** (`Bosses`·`Places`·`Quests`·`Readables`·`Contributions` + 한국어 음성팩 7종) | `3.11.0` / `koKR` | ✅ | 활성 · 퀘스트/책/지역/보스 한국어 음성 내레이션 (`Horde` 팩은 선택 해제 가능) |
 
 ### C. 추가 추천 애드온 (`1.60.1` — 미설치 항목 중심)
 - **[Better Spell Power Tooltips](https://www.curseforge.com/wow/addons/better-spell-power-tooltips)**: 현재 비전 유효 주문력(`+142`)과 `비전 작렬` 중첩이 반영된 실시간 예상 피해량을 툴팁에 표시.
 - **[FindParty Forever](https://www.curseforge.com/wow/addons/findparty)** / **LFG Bulletin Board**: 채팅 파티 모집글을 던전별(놈리건·수도원 등)로 자동 분류·필터링.
 - **MinimapButtonButton (또는 HidingBar)**: 미니맵 테두리 애드온 버튼이 많아졌을 때 하나의 드롭다운으로 깔끔하게 정리.
 - **Plater Nameplates (선택)**: 30레벨 이후 던전·광역 사냥 시 적 시전바(`마법 차단` 타이밍)와 `변이`·`얼음 회오리` 디버프 잔여 시간을 이름표 위에 크게 표시.
-
-### D. 파티찾기 아이콘(`LFGMinimapFrame`) 분실 시 응급 복구 명령어
-```text
-/run local f=LFGMinimapFrame or MiniMapLFGFrame; if f then f:ClearAllPoints(); f:SetPoint("CENTER",UIParent,"CENTER",0,0); f:SetScale(1); f:Show(); print("복구:",f:GetName()) else print("프레임 없음") end
-```
 
 ---
 

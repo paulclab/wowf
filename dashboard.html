@@ -1585,6 +1585,53 @@
     padding: 16px 20px 18px;
   }
 
+  /* Addon Table Title Hover & CurseForge Link Button */
+  .addon-title-ref {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    cursor: help;
+    border-bottom: 1.5px dashed rgba(139, 92, 246, 0.55);
+    padding-bottom: 1px;
+    transition: color 0.12s, border-color 0.12s;
+  }
+  .addon-title-ref:hover,
+  .addon-title-ref:focus-visible {
+    color: var(--arcane);
+    border-bottom-color: var(--arcane);
+    outline: none;
+  }
+  .addon-status-cell {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: nowrap;
+  }
+  .cf-link-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 7px;
+    border: 1.5px solid var(--rd-ink, var(--line));
+    background: var(--rd-paper-2, rgba(241, 100, 54, 0.12));
+    color: #f16436;
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: transform 0.12s, background 0.12s, color 0.12s;
+  }
+  .cf-link-btn:hover {
+    background: #f16436;
+    color: #ffffff;
+    transform: translateY(-1px);
+  }
+  .cf-link-btn svg {
+    width: 14px;
+    height: 14px;
+    display: block;
+  }
+
   /* In-Game 3-Tree Talent Simulator Container */
   .talent-spec-tabs {
     display: flex;
@@ -5634,84 +5681,79 @@
       <section id="tab-addons" class="tab">
         <div class="kpi-grid">
           <div class="kpi"><div class="label">설치 애드온 (1.60.1 실측)</div><div class="val" style="color: var(--arcane);">24종 (49폴더)</div><div class="sub">48/49 Interface 16001 지원 ✅ (BBF만 구버전 체크)</div></div>
-          <div class="kpi"><div class="label">충돌 진단 (261122 스캔)</div><div class="val" style="color: var(--verified);">0충돌 ✅</div><div class="sub">Forever Minimap 제거 &rarr; SquareMinimap 단독</div></div>
-          <div class="kpi"><div class="label">신규 설치 감지 (11/22)</div><div class="val" style="color: var(--arcane);">BiS · CharExport</div><div class="sub">ForeverLevelingBiS(v1.4.5) · CharExport(v2.3)</div></div>
-          <div class="kpi"><div class="label">기존 신규 확인</div><div class="val" style="color: var(--verified);">Books · BBF · Tooltip</div><div class="sub">Books(2.3.2) · BetterBlizzFrames(v2.2.3c)</div></div>
-        </div>
-
-        <div class="callout" style="margin-top:0;">
-          <strong>📂 영구 등록 로컬 스캔 경로:</strong> <code>C:\Program Files (x86)\World of Warcraft\_forever_\Interface\AddOns</code> &middot; 캐릭터 설정: <code>...\WTF\Account\<계정>\<서버>\폴-최\AddOns.txt</code><br>
-          <strong>🆕 `ForeverLevelingBiS` BoE(착용 시 귀속) 출처 미표기 안내:</strong> 이 애드온은 코드 구조상 던전/퀘스트 고정 드랍만 출처를 표시하고 <strong>월드 드랍 BoE 아이템(예: <code>별똥별 마법봉</code>, <code>마법의 정수 장갑</code>)은 출처 텍스트를 생략</strong>합니다 → 경매장(<code>Auctionator</code>) 또는 <code>Mastercraft</code> 시세로 확인하세요!
-        </div>
-
-        <div class="grid-2">
-          <div class="card">
-            <h2>✅ 실측 진단 &amp; 최적화 포인트 (<code>2026-11-22</code> 직접 스캔)</h2>
-            <ul>
-              <li><span class="badge arcane">🆕 <code>ForeverLevelingBiS (v1.4.5)</code> 설치 ✅</span><br>현재 레벨·직업·특성에 맞는 퀘스트·던전·제작·BoE BiS 추천 UI. *(단, BoE 월드드랍 템은 애드온상 출처가 비어있어 필드 랜덤드랍/경매장 구매 필요)*</li>
-              <li><span class="badge arcane">🆕 <code>CharExport (v2.3.0)</code> + Auctionator 제작재료 114종 연동 ✅</span><br>가방 시세 제거 &rarr; <code>/ce</code>(캐릭터+재료시세) · <code>/ce ah</code> 또는 <code>/cea</code>(무두질 가죽·비늘 27종 · 마법부여 52종 · 재봉술 옷감·템 재료 35종 전용) 복사창 출력!</li>
-              <li><span class="badge verified">✅ 충돌 완전 해소 (0건) · <code>RangeDisplay (v6.3.7)</code></span><br><code>SquareMinimap (v1.4.6)</code> 단독 구성 · <code>RangeDisplay</code> 적대 전용(<code>33m</code> → <code>30m</code> 조정 추천).</li>
-              <li><span class="badge gold">🟡 경량화 &amp; 버전 주의</span><br>
-                &bull; <code>BetterBlizzFrames (v2.2.3c)</code>: <code>.toc</code>가 <code>120105</code> 기준이라 접속 시 '구버전 애드온 불러오기' 체크 필요.<br>
-                &bull; <code>SpokenQuestsAudioHorde_koKR</code> · <code>QuestieTrace</code> · <code>SpokenContributions</code>: 필요 시 비활성화 가능.
-              </li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <h2>➕ 미설치 추가 추천 &amp; LFG 응급 복구 명령어</h2>
-            <ul style="margin-top:0;">
-              <li><strong><a href="https://www.curseforge.com/wow/addons/better-spell-power-tooltips" target="_blank">Better Spell Power Tooltips</a></strong>: 현재 비전 주문력(<code>+142</code>)과 <code>비전 작렬</code> 중첩이 반영된 실시간 예상 피해량을 스킬 툴팁에 표시.</li>
-              <li><strong><a href="https://www.curseforge.com/wow/addons/findparty" target="_blank">FindParty Forever</a></strong> / <strong>LFG Bulletin Board</strong>: 채팅 파티 모집글을 발굴현장·놈리건·수도원 등 던전별로 자동 분류.</li>
-              <li><strong>MinimapButtonButton (또는 HidingBar)</strong>: <code>SquareMinimap</code> 테두리 애드온 아이콘이 많아질 때 하나로 깔끔하게 정리.</li>
-              <li><strong>Plater Nameplates (선택)</strong>: 30+ 던전·광역 시 적 시전바(<code>마법 차단</code>) 및 <code>변이</code>·<code>얼음 회오리</code> 디버프 타이머 강화.</li>
-            </ul>
-            <div class="code-block" style="margin-bottom:0;">
-              <div class="code-head"><span>파티찾기 아이콘(LFG) 분실 시 화면 중앙 강제 복구</span><button class="copy-btn" onclick="copyCode('lfg-fix-code', this)">복사</button></div>
-              <pre id="lfg-fix-code">/run local f=LFGMinimapFrame or MiniMapLFGFrame; if f then f:ClearAllPoints(); f:SetPoint("CENTER",UIParent,"CENTER",0,0); f:SetScale(1); f:Show(); print("복구:",f:GetName()) else print("프레임 없음") end</pre>
-            </div>
-          </div>
+          <div class="kpi"><div class="label">충돌 · 패치 (11/23)</div><div class="val" style="color: var(--verified);">0충돌 · 정상 ✅</div><div class="sub">Auctionator 한국어 툴팁 데드락 패치 적용</div></div>
+          <div class="kpi"><div class="label">커스텀 · 시세 추적</div><div class="val" style="color: var(--arcane);">CharExport v2.3</div><div class="sub">가죽(27) · 마부(52) · 재봉(35) 114종</div></div>
+          <div class="kpi"><div class="label">최근 스캔 버전</div><div class="val" style="color: var(--verified);">2026-11-23</div><div class="sub">Auctionator 351 · Mastercraft 2.0.9 · Questie 12.12</div></div>
         </div>
 
         <div class="card">
-          <h2>현재 설치된 애드온 24종 (49폴더) 실측 전체 목록 <span class="badge verified">✅ 2026-11-22 로컬 스캔</span></h2>
+          <h2>현재 설치된 애드온 24종 (49폴더) 실측 전체 목록 <span class="badge verified">✅ 2026-11-23 로컬 스캔</span> <small style="font-weight:500; opacity:0.75;">(제목 마우스오버: 다운로드·인기도·개요 / 링크 아이콘: CurseForge)</small></h2>
           <div class="table-wrap">
             <table>
               <thead>
-                <tr><th>분류</th><th>애드온 스위트 / 폴더명</th><th>설치 버전 (<code>.toc</code>)</th><th>핵심 기능 및 역할</th><th><code>폴-최</code> 상태</th></tr>
+                <tr><th>분류</th><th>애드온 스위트 / 폴더명</th><th>설치 버전 (<code>.toc</code>)</th><th>핵심 기능 및 역할</th><th>상태</th></tr>
               </thead>
               <tbody>
-                <tr><td rowspan="4"><strong>전투 · 프록 · 딜미터</strong><br><small>(4종 / 12폴더)</small></td><td><strong><code>Details!</code></strong> <small>(+7 플러그인)</small></td><td><code>20261109.15410.172</code></td><td>실시간 DPS·주문별 비중·어그로(<code>TinyThreat</code>)·차단 분석</td><td><span class="badge verified">✅ 활성</span></td></tr>
-                <tr><td><strong><code>Shadowflare</code></strong></td><td><code>v0.25.0</code></td><td>포에버 전용 프록 알림 (<code>화살 탄막</code> · <code>신비한 정신 집중</code>)</td><td><span class="badge verified">✅ 활성</span></td></tr>
-                <tr><td><strong><code>ForeverCombatText</code></strong></td><td><code>v0.16.2</code></td><td>네임플레이트 주문 학파 색상 전투 피해 텍스트</td><td><span class="badge verified">✅ 활성</span></td></tr>
-                <tr><td><strong><code>RangeDisplay</code></strong> <small>(+_Options)</small></td><td><code>v6.3.7</code></td><td>대상 30m 사거리 실시간 표시 (적대적 대상 전용 설정)</td><td><span class="badge verified">✅ 활성 (적대 전용)</span></td></tr>
+                <tr><td rowspan="4"><strong>전투 · 프록 · 딜미터</strong><br><small>(4종 / 12폴더)</small></td><td><span class="addon-title-ref" data-wow="addon:Details!" tabindex="0"><strong><code>Details!</code></strong> <small>(+7 플러그인)</small></span></td><td><code>20261109.15410.172</code></td><td>실시간 DPS·주문별 비중·어그로(<code>TinyThreat</code>)·차단 분석</td><td><div class="addon-status-cell"><span class="badge verified">✅ 활성</span><a class="cf-link-btn" href="https://www.curseforge.com/wow/addons/details" target="_blank" rel="noopener noreferrer" title="CurseForge 열기" aria-label="Details! CurseForge 페이지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div></td></tr>
+                <tr><td><span class="addon-title-ref" data-wow="addon:Shadowflare" tabindex="0"><strong><code>Shadowflare</code></strong></span></td><td><code>0.25.0</code></td><td>포에버 전용 프록 알림 (<code>화살 탄막</code> · <code>신비한 정신 집중</code>)</td><td><div class="addon-status-cell"><span class="badge verified">✅ 활성</span><a class="cf-link-btn" href="https://www.curseforge.com/wow/addons/shadowflare" target="_blank" rel="noopener noreferrer" title="CurseForge 열기" aria-label="Shadowflare CurseForge 페이지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div></td></tr>
+                <tr><td><span class="addon-title-ref" data-wow="addon:ForeverCombatText" tabindex="0"><strong><code>ForeverCombatText</code></strong></span></td><td><code>0.17.0</code></td><td>네임플레이트 주문 학파 색상 전투 피해 텍스트</td><td><div class="addon-status-cell"><span class="badge verified">✅ 활성</span><a class="cf-link-btn" href="https://www.curseforge.com/wow/addons/forever-combat-text" target="_blank" rel="noopener noreferrer" title="CurseForge 열기" aria-label="ForeverCombatText CurseForge 페이지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div></td></tr>
+                <tr><td><span class="addon-title-ref" data-wow="addon:RangeDisplay" tabindex="0"><strong><code>RangeDisplay</code></strong> <small>(+_Options)</small></span></td><td><code>v6.3.7</code></td><td>대상 30m 사거리 실시간 표시 (적대적 대상 전용 설정)</td><td><div class="addon-status-cell"><span class="badge verified">✅ 활성 (적대 전용)</span><a class="cf-link-btn" href="https://www.curseforge.com/wow/addons/range-display" target="_blank" rel="noopener noreferrer" title="CurseForge 열기" aria-label="RangeDisplay CurseForge 페이지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div></td></tr>
 
-                <tr><td rowspan="8"><strong>지도 · 퀘스트 · 던전 · 도서관</strong><br><small>(8종 / 11폴더)</small></td><td><strong><code>Questie</code></strong> + <code>QuestieDB</code> + <code>QuestieTrace</code></td><td><code>12.11.1</code> / <code>1.1.3</code> / <code>1.13.0</code></td><td>포에버 퀘스트 핀/추적 + DB (<code>Trace</code>는 수집 로거)</td><td><span class="badge verified">✅ 활성</span></td></tr>
-                <tr><td><strong><code>Books_on_map_Forever</code></strong></td><td><code>v2.3.2</code></td><td>와우 포에버 도서관 책 40권 월드맵 핀 표시</td><td><span class="badge verified">✅ 활성</span></td></tr>
-                <tr><td><strong><code>OpenMap</code></strong> + <code>OpenMap_NoDungeonMap</code></td><td><code>v0.8.10</code> / <code>v1.2</code></td><td>끊김 없는 통합 세계 지도 + 던전 도감 호환 패치</td><td><span class="badge verified">✅ 활성</span></td></tr>
-                <tr><td><strong><code>SquareMinimap</code></strong></td><td><code>v1.4.6</code></td><td>포에버 전용 사각 브론즈 프레임 미니맵 (단독 구성)</td><td><span class="badge verified">✅ 단독 정상</span></td></tr>
-                <tr><td><strong><code>TomTom</code></strong></td><td><code>v4.4.1-release</code></td><td><code>/way</code> 좌표 화살표 내비게이션</td><td><span class="badge verified">✅ 활성</span></td></tr>
-                <tr><td><strong><code>ForeverDungeonJournal</code></strong></td><td><code>v2.1.0</code></td><td>클래식/포에버 던전 보스·드랍템·퀘스트 도감</td><td><span class="badge verified">✅ 활성</span></td></tr>
-                <tr><td><strong><code>Attune</code></strong></td><td><code>16001-44</code></td><td>던전·공격대 입장 선행 연퀘 진행률 추적</td><td><span class="badge verified">✅ 활성</span></td></tr>
-                <tr><td><strong><code>ForeverLootSparkles</code></strong></td><td><code>v2.0.0</code></td><td>루팅·퀘스트 오브젝트 반짝임 효과 상시 유지</td><td><span class="badge verified">✅ 활성</span></td></tr>
+                <tr><td rowspan="8"><strong>지도 · 퀘스트 · 던전 · 도서관</strong><br><small>(8종 / 11폴더)</small></td><td><span class="addon-title-ref" data-wow="addon:Questie" tabindex="0"><strong><code>Questie</code></strong> + <code>QuestieDB</code> + <code>QuestieTrace</code></span></td><td><code>12.12.0</code> / <code>1.1.4</code> / <code>1.13.2</code></td><td>포에버 퀘스트 핀/추적 + DB (<code>Trace</code>는 수집 로거)</td><td><div class="addon-status-cell"><span class="badge verified">✅ 활성</span><a class="cf-link-btn" href="https://www.curseforge.com/wow/addons/questie" target="_blank" rel="noopener noreferrer" title="CurseForge 열기" aria-label="Questie CurseForge 페이지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div></td></tr>
+                <tr><td><span class="addon-title-ref" data-wow="addon:Books_on_map_Forever" tabindex="0"><strong><code>Books_on_map_Forever</code></strong></span></td><td><code>2.3.3</code></td><td>와우 포에버 도서관 책 월드맵 핀 표시 · 수집 추적</td><td><div class="addon-status-cell"><span class="badge verified">✅ 활성</span><a class="cf-link-btn" href="https://www.curseforge.com/wow/addons/books-on-map-forever" target="_blank" rel="noopener noreferrer" title="CurseForge 열기" aria-label="Books on map Forever CurseForge 페이지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div></td></tr>
+                <tr><td><span class="addon-title-ref" data-wow="addon:OpenMap" tabindex="0"><strong><code>OpenMap</code></strong> + <code>OpenMap_NoDungeonMap</code></span></td><td><code>v0.8.12</code> / <code>v1.2</code></td><td>끊김 없는 통합 세계 지도 + 던전 도감 호환 패치</td><td><div class="addon-status-cell"><span class="badge verified">✅ 활성</span><a class="cf-link-btn" href="https://www.curseforge.com/projects/1735937" target="_blank" rel="noopener noreferrer" title="CurseForge 열기" aria-label="OpenMap CurseForge 페이지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div></td></tr>
+                <tr><td><span class="addon-title-ref" data-wow="addon:SquareMinimap" tabindex="0"><strong><code>SquareMinimap</code></strong></span></td><td><code>1.4.7</code></td><td>포에버 전용 사각 브론즈 프레임 미니맵 (단독 구성)</td><td><div class="addon-status-cell"><span class="badge verified">✅ 단독 정상</span><a class="cf-link-btn" href="https://www.curseforge.com/wow/addons/squareminimap" target="_blank" rel="noopener noreferrer" title="CurseForge 열기" aria-label="SquareMinimap CurseForge 페이지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div></td></tr>
+                <tr><td><span class="addon-title-ref" data-wow="addon:TomTom" tabindex="0"><strong><code>TomTom</code></strong></span></td><td><code>v4.4.1-release</code></td><td><code>/way</code> 좌표 화살표 내비게이션</td><td><div class="addon-status-cell"><span class="badge verified">✅ 활성</span><a class="cf-link-btn" href="https://www.curseforge.com/wow/addons/tomtom" target="_blank" rel="noopener noreferrer" title="CurseForge 열기" aria-label="TomTom CurseForge 페이지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div></td></tr>
+                <tr><td><span class="addon-title-ref" data-wow="addon:ForeverDungeonJournal" tabindex="0"><strong><code>ForeverDungeonJournal</code></strong></span></td><td><code>2.1.3</code></td><td>클래식/포에버 던전 보스·드랍템·퀘스트 도감</td><td><div class="addon-status-cell"><span class="badge verified">✅ 활성</span><a class="cf-link-btn" href="https://www.curseforge.com/wow/addons/dungeonjournal" target="_blank" rel="noopener noreferrer" title="CurseForge 열기" aria-label="DungeonJournal CurseForge 페이지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div></td></tr>
+                <tr><td><span class="addon-title-ref" data-wow="addon:Attune" tabindex="0"><strong><code>Attune</code></strong></span></td><td><code>16001-44</code></td><td>던전·공격대 입장 선행 연퀘 진행률 추적</td><td><div class="addon-status-cell"><span class="badge verified">✅ 활성</span><a class="cf-link-btn" href="https://www.curseforge.com/wow/addons/attune" target="_blank" rel="noopener noreferrer" title="CurseForge 열기" aria-label="Attune CurseForge 페이지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div></td></tr>
+                <tr><td><span class="addon-title-ref" data-wow="addon:ForeverLootSparkles" tabindex="0"><strong><code>ForeverLootSparkles</code></strong></span></td><td><code>v2.0.0</code></td><td>루팅·퀘스트 오브젝트 반짝임 효과 상시 유지</td><td><div class="addon-status-cell"><span class="badge verified">✅ 활성</span><a class="cf-link-btn" href="https://www.curseforge.com/wow/addons/forever-loot-sparkles" target="_blank" rel="noopener noreferrer" title="CurseForge 열기" aria-label="ForeverLootSparkles CurseForge 페이지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div></td></tr>
 
-                <tr><td rowspan="6"><strong>경제 · 가방 · 전문기술 · 성장</strong><br><small>(6종 / 8폴더)</small></td><td><strong><code>ForeverLevelingBiS</code></strong></td><td><code>v1.4.5</code></td><td><strong>레벨·직업·특성별 레벨링 BiS 장비 추천 및 스탯 비교</strong></td><td><span class="badge arcane">🆕 신규 설치 ✅</span></td></tr>
-                <tr><td><strong><code>CharExport</code></strong> <small>(로컬 커스텀)</small></td><td><code>v2.3.0</code></td><td><strong><code>/ce</code> 스탯·특성·장비·스킬 + <code>/cea</code> 가죽(27)·마부(52)·재봉(35) 114종 재료 시세</strong></td><td><span class="badge arcane">🆕 로컬 개발 ✅</span></td></tr>
-                <tr><td><strong><code>Auctionator</code></strong></td><td><code>v349</code></td><td>경매장 스캔·최저가 출품·시세 툴팁</td><td><span class="badge verified">✅ 활성</span></td></tr>
-                <tr><td><strong><code>Mastercraft</code></strong> + <code>_Inbox</code></td><td><code>v2.0.7</code> / <code>v2.0.6</code></td><td>전문기술 가이드·수익·<strong>마력 추출 vs 상점가 자동 비교</strong></td><td><span class="badge verified">✅ 활성</span></td></tr>
-                <tr><td><strong><code>Baganator</code></strong> + <code>Syndicator</code></td><td><code>v866</code> / <code>v291</code></td><td>통합 가방 UI + 계정/은행 전체 재고 툴팁 추적</td><td><span class="badge verified">✅ 활성</span></td></tr>
-                <tr><td><strong><code>WhatsTraining</code></strong></td><td><code>v11.4.9</code></td><td>마법책에 향후 레벨별 배울 스킬 &amp; 비용 미리보기</td><td><span class="badge verified">✅ 활성</span></td></tr>
+                <tr><td rowspan="6"><strong>경제 · 가방 · 전문기술 · 성장</strong><br><small>(6종 / 8폴더)</small></td><td><span class="addon-title-ref" data-wow="addon:ForeverLevelingBiS" tabindex="0"><strong><code>ForeverLevelingBiS</code></strong></span></td><td><code>v1.4.5</code></td><td><strong>레벨·직업·특성별 레벨링 BiS 장비 추천 및 스탯 비교</strong></td><td><div class="addon-status-cell"><span class="badge verified">✅ 활성</span><a class="cf-link-btn" href="https://www.curseforge.com/wow/addons/forever-leveling-bis" target="_blank" rel="noopener noreferrer" title="CurseForge 열기" aria-label="ForeverLevelingBiS CurseForge 페이지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div></td></tr>
+                <tr><td><span class="addon-title-ref" data-wow="addon:CharExport" tabindex="0"><strong><code>CharExport</code></strong> <small>(로컬 커스텀)</small></span></td><td><code>2.3.0</code></td><td><strong><code>/ce</code> 스탯·특성·장비·스킬 + <code>/cea</code> 가죽(27)·마부(52)·재봉(35) 114종 재료 시세</strong></td><td><div class="addon-status-cell"><span class="badge arcane">🆕 로컬 전용</span></div></td></tr>
+                <tr><td><span class="addon-title-ref" data-wow="addon:Auctionator" tabindex="0"><strong><code>Auctionator</code></strong></span></td><td><code>351</code></td><td>경매장 스캔·최저가 출품·시세 툴팁 (<code>IsForever</code> 패치 적용)</td><td><div class="addon-status-cell"><span class="badge verified">✅ 활성 (패치)</span><a class="cf-link-btn" href="https://www.curseforge.com/wow/addons/auctionator" target="_blank" rel="noopener noreferrer" title="CurseForge 열기" aria-label="Auctionator CurseForge 페이지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div></td></tr>
+                <tr><td><span class="addon-title-ref" data-wow="addon:Mastercraft" tabindex="0"><strong><code>Mastercraft</code></strong> + <code>_Inbox</code></span></td><td><code>2.0.9-hotfix</code> / <code>2.0.6</code></td><td>전문기술 가이드·수익·<strong>마력 추출 vs 상점가 자동 비교</strong></td><td><div class="addon-status-cell"><span class="badge verified">✅ 활성</span><a class="cf-link-btn" href="https://www.curseforge.com/wow/addons/mastercraft-forever-profession-leveling-guide-1-300" target="_blank" rel="noopener noreferrer" title="CurseForge 열기" aria-label="Mastercraft CurseForge 페이지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div></td></tr>
+                <tr><td><span class="addon-title-ref" data-wow="addon:Baganator" tabindex="0"><strong><code>Baganator</code></strong></span> + <span class="addon-title-ref" data-wow="addon:Syndicator" tabindex="0"><code>Syndicator</code></span></td><td><code>868</code> / <code>293</code></td><td>통합 가방 UI + 계정/은행 전체 재고 툴팁 추적</td><td><div class="addon-status-cell"><span class="badge verified">✅ 활성</span><a class="cf-link-btn" href="https://www.curseforge.com/wow/addons/baganator" target="_blank" rel="noopener noreferrer" title="Baganator CurseForge 열기" aria-label="Baganator CurseForge 페이지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><a class="cf-link-btn" href="https://www.curseforge.com/wow/addons/syndicator" target="_blank" rel="noopener noreferrer" title="Syndicator CurseForge 열기" aria-label="Syndicator CurseForge 페이지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div></td></tr>
+                <tr><td><span class="addon-title-ref" data-wow="addon:WhatsTraining" tabindex="0"><strong><code>WhatsTraining</code></strong></span></td><td><code>11.4.9</code></td><td>마법책에 향후 레벨별 배울 스킬 &amp; 비용 미리보기</td><td><div class="addon-status-cell"><span class="badge verified">✅ 활성</span><a class="cf-link-btn" href="https://www.curseforge.com/wow/addons/whats-training" target="_blank" rel="noopener noreferrer" title="CurseForge 열기" aria-label="WhatsTraining CurseForge 페이지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div></td></tr>
 
-                <tr><td rowspan="6"><strong>UI · 편의 · 한국어 음성</strong><br><small>(6종 / 18폴더)</small></td><td><strong><code>DialogueUI</code></strong></td><td><code>v1.0.7 c</code></td><td>몰입형 카드형 퀘스트 대화창 &amp; 키보드 단축 선택</td><td><span class="badge verified">✅ 활성</span></td></tr>
-                <tr><td><strong><code>ForeverMove</code></strong></td><td><code>v1.6.4</code></td><td>모든 블리자드 UI 창 자유 드래그 이동 (<code>/fm</code>)</td><td><span class="badge verified">✅ 활성</span></td></tr>
-                <tr><td><strong><code>ForeverMouseTooltip</code></strong></td><td><code>16001</code></td><td>기본 게임 툴팁을 마우스 커서 위치에 고정</td><td><span class="badge verified">✅ 활성</span></td></tr>
-                <tr><td><strong><code>BetterBlizzFrames</code></strong></td><td><code>v2.2.3c</code></td><td>블리자드 기본 프레임 버프 필터·전투 표시 등 커스터마이즈</td><td><span class="badge gold">120105 TOC 확인</span></td></tr>
-                <tr><td><strong><code>WhisperMessenger</code></strong></td><td><code>v2.1.8</code></td><td>귓속말 메신저 탭 통합 관리·응답</td><td><span class="badge verified">✅ 활성</span></td></tr>
-                <tr><td><strong><code>Spoken</code></strong> <small>(+5 코어 · +7 한국어 음성팩)</small></td><td><code>v3.10.1</code> / <code>koKR</code></td><td>퀘스트·책·지역·보스 한국어 음성 내레이션</td><td><span class="badge gold">Horde팩 해제 가능</span></td></tr>
+                <tr><td rowspan="6"><strong>UI · 편의 · 한국어 음성</strong><br><small>(6종 / 18폴더)</small></td><td><span class="addon-title-ref" data-wow="addon:DialogueUI" tabindex="0"><strong><code>DialogueUI</code></strong></span></td><td><code>1.0.7 c</code></td><td>몰입형 카드형 퀘스트 대화창 &amp; 키보드 단축 선택</td><td><div class="addon-status-cell"><span class="badge verified">✅ 활성</span><a class="cf-link-btn" href="https://www.curseforge.com/wow/addons/dialogueui" target="_blank" rel="noopener noreferrer" title="CurseForge 열기" aria-label="DialogueUI CurseForge 페이지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div></td></tr>
+                <tr><td><span class="addon-title-ref" data-wow="addon:ForeverMove" tabindex="0"><strong><code>ForeverMove</code></strong></span></td><td><code>1.6.4</code></td><td>모든 블리자드 UI 창 자유 드래그 이동 (<code>/fm</code>)</td><td><div class="addon-status-cell"><span class="badge verified">✅ 활성</span><a class="cf-link-btn" href="https://www.curseforge.com/wow/addons/forever-move" target="_blank" rel="noopener noreferrer" title="CurseForge 열기" aria-label="ForeverMove CurseForge 페이지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div></td></tr>
+                <tr><td><span class="addon-title-ref" data-wow="addon:ForeverMouseTooltip" tabindex="0"><strong><code>ForeverMouseTooltip</code></strong></span></td><td><code>16001</code></td><td>기본 게임 툴팁을 마우스 커서 위치에 고정</td><td><div class="addon-status-cell"><span class="badge verified">✅ 활성</span><a class="cf-link-btn" href="https://www.curseforge.com/wow/addons/forever-mouse-tooltip" target="_blank" rel="noopener noreferrer" title="CurseForge 열기" aria-label="ForeverMouseTooltip CurseForge 페이지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div></td></tr>
+                <tr><td><span class="addon-title-ref" data-wow="addon:BetterBlizzFrames" tabindex="0"><strong><code>BetterBlizzFrames</code></strong></span></td><td><code>v2.2.3c</code></td><td>블리자드 기본 프레임 버프 필터·전투 표시 등 커스터마이즈</td><td><div class="addon-status-cell"><span class="badge gold">120105 TOC 확인</span><a class="cf-link-btn" href="https://www.curseforge.com/wow/addons/betterblizzframes" target="_blank" rel="noopener noreferrer" title="CurseForge 열기" aria-label="BetterBlizzFrames CurseForge 페이지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div></td></tr>
+                <tr><td><span class="addon-title-ref" data-wow="addon:WhisperMessenger" tabindex="0"><strong><code>WhisperMessenger</code></strong></span></td><td><code>v2.1.9</code></td><td>귓속말 메신저 탭 통합 관리·응답</td><td><div class="addon-status-cell"><span class="badge verified">✅ 활성</span><a class="cf-link-btn" href="https://www.curseforge.com/wow/addons/whispermessenger" target="_blank" rel="noopener noreferrer" title="CurseForge 열기" aria-label="WhisperMessenger CurseForge 페이지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div></td></tr>
+                <tr><td><span class="addon-title-ref" data-wow="addon:Spoken" tabindex="0"><strong><code>Spoken</code></strong> <small>(+5 코어 · +7 한국어 음성팩)</small></span></td><td><code>3.11.0</code> / <code>koKR</code></td><td>퀘스트·책·지역·보스 한국어 음성 내레이션</td><td><div class="addon-status-cell"><span class="badge gold">Horde팩 해제 가능</span><a class="cf-link-btn" href="https://www.curseforge.com/wow/addons/spoken" target="_blank" rel="noopener noreferrer" title="CurseForge 열기" aria-label="Spoken CurseForge 페이지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div></td></tr>
               </tbody>
             </table>
           </div>
         </div>
+
+        <details class="fold-card">
+          <summary>✅ 실측 진단 &amp; 최적화 포인트 (<code>2026-11-23</code> 로컬 스캔 기준)</summary>
+          <div class="fold-body">
+            <ul style="margin:0;">
+              <li><span class="badge verified">✅ <code>Auctionator (351)</code> 한국어 랜덤 장비 툴팁 데드락 패치</span><br>포에버(<code>IsForever</code>) + 한국어 클라에서 랜덤 접두사 장비 마우스오버 시 콜백이 누락되어 <code>waitingForPricing</code> 잠금으로 모든 툴팁이 먹통 되던 버그를 <code>DBKeyFromLink.lua</code>·<code>Main.lua</code> 패치로 해결 완료.</li>
+              <li><span class="badge arcane">🆕 <code>CharExport (v2.3.0)</code> + Auctionator 제작재료 114종</span><br>가방 시세 제거 &rarr; <code>/ce</code>(캐릭터+재료시세) · <code>/ce ah</code> 또는 <code>/cea</code>(무두질 가죽·비늘 27종 · 마법부여 52종 · 재봉술 옷감·템 재료 35종 전용) 복사창 출력.</li>
+              <li><span class="badge verified">✅ <code>Mastercraft (2.0.9-hotfix)</code> 툴팁 정리 팁</span><br>툴팁의 <code>Auctionator 1d</code> 꼬리표는 <code>Mastercraft</code>가 <code>Auctionator 우선</code> 시세를 끌어올 때 붙이는 표기이므로, <code>/mc</code> &rarr; <code>설정</code> &rarr; <code>툴팁</code> &rarr; <code>경매장 가격</code>을 끄면 <code>Auctionator</code> 자체 시세만 깔끔하게 유지됩니다.</li>
+              <li><span class="badge arcane">📘 <code>ForeverLevelingBiS (v1.4.5)</code> BoE 출처 미표기</span><br>던전·퀘스트 고정 드랍만 출처를 표시하고 월드 드랍 BoE(예: <code>별똥별 마법봉</code>, <code>마법의 정수 장갑</code>)는 출처를 생략하므로 경매장(<code>Auctionator</code>)에서 직접 검색하세요.</li>
+              <li><span class="badge verified">✅ 충돌 0건 · <code>RangeDisplay (v6.3.7)</code></span><br><code>SquareMinimap (1.4.7)</code> 단독 구성 · <code>RangeDisplay</code> 적대 전용(<code>33m</code> &rarr; <code>30m</code> 조정 추천).</li>
+              <li><span class="badge gold">🟡 경량화 &amp; 버전 체크</span><br>
+                &bull; <code>BetterBlizzFrames (v2.2.3c)</code>: <code>.toc</code>가 <code>120105</code> 기준이라 접속 시 '구버전 애드온 불러오기' 체크 필요.<br>
+                &bull; <code>SpokenQuestsAudioHorde_koKR</code> · <code>QuestieTrace</code> · <code>SpokenContributions</code> · <code>Details_Streamer/Vanguard</code>: 필요 시 비활성화 가능.
+              </li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="fold-card">
+          <summary>➕ 미설치 추가 추천 애드온 (<code>1.60.1</code>)</summary>
+          <div class="fold-body">
+            <ul style="margin:0;">
+              <li><strong><a href="https://www.curseforge.com/wow/addons/better-spell-power-tooltips" target="_blank" rel="noopener noreferrer">Better Spell Power Tooltips</a></strong>: 현재 비전 주문력(<code>+142</code>)과 <code>비전 작렬</code> 중첩이 반영된 실시간 예상 피해량을 스킬 툴팁에 표시.</li>
+              <li><strong><a href="https://www.curseforge.com/wow/addons/findparty" target="_blank" rel="noopener noreferrer">FindParty Forever</a></strong> / <strong>LFG Bulletin Board</strong>: 채팅 파티 모집글을 발굴현장·놈리건·수도원 등 던전별로 자동 분류.</li>
+              <li><strong>MinimapButtonButton (또는 HidingBar)</strong>: <code>SquareMinimap</code> 테두리 애드온 아이콘이 많아질 때 하나로 깔끔하게 정리.</li>
+              <li><strong>Plater Nameplates (선택)</strong>: 30+ 던전·광역 시 적 시전바(<code>마법 차단</code>) 및 <code>변이</code>·<code>얼음 회오리</code> 디버프 타이머 강화.</li>
+            </ul>
+          </div>
+        </details>
       </section>
 
       <!-- TAB: WORKSPACE & SOURCES -->
@@ -8545,7 +8587,261 @@ const WOW_DB = {
   }
 };
 
+const ADDON_DB = {
+  'addon:Details!': {
+    title: 'Details! Damage Meter',
+    en: 'by Terciob · CurseForge #61284',
+    kind: '전투 · 딜미터',
+    quality: 'rare',
+    icon: 'inv_misc_pocketwatch_01',
+    rows: [['다운로드: ~3억 7,700만+ (CurseForge)', '인기도: 최상위 글로벌 필수'], ['설치 버전: 20261109.15410.172', '구성: 본체 + 7 플러그인']],
+    desc: '실시간 DPS·HPS, 주문별 피해 비중, TinyThreat 어그로 미터기, 마법 차단 기록 및 보스 페이즈 분석을 제공합니다.',
+    note: '💡 Streamer / Vanguard 플러그인은 필요 시 비활성화해 메모리를 아낄 수 있습니다.'
+  },
+  'addon:Shadowflare': {
+    title: 'Shadowflare',
+    en: 'by Fistao · CurseForge',
+    kind: '전투 · 프록 알림',
+    quality: 'spell',
+    icon: 'spell_arcane_arcane04',
+    rows: [['다운로드: ~5.88만+ (CurseForge)', '인기도: 와우 포에버 특화 인기'], ['설치 버전: 0.25.0', '지원: 1.60.1 네이티브']],
+    desc: '와우 포에버 전용 직업 프록(화살 탄막, 신비한 정신 집중 등)을 별도 쿨다운 매니저 없이 기본 UI 감성으로 즉시 표시합니다.',
+    note: '⚡ 비전 마법사의 화살 탄막/정신 집중 타이밍 포착 핵심 애드온'
+  },
+  'addon:ForeverCombatText': {
+    title: 'Forever Combat Text',
+    en: 'by Morpster · CurseForge',
+    kind: '전투 · 피해 텍스트',
+    quality: 'spell',
+    icon: 'spell_fire_fireball02',
+    rows: [['다운로드: CurseForge 호스팅 (신규)', '인기도: 와우 포에버 전용'], ['설치 버전: 0.17.0', '특징: 이름표 학파 색상']],
+    desc: '와우 포에버 클라이언트용 경량 전투 텍스트로, 적 이름표 위에 주문 학파별 색상으로 피해·치유 수치를 직관적으로 띄워줍니다.',
+    note: '✨ 비전·화염·냉기 주문 학파 색 구분에 최적화'
+  },
+  'addon:RangeDisplay': {
+    title: 'RangeDisplay',
+    en: 'by mitch0 · CurseForge #14570',
+    kind: '전투 · 사거리 측정',
+    quality: 'rare',
+    icon: 'ability_hunter_snipershot',
+    rows: [['다운로드: ~400만+ (CurseForge)', '인기도: 장수 원거리 표준'], ['설치 버전: v6.3.7', '설정: 적대 대상 전용 (33m)']],
+    desc: '대상·주시·마우스오버까지의 예상 거리를 미터 단위로 실시간 표시합니다(/rangedisplay).',
+    note: '🎯 비전 마법사 주력 사거리(30m)에 맞춰 Target 장거리 기준을 30으로 조정 추천'
+  },
+  'addon:Questie': {
+    title: 'Questie',
+    en: 'by Questie Team · CurseForge #334372',
+    kind: '퀘스트 · 지도 핀',
+    quality: 'rare',
+    icon: 'inv_misc_map_01',
+    rows: [['다운로드: ~2억 2,900만+ (CurseForge)', '인기도: 클래식·포에버 절대 표준'], ['설치 버전: 12.12.0 (DB 1.1.4)', '구성: Questie + DB + Trace']],
+    desc: '와우 포에버 전역의 수락 가능/진행 중/완료 퀘스트 위치와 목표 몹·오브젝트를 지도와 미니맵에 핀으로 표시합니다.',
+    note: '💡 QuestieTrace(1.13.2)는 제보 수집용 로거이므로 기여 목적이 아니면 꺼둘 수 있습니다.'
+  },
+  'addon:Books_on_map_Forever': {
+    title: 'Books on map (Forever)',
+    en: 'by Daeler · CurseForge',
+    kind: '도서관 책 수집',
+    quality: 'uncommon',
+    icon: 'inv_misc_book_09',
+    rows: [['다운로드: ~60.4만+ (CurseForge)', '인기도: 포에버 수집 필수 1순위'], ['설치 버전: 2.3.3', '기능: 월드맵·미니맵 자동 숨김']],
+    desc: '와우 포에버 전용 도서관 책 위치를 세계 지도와 미니맵에 모두 표시하고, 습득 즉시 핀을 숨기며 보상 진행도를 추적합니다.',
+    note: '📚 도서관 반납 장비·평판 파밍에 필수'
+  },
+  'addon:OpenMap': {
+    title: 'OpenMap',
+    en: 'by jigrobbulus · CurseForge #1735937',
+    kind: '통합 세계 지도',
+    quality: 'uncommon',
+    icon: 'inv_misc_map02',
+    rows: [['다운로드: CurseForge 호스팅 (오픈소스)', '인기도: 포에버 지도 인기 애드온'], ['설치 버전: v0.8.12 (+NoDungeonMap v1.2)', '명령어: /openmap']],
+    desc: '바닐라 아트 스타일을 유지한 채 모든 대륙·지역 지도를 끊김 없이 이어붙여 줌인/줌아웃 및 드래그 탐색을 제공합니다.',
+    note: '🗺️ OpenMap_NoDungeonMap 패치로 ForeverDungeonJournal과 충돌 없이 연동'
+  },
+  'addon:SquareMinimap': {
+    title: 'Square Minimap by Foofi',
+    en: 'by Foofi · CurseForge #1749143',
+    kind: 'UI · 사각 미니맵',
+    quality: 'uncommon',
+    icon: 'inv_misc_spyglass_02',
+    rows: [['다운로드: CurseForge 호스팅 (포에버 전용)', '인기도: 포에버 UI 커스텀'], ['설치 버전: 1.4.7', '상태: 단독 구성 (충돌 0)']],
+    desc: '와우 포에버의 원형 미니맵을 클래식 브론즈 프레임 사각 미니맵으로 변환하고 애드온 아이콘을 테두리에 정리해 줍니다.',
+    note: '✅ 기존 충돌 원인이던 Forever Minimap 제거 후 안정 동작 중'
+  },
+  'addon:TomTom': {
+    title: 'TomTom',
+    en: 'by Cladhaire · CurseForge #18808',
+    kind: '좌표 내비게이션',
+    quality: 'rare',
+    icon: 'ability_spy',
+    rows: [['다운로드: ~9,300만+ (CurseForge)', '인기도: 글로벌 표준 내비'], ['설치 버전: v4.4.1-release', '명령어: /way X Y']],
+    desc: '입력한 좌표나 연동 애드온이 지정한 목표 지점까지 화면 화살표·거리·예상 도착 시간을 안내하는 휴대용 내비게이션입니다.',
+    note: '🧭 대시보드 지도/퀘스트 좌표를 /way 로 바로 찍어 이동할 때 활용'
+  },
+  'addon:ForeverDungeonJournal': {
+    title: 'DungeonJournal (Forever)',
+    en: 'by Exehn · CurseForge',
+    kind: '던전 도감 · 공략',
+    quality: 'rare',
+    icon: 'inv_misc_book_07',
+    rows: [['다운로드: ~2,070만+ (CurseForge)', '인기도: 글로벌 인기 던전 도감'], ['설치 버전: 2.1.3', '연동: OpenMap 던전 아이콘']],
+    desc: '클래식·와우 포에버의 각 던전별 보스 목록, 드랍 아이템 테이블, 관련 퀘스트 및 지도 위치를 인게임에서 통합 조회합니다.',
+    note: '🏰 OpenMap_NoDungeonMap과 함께 사용 중'
+  },
+  'addon:Attune': {
+    title: 'Attune',
+    en: 'by CixiDelmont · CurseForge',
+    kind: '입장 연퀘 추적',
+    quality: 'uncommon',
+    icon: 'inv_misc_key_14',
+    rows: [['다운로드: ~1,480만+ (CurseForge)', '인기도: 클래식 입장 연퀘 표준'], ['설치 버전: 16001-44', '지원: 포에버 던전·레이드']],
+    desc: '오닉시아·화산 심장부·검은날개 둥지·던전 열쇠 등 입장 선행 연퀘와 평판 진행률을 단계별 트리로 보여줍니다.',
+    note: '🔑 만렙 레이드/인던 입장 준비도 체크용'
+  },
+  'addon:ForeverLootSparkles': {
+    title: 'Forever Loot Sparkles',
+    en: 'by Ashtar Senior · CurseForge #1729017',
+    kind: '편의 · 루팅 반짝임',
+    quality: 'uncommon',
+    icon: 'spell_holy_flashheal',
+    rows: [['다운로드: ~160만+ (CurseForge)', '인기도: 포에버 편의 필수'], ['설치 버전: v2.0.0', '동작: 로그인·옵션 변경 시 자동 복구']],
+    desc: '그래픽 프리셋 변경 등으로 꺼지기 쉬운 루팅 시체·퀘스트 오브젝트의 반짝임 효과를 항상 켜진 상태로 유지해 줍니다.',
+    note: '✨ 필드 오브젝트 및 무두질 대상 시인성 확보'
+  },
+  'addon:ForeverLevelingBiS': {
+    title: 'Forever Leveling BiS',
+    en: 'by Thunder / Timearc · CurseForge #1719370',
+    kind: '성장 · 장비 BiS',
+    quality: 'rare',
+    icon: 'inv_chest_cloth_17',
+    rows: [['다운로드: ~95.6만+ (CurseForge)', '인기도: 포에버 레벨링 필수'], ['설치 버전: v1.4.5', '특징: 종족·직업·특성별 맞춤']],
+    desc: '현재 캐릭터의 종족·직업·특성·레벨에 맞는 퀘스트 보상, 던전 드랍, 제작 BiS 장비를 슬롯별로 추천하고 비교해 줍니다.',
+    note: '⚠️ 월드 드랍 BoE 아이템은 출처 텍스트가 비어있어 경매장에서 별도 확인 필요'
+  },
+  'addon:CharExport': {
+    title: 'CharExport (로컬 커스텀)',
+    en: 'Local Workspace Addon · Not on CurseForge',
+    kind: '로컬 커스텀 · AI 연동',
+    quality: 'talent',
+    icon: 'inv_scroll_03',
+    rows: [['배포 상태: 로컬 전용 (미등록)', '버전: 2.3.0 (Interface 16001)'], ['명령어: /ce · /ce ah · /cea', '추적: 제작재료 114종']],
+    desc: '현재 스탯·활성 버프·특성·장비 마부·배운 스킬과 Auctionator 기반 무두질(27)·마부(52)·재봉(35) 재료 시세를 복사창으로 출력합니다.',
+    note: '🛠️ 가방 시세 제거 완료 · /cea로 114종 제작재료 시세만 즉시 복사 가능'
+  },
+  'addon:Auctionator': {
+    title: 'Auctionator',
+    en: 'by plusmouse · CurseForge',
+    kind: '경제 · 경매장',
+    quality: 'rare',
+    icon: 'inv_misc_coin_02',
+    rows: [['다운로드: ~2억 1,600만+ (CurseForge)', '인기도: 최상위 경매장 표준'], ['설치 버전: 351', '패치: IsForever 툴팁 데드락 수정']],
+    desc: '빠른 경매장 전체 스캔, 일괄 판매/언더컷 출품, 쇼핑 리스트 및 아이템 툴팁 시세/상점가 표시를 제공합니다.',
+    note: '✅ 11/23 로컬 패치로 한국어 랜덤 접두사 장비 마우스오버 먹통 버그 해결'
+  },
+  'addon:Mastercraft': {
+    title: 'Mastercraft',
+    en: 'by Shadowblade · CurseForge',
+    kind: '전문기술 · 수익 분석',
+    quality: 'rare',
+    icon: 'trade_engraving',
+    rows: [['다운로드: ~120만+ (CurseForge)', '인기도: 포에버 전문기술 종합 1순위'], ['설치 버전: 2.0.9-hotfix (+_Inbox 2.0.6)', '명령어: /mc']],
+    desc: '1~300 전문기술 육성 가이드, 제작법별 손익, 마력 추출 vs 상점가 판정, 채집 노드 지도, 낚시/야영 유틸을 통합 제공합니다.',
+    note: '💡 툴팁의 Auctionator 1d 표시를 숨기려면 /mc → 설정 → 툴팁 → 경매장 가격 끄기'
+  },
+  'addon:Baganator': {
+    title: 'Baganator',
+    en: 'by plusmouse · CurseForge',
+    kind: '통합 가방 UI',
+    quality: 'rare',
+    icon: 'inv_misc_bag_08',
+    rows: [['다운로드: ~4,600만+ (CurseForge)', '인기도: 차세대 통합 가방 대세'], ['설치 버전: 868', '연동: Syndicator (재고 엔진)']],
+    desc: '모든 가방과 은행을 하나의 깔끔한 창으로 통합하고 카테고리 자동 정렬, 실시간 검색, 장비 세트 구분을 지원합니다.',
+    note: '🎒 가벼운 성능과 직관적인 카테고리 뷰 제공'
+  },
+  'addon:Syndicator': {
+    title: 'Syndicator',
+    en: 'by plusmouse · CurseForge',
+    kind: '계정 재고 추적 엔진',
+    quality: 'uncommon',
+    icon: 'inv_box_01',
+    rows: [['다운로드: ~3,250만+ (CurseForge)', '인기도: Baganator 필수 동반 애드온'], ['설치 버전: 293', '역할: 부캐·은행·우편 재고 DB']],
+    desc: '계정 내 모든 캐릭터의 가방·은행·우편함에 보유한 아이템 수량을 실시간으로 추적해 툴팁과 Baganator 검색에 공급합니다.',
+    note: '📦 Baganator와 동일 제작자의 핵심 백엔드 애드온'
+  },
+  'addon:WhatsTraining': {
+    title: "What's Training?",
+    en: 'by Sveng / Fusionpit · CurseForge #324944',
+    kind: '마법책 · 스킬 미리보기',
+    quality: 'uncommon',
+    icon: 'inv_misc_book_11',
+    rows: [['다운로드: ~1,100만+ (CurseForge)', '인기도: 클래식 레벨링 필수'], ['설치 버전: 11.4.9', '위치: 마법책(P) 하단 탭']],
+    desc: '마법책(P)에서 앞으로 레벨이 오르면 직업 교관에게 배울 수 있는 스킬·등급과 학습 골드 비용을 레벨별로 미리 보여줍니다.',
+    note: '📘 다음 레벨업 시 귀환/방문할 스킬 비용 미리 계산 가능'
+  },
+  'addon:DialogueUI': {
+    title: 'Dialogue UI',
+    en: 'by Peterodox · CurseForge',
+    kind: 'UI · 몰입형 퀘스트창',
+    quality: 'rare',
+    icon: 'inv_letter_15',
+    rows: [['다운로드: ~930만+ (CurseForge)', '인기도: 몰입형 UI 최상위'], ['설치 버전: 1.0.7 c', '특징: 카드형 대화 · 단축키']],
+    desc: 'NPC 대화 및 퀘스트 수락/완료 창을 가독성 높은 모던 카드로 바꾸고, 스페이스바·숫자키 빠른 선택 및 카메라 연출을 지원합니다.',
+    note: '📖 퀘스트 스토리 가독성과 진행 속도 대폭 향상'
+  },
+  'addon:ForeverMove': {
+    title: 'ForeverMove',
+    en: 'by Ugge Zen · CurseForge #1702949',
+    kind: 'UI · 창 이동/저장',
+    quality: 'uncommon',
+    icon: 'ability_rogue_sprint',
+    rows: [['다운로드: ~19.8만+ (CurseForge)', '인기도: 포에버 UI 편의 인기'], ['설치 버전: 1.6.4', '명령어: /fm']],
+    desc: '기본 고정되어 있는 블리자드 UI 창들을 마우스로 자유롭게 드래그해 이동시키고 위치·크기를 저장합니다.',
+    note: '🖱️ 커서 아래 특수 프레임도 /fm 명령어로 위치 조절 가능'
+  },
+  'addon:ForeverMouseTooltip': {
+    title: 'Forever Mouse Tooltip',
+    en: 'by Ninjaskurk · CurseForge',
+    kind: 'UI · 마우스 툴팁',
+    quality: 'uncommon',
+    icon: 'inv_misc_eye_01',
+    rows: [['다운로드: ~1.08만+ (CurseForge)', '인기도: 포에버 전용 유틸'], ['설치 버전: 16001', '기능: 커서 앵커 · ID 표시']],
+    desc: '화면 우하단 구석에 고정된 게임 툴팁을 마우스 커서 주변에 띄워 시선 이동을 줄이고, 아이템·NPC·주문 ID 표시를 지원합니다.',
+    note: '🖱️ 사냥·가방 정리 시 툴팁 가독성 최적화'
+  },
+  'addon:BetterBlizzFrames': {
+    title: 'BetterBlizzFrames',
+    en: 'by Bodify · CurseForge #940950',
+    kind: 'UI · 기본 프레임 확장',
+    quality: 'rare',
+    icon: 'spell_holy_blessingofstrength',
+    rows: [['다운로드: ~970만+ (CurseForge)', '인기도: 기본 프레임 커스텀 1순위'], ['설치 버전: v2.2.3c', '주의: TOC 120105 (구버전 허용)']],
+    desc: '블리자드 순정 개체창 외형을 유지하면서 버프/디버프 필터링, 파티원 시전바, 전투 중 아이콘 등 세밀한 커스터마이징을 제공합니다.',
+    note: '🟡 .toc Interface가 120105 기준이라 접속 시 "구버전 애드온 불러오기" 체크 필요'
+  },
+  'addon:WhisperMessenger': {
+    title: 'Whisper Messenger',
+    en: 'by F0rty_tw0 · CurseForge #1494311',
+    kind: '소통 · 귓속말 메신저',
+    quality: 'uncommon',
+    icon: 'inv_letter_09',
+    rows: [['다운로드: ~57.2만+ (CurseForge)', '인기도: 포에버/클래식 메신저 인기'], ['설치 버전: v2.1.9', '기능: 대화 로그 저장 · 알림 뱃지']],
+    desc: '채팅창에 흩어지기 쉬운 귓속말을 상대별 메신저 창으로 분리해 주고, 재접속 후에도 대화 기록·접속 상태·안 읽음 뱃지를 유지합니다.',
+    note: '💬 거래·파티·길드 귓속말 누락 방지'
+  },
+  'addon:Spoken': {
+    title: 'Spoken (한국어 음성팩)',
+    en: 'by rustykey · CurseForge',
+    kind: '오디오 · 한국어 내레이션',
+    quality: 'spell',
+    icon: 'inv_misc_horn_01',
+    rows: [['다운로드: ~430만+ (CurseForge)', '인기도: AI 음성 더빙 인기 애드온'], ['설치 버전: 3.11.0 (+koKR 7종)', '범위: 퀘스트·책·지역·보스']],
+    desc: '퀘스트 대사, NPC 가십, 도서관 책/편지, 지역 및 보스 전승을 한국어 음성으로 읽어주는 통합 내레이션 애드온입니다.',
+    note: '🟡 얼라이언스 전용 플레이 시 SpokenQuestsAudioHorde_koKR 팩은 꺼둬도 무방'
+  }
+};
+
 function resolveWowEntry(key) {
+  if (ADDON_DB && ADDON_DB[key]) return { key, ...ADDON_DB[key] };
   let e = WOW_DB[key];
   let guard = 0;
   while (e && e.alias && guard++ < 4) {
@@ -8563,7 +8859,7 @@ const WOW_MATCH_REGEX = new RegExp(
 
 function hydrateWowTooltipsIn(rootEl) {
   if (!rootEl) return;
-  const SKIP_SELECTOR = 'pre, script, style, svg, button, a, input, select, textarea, .wow-ref, .t-node, .ig-talent-frame, .equip-slot, .seq-chips, .seq-controls, .map-viewport, .map-float-controls';
+  const SKIP_SELECTOR = 'pre, script, style, svg, button, a, input, select, textarea, .wow-ref, .addon-title-ref, .t-node, .ig-talent-frame, .equip-slot, .seq-chips, .seq-controls, .map-viewport, .map-float-controls';
   const walker = document.createTreeWalker(rootEl, NodeFilter.SHOW_TEXT, {
     acceptNode(node) {
       if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
@@ -8748,7 +9044,7 @@ function renderWowTooltip(entry) {
   let html = `<div class="wt-head">
     <img class="wt-icon" src="${WOW_ICON_BASE}${entry.icon}.jpg" alt="" onerror="this.style.display='none'">
     <div class="wt-title-wrap">
-      <div class="wt-name">${escapeHtml(entry.key)}</div>
+      <div class="wt-name">${escapeHtml(entry.title || entry.key)}</div>
       <div class="wt-sub"><span>${escapeHtml(entry.en || '')}</span><span class="wt-kind">${escapeHtml(entry.kind || '')}</span></div>
     </div>
   </div>`;
@@ -10652,8 +10948,8 @@ const RECENTLY_UPDATED_TABS = {
     text: '최근 업데이트 (11/22): 사냥터 단독 메뉴 분리 · Lv.30 힐스브래드/소금평원 추천'
   },
   'tab-addons': {
-    v: '2026-11-22-v3',
-    text: '최근 업데이트 (11/22): CharExport v2.3.0 (가방 시세 제거 · 무두질/마부/재봉 제작재료 114종 추적) 반영'
+    v: '2026-11-23-v1',
+    text: '최근 업데이트 (11/23): 애드온 탭 리뉴얼 (CurseForge 링크 · 제목 마우스오버 개요/인기도 · 하단 토글화 · Auctionator 패치)'
   },
   'tab-talent': {
     v: '2026-11-22-v1',
