@@ -33,7 +33,9 @@
    - `CharExport (v2.3.0)`: 로컬 커스텀 애드온 — `/ce`(스탯·버프·특성·장비·스킬+재료시세) 및 `/ce ah` · `/cea`(제작재료 시세 전용) 지원. 가방 보유 아이템 시세는 제외하고 **① 무두질·가죽/비늘(27종, 사냥터 최적화용)** · **② 마법부여(52종, 1~300·막대·오일·포에버 특수)** · **③ 재봉술·옷감/캐스터 템(35종, 전환 1~300·장비 제작용)** 총 **114종** 추적.
    - `BetterBlizzFrames (v2.2.3c)`: `.toc` Interface가 `120105, 120100`으로 표기되어 있어 접속 시 '구버전 애드온 불러오기' 체크 필요.
 2. **✅ `RangeDisplay (v6.3.7)` — `폴-최` 활성 확인 (`enabled`, 적대적 대상 전용)**: `SavedVariables\RangeDisplay.lua` 실측상 `enemyOnly = true`, `mouseover = false`, 장거리 구간 `lrSection = 33m`로 설정되어 있습니다. *(비전 마법사 주력 사거리 `30m`에 맞춰 `/rangedisplay` → Target → `30`으로 조정 시 사거리 구분이 더욱 선명합니다.)*
-3. **🟡 메모리·로딩 경량화 선택 정리 대상**:
+3. **✅ `Auctionator (v349)` 툴팁 데드락 패치 (`2026-11-23` 적용)**:
+   - 포에버(`IsForever`) + 한국어 클라에서 랜덤 접두사 장비 마우스오버 시 `Source\Utilities\DBKeyFromLink.lua`의 `SuffixesToLabel` 미매칭으로 콜백이 호출되지 않아 `Source\Tooltips\Main.lua`의 `waitingForPricing`이 영구 잠금되던 버그를 `else callback({basicKey}) end` 및 `pcall` 가드로 패치 완료 *(애드온 업데이트 시 재확인 필요)*.
+4. **🟡 메모리·로딩 경량화 선택 정리 대상**:
    - `SpokenQuestsAudioHorde_koKR (v0.0.3)`: 얼라이언스(`폴-최`) 전용 플레이 시 꺼두면 로딩/메모리 절약 가능.
    - `QuestieTrace (v1.13.0)` & `SpokenContributions (v3.10.1)`: 개발자 DB 제보/수집용 로거이므로 기여 목적이 아니면 비활성화해도 본 기능 정상 작동.
    - `Details_Streamer` / `Details_Vanguard`: 방송/탱커 전용 플러그인이라 평소 꺼둬도 무방.
