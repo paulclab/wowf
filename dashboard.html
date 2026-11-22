@@ -3644,7 +3644,7 @@
       <div class="char-mini">
         <div class="stat-cell"><span class="k">레벨 / HP·MP</span><span class="v">Lv.30 · 905 / 1,833</span></div>
         <div class="stat-cell"><span class="k">비전 주문력</span><span class="v arcane">+142 (67+75)</span></div>
-        <div class="stat-cell"><span class="k">마부 / 무두</span><span class="v gold">71 / 198</span></div>
+        <div class="stat-cell"><span class="k">마부 / 무두</span><span class="v gold">127 / 198</span></div>
         <div class="stat-cell"><span class="k">요리·응급·낚시</span><span class="v">150 · 91 · 5</span></div>
       </div>
     </div>
@@ -3669,7 +3669,7 @@
       <div class="nav-group">
         <div class="nav-group-label">02. 모험 (Adventure)</div>
         <button class="nav-btn" data-tab="tab-prof" data-group="모험" data-title="전문기술" onclick="openTab('tab-prof', this)">
-          <span>전문기술</span><span class="pill">마부 71</span>
+          <span>전문기술</span><span class="pill">마부 127</span>
         </button>
         <button class="nav-btn" data-tab="tab-quests" data-group="모험" data-title="던전 &amp; 퀘스트 (다음 목표 · 5인 던전 · 연퀘 · 완료)" onclick="openTab('tab-quests', this)">
           <span>던전 &amp; 퀘스트</span><span class="pill">발굴현장</span>
@@ -3794,7 +3794,7 @@
             <div class="kpi"><div class="label">HP / MP</div><div class="val">905 / 1,833</div><div class="sub">방어도 434 · 회피 4.3%</div></div>
             <div class="kpi"><div class="label">비전 유효 주문력</div><div class="val" style="color:var(--arcane);">+142</div><div class="sub">일반 67 + 비전 75</div></div>
             <div class="kpi"><div class="label">체력 / 지능 / 정신</div><div class="val">69 / 100 / 67</div><div class="sub">치명 5.7% · 비시전 MP5 73 · 관통 15</div></div>
-            <div class="kpi"><div class="label">전문 · 보조 기술</div><div class="val" style="color:var(--gold);">마부 71 · 무두 198</div><div class="sub">요리 150 · 응급 91 · 낚시 5</div></div>
+            <div class="kpi"><div class="label">전문 · 보조 기술</div><div class="val" style="color:var(--gold);">마부 127 · 무두 198</div><div class="sub">요리 150 · 응급 91 · 낚시 5</div></div>
           </div>
         </div>
 
@@ -4466,8 +4466,8 @@
       <!-- TAB: PROFESSIONS (261122 PER-PROFESSION TOGGLE MENUS + ACTIONABLE KPI SUBTEXT + GRID-3 SPACING FIX) -->
       <section id="tab-prof" class="tab">
         <div class="kpi-grid">
-          <div class="kpi"><div class="label">마법부여 (주력 유지)</div><div class="val" style="color: var(--arcane);">71 &rarr; 175</div><div class="sub">지금: 가슴 최하급 흡수(상급정수 분해) &middot; 75 루칸 승급(5s) &rarr; 125 아조라(50s)</div></div>
-          <div class="kpi"><div class="label">71&rarr;130 / 140 / 175</div><div class="val" style="color: var(--verified);">~2.28g / ~2.82g / ~5.43g</div><div class="sub">99&rarr;130 망토 보호 &middot; 130 은마법막대(경매 베이스) &middot; 131+ 손목 체+4</div></div>
+          <div class="kpi"><div class="label">마법부여 (현재 숙련)</div><div class="val" style="color: var(--arcane);">127 &rarr; 175</div><div class="sub">재봉 전환 전: 망토 방어+20(115) &middot; 오일 2~3병 제작 &middot; 5레벨 추출부캐 생성</div></div>
+          <div class="kpi"><div class="label">재봉 전환 시 1&rarr;125</div><div class="val" style="color: var(--verified);">~2g 72s</div><div class="sub">11/22 밤 시세(재료 2.17g+훈련 55s) &middot; Lv.60 대마법사로브/붉은덩굴 3셋 특권</div></div>
           <div class="kpi"><div class="label">무두질 / 요리</div><div class="val" style="color: var(--gold);">198 / 150</div><div class="sub">무두 200 시 스톰윈드 마리스 승급(4.5g) &middot; 요리 150 보류(칼림도어 시 225)</div></div>
           <div class="kpi"><div class="label">응급치료 / 낚시</div><div class="val">91 / 5</div><div class="sub">응급: 양모 붕대(115 두꺼운 양모&rarr;125 스트롬가드) &middot; 낚시: 운하 5&rarr;50</div></div>
         </div>
@@ -4480,8 +4480,15 @@
         <div class="prof-fold-stack" id="profFoldStack">
           <!-- 1. ENCHANTING -->
           <details class="fold-card">
-            <summary><span>✨ <strong>마법부여 (Enchanting)</strong> &mdash; <code>71 &rarr; 175</code> 최저가 루트 &middot; 재료 시세 &middot; 도감 18종 <span class="badge arcane">주력 1순위</span></span></summary>
+            <summary><span>✨ <strong>마법부여 (Enchanting)</strong> &mdash; 현재 <code>127</code> &middot; 전환 전 체크리스트 &middot; 시세 &middot; 도감 18종 <span class="badge arcane">현재 127</span></span></summary>
             <div class="fold-body">
+              <div class="callout warn" style="margin-top:0; margin-bottom:12px;">
+                <strong>✅ 현재 마법부여 <code>127</code> &rarr; 재봉술 전환 직전 필수 체크리스트 (삭제해도 발린 마부는 유지됨!):</strong><br>
+                1. <strong>가방·창고 녹·파템 전량 마력 추출 + <code>Lv.5+</code> 추출용 부캐 세팅:</strong> 와우 포에버는 Lv.5+ 숙련 1 부캐로도 전 구간 장비 추출이 가능합니다.<br>
+                2. <strong>망토(<code>하급 보호 +20</code>, 숙련 115):</strong> 이미 <code>은마법막대</code>가 있다면 <code>이상한 가루 3 + 작은 결정 1</code>(<code>~7s 27c</code>)로 <code>+10 &rarr; +20</code> 발라두고 넘어가세요.<br>
+                3. <strong><code>최하급 마술사 오일 (+8)</code> 여분 제작:</strong> 마부 없이도 사용 가능하므로 남은 가루로 2~3병 제작 (단, <code>마력 깃든 류트</code>는 마부 20 제한이라 불가).<br>
+                4. <strong>⚠️ 절대 건드리지 말 것:</strong> 방어구 키트 4부위(가슴·장갑·다리·장화) 덮어쓰기 금지! 손목 체력 +4(130 필요)를 위해 억지로 +3pt 올릴 필요 없음.
+              </div>
               <div class="callout verified" style="margin-top:0; margin-bottom:12px;">
                 <strong>💡 핵심 설명 &amp; 최신 최저가 공식 (<code>상급 마법의 정수</code> 4.90s 분해):</strong> 장비를 마력 추출해 가루·정수로 변환하고, 아군 장비에 스탯과 오일(+8~+16 주문력)을 부여하는 주력 기술입니다. <code>하급 마법의 정수</code> 경매가(<code>2.30s</code>)가 크게 떨어졌지만, <strong><code>상급 마법의 정수</code>(4.90s)를 사서 우클릭 분해하면 3개(개당 <code>1.63s</code>)가 되어 여전히 30% 저렴</strong>합니다! <code>이상한 가루</code>도 <code>1.30s</code>까지 내려가 <strong>71&rarr;130 총비용이 ~2.28g</strong>입니다. <em>(⚠️ 모든 레시피·재료 이름 클릭/호버 시 획득처 툴팁 표시!)</em>
               </div>
@@ -5744,7 +5751,7 @@
         <div class="card patch-impact-card">
           <h2><span>⚡ <span class="mark">내 캐릭터 직·간접 영향 핵심 요약</span> (최상단 고정)</span> <span class="badge gold">2026-11-21 KST 기준</span></h2>
           <div class="callout warn" style="margin-top:0;">
-            <strong>대상 캐릭터:</strong> Lv.30 휴먼 비전 (HP 905 / MP 1,833 · 비전 +142[일반 67+비전 75] · 마부 71 / 무두 198 / 요리 150 / 응급 91 / 낚시 5)
+            <strong>대상 캐릭터:</strong> Lv.31 휴먼 비전 (HP 905 / MP 1,833 · 비전 +142[일반 67+비전 75] · 마부 127 / 무두 198 / 요리 150 / 응급 91 / 낚시 5)
           </div>
 
           <h3>🔴 직접 영향 (지금 플레이·전문기술·스킬 운용에 즉시 반영)</h3>
@@ -8499,10 +8506,10 @@ const WOW_DB = {
     note: '✅ 200→300 승급(4g 50s)으로 Lv.35+ 두꺼운/튼튼한 가죽 수익 확보 필수!'
   },
   '마법부여': {
-    en: 'Enchanting', kind: '주 전문기술 · 현재 숙련 71', quality: 'spell', icon: 'inv_staff_01',
-    rows: [['현재 숙련: 71 (75 숙련 승급 직전)', '125 전문: 아조라의 탑 키타'], ['225 대가: 울다만 안노라', '125 제작: 수습생의 보주']],
-    desc: '장비를 마력 추출해 가루·정수를 얻고 아군 장비에 스탯을 부여합니다. 제작 마술봉 1코퍼 너프로 99→130 구간은 망토 최하급 보호로 대체합니다.',
-    note: '⭐ 최하급 마술사 오일(+8) 상시 도포 & 125 수습생의 보주 제작 목표'
+    en: 'Enchanting', kind: '주 전문기술 · 현재 숙련 127', quality: 'spell', icon: 'inv_staff_01',
+    rows: [['현재 숙련: 127 (전문 225 승급 가능)', '125 전문: 아조라의 탑 키타'], ['225 대가: 울다만 안노라', '전환 시 Lv.5+ 마부 1 부캐 추출용 추천']],
+    desc: '장비를 마력 추출해 가루·정수를 얻고 장비에 스탯을 부여합니다. 와우 포에버에서는 Lv.5+ 숙련 1 부캐로도 전 구간 마력 추출이 가능합니다.',
+    note: '⭐ 재봉 전환 전: 가방 녹·파템 전량 추출 & 망토 방어+20 / 오일 2~3병 확보'
   },
   '응급치료': {
     en: 'First Aid', kind: '보조기술 · 현재 숙련 91', quality: 'uncommon', icon: 'inv_misc_book_02',
@@ -10653,8 +10660,8 @@ const RECENTLY_UPDATED_TABS = {
     text: '최근 업데이트 (11/22): Lv.30 신비한 명상 3/3 (21/0/0) · 특성 트리 시뮬레이션/무제한 모드'
   },
   'tab-prof': {
-    v: '2026-11-22-v3',
-    text: '최근 업데이트 (11/22 23:14): 마법부여 vs 재봉술 전환 분석 · 11/22 밤 시세 차트 & 재봉 1→125/제작품 원가 반영'
+    v: '2026-11-23-v1',
+    text: '최근 업데이트 (11/23): 마법부여 127 반영 · 재봉술 전환 직전 체크리스트(망토+20/오일/Lv.5+ 추출부캐) 추가'
   }
 };
 

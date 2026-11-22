@@ -1,6 +1,6 @@
 # 06. 와우 포에버 (`1.60.1`) 최근 패치노트 & 핫픽스 로그 (KST 기준)
 
-> **영구 작성 규칙**: 이 문서 및 `dashboard.html` / `dashboard_memphis.html`의 패치노트 탭 최상단에는 **항상 현재 캐릭터(Lv.30 인간 비전 마법사 `폴` · `빚 수금인` 장착 · 마법부여 71 / 무두질 198 / 요리 150 / 응급치료 91 / 낚시 5)에 직·간접적으로 영향을 미치는 중요사항**을 최우선 배치합니다.
+> **영구 작성 규칙**: 이 문서 및 `dashboard.html` / `dashboard_memphis.html`의 패치노트 탭 최상단에는 **항상 현재 캐릭터(Lv.31 인간 비전 마법사 `폴` · `빚 수금인` 장착 · 마법부여 127 / 무두질 198 / 요리 150 / 응급치료 91 / 낚시 5)에 직·간접적으로 영향을 미치는 중요사항**을 최우선 배치합니다.
 
 교차 검증 출처: [Blizzard 공식 포럼](https://us.forums.blizzard.com/en/wow/), [WOWF.IO 한국어 뉴스](https://wowf.io/ko/), [와우 인벤 정보 게시판 (1896)](https://www.inven.co.kr/board/wow/1896), [와우 인벤 포에버 게시판 (6567)](https://www.inven.co.kr/board/wow/6567)
 
