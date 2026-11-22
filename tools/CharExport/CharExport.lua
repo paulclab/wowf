@@ -1,6 +1,3 @@
-local ADDON_NAME = ...
-CharExportDB = CharExportDB or { recipes = {} }
-
 -- === 1. UI Popup Window ===
 local f = CreateFrame("Frame", "CharExportFrame", UIParent)
 f:SetSize(640, 520)
@@ -19,7 +16,7 @@ bg:SetColorTexture(0.05, 0.07, 0.13, 0.95)
 
 local title = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 title:SetPoint("TOPLEFT", 14, -10)
-title:SetText("CharExport v2.0 (Ctrl+C 복사 후 ESC로 닫기 · 드래그 이동 가능)")
+title:SetText("CharExport v2.2 (/ce 캐릭터+시세 · /ce ah 경매장시세전용 · Ctrl+C 복사 후 ESC)")
 
 local close = CreateFrame("Button", nil, f, "UIPanelCloseButton")
 close:SetPoint("TOPRIGHT", -4, -4)
@@ -57,70 +54,7 @@ local function SpellNameByID(id)
   return nil
 end
 
-local function EnsureDB()
-  if type(CharExportDB) ~= "table" then CharExportDB = {} end
-  if type(CharExportDB.recipes) ~= "table" then CharExportDB.recipes = {} end
-end
-
--- === 3. Event Caching for Profession Recipes (pcall-safe for 1.60.1) ===
-local ev = CreateFrame("Frame")
-for _, evt in ipairs({
-  "ADDON_LOADED",
-  "TRADE_SKILL_SHOW", "TRADE_SKILL_LIST_UPDATE", "TRADE_SKILL_DATA_SOURCE_CHANGED", "TRADE_SKILL_UPDATE",
-  "CRAFT_SHOW", "CRAFT_UPDATE"
-}) do
-  pcall(ev.RegisterEvent, ev, evt)
-end
-
-local function ScanTradeWindow()
-  EnsureDB()
-  if GetNumTradeSkills and GetTradeSkillLine then
-    local ok, prof = pcall(GetTradeSkillLine)
-    if ok and type(prof) == "string" and prof ~= "" and prof ~= "UNKNOWN" then
-      local list, seen = {}, {}
-      local n = GetNumTradeSkills() or 0
-      for i = 1, n do
-        local name, kind = GetTradeSkillInfo(i)
-        if name and kind ~= "header" and kind ~= "subheader" and not seen[name] then
-          seen[name] = true
-          list[#list + 1] = name
-        end
-      end
-      if #list > 0 then CharExportDB.recipes[prof] = list end
-    end
-  end
-end
-
-local function ScanCraftWindow()
-  EnsureDB()
-  if GetNumCrafts and GetCraftDisplaySkillLine then
-    local ok, prof = pcall(GetCraftDisplaySkillLine)
-    if ok and type(prof) == "string" and prof ~= "" then
-      local list, seen = {}, {}
-      local n = GetNumCrafts() or 0
-      for i = 1, n do
-        local name, _, kind = GetCraftInfo(i)
-        if name and kind ~= "header" and kind ~= "subheader" and not seen[name] then
-          seen[name] = true
-          list[#list + 1] = name
-        end
-      end
-      if #list > 0 then CharExportDB.recipes[prof] = list end
-    end
-  end
-end
-
-ev:SetScript("OnEvent", function(_, event, arg1)
-  if event == "ADDON_LOADED" and arg1 == ADDON_NAME then
-    EnsureDB()
-  elseif event == "TRADE_SKILL_SHOW" or event == "TRADE_SKILL_LIST_UPDATE" or event == "TRADE_SKILL_DATA_SOURCE_CHANGED" or event == "TRADE_SKILL_UPDATE" then
-    pcall(ScanTradeWindow)
-  elseif event == "CRAFT_SHOW" or event == "CRAFT_UPDATE" then
-    pcall(ScanCraftWindow)
-  end
-end)
-
--- === 4. Talents (1.60.1 C_Traits + Spent Nodes) ===
+-- === 3. Talents (1.60.1 C_Traits + Spent Nodes) ===
 local function GetTalentsDetailed()
   if not (C_ClassTalents and C_ClassTalents.GetActiveConfigID and C_Traits and C_Traits.GetConfigInfo) then
     return "?", {}
@@ -295,10 +229,8 @@ local function GetLearnedSpellsLines()
   return lines
 end
 
--- === 8. Professions & Learned Recipes ===
-local function GetProfessionsLines()
-  EnsureDB()
-  local profLines = {}
+-- === 7. Profession Skill Ranks (Compact 1-Line) ===
+local function GetProfessionsSummary()
   local found = {}
   if GetProfessions and GetProfessionInfo then
     for i = 1, 6 do
@@ -306,7 +238,7 @@ local function GetProfessionsLines()
       if idx then
         local name, _, rank, maxRank = GetProfessionInfo(idx)
         if name then
-          found[#found + 1] = { name = name, rank = rank or 0, max = maxRank or 0 }
+          found[#found + 1] = format("%s %d/%d", name, rank or 0, maxRank or 0)
         end
       end
     end
@@ -317,44 +249,213 @@ local function GetProfessionsLines()
       if h then
         sec = n
       elseif n and r and r > 0 and (sec == TRADE_SKILLS or sec == SECONDARY_SKILLS or sec == "전문 기술" or sec == "보조 기술" or sec == "Professions" or sec == "Secondary Skills") then
-        found[#found + 1] = { name = n, rank = r, max = mx or 0 }
+        found[#found + 1] = format("%s %d/%d", n, r, mx or 0)
       end
     end
   end
-
-  local EN_MAP = {
-    ["요리"]="Cooking", ["응급치료"]="First Aid", ["마법부여"]="Enchanting",
-    ["재봉술"]="Tailoring", ["가죽세공"]="Leatherworking", ["연금술"]="Alchemy"
-  }
-  for _, pr in ipairs(found) do
-    local rec = CharExportDB.recipes[pr.name]
-    if (not rec or #rec == 0) and type(MastercraftDB) == "table" and type(MastercraftDB.recipes) == "table" then
-      local myKey = UnitGUID and UnitGUID("player")
-      local mc = myKey and MastercraftDB.recipes[myKey]
-      local enKey = EN_MAP[pr.name] or pr.name
-      local tbl = type(mc) == "table" and mc[enKey]
-      if type(tbl) == "table" and type(tbl.list) == "table" and #tbl.list > 0 then
-        rec = {}
-        for _, item in ipairs(tbl.list) do
-          if type(item) == "table" and item.name then rec[#rec + 1] = item.name end
-        end
-      end
-    end
-    if rec and #rec > 0 then
-      profLines[#profLines + 1] = format("- %s (%d/%d) [%d종]: %s", pr.name, pr.rank, pr.max, #rec, table.concat(rec, ", "))
-    else
-      profLines[#profLines + 1] = format("- %s (%d/%d): (해당 기술 창을 1번 열면 배운 목록 자동 기록)", pr.name, pr.rank, pr.max)
-    end
-  end
-  return profLines
+  return #found > 0 and table.concat(found, ", ") or nil
 end
 
--- === 9. Slash Command /ce ===
+-- === 8. Auctionator Market & Bag Price Integration ===
+local WATCH_MATS = {
+  {10940, "이상한 가루"},
+  {11083, "영혼 가루"},
+  {11137, "환상 가루"},
+  {10938, "하급 마법의 정수"},
+  {10939, "상급 마법의 정수"},
+  {10998, "하급 신비의 정수"},
+  {11082, "상급 신비의 정수"},
+  {11134, "하급 황천의 정수"},
+  {11135, "상급 황천의 정수"},
+  {10978, "하급 눈부신 조각"},
+  {11084, "상급 눈부신 조각"},
+  {20744, "최하급 마술사 오일"},
+  {20746, "하급 마술사 오일"},
+  {2318,  "얇은 가죽"},
+  {2319,  "일반 가죽"},
+  {4234,  "질긴 가죽"},
+  {4304,  "두꺼운 가죽"},
+  {2589,  "리넨 옷감"},
+  {2592,  "양모 옷감"},
+  {4306,  "비단 옷감"},
+  {4338,  "마법 옷감"},
+}
+
+local function FormatCopper(copper)
+  if type(copper) ~= "number" then return "-" end
+  copper = math.floor(copper + 0.5)
+  if copper < 0 then copper = 0 end
+  local g = math.floor(copper / 10000)
+  local s = math.floor((copper % 10000) / 100)
+  local c = copper % 100
+  if g > 0 then return format("%dg %ds %dc", g, s, c) end
+  if s > 0 then return format("%ds %dc", s, c) end
+  return format("%dc", c)
+end
+
+local function ItemNameByID(id, fallback)
+  if C_Item and C_Item.GetItemNameByID then
+    local ok, n = pcall(C_Item.GetItemNameByID, id)
+    if ok and type(n) == "string" and n ~= "" then return n end
+  end
+  if GetItemInfo then
+    local ok, n = pcall(GetItemInfo, id)
+    if ok and type(n) == "string" and n ~= "" then return n end
+  end
+  return fallback or ("아이템#" .. tostring(id))
+end
+
+local function HasAuctionatorAPI()
+  return Auctionator and Auctionator.API and Auctionator.API.v1
+    and Auctionator.API.v1.GetAuctionPriceByItemID ~= nil
+end
+
+local function QueryItemPrices(itemID, itemLink)
+  local api = Auctionator.API.v1
+  local ah, age, de, vendor
+  if itemLink and api.GetAuctionPriceByItemLink then
+    local ok, v = pcall(api.GetAuctionPriceByItemLink, "CharExport", itemLink)
+    if ok and type(v) == "number" then ah = v end
+  end
+  if not ah and itemID and api.GetAuctionPriceByItemID then
+    local ok, v = pcall(api.GetAuctionPriceByItemID, "CharExport", itemID)
+    if ok and type(v) == "number" then ah = v end
+  end
+  if itemLink and api.GetAuctionAgeByItemLink then
+    local ok, v = pcall(api.GetAuctionAgeByItemLink, "CharExport", itemLink)
+    if ok and type(v) == "number" then age = v end
+  elseif itemID and api.GetAuctionAgeByItemID then
+    local ok, v = pcall(api.GetAuctionAgeByItemID, "CharExport", itemID)
+    if ok and type(v) == "number" then age = v end
+  end
+  if itemLink and api.GetDisenchantPriceByItemLink then
+    local ok, v = pcall(api.GetDisenchantPriceByItemLink, "CharExport", itemLink)
+    if ok and type(v) == "number" and v > 0 then de = v end
+  elseif itemID and api.GetDisenchantPriceByItemID then
+    local ok, v = pcall(api.GetDisenchantPriceByItemID, "CharExport", itemID)
+    if ok and type(v) == "number" and v > 0 then de = v end
+  end
+  if itemID and api.GetVendorPriceByItemID then
+    local ok, v = pcall(api.GetVendorPriceByItemID, "CharExport", itemID)
+    if ok and type(v) == "number" and v > 0 then vendor = v end
+  end
+  return ah, age, de, vendor
+end
+
+local function CollectBagItems()
+  local byKey, order = {}, {}
+  local maxBag = NUM_BAG_SLOTS or 4
+  for bag = 0, maxBag do
+    local numSlots = (C_Container and C_Container.GetContainerNumSlots and C_Container.GetContainerNumSlots(bag))
+      or (GetContainerNumSlots and GetContainerNumSlots(bag)) or 0
+    for slot = 1, numSlots do
+      local info = C_Container and C_Container.GetContainerItemInfo and C_Container.GetContainerItemInfo(bag, slot)
+      local link = (info and info.hyperlink) or (GetContainerItemLink and GetContainerItemLink(bag, slot))
+      if link then
+        local id = (info and info.itemID) or tonumber(link:match("item:(%d+)"))
+        local count = (info and info.stackCount) or 1
+        local isBound = info and info.isBound
+        local name = (info and info.itemName) or link:match("%[(.-)%]") or ItemNameByID(id)
+        local key = (isBound and "B:" or "T:") .. tostring(id or name)
+        if not byKey[key] then
+          byKey[key] = { id = id, link = link, name = name, count = 0, isBound = isBound }
+          order[#order + 1] = byKey[key]
+        end
+        byKey[key].count = byKey[key].count + count
+      end
+    end
+  end
+  return order
+end
+
+local function AppendAuctionatorLines(out, detailed)
+  if not HasAuctionatorAPI() then
+    out[#out + 1] = "(Auctionator 애드온이 비활성 상태이거나 아직 로드되지 않았습니다.)"
+    return
+  end
+
+  local bagItems = CollectBagItems()
+  local pricedBagCount = 0
+  local totalBagAH = 0
+  out[#out + 1] = "[가방 보유 아이템 시세]"
+  for _, it in ipairs(bagItems) do
+    local ah, age, de, vendor = QueryItemPrices(it.id, it.link)
+    if not it.isBound and (ah or de or (detailed and vendor)) then
+      pricedBagCount = pricedBagCount + 1
+      local parts = {}
+      if ah then
+        local tot = ah * it.count
+        totalBagAH = totalBagAH + tot
+        if it.count > 1 then
+          parts[#parts + 1] = format("개당 %s (합계 %s)", FormatCopper(ah), FormatCopper(tot))
+        else
+          parts[#parts + 1] = "경매가 " .. FormatCopper(ah)
+        end
+        if age ~= nil then parts[#parts + 1] = (age == 0 and "오늘" or (age .. "일전")) end
+      elseif detailed then
+        parts[#parts + 1] = "경매가 미스캔"
+      end
+      if de then parts[#parts + 1] = "추출기댓값 " .. FormatCopper(de) end
+      if detailed and vendor then parts[#parts + 1] = "상점 " .. FormatCopper(vendor) end
+      out[#out + 1] = format("- %s x%d | %s", it.name, it.count, table.concat(parts, " | "))
+    elseif it.isBound and detailed and de then
+      pricedBagCount = pricedBagCount + 1
+      out[#out + 1] = format("- %s x%d (귀속) | 추출기댓값 %s", it.name, it.count, FormatCopper(de))
+    end
+  end
+  if pricedBagCount == 0 then
+    out[#out + 1] = "(가방에 Auctionator 시세가 기록된 거래 아이템 없음 — 경매장에서 '전체 스캔' 실행 필요)"
+  elseif totalBagAH > 0 then
+    out[#out + 1] = "=> 가방 거래 아이템 경매가 총합(추정): " .. FormatCopper(totalBagAH)
+  end
+
+  out[#out + 1] = ""
+  out[#out + 1] = "[마부·가죽·옷감·오일 핵심 시세]"
+  local matShown = 0
+  for _, m in ipairs(WATCH_MATS) do
+    local id, fallback = m[1], m[2]
+    local ah, age = QueryItemPrices(id, nil)
+    local label = ItemNameByID(id, fallback)
+    if ah then
+      matShown = matShown + 1
+      local ageTxt = age ~= nil and (age == 0 and "오늘" or (age .. "일전")) or "-"
+      out[#out + 1] = format("- %s (ID:%d): %s (%s)", label, id, FormatCopper(ah), ageTxt)
+    elseif detailed then
+      matShown = matShown + 1
+      out[#out + 1] = format("- %s (ID:%d): 미스캔", label, id)
+    end
+  end
+  if matShown == 0 then
+    out[#out + 1] = "(기록된 재료 시세 없음 — 경매장 열어서 Auctionator '전체 스캔' 후 다시 시도)"
+  end
+end
+
+-- === 9. Slash Commands /ce, /ce ah, /cea ===
 SLASH_CHAREXPORT1 = "/ce"
 SLASH_CHAREXPORT2 = "/charexport"
-SlashCmdList["CHAREXPORT"] = function()
-  pcall(ScanTradeWindow)
-  pcall(ScanCraftWindow)
+SLASH_CHAREXPORTAH1 = "/cea"
+
+local function OpenMarketOnly()
+  local out = {}
+  out[#out + 1] = format("=== 경매장·가방 시세 스냅샷 (%s) ===", date("%Y-%m-%d %H:%M"))
+  out[#out + 1] = format("캐릭터: %s (Lv.%d) | 소지금: %s",
+    UnitName("player") or "?", UnitLevel("player") or 0, FormatCopper(GetMoney and GetMoney() or 0))
+  out[#out + 1] = ""
+  AppendAuctionatorLines(out, true)
+  eb:SetText(table.concat(out, "\n"))
+  f:Show()
+  eb:SetFocus()
+  eb:HighlightText()
+end
+
+SlashCmdList["CHAREXPORTAH"] = OpenMarketOnly
+
+SlashCmdList["CHAREXPORT"] = function(msg)
+  local arg = type(msg) == "string" and msg:lower():gsub("^%s*(.-)%s*$", "%1") or ""
+  if arg == "ah" or arg == "price" or arg == "market" or arg == "시세" then
+    OpenMarketOnly()
+    return
+  end
 
   local p = "player"
   local okT, talSum, talLines = pcall(GetTalentsDetailed)
@@ -372,6 +473,10 @@ SlashCmdList["CHAREXPORT"] = function()
   out[#out+1] = format("체력: %d | 지능: %d | 정신력: %d", sta or 0, intel or 0, spi or 0)
   out[#out+1] = format("일반 주문력: %d | 비전 주문력: %d | 치명타: %.2f%% | 가속: %.2f%%",
     GetSpellBonusDamage(3) or 0, GetSpellBonusDamage(7) or 0, GetSpellCritChance(7) or 0, haste)
+  local okPr, profSummary = pcall(GetProfessionsSummary)
+  if okPr and type(profSummary) == "string" and profSummary ~= "" then
+    out[#out+1] = "전문기술: " .. profSummary
+  end
 
   out[#out+1] = ""
   out[#out+1] = "=== 1. 현재 활성 버프 (계산 보정용) ==="
@@ -403,17 +508,17 @@ SlashCmdList["CHAREXPORT"] = function()
   end
 
   out[#out+1] = ""
-  out[#out+1] = "=== 4. 전문기술 & 배운 도안 ==="
-  local okP, pLines = pcall(GetProfessionsLines)
-  if okP and type(pLines) == "table" then
-    for _, l in ipairs(pLines) do out[#out+1] = l end
-  end
-
-  out[#out+1] = ""
-  out[#out+1] = "=== 5. 배운 스킬 & 등급 ==="
+  out[#out+1] = "=== 4. 배운 스킬 & 등급 ==="
   local okS, sLines = pcall(GetLearnedSpellsLines)
   if okS and type(sLines) == "table" then
     for _, l in ipairs(sLines) do out[#out+1] = l end
+  end
+
+  out[#out+1] = ""
+  out[#out+1] = "=== 5. 가방 & 주요 재료 시세 (Auctionator) ==="
+  local okA, errA = pcall(AppendAuctionatorLines, out, false)
+  if not okA then
+    out[#out+1] = "시세 조회 오류: " .. tostring(errA)
   end
 
   eb:SetText(table.concat(out, "\n"))

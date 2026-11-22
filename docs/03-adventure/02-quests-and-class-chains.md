@@ -56,7 +56,24 @@
 
 ---
 
-## 2. 추천 (Recommended — 26~35레벨 다음 퀘스트)
+## 2. 추천 (Recommended — 26~35레벨 다음 던전 · 퀘스트)
+
+### A-0. 다음 목표 인던: `발굴 현장: 저습지 (Excavation Site: Wetlands, Lv.26~33)` ⭐
+- **인던 구분**: 와우 포에버에서 새로 추가한 **5인 전용 인스턴스 던전(인던)** (`[📘 애드온 DB 실측: ForeverDungeonJournal]`).
+- **외부 이정표 → 내부 포탈 진입 동선**:
+  - **외부 이정표**: `동부왕국 > 저습지 남동부 > 텔겐 바위 (Thelgen Rock) 거미 동굴 앞 (53.2, 65.8)` 만남의 돌
+  - **실제 인던 포탈**: 웰가르의 발굴현장 남동쪽 언덕 위로 올라간 큰 나무 아래 **푸른 안개 포탈 (`47.7, 56.2`)**
+- **얼라이언스 던전 퀘스트 5종**:
+  - `고원 가죽 (Highland Hides, Lv.28 · 요구 24)`: `제임스 할로란` (`[저습지 메네실 항구 (8.0, 55.0)]`) → 덤불 랩터 가죽 4개 (`1,150 XP`)
+  - `Songblade Search` → `Fallen in the Fen` (`Lv.31 · 요구 24`): `Dorin Songblade` (`[붉은마루 산맥 (25.6, 46.6)]`) → 던전 내 `Daewyn Songblade` 연계 (`6,150 + 3,150 XP`, 보상 선택 `Daewyn's Girdle`)
+  - `고원의 공포 (Horrors in the Highland, Lv.31 · 요구 24)`: `녹색수호자 레시엘` (`[저습지 푸른 지대 (56.2, 40.6)]`) → `Highland Horror` 처치 (`6,150 XP`, 보상 선택 `Curl of Life`)
+  - `Heartwoven` (`Lv.31 · 요구 24`): 던전 내 `Ardin Grassman` (`Lost in the Thicket Things` 후속) → 메네실 항구 `Caitlin Grassman` (`6,150 XP`, 물약 묶음)
+  - `선사시대의 프리즘 (Prehistoric Prism, Lv.31 · 요구 24)`: `발굴조사단장 웰가르` (`[저습지 (38.8, 52.4)]`) → 막넴 `Relic Guardian` 처치 → 아이언포지 탐험가의 전당 `High Explorer Magellas` (`3,150 XP`, 보상 선택 `Healer's Staff`)
+- **🎯 마법사용 득템 & 현재 Lv.30 장비 대비**:
+  - **2넴 `Shadetooth`**: **`Raptor's Gaze`** (보조장비, Lv.26) — `체+4 · 지+4 · 모든 주문+8` (현 `마술사의 현자 지팡이` 대비 **주문력 +5 상승 ✅**)
+  - **1넴 `Saltspine`**: **`Glinteye Slippers`** (발 천, Lv.26) — `체+9 · 정+6 · 모든 주문+7` (생존/냉기 스왑용 추천)
+  - **막넴 `Relic Guardian`**: **`Ring of Power Regulation`** (반지, Lv.28) — `MP5 +3 · 모든 주문+6`
+  - 기타(`Curl of Life`, `Daewyn's Girdle`, `Healer's Staff`, `Abandoned Leggings`): 현 장비가 우위이므로 마력 추출/상점 처분
 
 ### A. 마법사 전용 직업 퀘스트 (Lv.26~30)
 | 요구 레벨 | 퀘스트 연퀘 명칭 | 시작 NPC / 대륙 > 위치 | 최종 보상 및 핵심 가치 |
