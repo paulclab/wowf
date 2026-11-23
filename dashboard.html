@@ -3777,8 +3777,8 @@
         <button class="nav-btn" data-tab="tab-mech" data-group="시스템" data-title="실측 메커니즘 &amp; 딜 계산" onclick="openTab('tab-mech', this)">
           <span>실측 메커니즘 &amp; 딜 계산</span><span class="pill">0.96s</span>
         </button>
-        <button class="nav-btn" data-tab="tab-rules" data-group="시스템" data-title="경험치 · 캠핑 · 전투 규칙" onclick="openTab('tab-rules', this)">
-          <span>경험치 · 캠핑 · 전투 규칙</span><span class="pill">XP·5SR</span>
+        <button class="nav-btn" data-tab="tab-rules" data-group="시스템" data-title="인게임 규칙" onclick="openTab('tab-rules', this)">
+          <span>인게임 규칙</span><span class="pill">공식·XP</span>
         </button>
         <button class="nav-btn" data-tab="tab-macro" data-group="시스템" data-title="실전 매크로 북" onclick="openTab('tab-macro', this)">
           <span>실전 매크로 북</span><span class="pill">복사</span>
@@ -5472,122 +5472,201 @@
       </section>
 
       <!-- TAB: RULES -->
+      <!-- TAB: IN-GAME RULES (TOGGLE MENUS: HIT/CRIT FORMULAS + XP + CAMPING + DUNGEON/5SR) -->
       <section id="tab-rules" class="tab">
-        <!-- NEW: MOB XP ACQUISITION RULES (COLOR TIERS, FORMULAS, LIVE CALC) -->
-        <div class="card">
-          <h2>몬스터 레벨 · 이름 색별 경험치 획득 규칙 &amp; 공식 <span class="badge db">📘 ZD / 회색 한계 검증</span></h2>
-
-          <div class="xp-sim-bar">
-            <strong>내 캐릭터 레벨:</strong>
-            <input type="number" id="xpCharLvInput" class="xp-lv-input" min="6" max="59" value="28" oninput="renderXpRulesSim()">
-            <button class="sim-btn" onclick="setXpSimLv(28)">Lv.28 (현재)</button>
-            <button class="sim-btn" onclick="setXpSimLv(32)">Lv.32</button>
-            <button class="sim-btn" onclick="setXpSimLv(40)">Lv.40</button>
-            <button class="sim-btn" onclick="setXpSimLv(50)">Lv.50</button>
-            <div class="xp-summary-pills" id="xpSummaryPills"></div>
-          </div>
-
-          <div class="xp-formula-grid">
-            <div class="xp-formula-box">
-              <div class="xf-title">① 동렙 기본 경험치 (Base XP)</div>
-              <code>Base XP = 45 + 5 &times; 레벨</code><br>
-              <span>예: Lv.28 동렙 일반 몹 = <strong>185 XP</strong> (100% 기준)</span>
-            </div>
-            <div class="xp-formula-box">
-              <div class="xf-title">② 상위 레벨 몹 (+1 ~ +4, 상한 +20%)</div>
-              <code>Base &times; (1 + 0.05 &times; min(차이, 4))</code><br>
-              <span>1레벨당 +5%, <strong>+4레벨(+20%)에서 상한 고정!</strong></span>
-            </div>
-            <div class="xp-formula-box">
-              <div class="xf-title">③ 하위 레벨 몹 (노랑 하위 &amp; 초록)</div>
-              <code>Base &times; (1 - (내Lv - 몹Lv) &divide; ZD)</code><br>
-              <span>포에버는 <code>Base</code>에 <strong>몹Lv</strong> 반영 보정으로 저렙 감소폭이 더 가파름</span>
-            </div>
-            <div class="xp-formula-box">
-              <div class="xf-title">④ 회색 한계 (Gray Level = 0 XP)</div>
-              <code>Lv.6~39: 내Lv - &lfloor;내Lv/10&rfloor; - 5</code><br>
-              <code>Lv.40~59: 내Lv - &lfloor;내Lv/5&rfloor; - 1</code>
-            </div>
-          </div>
-
-          <h3>1) 몬스터 이름 색상별 6단계 구분 (입력 레벨 자동 연동)</h3>
-          <div class="table-wrap" style="margin-bottom:16px;">
-            <table>
-              <thead>
-                <tr><th>이름 / 레벨 색상</th><th>내 레벨 대비</th><th>해당 몹 레벨</th><th>경험치 배율 · 공식</th><th>비전 마법사 사냥 효율 판정</th></tr>
-              </thead>
-              <tbody id="xpColorTierBody"></tbody>
-            </table>
-          </div>
-
-          <h3>2) 레벨 차이별 실제 획득 경험치 비교 &amp; "왜 동렙 -1~-2가 최고 효율인가?"</h3>
-          <div class="table-wrap" style="margin-bottom:12px;">
-            <table>
-              <thead>
-                <tr><th>레벨 차이</th><th>몹 레벨 (색상)</th><th>표준 공식 XP</th><th>포에버 보정 XP (몹Lv 기준)</th><th>동렙 대비 %</th><th>사냥 효율 판단</th></tr>
-              </thead>
-              <tbody id="xpDiffTableBody"></tbody>
-            </table>
-          </div>
-
-          <div class="callout" style="margin-bottom:0;">
-            <strong>핵심 결론 (왜 동렙보다 1~2단계 낮은 몹이 빠른가?):</strong> <code>ZD=11</code>(Lv.20~29) 기준 <strong><code>-1 ~ -2</code>레벨(Lv.26~27 노랑 하위)</strong>은 몹당 경험치가 9~20%만 감소하지만, <strong>주문 빗나감 감소(4%&rarr;3%) · 몹 체력/공격력 하락 · 비전 1사이클 킬 확률 상승 · 물 마시는 빈도 급감</strong> 덕분에 실제 <strong>시간당 경험치(XP/hr)는 동렙이나 주황 몹보다 훨씬 높습니다!</strong> 반대로 <code>-4</code> 이하 초록 몹부터는 포에버 이중 감소 보정으로 효율이 급락하며, <code>+3</code> 주황 이상은 마법사 주문 저항/빗나감이 폭증해 비효율입니다.<br>
-            <em style="opacity:0.82;">참고 ZD 구간표: Lv.1~7(5) · 8~9(6) · 10~11(7) · 12~15(8) · 16~19(9) · <strong>20~29(11)</strong> · 30~39(12) · 40~44(13) · 45~49(14) · 50~54(15) · 55~59(16)</em>
-          </div>
+        <div class="prof-toggle-bar">
+          <span class="hint">📂 각 인게임 규칙 항목을 눌러 공식·비교표·계산기를 펼쳐보세요.</span>
+          <button type="button" class="quest-jump-btn" style="margin-top:0;" onclick="toggleAllRuleMenus()">전체 펼치기 / 접기</button>
         </div>
 
-        <!-- NEW: ZERO XP CASES & CAP CASES (WIDE 2-COL) -->
-        <div class="wide-grid-2">
-          <div class="card">
-            <h2>🚫 경험치 획득 불가 (<code>0 XP</code>) 케이스 총정리</h2>
-            <ul style="margin-top:0;">
-              <li><strong>① 회색(Gray) 몬스터 처치:</strong> 몹 레벨이 <code>Gray Level</code> 이하(현재 Lv.28 기준 <strong><code>Lv.21 이하</code></strong>)면 솔플·파티 무관 무조건 <code>0 XP</code>.</li>
-              <li><strong>② 인던 고레벨 동행 (포에버 12레벨 초과 룰):</strong> 파티 내 최고레벨 플레이어가 처치 몹보다 <strong>12레벨 초과(<code>13레벨 이상</code> 차이)</strong>일 경우 <strong>파티원 전원 몹 처치 XP <code>0</code></strong>! <em>(※ 던전 퀘스트 완료 보상 XP는 정상 지급 — 11/14~15 패치 반영)</em></li>
-              <li><strong>③ 타인 선점(회색 이름표 / Tap):</strong> 파티 외 다른 유저가 먼저 타격해 선점된 몬스터는 처치해도 <code>0 XP</code> 및 전리품 획득 불가.</li>
-              <li><strong>④ 경비병(NPC) 과다 기여 &amp; 특수 소환 쫄:</strong> 마을 경비병이 피해 대부분을 입힌 몹이나 보스전 무한 소환 쫄은 경험치 대폭 삭감 또는 <code>0 XP</code>.</li>
-              <li><strong>⑤ 만렙(Lv.60) 도달:</strong> 모든 몹 처치 XP <code>0</code> (퀘스트 완료 XP는 골드로 자동 전환).</li>
-            </ul>
-          </div>
+        <div class="prof-fold-stack" id="rulesFoldStack">
+          <!-- 1. SPELL HIT / LEVEL-DIFF MISS & CRIT DAMAGE BONUS MECHANICS (NEW!) -->
+          <details class="fold-card" open>
+            <summary><span>🎯 <strong>주문 적중(레벨 차 빗나감) &amp; 치명타 피해 보너스 공식</strong> &mdash; <code>정밀함</code> vs <code>신비한 정신</code> 비교 <span class="badge arcane">핵심 전투 공식</span></span></summary>
+            <div class="fold-body">
+              <h3 style="margin-top:0;">1) 레벨 차이별 기본 주문 빗나감(저항) 구조 &amp; <code>정밀함</code></h3>
+              <p style="margin-top:0; font-size:13px;">주문은 물리처럼 회피·무기막기가 없는 대신, <strong>대상과의 레벨 차이에 따른 기본 주문 빗나감(완전 저항) 확률</strong>이 존재합니다. 와우 포에버(<code>1.60.1</code>)에서는 기존 <code>신비한 집중</code>이 삭제되고 냉기 1티어 <strong><code>정밀함 (Precision)</code></strong>이 <strong>비전·화염·냉기 모든 학파 주문 적중 <code>+2% / +4% / +6%</code></strong>로 통합 개편되었습니다.</p>
+              <div class="table-wrap" style="margin-bottom:14px;">
+                <table>
+                  <thead>
+                    <tr><th>대상 레벨 차이</th><th>기본 적중률</th><th>기본 빗나감</th><th>만적중 필요치</th><th><code>정밀함</code> (2%/4%/6%) 체감 효과</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>내 레벨 -2 이하</strong> (초록)</td><td>98%</td><td><strong>2%</strong></td><td>2%</td><td><code>1/3 (+2%)</code>만으로 빗나감 완전 제거</td></tr>
+                    <tr><td><strong>내 레벨 -1</strong> (노랑 하위)</td><td>97%</td><td><strong>3%</strong></td><td>3%</td><td><code>2/3 (+4%)</code>로 100% 적중 (1% 여유)</td></tr>
+                    <tr><td><strong>동레벨 (+0)</strong> (노랑)</td><td>96%</td><td><strong>4%</strong></td><td><strong>4%</strong></td><td><strong><code>2/3 (+4%)</code> = 동렙 100% 적중 (DPS +4.17%!)</strong></td></tr>
+                    <tr><td><strong>내 레벨 +1</strong> (노랑 상위)</td><td>95%</td><td><strong>5%</strong></td><td>5%</td><td><code>3/3 (+6%)</code>로 100% 적중</td></tr>
+                    <tr><td><strong>내 레벨 +2</strong> (노랑/주황)</td><td>94%</td><td><strong>6%</strong></td><td><strong>6%</strong></td><td><strong><code>3/3 (+6%)</code> = +2렙 던전 몹·보스까지 100% 적중!</strong></td></tr>
+                    <tr><td><strong>내 레벨 +3</strong> (레이드 보스/해골)</td><td>83%</td><td><strong style="color:var(--rd-red);">17% (급증!)</strong></td><td><strong>17%</strong></td><td>+2&rarr;+3에서 +11%p 급증! 만렙 레이드 만적중 핵심 기반</td></tr>
+                  </tbody>
+                </table>
+              </div>
 
-          <div class="card">
-            <h2>📈 경험치 상한 (<code>Cap</code>) &amp; 증폭 한계 케이스 총정리</h2>
-            <ul style="margin-top:0;">
-              <li><strong>① 상위 레벨 몹 보너스 상한 (<code>+4</code>레벨 = <code>+20%</code>):</strong> <code>+5</code> 빨강이나 <code>+10</code> 해골 몹을 잡아도 경험치 보너스는 <strong><code>+20%</code>에서 완전 고정</strong>됩니다. (리스크만 폭증!)</li>
-              <li><strong>② 휴식 경험치(Rested XP) 누적 상한 (<code>150%</code>):</strong> 여관/대도시 누적 상한은 <strong>현재 레벨 전체 XP의 150%(30칸 = 1.5레벨)</strong>이며, 적용 시 몹 처치 XP <strong><code>&times;2.0</code> (+100%)</strong>. <em>(퀘스트 XP 미적용)</em></li>
-              <li><strong>③ 가죽세공 <code>야영 텐트</code> 충전 상한 (<code>5%</code>):</strong> 현재 휴식 경험치가 <strong>5%(1칸) 미만</strong>일 때만 최대 5%까지 보충되며 1시간 쿨타임 디버프가 걸립니다.</li>
-              <li><strong>④ 버프 적용 범위 상한 (처치 XP 한정):</strong> <code>포만감(+5%)</code> · <code>아늑한 침낭(+1~3%)</code> · <code>휴식(+100%)</code>은 <strong>몬스터 처치 XP에만 중첩</strong>되고 퀘스트 반납 XP는 증폭되지 않습니다. <em>(필드 정예 몹 기본 배수는 <code>&times;2.0</code>)</em></li>
-            </ul>
-          </div>
-        </div>
+              <h3>2) 왜 '치명타 피해 보너스 +20%'인데 치명 배율은 +10%p (150% &rarr; 160%)만 오를까?</h3>
+              <div class="callout arcane" style="margin-top:0; margin-bottom:12px;">
+                <strong>💡 핵심 공식: <code>최종 치명 배율 = 100% + 50% &times; (1 + 보너스%)</code></strong><br>
+                주문 기본 치명타(<code>150%</code>)는 <strong>기본 피해 <code>100%</code> + 치명타 추가 보너스 <code>50%</code></strong>로 구성됩니다.<br>
+                <code>신비한 정신</code>(비전)이나 <code>얼음 파편</code>(냉기)의 <strong>"치명타 피해 <em>보너스</em> +20%"</strong>는 전체 150%가 아니라 <strong>추가 보너스인 <code>50%</code>의 20%(<code>= 10%p</code>)</strong>를 늘려주는 곱연산 구조입니다!<br>
+                <em>예시: 기본 100 피해 주문이 치명 시 원래 100 + <strong>보너스 50</strong> = 150인데, 보너스 50이 20% 늘어나 60이 되므로 100 + 60 = <strong>160 (160%)</strong>!</em>
+              </div>
+              <div class="table-wrap" style="margin-bottom:14px;">
+                <table>
+                  <thead>
+                    <tr><th>특성 등급</th><th>툴팁 표기 (보너스 증가)</th><th>추가 보너스 계산 (<code>50% &times; 배수</code>)</th><th>최종 주문 치명 배율</th><th>Lv.32 (치명 ~6%) 기대 DPS 상승</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>0 / 5</strong> (미투자)</td><td>+0%</td><td>50% &times; 1.00 = +50%</td><td><strong>150%</strong> (기본)</td><td>기준 (0%)</td></tr>
+                    <tr><td><strong>1 / 5</strong></td><td>+20%</td><td>50% &times; 1.20 = +60%</td><td><strong>160%</strong> (+10%p)</td><td>+0.58% <em>(+지능 2% 합산 총 ~+0.83%)</em></td></tr>
+                    <tr><td><strong>2 / 5</strong></td><td>+40%</td><td>50% &times; 1.40 = +70%</td><td><strong>170%</strong> (+20%p)</td><td>+1.17% <em>(총 ~+1.65%)</em></td></tr>
+                    <tr><td><strong>3 / 5</strong></td><td>+60%</td><td>50% &times; 1.60 = +80%</td><td><strong>180%</strong> (+30%p)</td><td>+1.75% <em>(총 ~+2.48%)</em></td></tr>
+                    <tr><td><strong>4 / 5</strong></td><td>+80%</td><td>50% &times; 1.80 = +90%</td><td><strong>190%</strong> (+40%p)</td><td>+2.33% <em>(총 ~+3.31%)</em></td></tr>
+                    <tr><td><strong>5 / 5</strong> (마스터)</td><td>+100%</td><td>50% &times; 2.00 = +100%</td><td><strong>200%</strong> (물리 동일 2배!)</td><td>+2.91% <em>(총 ~+4.15% · 치명 25% 시 +11%↑)</em></td></tr>
+                  </tbody>
+                </table>
+              </div>
 
-        <div class="wide-grid-2">
-        <div class="card">
-          <h2>경험치 부스트 &amp; 캠핑/휴식 시스템 (WoW Forever 고유)</h2>
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>시스템 / 버프</th><th>효과 및 수치</th><th>적용 조건 &amp; 실전 팁</th></tr></thead>
-              <tbody>
-                <tr><td><strong>요리 <code>포만감</code></strong></td><td><strong>몬스터 처치 경험치 <code>+5%</code></strong> <em>(15분)</em></td><td>요리 음식 <strong>10초</strong> 섭취 시 적용. 퀘스트 반납 XP 미적용, 사망 시 소멸 (<a href="https://epiccarry.com/" target="_blank">EpicCarry</a>)</td></tr>
-                <tr><td><strong><code>아늑한 침낭</code> 연퀘</strong></td><td><strong>처치 경험치 <code>+1% ~ +3%</code></strong></td><td><code>포만감(+5%)</code>과 별개 슬롯 중첩</td></tr>
-                <tr><td><strong>캠핑 버프 (<code>생선 그릇</code> 등)</strong></td><td><strong>5대 기본 능력치 <code>+8%</code></strong></td><td>체·지·정·힘·민 총합 적용 (<code>체력 29+18, 지능 59+29</code> 실측). 주문 공격력 직접 % 증가 제외</td></tr>
-                <tr><td><strong>가죽세공 <code>야영 텐트</code></strong></td><td><strong>휴식 경험치 최대 <code>5%</code>(1칸) 충전</strong></td><td>휴식 XP 5% 미만일 때만 작동, 1시간 쿨타임 디버프</td></tr>
-                <tr><td><strong>월드 버프 <code>스톰윈드의 힘</code></strong></td><td><strong>체력(HP) <code>+300</code> · 모든 가속 <code>+15%</code> · MP5 <code>+10</code></strong> <em>(1시간)</em></td><td><code>암흑 호드의 종말</code> 반납 시 <strong>스톰윈드 · 골드샤이어 · 레이크샤이어 · 감시의 언덕</strong> 4곳 전령 반경(~100야드)에서 동시 수령. 필드·<strong>5인 던전 유지</strong> / 레이드 비활성</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+              <h3>3) Lv.32 (23번째 포인트) 실전 비교 &mdash; <code>정밀함</code> vs <code>신비한 정신</code></h3>
+              <div class="grid-2" style="margin-bottom:0;">
+                <div class="callout verified" style="margin:0;">
+                  <strong>🅰️ 추천 A — <code>정밀함</code> 2/3 선투자 (체감 효율 1위 ⭐)</strong><br>
+                  &bull; <strong>1pt당 실질 DPS:</strong> <strong><code>+2.08%</code></strong> (<code>신비한 정신 +0.83%</code>의 <strong>2.5배!</strong>)<br>
+                  &bull; <code>2/3 (+4%)</code>로 동렙 몹 <strong>빗나감 0%</strong> + <code>비전 작렬</code> 중첩 끊김·<code>얼음 회오리</code>·<code>마법 차단</code> 저항 방지!<br>
+                  &bull; <strong>트레이드오프:</strong> <code>Lv.40 신비의 마법 강화</code>가 <strong>Lv.42</strong>로 2레벨 지연됨. (가시덩굴·놈리건·수도원 던전 파밍 시 체감 최고!)
+                </div>
+                <div class="callout gold" style="margin:0;">
+                  <strong>🅱️ 추천 B — <code>신비한 정신</code> 직진 (Lv.40 신마강 최단 루트)</strong><br>
+                  &bull; <strong>1pt당 실질 DPS:</strong> 현재 치명 ~6% 구간에서는 <code>+0.83%</code>로 소폭이나, 마나(+30/pt)·비작 중첩·치명 배율(200%)을 동시에 확보.<br>
+                  &bull; <strong>핵심 장점:</strong> <strong>정확히 Lv.40</strong>에 비전 최종기 <code>신비의 마법 강화 (+30% 15초)</code>를 즉시 해금한 뒤 Lv.41~43에 <code>정밀함</code> 3/3 마무리!
+                </div>
+              </div>
+            </div>
+          </details>
 
-        <div class="card">
-          <h2>인던 경험치 패널티 &amp; 마나 5초 규칙 (5SR)</h2>
-          <div class="callout" style="margin-top:0;">
-            <strong>고레벨 버스 방지 패널티:</strong> 파티 내에 처치할 던전 몬스터보다 <strong>12레벨 이상 높은 캐릭터</strong>가 있으면 던전 몹 경험치가 대폭 삭감/무효화됩니다 (<a href="https://www.mmoexp.com/" target="_blank">MMOEXP</a>).
-          </div>
-          <ul>
-            <li><strong>5초 규칙(5SR) &amp; <code>2초</code> 마나 틱:</strong> 마나를 실제 소모하는 주문 시전 순간부터 <strong>5초간</strong> 정신력 마나 재생이 멈추며, <code>2초</code> 서버 틱 정렬로 실제 회복 재개는 체감 <strong>5~7초</strong> 소요.</li>
-            <li><strong>무료 발동 예외:</strong> <code>신비한 정신 집중(마나 0)</code> 및 <code>화살 탄막</code> 무료 <code>신비한 화살</code>은 5초 규칙을 끊지 않습니다. 마법봉 사격 중에도 5초가 지나면 회복 재개.</li>
-            <li><strong>시전 밀림(Pushback) 면역:</strong> <code>정신 집중 연마(5/5)</code>로 <code>신비한 화살</code> 채널링 중 피격 지연 100% 방어 중.</li>
-          </ul>
-        </div>
+          <!-- 2. MOB XP ACQUISITION RULES & LIVE CALCULATOR -->
+          <details class="fold-card">
+            <summary><span>📊 <strong>몬스터 레벨 · 이름 색별 경험치 획득 규칙 &amp; 실시간 계산기</strong> <span class="badge db">ZD / 회색 한계</span></span></summary>
+            <div class="fold-body">
+              <div class="xp-sim-bar">
+                <strong>내 캐릭터 레벨:</strong>
+                <input type="number" id="xpCharLvInput" class="xp-lv-input" min="6" max="59" value="32" oninput="renderXpRulesSim()">
+                <button class="sim-btn" onclick="setXpSimLv(32)">Lv.32 (현재)</button>
+                <button class="sim-btn" onclick="setXpSimLv(35)">Lv.35</button>
+                <button class="sim-btn" onclick="setXpSimLv(40)">Lv.40</button>
+                <button class="sim-btn" onclick="setXpSimLv(50)">Lv.50</button>
+                <div class="xp-summary-pills" id="xpSummaryPills"></div>
+              </div>
+
+              <div class="xp-formula-grid">
+                <div class="xp-formula-box">
+                  <div class="xf-title">① 동렙 기본 경험치 (Base XP)</div>
+                  <code>Base XP = 45 + 5 &times; 레벨</code><br>
+                  <span>예: Lv.32 동렙 일반 몹 = <strong>205 XP</strong> (100% 기준)</span>
+                </div>
+                <div class="xp-formula-box">
+                  <div class="xf-title">② 상위 레벨 몹 (+1 ~ +4, 상한 +20%)</div>
+                  <code>Base &times; (1 + 0.05 &times; min(차이, 4))</code><br>
+                  <span>1레벨당 +5%, <strong>+4레벨(+20%)에서 상한 고정!</strong></span>
+                </div>
+                <div class="xp-formula-box">
+                  <div class="xf-title">③ 하위 레벨 몹 (노랑 하위 &amp; 초록)</div>
+                  <code>Base &times; (1 - (내Lv - 몹Lv) &divide; ZD)</code><br>
+                  <span>포에버는 <code>Base</code>에 <strong>몹Lv</strong> 반영 보정으로 저렙 감소폭이 더 가파름</span>
+                </div>
+                <div class="xp-formula-box">
+                  <div class="xf-title">④ 회색 한계 (Gray Level = 0 XP)</div>
+                  <code>Lv.6~39: 내Lv - &lfloor;내Lv/10&rfloor; - 5</code><br>
+                  <code>Lv.40~59: 내Lv - &lfloor;내Lv/5&rfloor; - 1</code>
+                </div>
+              </div>
+
+              <h3>1) 몬스터 이름 색상별 6단계 구분 (입력 레벨 자동 연동)</h3>
+              <div class="table-wrap" style="margin-bottom:16px;">
+                <table>
+                  <thead>
+                    <tr><th>이름 / 레벨 색상</th><th>내 레벨 대비</th><th>해당 몹 레벨</th><th>경험치 배율 · 공식</th><th>비전 마법사 사냥 효율 판정</th></tr>
+                  </thead>
+                  <tbody id="xpColorTierBody"></tbody>
+                </table>
+              </div>
+
+              <h3>2) 레벨 차이별 실제 획득 경험치 비교 &amp; "왜 동렙 -1~-2가 최고 효율인가?"</h3>
+              <div class="table-wrap" style="margin-bottom:12px;">
+                <table>
+                  <thead>
+                    <tr><th>레벨 차이</th><th>몹 레벨 (색상)</th><th>표준 공식 XP</th><th>포에버 보정 XP (몹Lv 기준)</th><th>동렙 대비 %</th><th>사냥 효율 판단</th></tr>
+                  </thead>
+                  <tbody id="xpDiffTableBody"></tbody>
+                </table>
+              </div>
+
+              <div class="callout" style="margin-bottom:0;">
+                <strong>핵심 결론 (왜 동렙보다 1~2단계 낮은 몹이 빠른가?):</strong> <code>ZD=12</code>(Lv.30~39) 기준 <strong><code>-1 ~ -2</code>레벨(Lv.30~31 노랑 하위)</strong>은 몹당 경험치가 8~18%만 감소하지만, <strong>주문 빗나감 감소(4%&rarr;2~3%) · 몹 체력/공격력 하락 · 비전 1사이클 킬 확률 상승 · 물 마시는 빈도 급감</strong> 덕분에 실제 <strong>시간당 경험치(XP/hr)는 동렙이나 주황 몹보다 훨씬 높습니다!</strong> 반대로 <code>-4</code> 이하 초록 몹부터는 포에버 이중 감소 보정으로 효율이 급락하며, <code>+3</code> 주황 이상은 주문 저항/빗나감이 폭증해 비효율입니다.<br>
+                <em style="opacity:0.82;">참고 ZD 구간표: Lv.1~7(5) · 8~9(6) · 10~11(7) · 12~15(8) · 16~19(9) · 20~29(11) · <strong>30~39(12)</strong> · 40~44(13) · 45~49(14) · 50~54(15) · 55~59(16)</em>
+              </div>
+            </div>
+          </details>
+
+          <!-- 3. ZERO XP CASES -->
+          <details class="fold-card">
+            <summary><span>🚫 <strong>경험치 획득 불가 (<code>0 XP</code>) 케이스 총정리</strong> <span class="badge warn">주의 규칙</span></span></summary>
+            <div class="fold-body">
+              <ul style="margin:0;">
+                <li><strong>① 회색(Gray) 몬스터 처치:</strong> 몹 레벨이 <code>Gray Level</code> 이하(현재 Lv.32 기준 <strong><code>Lv.24 이하</code></strong>)면 솔플·파티 무관 무조건 <code>0 XP</code>.</li>
+                <li><strong>② 인던 고레벨 동행 (포에버 12레벨 초과 룰):</strong> 파티 내 최고레벨 플레이어가 처치 몹보다 <strong>12레벨 초과(<code>13레벨 이상</code> 차이)</strong>일 경우 <strong>파티원 전원 몹 처치 XP <code>0</code></strong>! <em>(※ 던전 퀘스트 완료 보상 XP는 정상 지급)</em></li>
+                <li><strong>③ 타인 선점(회색 이름표 / Tap):</strong> 파티 외 다른 유저가 먼저 타격해 선점된 몬스터는 처치해도 <code>0 XP</code> 및 전리품 획득 불가.</li>
+                <li><strong>④ 경비병(NPC) 과다 기여 &amp; 특수 소환 쫄:</strong> 마을 경비병이 피해 대부분을 입힌 몹이나 보스전 무한 소환 쫄은 경험치 대폭 삭감 또는 <code>0 XP</code>.</li>
+                <li><strong>⑤ 만렙(Lv.60) 도달:</strong> 모든 몹 처치 XP <code>0</code> (퀘스트 완료 XP는 골드로 자동 전환).</li>
+              </ul>
+            </div>
+          </details>
+
+          <!-- 4. XP CAP CASES -->
+          <details class="fold-card">
+            <summary><span>📈 <strong>경험치 상한 (<code>Cap</code>) &amp; 증폭 한계 케이스 총정리</strong> <span class="badge">상한 규칙</span></span></summary>
+            <div class="fold-body">
+              <ul style="margin:0;">
+                <li><strong>① 상위 레벨 몹 보너스 상한 (<code>+4</code>레벨 = <code>+20%</code>):</strong> <code>+5</code> 빨강이나 <code>+10</code> 해골 몹을 잡아도 경험치 보너스는 <strong><code>+20%</code>에서 완전 고정</strong>됩니다. (리스크만 폭증!)</li>
+                <li><strong>② 휴식 경험치(Rested XP) 누적 상한 (<code>150%</code>):</strong> 여관/대도시 누적 상한은 <strong>현재 레벨 전체 XP의 150%(30칸 = 1.5레벨)</strong>이며, 적용 시 몹 처치 XP <strong><code>&times;2.0</code> (+100%)</strong>. <em>(퀘스트 XP 미적용)</em></li>
+                <li><strong>③ 가죽세공 <code>야영 텐트</code> 충전 상한 (<code>5%</code>):</strong> 현재 휴식 경험치가 <strong>5%(1칸) 미만</strong>일 때만 최대 5%까지 보충되며 1시간 쿨타임 디버프가 걸립니다.</li>
+                <li><strong>④ 버프 적용 범위 상한 (처치 XP 한정):</strong> <code>포만감(+5%)</code> · <code>아늑한 침낭(+1~3%)</code> · <code>휴식(+100%)</code>은 <strong>몬스터 처치 XP에만 중첩</strong>되고 퀘스트 반납 XP는 증폭되지 않습니다. <em>(필드 정예 몹 기본 배수는 <code>&times;2.0</code>)</em></li>
+              </ul>
+            </div>
+          </details>
+
+          <!-- 5. XP BOOSTS & CAMPING SYSTEM -->
+          <details class="fold-card">
+            <summary><span>⛺ <strong>경험치 부스트 &amp; 캠핑 / 휴식 시스템 (와우 포에버 고유)</strong> <span class="badge gold">포에버 전용</span></span></summary>
+            <div class="fold-body">
+              <div class="table-wrap" style="margin-bottom:0;">
+                <table>
+                  <thead><tr><th>시스템 / 버프</th><th>효과 및 수치</th><th>적용 조건 &amp; 실전 팁</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>요리 <code>포만감</code></strong></td><td><strong>몬스터 처치 경험치 <code>+5%</code></strong> <em>(15분)</em></td><td>요리 음식 <strong>10초</strong> 섭취 시 적용. 퀘스트 반납 XP 미적용, 사망 시 소멸 (<a href="https://epiccarry.com/" target="_blank">EpicCarry</a>)</td></tr>
+                    <tr><td><strong><code>아늑한 침낭</code> 연퀘</strong></td><td><strong>처치 경험치 <code>+1% ~ +3%</code></strong></td><td><code>포만감(+5%)</code>과 별개 슬롯 중첩</td></tr>
+                    <tr><td><strong>캠핑 버프 (<code>생선 그릇</code> 등)</strong></td><td><strong>5대 기본 능력치 <code>+8%</code></strong></td><td>체·지·정·힘·민 총합 적용. 주문 공격력 직접 % 증가 제외</td></tr>
+                    <tr><td><strong>가죽세공 <code>야영 텐트</code></strong></td><td><strong>휴식 경험치 최대 <code>5%</code>(1칸) 충전</strong></td><td>휴식 XP 5% 미만일 때만 작동, 1시간 쿨타임 디버프</td></tr>
+                    <tr><td><strong>월드 버프 <code>스톰윈드의 힘</code></strong></td><td><strong>체력(HP) <code>+300</code> · 모든 가속 <code>+15%</code> · MP5 <code>+10</code></strong> <em>(1시간)</em></td><td><code>암흑 호드의 종말</code> 반납 시 <strong>스톰윈드 · 골드샤이어 · 레이크샤이어 · 감시의 언덕</strong> 4곳 전령 반경(~100야드)에서 동시 수령. 필드·<strong>5인 던전 유지</strong> / 레이드 비활성</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </details>
+
+          <!-- 6. DUNGEON XP PENALTY & 5SR MANA RULE -->
+          <details class="fold-card">
+            <summary><span>🏰 <strong>인던 경험치 패널티 &amp; 마나 5초 규칙 (5SR)</strong> <span class="badge verified">전투 기본기</span></span></summary>
+            <div class="fold-body">
+              <div class="callout" style="margin-top:0;">
+                <strong>고레벨 버스 방지 패널티:</strong> 파티 내에 처치할 던전 몬스터보다 <strong>12레벨 이상 높은 캐릭터</strong>가 있으면 던전 몹 경험치가 대폭 삭감/무효화됩니다 (<a href="https://www.mmoexp.com/" target="_blank">MMOEXP</a>).
+              </div>
+              <ul style="margin-bottom:0;">
+                <li><strong>5초 규칙(5SR) &amp; <code>2초</code> 마나 틱:</strong> 마나를 실제 소모하는 주문 시전 순간부터 <strong>5초간</strong> 정신력 마나 재생이 멈추며, <code>2초</code> 서버 틱 정렬로 실제 회복 재개는 체감 <strong>5~7초</strong> 소요.</li>
+                <li><strong>무료 발동 예외:</strong> <code>신비한 정신 집중(마나 0)</code> 및 <code>화살 탄막</code> 무료 <code>신비한 화살</code>은 5초 규칙을 끊지 않습니다. 마법봉 사격 중에도 5초가 지나면 회복 재개.</li>
+                <li><strong>시전 중 마나 재생 유지:</strong> 현재 <code>신비한 명상(3/3)</code>으로 <strong>시전 중 50% 유지 (전투 MP5 42.5)</strong> 중이며, 향후 Lv.34 <code>마법사 갑옷</code>(+50%) 습득 시 <strong>100% 유지</strong> 완성!</li>
+                <li><strong>시전 밀림(Pushback) 면역:</strong> <code>정신 집중 연마(5/5)</code>로 <code>신비한 화살</code> 채널링 중 피격 지연 100% 방어 중.</li>
+              </ul>
+            </div>
+          </details>
         </div>
       </section>
 
@@ -10621,9 +10700,9 @@ const IG_TALENT_TREES = {
       { r:1, c:2, base:0, cur:0, max:5, key:'얼음 화살 연마', icon:'spell_frost_frostshock', en:'Improved Frostbolt',
         steps:['시전 -0.1초','-0.2초','-0.3초','-0.4초','-0.5초'],
         fmt: r => `얼음 화살의 시전 시간을 ${(r*0.1).toFixed(1)}초 단축합니다.` },
-      { r:1, c:3, base:0, cur:0, max:3, key:'원소의 정밀함', icon:'spell_frost_iceshock', en:'Elemental Precision',
-        steps:['냉기·화염 적중 +2%','+4%','+6%'],
-        fmt: r => `냉기 및 화염 주문의 적중률이 ${r*2}% 증가합니다.` },
+      { r:1, c:3, base:0, cur:0, max:3, key:'정밀함', icon:'spell_frost_iceshock', en:'Precision',
+        steps:['모든 주문 적중 +2%','+4%','+6%'],
+        fmt: r => `비전·화염·냉기 모든 주문의 적중률이 ${r*2}% 증가합니다. (와우 포에버 개편: 동렙 4% / +2렙 6% 만적중)` },
       { r:2, c:1, base:0, cur:0, max:5, key:'얼음 파편', icon:'spell_frost_frostshock', en:'Ice Shards',
         steps:['냉기 치명피해 +20%','+40%','+60%','+80%','+100%'],
         fmt: r => `냉기 주문의 치명타 피해 보너스가 ${r*20}% 증가(치명 배율 ${150 + r*10}%)합니다.` },
@@ -10792,7 +10871,7 @@ function getActiveTalentMods() {
   const rFirePow = getTalentRank('화염 마법 강화');
 
   const rImpFb = getTalentRank('얼음 화살 연마');
-  const rElemHit = getTalentRank('원소의 정밀함');
+  const rElemHit = getTalentRank('정밀함');
   const rIceShards = getTalentRank('얼음 파편');
   const rPiercing = getTalentRank('사무치는 냉기');
   const rShatter = getTalentRank('산산조각');
@@ -10954,7 +11033,7 @@ function renderTalentImpactSummary() {
   if (m.rClear) activeEffects.push(`✨ 정신 집중 ${m.rClear*2}%`);
   if (m.rBarrage) activeEffects.push(`☄️ 화살 탄막 ${m.rBarrage*20}%`);
   if (m.allRes) activeEffects.push(`🛡️ 모든 저항 +${m.allRes}`);
-  if (m.elemHitPct) activeEffects.push(`🎯 화염·냉기 적중 +${m.elemHitPct}%`);
+  if (m.elemHitPct) activeEffects.push(`🎯 모든 주문 적중 +${m.elemHitPct}% (동렙 빗나감 ${Math.max(0, 4 - m.elemHitPct)}%)`);
   if (m.fireDmgPct) activeEffects.push(`🔥 화염 피해 +${Math.round(m.fireDmgPct*100)}%`);
   if (m.fireExtraCrit) activeEffects.push(`💥 화염 치명 +${m.fireExtraCrit}%`);
   if (m.frostDmgPct) activeEffects.push(`❄️ 냉기 피해 +${Math.round(m.frostDmgPct*100)}%`);
@@ -12331,25 +12410,13 @@ function renderMatPriceCharts() {
 // 사이드바(.nav-btn) 및 모바일 퀵탭(.q-pill) 메뉴 제목 우측 위에 귀여운 N 뱃지가 표시되며,
 // 사용자가 해당 메뉴(또는 N 마크)를 클릭하면 사라지고 같은 버전에서는 다시 뜨지 않습니다.
 const RECENTLY_UPDATED_TABS = {
+  'tab-rules': {
+    v: '2026-11-23-v3',
+    text: '인게임 규칙 개편: 주문 적중(정밀함 vs 신비한 정신) · 치명 피해 보너스 공식 추가 + 전체 토글 메뉴화'
+  },
   'tab-talent': {
-    v: '2026-11-23-v2',
-    text: 'Lv.32 반영: MP 2,025 · 비전 +150 · 미투자 특성 1pt(신비한 정신 1/5 추천!)'
-  },
-  'tab-skills': {
-    v: '2026-11-23-v2',
-    text: 'Lv.32 신비한 화살(4 레벨) 총 ~565 반영 · 비전 +150 콤보 시뮬레이터 최신화'
-  },
-  'tab-gear': {
-    v: '2026-11-23-v2',
-    text: '저습지 졸업 장비 반영: 타락한 용의 홀 · 물약 가방 · 엉겅퀴가죽 로브(+20) · 망토 방어+20'
-  },
-  'tab-quests': {
-    v: '2026-11-23-v2',
-    text: '발굴 현장: 저습지 완료 ✅ · 다음 목표: 가시덩굴 우리 · 놈리건 · 타베사 직업 연퀘'
-  },
-  'tab-macro': {
-    v: '2026-11-23-v2',
-    text: '2번 주력 매크로 신비한 화살(4 레벨)로 업그레이드!'
+    v: '2026-11-23-v3',
+    text: '냉기 1티어 정밀함(전 학파 적중 +2/4/6%) 반영 · Lv.32 미투자 1pt 비교 가능'
   }
 };
 
@@ -12430,6 +12497,14 @@ function applyNavUpdatedBadges() {
 
 function toggleAllProfMenus() {
   const stack = document.getElementById('profFoldStack');
+  if (!stack) return;
+  const folds = Array.from(stack.querySelectorAll(':scope > details.fold-card'));
+  const anyClosed = folds.some(d => !d.open);
+  folds.forEach(d => { d.open = anyClosed; });
+}
+
+function toggleAllRuleMenus() {
+  const stack = document.getElementById('rulesFoldStack');
   if (!stack) return;
   const folds = Array.from(stack.querySelectorAll(':scope > details.fold-card'));
   const anyClosed = folds.some(d => !d.open);
