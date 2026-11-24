@@ -5160,10 +5160,10 @@
       <!-- TAB: PROFESSIONS (261122 PER-PROFESSION TOGGLE MENUS + ACTIONABLE KPI SUBTEXT + GRID-3 SPACING FIX) -->
       <section id="tab-prof" class="tab">
         <div class="kpi-grid">
-          <div class="kpi"><div class="label">마법부여 (현재 숙련)</div><div class="val" style="color: var(--arcane);">128 &rarr; 175</div><div class="sub">은마법막대 5.49s 폭락! 전환 전 망토 방어+20&middot;오일 여분&middot;추출 부캐</div></div>
-          <div class="kpi"><div class="label">재봉 전환 적기 (11/24 12:31)</div><div class="val" style="color: var(--gold);">대기 권장 ⏳</div><div class="sub">리넨 1.91s(품귀)·두루마리 7.5s로 실지출 ~5g 78.8s (20c 복귀 시 ~2g 7.8s)</div></div>
-          <div class="kpi"><div class="label">보유 재봉 옷감</div><div class="val" style="color: var(--verified);">리넨47 &middot; 양모100</div><div class="sub">+양모 두루마리 1 &middot; 비단 24 &middot; 진줏빛 머리장식 도안 보유 ✅</div></div>
-          <div class="kpi"><div class="label">무두질 / 요리 &middot; 보조</div><div class="val">205 / 150</div><div class="sub">무두 205 대가 승급 가능 &middot; 응급 91 &middot; 낚시 20</div></div>
+          <div class="kpi"><div class="label">마법부여</div><div class="val" style="color: var(--arcane);">128 / 150</div><div class="sub">전환 전 추출 부캐 · 오일 여분 권장</div></div>
+          <div class="kpi"><div class="label">재봉 전환 판단</div><div class="val" style="color: var(--gold);">대기 권장 ⏳</div><div class="sub">리넨 품귀 해소 시 ~2g 7.8s (현재 ~5g 78.8s)</div></div>
+          <div class="kpi"><div class="label">보유 재봉 재료</div><div class="val" style="color: var(--verified);">리넨47 · 양모100</div><div class="sub">양모 두루마리1 · 비단24 · 진줏빛 도안 보유 ✅</div></div>
+          <div class="kpi"><div class="label">무두질 / 보조 기술</div><div class="val">205 / 150</div><div class="sub">무두 205(대가 승급 가능) · 응급 91 · 낚시 20</div></div>
         </div>
 
         <div class="prof-toggle-bar">
@@ -5176,68 +5176,31 @@
           <details class="fold-card">
             <summary><span>🧵 <strong>재봉술 (Tailoring)</strong></span></summary>
             <div class="fold-body">
-              <h3 style="margin-top:0;">전환 적기 진단 <span class="badge warn">11/24 12:31 · 리넨 품귀 지속</span></h3>
-              <div class="grid-2" style="margin-bottom:12px;">
-                <div class="callout warn" style="margin:0;">
-                  <strong>전환 시점 결론: <code>리넨 옷감</code>이 <code>20~25c</code>로 내려올 때!</strong><br>
-                  &bull; <code>12:31</code> 기준 <code>리넨 옷감</code> 매물은 <strong>1,603개</strong>로 오전(187개) 대비 늘었으나 가격은 여전히 <strong><code>1.91s</code></strong>(평소 <code>20c</code> 대비 9.5배)이며, 오전에 쌌던 <code>리넨 두루마리</code>도 소진돼 <strong><code>7.5s</code></strong>로 역전 메리트가 사라졌습니다.<br>
-                  &bull; <code>양모 옷감</code> 역시 오전 <code>1.09s</code> &rarr; <strong><code>1.75s</code></strong>로 반등해 현재 보유 차감 <code>1&rarr;125</code> 실지출은 <strong><code>~5g 78.8s</code></strong>(+3.71g 손해)입니다.<br>
-                  &bull; <em>단, <code>양모 두루마리</code> 완제품은 <code>3.99s</code>(옷감 3장 5.25s 대비 24% 저렴)이지만 75&rarr;100 구간은 숙련작을 겸해 보유 100장+35장(61.25s)으로 직접 감는 것이 정석입니다.</em>
-                </div>
-                <div class="callout verified" style="margin:0;">
-                  <strong>12:31 기준 지금 사두면 이득인 신저점 재료</strong><br>
-                  &bull; <strong><code>자홍색 염료</code> (<code>1g 10.99s</code>):</strong> 오전 1g 35.99s &darr; <strong>추가 25s 신저점!</strong> (매물 103개)<br>
-                  &bull; <strong><code>야생덩굴</code> (<code>30c</code>):</strong> 오전 41c &darr; <strong>역대 최저가!</strong> (매물 652개 · 꿈매듭 3부위 14개 = <code>4.2s</code>)<br>
-                  &bull; <strong><code>비단 옷감</code> (<code>1.84s</code>) &middot; <code>감청색 염료</code> (<code>99s</code>) &middot; <code>황금 진주</code> (<code>1g 98s</code>):</strong> 저점 안정권 유지<br>
-                  &bull; <strong><code>달빛 옷감</code> (<code>53.8g</code>) &middot; <code>물레</code> (<code>71.95s</code>) &middot; <code>베틀</code> (<code>6g 99.99s</code>):</strong> 완제품 매물 풍부 <small>(<code>은마법막대</code> <code>5.49s</code>)</small>
-                </div>
-              </div>
-              <div class="table-wrap" style="margin-bottom:16px;">
-                <table>
-                  <thead>
-                    <tr><th>스냅샷 시점</th><th>리넨 옷감</th><th>양모 옷감</th><th>비단 옷감</th><th>마법 옷감</th><th><code>1&rarr;125</code> 전액 (훈련포함)</th><th>보유 차감 실지출</th></tr>
-                  </thead>
-                  <tbody>
-                    <tr><td><code>11/22</code> (저점)</td><td>19c</td><td>88c</td><td>1.4s</td><td>6.42s</td><td><code>~3g 09s</code></td><td>&mdash;</td></tr>
-                    <tr><td><code>11/23 15:31</code></td><td>21c</td><td>1.2s</td><td>1.9s</td><td>5.9s</td><td><code>~3g 21s</code></td><td><code>~1g 90s</code></td></tr>
-                    <tr><td><code>11/24 08:47</code></td><td>2s</td><td>1.09s</td><td>1.8s</td><td>5.65s</td><td><code>~7g 78s</code></td><td><code>~5g 71s</code></td></tr>
-                    <tr><td><strong><code>11/24 12:31</code> (현재)</strong></td><td><strong>1.91s</strong> ⚠️</td><td><strong>1.75s</strong> ▲</td><td><strong>1.84s</strong> ✅</td><td><strong>6.15s</strong></td><td><code>~8g 43.6s</code></td><td><strong><code>~5g 78.8s</code></strong></td></tr>
-                    <tr><td><em>리넨 20c 복귀 시</em></td><td><em>20c 가정</em></td><td>1.75s</td><td>1.84s</td><td>6.15s</td><td><em><code>~3g 92.2s</code></em></td><td><strong><em><code>~2g 7.8s</code></em></strong></td></tr>
-                  </tbody>
-                </table>
-              </div>
+              <h3 style="margin-top:0;">전환 적기 진단 <span class="badge warn">11/24 12:31 · 대기 권장</span></h3>
+              <p style="margin:0 0 14px; font-size:13.4px; line-height:1.65;">
+                현재 경매장 <code>리넨 옷감</code>과 <code>리넨 두루마리</code>가 평시 대비 급등해 있어 <strong>즉시 전환은 비추천</strong>입니다. <code>리넨 옷감</code>이 평시 가격대(<code>20~25c</code>)로 복귀하면 <code>1&rarr;125</code> 실지출을 약 <strong>3.7g 이상</strong> 절약할 수 있으므로 그때 일괄 전환하는 것이 유리하며, 아래 그래프에서 저점 구간인 <code>야생덩굴</code>&middot;<code>자홍색 염료</code> 등 추후 장비 재료만 미리 확보해 두면 좋습니다.
+              </p>
 
               <h3>승급 구간 방법 <span class="badge">1 &rarr; 125 &middot; 선택 145</span></h3>
               <p style="margin-top:0;"><strong>교관:</strong> <code>셀란두스</code> [스톰윈드 마법사 지구 (<code>42.0, 76.2</code>)] (1~150) &middot; <code>조지오 볼레로</code> (<code>43.2, 73.6</code>) (125~225). 실타래는 반드시 옆 상인(<code>10c</code>/<code>1s</code>)에게 직구하세요.</p>
-              <div class="table-wrap" style="margin-bottom:12px;">
+              <div class="table-wrap" style="margin-bottom:10px;">
                 <table>
                   <thead>
-                    <tr><th>구간</th><th>제작품 (수량)</th><th>필요 재료 &middot; <code>11/24 12:31</code> 단가</th><th>소계 (보유 차감)</th><th>포인트</th></tr>
+                    <tr><th>구간</th><th>제작품 (수량)</th><th>필요 재료</th><th>보유 차감 실지출</th><th>포인트</th></tr>
                   </thead>
                   <tbody>
-                    <tr><td><strong>1 &rarr; 45</strong></td><td><code>리넨 두루마리</code> &times; 132</td><td><code>리넨 옷감</code> 264 &times; <strong><code>1.91s</code></strong></td><td><code>5g 4.24s</code> <small>(추가 217개=4g 14.47s)</small></td><td>리넨 <code>20c</code> 복귀 시 217개=<strong><code>43.4s</code></strong></td></tr>
-                    <tr><td><strong>45 &rarr; 70</strong></td><td><code>두꺼운 리넨 장갑</code> &times; 35</td><td>리넨 두루마리 70 + <code>굵은 실타래</code> 35 (NPC 10c)</td><td><strong><code>3.5s</code></strong></td><td><strong>50 달성</strong> 시 수습(150) 승급 (<code>5s</code>)</td></tr>
-                    <tr><td><strong>70 &rarr; 75</strong></td><td><code>강화 리넨 망토</code> &times; 5</td><td>리넨 두루마리 10 + <code>굵은 실타래</code> 15 (NPC 10c)</td><td><strong><code>1.5s</code></strong></td><td>상점 매각 소액 회수</td></tr>
-                    <tr><td><strong>75 &rarr; 100</strong></td><td><code>양모 두루마리</code> &times; 45</td><td><code>양모 옷감</code> 135 &times; <strong><code>1.75s</code></strong></td><td><code>2g 36.25s</code> <small>(45개 감기 35장=61.25s / 보유 1개 활용 시 32장=56s)</small></td><td>완제품 <code>3.99s</code> vs 직접 <code>5.25s</code></td></tr>
-                    <tr><td><strong>100 &rarr; 110</strong></td><td><code>수수한 킬트</code> &times; 13</td><td>리넨 두루마리 52 + <code>가는 실타래</code> 13 (NPC 1s)</td><td><strong><code>13s</code></strong></td><td>두루마리 <code>7.5s</code> (직접 감기 <code>3.82s</code>가 쌈)</td></tr>
-                    <tr><td><strong>110 &rarr; 125</strong></td><td><code>이중 바느질 양모 어깨</code> &times; 15</td><td>양모 두루마리 45 + <code>가는 실타래</code> 30 (NPC 1s)</td><td><strong><code>30s</code></strong></td><td><strong>125 달성!</strong> 전문(225) 승급 (<code>50s</code>)</td></tr>
-                    <tr><td><strong>125 &rarr; 145</strong></td><td><code>비단 두루마리</code> &times; 40 <small>(선택)</small></td><td><code>비단 옷감</code> 160 &times; <strong><code>1.84s</code></strong></td><td><code>2g 94.4s</code> <small>(추가 <strong>136개=2g 50.24s</strong>)</small></td><td>완제품 <code>9.94s</code> vs 직접 <code>7.36s</code></td></tr>
+                    <tr><td><strong>1 &rarr; 45</strong></td><td><code>리넨 두루마리</code> &times; 132</td><td><code>리넨 옷감</code> 264 (보유 47 &rarr; <strong>추가 217</strong>)</td><td><code>4g 14.47s</code> <small>(20c 복귀 시 <strong>43.4s</strong>)</small></td><td>완제품 두루마리보다 직접 감기가 저렴</td></tr>
+                    <tr><td><strong>45 &rarr; 70</strong></td><td><code>두꺼운 리넨 장갑</code> &times; 35</td><td>리넨 두루마리 70 + <code>굵은 실타래</code> 35 (NPC)</td><td><strong><code>3.5s</code></strong></td><td><strong>50 달성</strong> 시 수습(150) 승급 (<code>5s</code>)</td></tr>
+                    <tr><td><strong>70 &rarr; 75</strong></td><td><code>강화 리넨 망토</code> &times; 5</td><td>리넨 두루마리 10 + <code>굵은 실타래</code> 15 (NPC)</td><td><strong><code>1.5s</code></strong></td><td>상점 매각 소액 회수</td></tr>
+                    <tr><td><strong>75 &rarr; 100</strong></td><td><code>양모 두루마리</code> &times; 45</td><td><code>양모 옷감</code> 135 (보유 100 &rarr; <strong>추가 35</strong>)</td><td><code>61.25s</code> <small>(보유 두루1 활용 시 56s)</small></td><td>숙련작 겸용 직접 감기 진행</td></tr>
+                    <tr><td><strong>100 &rarr; 110</strong></td><td><code>수수한 킬트</code> &times; 13</td><td>리넨 두루마리 52 + <code>가는 실타래</code> 13 (NPC)</td><td><strong><code>13s</code></strong></td><td>1&rarr;45에서 만든 두루마리 사용</td></tr>
+                    <tr><td><strong>110 &rarr; 125</strong></td><td><code>이중 바느질 양모 어깨</code> &times; 15</td><td>양모 두루마리 45 + <code>가는 실타래</code> 30 (NPC)</td><td><strong><code>30s</code></strong></td><td><strong>125 달성!</strong> 전문(225) 승급 (<code>50s</code>)</td></tr>
+                    <tr><td><strong>125 &rarr; 145</strong></td><td><code>비단 두루마리</code> &times; 40 <small>(선택)</small></td><td><code>비단 옷감</code> 160 (보유 24 &rarr; <strong>추가 136</strong>)</td><td><code>2g 50.24s</code></td><td>직접 감기가 완제품보다 저렴</td></tr>
                   </tbody>
                 </table>
               </div>
-              <div class="grid-2" style="margin-bottom:18px;">
-                <div class="callout" style="margin:0;">
-                  <strong>🎒 현재 보유 재료 (<code>12:31</code> 가방 실측 기준)</strong><br>
-                  &bull; <code>리넨 옷감</code> <strong>47개</strong> &rarr; 추가 필요 <strong>217개</strong><br>
-                  &bull; <code>양모 옷감</code> <strong>100개</strong> + <code>양모 두루마리</code> <strong>1개</strong> &rarr; 45개 전체 감기 시 <strong>35개</strong>(<code>61.25s</code>) / 보유 1개 활용 시 <strong>32개</strong>(<code>56s</code>)<br>
-                  &bull; <code>비단 옷감</code> <strong>24개</strong> (145 확장 시 136개) &middot; <strong><code>도안: 세공된 진줏빛 머리장식</code> 보유 ✅</strong>
-                </div>
-                <div class="callout verified" style="margin:0;">
-                  <strong>🧾 <code>1 &rarr; 125</code> 최종 비용 요약 (훈련비 ~55.1s 포함)</strong><br>
-                  &bull; <strong>12:31 전액 / 보유차감:</strong> <code>8g 43.59s</code> / <code>5g 78.82s</code> <span class="core-sum-note">(보유 양모 두루마리 1개 차감 시 5g 73.57s)</span><br>
-                  &bull; <strong>리넨 <code>20c</code> 복귀 대기 시 실지출:</strong> <strong><code>~2g 7.75s</code></strong> 🎯<br>
-                  &bull; <strong>가용 골드:</strong> <strong><code>31g 32.17s</code></strong> (전환 후 장비까지 여유 충분)
-                </div>
+              <div class="callout verified" style="margin-top:0; margin-bottom:18px;">
+                <strong>🧾 <code>1 &rarr; 125</code> 요약 (훈련비 ~55.1s 포함 · 가용 <code>31g 32.17s</code>):</strong> 현재 보유 차감 <strong><code>5g 78.82s</code></strong> / 리넨 <code>20c</code> 복귀 대기 시 <strong><code>~2g 7.75s</code></strong> 🎯 <small>(&middot; <code>도안: 세공된 진줏빛 머리장식</code> 가방 보유 중 ✅)</small>
               </div>
 
               <h3>추천 장비 타임라인</h3>
@@ -5694,10 +5657,6 @@
                   4. <strong><code>은마법막대</code> <code>5.49s</code> 저점:</strong> 재봉 전환 대기 중 <code>130</code>까지 올려둘 의향이 있다면 <code>은마법막대 5.49s</code>만 1개 사두어도 좋습니다 (<code>룬문자 은마법막대</code> 총 원가 <code>39.75s</code>).
                 </div>
               </details>
-              <div class="callout verified" style="margin-top:0; margin-bottom:12px;">
-                <strong>💡 최신 시세 핵심 요약 (현재 숙련 <code>128/150</code> · <code>11/24 08:47</code>):</strong> <code>은마법막대</code>가 <strong><code>5.49s</code></strong>로 폭락했고, <code>희미하게 빛나는 큰 결정</code>(<strong><code>68.57s</code></strong>) &amp; <code>영혼 가루</code>(<strong><code>4.85s</code></strong>) 급락으로 <code>무기 - 계시</code> 원가가 <strong><code>~9g 08s</code></strong>까지 내려왔습니다! 반면 <code>상급 마법의 정수</code>(<code>8.50s</code>) &amp; <code>작은 결정</code>(<code>53s</code>)은 급등 구간.
-              </div>
-
               <h3 style="margin-top:0;">잔여 육성 루트 <span class="badge">128 &rarr; 175</span></h3>
               <div class="table-wrap" style="margin-bottom:12px;">
                 <table>
@@ -5715,7 +5674,7 @@
                 </table>
               </div>
               <div class="callout" style="margin-bottom:16px;">
-                <strong>📊 현재 <code>128</code> 기준 잔여 원가 요약 (전문 승급 <code>50s</code> + <code>룬문자 은마법막대 39.75s</code> 포함 · <code>11/24 08:47</code> 시세):</strong>
+                <strong>📊 현재 <code>128</code> 기준 잔여 원가 요약 (전문 승급 <code>50s</code> + <code>룬문자 은마법막대 39.75s</code> 포함):</strong>
                 &nbsp;<strong>128&rarr;131</strong> <code>~96s</code> &middot; <strong>128&rarr;140</strong> <code>~1g 39s</code> &middot; <strong>128&rarr;175</strong> <code>~3g 53s</code>
               </div>
 
@@ -5754,24 +5713,6 @@
                 </table>
               </div>
 
-              <h3>알린시아 무기 마부 3종 <span class="badge">붉은마루 삼거리 11.2, 71.5</span></h3>
-              <div class="grid-3" style="margin-bottom:0;">
-                <div class="callout arcane" style="margin:0;">
-                  <strong>✨ <code>무기 - 계시</code> (Revelation)</strong> <span class="badge verified">딜러 추천</span><br>
-                  <span class="core-sum-note">습득 110 / 은마법막대 130+ &middot; 상인의 호의 45개 &middot; <strong>원가 ~9g 08s</strong></span><br><br>
-                  비주기적 직접 피해 주문이 <strong>치명타로 적중하지 않을 때 확률 발동</strong> &rarr; 다음 직접 피해 주문 <strong>치명타 +100%</strong> <em>(기본 치명이 낮을수록 발동률 상승)</em>
-                </div>
-                <div class="callout gold" style="margin:0;">
-                  <strong>💧 <code>무기 - 통찰</code> (Insight)</strong> <span class="badge gold">유지력용</span><br>
-                  <span class="core-sum-note">요구 140 / 은마법막대 130+ &middot; 상인의 호의 45개 &middot; <strong>원가 ~5g 27s</strong></span><br><br>
-                  주문 시전 시 확률 발동 &rarr; <strong>10초간 정신력 +100%</strong>. <code>신비한 명상</code> + <code>마법사 갑옷</code>과 시너지 우수.
-                </div>
-                <div class="callout" style="margin:0;">
-                  <strong>🛡️ <code>무기 - 회복</code> (Recovery)</strong> <span class="badge">근접/탱용</span><br>
-                  <span class="core-sum-note">요구 140 / 은마법막대 130+ &middot; 상인의 호의 45개</span><br><br>
-                  물리 공격이 회피/무기 막기 당할 시 <strong>최대 생명력 5% 회복</strong> (쿨 10초). <em>(물리 전용 &mdash; 마법사 불필요)</em>
-                </div>
-              </div>
             </div>
           </details>
 
@@ -5873,7 +5814,7 @@
 
           <!-- 7. MERCHANT'S FAVOR -->
           <details class="fold-card">
-            <summary><span>🪙 <strong>상인의 호의 (Merchant's Favor) &amp; 아제로스 상업 관리국</strong> <span class="badge gold">보유 55개</span></span></summary>
+            <summary><span>🪙 <strong>상인의 호의 (Merchant's Favor) &amp; 아제로스 상업 관리국</strong></span></summary>
             <div class="fold-body">
               <div class="callout arcane" style="margin-top:0;">
                 <strong>한 줄 요약 (현재 <code>55개</code> 보유 ✅):</strong> 와우 포에버 전용 전문기술 특수 도안(마법부여 <code>계시/통찰</code>, 목걸이&middot;보조장비 마부, 재봉 <code>진줏빛 화장복</code>&middot;<code>황금 손등싸개</code> 등)을 사기 위한 <strong>캐릭터 귀속 화폐(상인의 호의)</strong>와 <strong>평판 세력(아제로스 상업 관리국)</strong> 시스템입니다.
@@ -5931,13 +5872,10 @@
               </span>
             </summary>
             <div class="fold-body">
-              <div class="callout verified" style="margin-top:0;">
-                <strong>🎯 추천 로드맵 ("리넨 대기 &middot; 저점 선매집 후 일괄 전환"):</strong> ① <code>12:31</code> 기준 <code>리넨 옷감</code>(<code>1.91s</code>)&middot;<code>리넨 두루마리</code>(<code>7.5s</code>)가 품귀 가격대이니 매수 보류하고 <strong><code>자홍색 염료</code>(<code>1g 10.99s</code>)&middot;<code>야생덩굴</code>(<code>30c</code>)&middot;<code>비단 옷감</code>(<code>1.84s</code>)&middot;<code>감청색 염료</code>(<code>99s</code>)</strong> 등 저점 품목만 선확보, ② <code>리넨 20~25c</code> 복귀 시 부족분 217개 일괄 매수 후 <strong><code>Lv.5+</code> 추출 부캐 세팅 + 5분 만에 한방 전환</strong>하세요!
-              </div>
-              <div class="callout arcane" style="margin-bottom:0;">
-                <strong>⚖️ 핵심 비교 (성장 체감 vs 만렙 특권):</strong><br>
-                &bull; <strong>마법부여의 현실적 약점:</strong> 레벨업 중 무기를 바꿀 때마다 <code>계시(9.08g)</code>&middot;<code>통찰(5.27g)</code> 비용이 증발하고, 거래창 하단 슬롯으로 타인에게 받아도 효과가 동일합니다.<br>
-                &bull; <strong>재봉술의 냉정한 현실:</strong> Lv.32~56 추천품 대부분(<code>거미줄 허리띠</code> <code>46.11s</code> &middot; <code>검은 마법매듭 장갑</code> <code>1g 1.5s</code> &middot; <code>꿈매듭 조끼</code> <code>2g 34.28s</code> &middot; <code>붉은 마법매듭 머리띠</code> <code>1g 64s</code> &middot; <code>꿈매듭 머리장식</code> <code>3g 41.87s</code>)은 <strong>BoE(경매/의뢰 가능)</strong>이지만, <strong>만렙(Lv.57~60) <code>대마법사의 로브</code>(주문+40, BoP)와 <code>붉은덩굴 의복 3셋</code>(치명 +2%, 재봉 300 전용)</strong>은 재봉만의 독점 스펙입니다.
+              <div class="callout arcane" style="margin-top:0; margin-bottom:0;">
+                <strong>⚖️ 장기 비교 (레벨업 체감 vs 만렙 특권):</strong><br>
+                &bull; <strong>마법부여:</strong> 레벨업 중 무기를 바꿀 때마다 <code>계시</code>&middot;<code>통찰</code> 비용이 증발하며, 거래창 하단 슬롯으로 타인에게 받아도 동일 효과를 얻습니다.<br>
+                &bull; <strong>재봉술:</strong> Lv.32~56 추천품 대부분(<code>거미줄 허리띠</code>&middot;<code>꿈매듭</code>&middot;<code>유령매듭</code>)은 <strong>BoE(경매/의뢰 가능)</strong>이지만, <strong>만렙(Lv.57~60) <code>대마법사의 로브</code>(주문+40, BoP)와 <code>붉은덩굴 의복 3셋</code>(치명 +2%, 재봉 300 전용)</strong>은 재봉만의 독점 스펙입니다.
               </div>
             </div>
           </details>
@@ -14739,8 +14677,8 @@ const RECENTLY_UPDATED_TABS = {
     text: '11/24 애드온 패치노트 일괄 토글 + 내 캐릭터 핵심 요약 최상단 통합 · Attune koKR 패치'
   },
   'tab-prof': {
-    v: '2026-11-24-v4',
-    text: '11/24 전문기술 데이터 전수 교차검증(1.60.1 Mastercraft·WOW_ITEM_META 동기화) · 가로 타임라인 선 넘침/폰트 가독성 전면 개선 · 일회성 메모 삭제가능 토글(✕) 적용'
+    v: '2026-11-24-v5',
+    text: '전환 적기 진단을 최근 결론 텍스트 1단락으로 슬림화 · 그래프 중복 시세표/카드 및 불필요 중복 문구 정리'
   },
   'tab-rules': {
     v: '2026-11-24-v2',
