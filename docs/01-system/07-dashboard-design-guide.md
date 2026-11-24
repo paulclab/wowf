@@ -126,24 +126,30 @@
 
 ## 7. 아이템 툴팁 (`WOW_DB` + `WOW_ITEM_META`) & 데이터 정합성 규칙
 
-1. **양쪽 동시 동기화 필수**:
+1. **`WOW_DB` vs `ADDON_DB` 블록 경계 엄수 (툴팁 누락 원천 차단 ✅)**:
+   - `dashboard.html`에는 `const WOW_DB = { ... };` 아래에 **`const ADDON_DB = { ... };`** 블록이 별도로 존재하고, 그 아래에 `const WOW_ITEM_META = { ... };`가 위치합니다.
+   - `WOW_MATCH_KEYS`와 `applyWowItemMeta()`는 **오직 `WOW_DB`만 스캔**하므로, 아이템·재료·스킬·특성·소모품 툴팁은 **반드시 `const WOW_DB = {` 내부(즉 `const ADDON_DB = {` 직전 `};` 위)**에 추가해야 합니다! *(잘못해서 `ADDON_DB` 끝에 붙이면 툴팁이 아예 뜨지 않습니다.)*
+   - 본문·표·타임라인에서 축약명이나 띄어쓰기 변형(예: `녹색 비단 어깨 보호구`, `현자 지팡이`, `담쟁이덩굴 장화`, `유령매듭 어깨`)을 사용할 때는 반드시 `WOW_DB` 내부에 `{ alias: '정식 아이템명' }`을 등록합니다.
+2. **양쪽 동시 동기화 필수**:
    - 아이템·재료 가격/숙련도/획득처를 수정할 때는 **`WOW_DB`와 `WOW_ITEM_META`를 반드시 동시에 갱신**해야 함. (한쪽만 고치면 툴팁 상단과 하단 메타 박스에 서로 다른 시세·숙련도가 동시에 노출됨!)
-2. **가격 필드 배타 원칙**:
+3. **가격 필드 배타 원칙**:
    - 상인 판매 품목은 `vendorPrice`만, 경매장 품목은 `ahPrice`만 기입 (둘을 동시에 넣지 말 것).
-3. **와우 포에버 `1.60.1` 실측 최우선**:
+4. **와우 포에버 `1.60.1` 실측 최우선**:
    - 클래식(1.12) 기억으로 숙련도·재료 수량을 적지 말고, 반드시 로컬 **`Mastercraft/RecipeData.lua`**, **`Auctionator.lua`**, **`Syndicator.lua`**, **`wowf.io/ko`**, **`db.icy-veins.com/wow-forever`**로 교차 검증.
    - 아이템 아이콘은 `WOW_DB`에 이미 존재하여 HTTP-200 검증된 아이콘 이름만 재사용.
-4. **중복·오류 방지**:
+5. **중복·오류 방지**:
    - 수정한 탭은 반드시 `RECENTLY_UPDATED_TABS[tabId]`의 `v`와 `text`를 갱신해 메뉴 제목 우측 위 `N` 뱃지가 정상 표시되도록 유지.
 
 ---
 
 ## 8. 대시보드 수정 완료 전 필수 체크리스트
 
-수정 후 `git push origin main` 전에 아래 6항목을 Python 검증 스크립트로 반드시 확인합니다.
+수정 후 `git push origin main` 전에 아래 8항목을 Python + 헤드리스 브라우저(`msedge --headless --dump-dom`) 검증 스크립트로 반드시 확인합니다.
 1. JS 괄호 균형 `(brace, paren, bracket) == (0, 0, 0)`
-2. 중복 HTML `id` **0건**
+2. 중복 HTML `id` **0건** 및 `WOW_DB` 내 중복 키 **0건**
 3. `body[data-theme="dark"]` **0건**
 4. `localStorage.` 호출 **정확히 2건** (`safeStorageGet`/`safeStorageSet` 내부)
 5. 개인정보/계정 ID/로컬 절대 경로(`C:\Users\...`) **0건**
-6. `WOW_ITEM_META` 가격 충돌(`vendorPrice` + `ahPrice` 동시 존재) **0건** 및 신규 추가 아이템 100% 등록 완료
+6. `WOW_ITEM_META` 가격 충돌(`vendorPrice` + `ahPrice` 동시 존재) **0건**
+7. **실제 `WOW_DB` 블록(`const WOW_DB = {` ~ `const ADDON_DB = {` 사이)** 기준으로 타임라인·가격 추이 차트·핵심 `<code>` 아이템이 100% 등록되어 있는지 검증 (`ADDON_DB` 오배치 차단!)
+8. **실제 헤드리스 브라우저 DOM 하이드레이션 검증**: `msedge --headless --dump-dom` 결과에서 신규/수정 아이템이 `<span class="wow-ref ...">`로 실제 변환되었는지 직접 확인 후 푸시!

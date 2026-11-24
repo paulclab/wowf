@@ -5486,20 +5486,6 @@
                     </div>
                     <div class="tailor-item-line"><strong>도안:</strong> 재봉 교관 학습 (포에버 리워크로 지능+10 &middot; 주문+12 부여!)</div>
                   </div>
-
-                  <div class="tailor-item-card">
-                    <div class="tailor-item-top"><span><code>심홍색 비단 어깨보호구</code> <span class="tailor-slot-tag">어깨</span></span><strong><code>51.6s</code> <span class="tailor-slot-tag">경매 85s</span></strong></div>
-                    <div class="tailor-item-meta"><span class="badge warn">주문력 0 (포에버 변경)</span><span class="badge">Lv.33 / 숙련 155</span></div>
-                    <div class="tailor-stat-line"><strong>능력치:</strong> 지능 +8 &middot; 정신력 +7 (<strong>주문력 없음</strong> &mdash; <code>녹색 비단 어깨보호구</code> 우위)</div>
-                    <div class="tailor-mat-list">
-                      <div class="tailor-mat-row"><span><code>비단 두루마리</code> &times; 5 (20장)</span><span>@1.93s &rarr; 38.6s</span></div>
-                      <div class="tailor-mat-row"><span><code>화염 오일</code> &times; 2</span><span>@1s &rarr; 2s</span></div>
-                      <div class="tailor-mat-row"><span><code>적색 염료</code> &times; 2 (NPC 50c)</span><span>@50c &rarr; 1s</span></div>
-                      <div class="tailor-mat-row"><span><code>비단 실타래</code> &times; 2 (NPC)</span><span>@5s &rarr; 10s</span></div>
-                      <div class="tailor-mat-total"><span>원가 합계 (도안 월드드랍 1.7g)</span><span>51.6s</span></div>
-                    </div>
-                    <div class="tailor-item-line"><strong>누락 사유:</strong> 클래식(화염+20)과 달리 포에버에서 주문력이 삭제돼 <code>녹색 비단 어깨보호구</code>에 밀림</div>
-                  </div>
                 </div>
               </div>
 
@@ -9303,11 +9289,11 @@ const WOW_DB = {
     desc: '저마나 소모로 마나를 아끼거나 체력이 적은 몹을 마무리할 때 사용하는 2레벨 신비한 화살입니다.',
     note: '2번 보조 매크로 · 주력 딜링은 Lv.24 습득 3 레벨 권장'
   },
-  '신비한 화살(4 레벨)': {
-    en: 'Arcane Missiles (Rank 4)', kind: '비전 주문 · Lv.32', quality: 'spell', icon: 'spell_nature_starfall',
-    rows: [['마나 315 · 습득 Lv.32', '유효 거리 30미터'], ['정신 집중 5초 (5연발)', 'On-GCD (1.5초)']],
-    desc: '32레벨에 상급 마법사에게 습득하는 상위 등급 신비한 화살입니다. 습득 즉시 2번 매크로를 (4 레벨)로 갱신하세요.',
-    note: '📘 Lv.32 핵심 갱신 스킬'
+  '신비한 화살(5 레벨)': {
+    en: 'Arcane Missiles (Rank 5)', kind: '비전 주문 · Lv.40 습득', quality: 'spell', icon: 'spell_nature_starfall',
+    rows: [['습득 레벨 40', '유효 거리 30미터'], ['정신 집중 5초 (5연발)', 'On-GCD (1.5초)']],
+    desc: '40레벨에 상급 마법사에게 배우는 상위 등급 신비한 화살입니다. 습득 즉시 주력 매크로를 (5 레벨)로 교체하세요.',
+    note: '📘 Lv.40 신비의 마법 강화와 함께 해금'
   },
   '신비한 화살': {
     en: 'Arcane Missiles', kind: '비전 주문', quality: 'spell', icon: 'spell_nature_starfall',
@@ -11334,7 +11320,258 @@ const WOW_DB = {
   '엉겅퀴가죽 로브': { alias: '성난 비전의 엉겅퀴가죽 로브' },
   '장로 장식띠': { alias: '성난 비전의 장로 장식띠' },
   '현인 장갑': { alias: '성난 비전의 현인 장갑' },
-  '현인 장화': { alias: '성난 비전의 현인 장화' }
+  '현인 장화': { alias: '성난 비전의 현인 장화' },
+  '녹색 비단 어깨 보호구': { alias: '녹색 비단 어깨보호구' },
+  '유령매듭 어깨': { alias: '유령매듭 어깨보호구' },
+  '황천광채 어깨': { alias: '황천광채 어깨보호구' },
+  '붉은덩굴 의복': { alias: '붉은덩굴 의복 3셋' },
+  '인간사냥꾼 망토': { alias: '성난 비전의 인간사냥꾼 망토' },
+  '담쟁이덩굴 튜닉': { alias: '성난 비전의 담쟁이덩굴 튜닉' },
+  '담쟁이덩굴 장화': { alias: '성난 비전의 담쟁이덩굴 장화' },
+  '현자 지팡이': { alias: '마술사의 현자 지팡이' },
+  '별똥별': { alias: '별똥별 마법봉' },
+  '힘 조율': { alias: '힘 조율의 반지' },
+  '방사능처리': { alias: '방사능처리 장화' },
+  '정밀함': {
+    en: 'Precision', kind: '냉기 특성 · 1티어 (현재 1/3 ✅)', quality: 'spell', icon: 'spell_frost_frost',
+    rows: [['냉기 1티어 (ID: #105778)', '모든 학파 통합 적중!'], ['투자당 +2% / +4% / +6%', '현재 1/3 투자 → 총 적중 +2%']],
+    desc: '와우 포에버에서 비전·화염·냉기 모든 주문 적중률을 올려주도록 통합 개편된 필수 특성입니다. 2/3 달성 시 동레벨 4% 만적중 완성!',
+    note: '⭐ Lv.34 2/3 우선 투자 최강 추천'
+  },
+  '최하급 속도': {
+    en: 'Enchant Boots - Minor Speed', kind: '장화 마법부여 · 숙련 225', quality: 'spell', icon: 'inv_boots_05',
+    rows: [['요구 숙련: 225 (교관)', '재료: 하급 황천 정수 1 + 남옥 1 + 하급 찬란 결정 1'], ['효과', '이동 속도 +8% 영구 증가']],
+    desc: '방어구 키트가 적용된 장화라도 후반(숙련 225+)에 이동 속도 +8%를 위해 예외적으로 덮어쓸 가치가 있는 마법부여입니다.',
+    note: '📍 퀘스트 동선·던전 카이팅 이동 효율 상승'
+  },
+  '따끈따끈한 거북이 수프': {
+    en: 'Soothing Turtle Bisque', kind: '요리 소비템 · 숙련 175', quality: 'common', icon: 'inv_misc_food_63',
+    rows: [['요구 요리: 175', '획득: 사우스쇼어 요리 퀘스트 보상 도안'], ['효과', '체력·정신력 포만감 버프 + 처치 XP +5%']],
+    desc: '체력/정신력 회복과 포만감 전투 버프(처치 경험치 +5% 포함)를 함께 제공하는 중반 요리입니다.',
+    note: '📍 힐스브래드 사우스쇼어 거북이 고기 파밍'
+  },
+  '미스릴송어': {
+    en: 'Mithril Head Trout', kind: '낚시·요리 어류 · 숙련 175', quality: 'common', icon: 'inv_misc_food_63',
+    rows: [['낚시 수급: 50~150+', '스톰윈드 운하·저습지·힐스브래드 물가'], ['용도', '요리 175 숙련업 & 포만감 버프 요리']],
+    desc: '저습지와 힐스브래드 등 중반 물가에서 낚아 요리 숙련과 포만감 버프 식량으로 활용하는 물고기입니다.',
+    note: '📍 낚시 50 → 150 구간 핵심 재료'
+  },
+  '두꺼운 마법 붕대': {
+    en: 'Heavy Mageweave Bandage', kind: '응급치료 · 숙련 240', quality: 'common', icon: 'inv_misc_bag_08',
+    rows: [['요구 숙련: 240 (재료: 마법 옷감 2)', '테라모어 225 퀘스트 후 학습']],
+    desc: '비전투 중 마나 소모 없이 체력을 빠르게 회복하는 중후반 핵심 붕대입니다.',
+    note: '📍 Lv.35+ 225 승급 퀘스트 완료 후 교관 학습'
+  },
+  '룬매듭 붕대': {
+    en: 'Runecloth Bandage', kind: '응급치료 · 숙련 260', quality: 'common', icon: 'inv_misc_bag_08',
+    rows: [['요구 숙련: 260 (재료: 룬무늬 옷감 1)', '테라모어 225 퀘스트 후 학습']],
+    desc: '260~290 구간 숙련업과 50레벨 이후 자가 회복을 담당하는 붕대입니다.',
+    note: '📍 구스타프 반하우젠(테라모어) 225 퀘스트 후 학습'
+  },
+  '잘못 놓인 보급품 상자': {
+    en: 'Waylaid Supplies', kind: '상인의 호의 공급 화폐 상자', quality: 'uncommon', icon: 'inv_box_01',
+    rows: [['획득처: 25+ 필드 몹·상자 드랍', '보급품 채운 뒤 삼거리 NPC 반납'], ['보상', '상인의 호의 주화 + 평판 + 실버']],
+    desc: '필드 사냥 중 드랍되는 빈 상자에 제작/채집 납품품을 채워 반납하면 특수 도안 화폐인 상인의 호의를 얻습니다.',
+    note: '📍 붉은마루 삼거리 [미빈 섀도위브] 도안 구매용 핵심 화폐'
+  },
+  // --- 11/24 추가 재봉 재료 & 업그레이드 장비 (반드시 WOW_DB 내부에 위치!) ---
+  '화염 오일': {
+    en: 'Fire Oil', kind: '연금술 오일 · 시세 1s', quality: 'common', icon: 'inv_potion_19',
+    rows: [['현재 시세 (11/24 14:49)', '1s (매물 850개)'], ['주요 용도', '심홍색 비단 장갑/망토 · 연금 화염비약']],
+    desc: '불지느러미퉁돔(연금술 130)에서 추출하는 오일입니다.',
+    note: '📍 경매장 물량이 850개 이상으로 상시 1s 내외 저가 형성'
+  },
+  '적색 염료': {
+    en: 'Red Dye', kind: '재봉 상점 염료 · 상점가 50c', quality: 'common', icon: 'inv_potion_11',
+    rows: [['NPC 상점가', '50c (무제한)'], ['경매 시세 (11/24 14:49)', '1.05s (매물 177개 · 경매 비추!)']],
+    desc: '재봉용품 상인이 50c에 무제한 판매하는 기본 염료입니다. 심홍색·붉은 마법매듭 시리즈에 공통 투입됩니다.',
+    note: '💡 경매장(1.05s)은 상점가의 2배이므로 반드시 재봉 상인에게 50c로 구매!'
+  },
+  '온전한 가죽': {
+    en: 'Pristine Leather', kind: '포에버 무두질 재료 · 시세 1.23s', quality: 'common', icon: 'inv_misc_leatherscrap_02',
+    rows: [['현재 시세 (11/24 14:49)', '1.23s (매물 369개)'], ['주요 용도', '황금 덧신(4) · 포에버 신규 제작품']],
+    note: '📍 무두질 또는 경매장 저렴 구매'
+  },
+  '수호자의 돌': {
+    en: 'Guardian Stone', kind: '만렙 희귀 돌 · 시세 ~20g', quality: 'rare', icon: 'inv_misc_gem_stone_01',
+    rows: [['현재 시세 (11/24 14:49)', '~20g (매물 37개)'], ['주요 용도', '은빛 여명회 어깨보호구(2) · 장화(2)']],
+    note: '📍 운고로 분화구 수호자 정령 드랍 / 경매장'
+  },
+  '눈부신 작은 결정': {
+    en: 'Small Brilliant Shard', kind: '마부 마력추출 결정 · 시세 46.92s', quality: 'rare', icon: 'inv_enchant_shardbrilliantlarge',
+    rows: [['현재 시세 (11/24 14:49)', '46.92s (매물 140개)'], ['주요 용도', '맹독분출 발보호구(1) · 후반 마법부여']],
+    note: '📍 Lv.51~55 희귀 장비 마력 추출 / 경매장'
+  },
+  '불꽃의 정수': {
+    en: 'Fiery Core', kind: '화산 심장부 레이드 재료', quality: 'rare', icon: 'spell_fire_volcano',
+    rows: [['용도', '화염핵 다리보호구(5) · 화염핵 로브(2)']],
+    note: '📍 화산 심장부 드랍 · 토륨 대장조합 상인'
+  },
+  '화산의 정수': {
+    en: 'Lava Core', kind: '화산 심장부 레이드 재료', quality: 'rare', icon: 'spell_fire_soulburn',
+    rows: [['용도', '화염핵 다리보호구(3) · 화염핵 로브(3)']],
+    note: '📍 화산 심장부 드랍 · 토륨 대장조합 상인'
+  },
+  '녹색 비단 어깨보호구': {
+    en: 'Green Silken Shoulders', kind: '어깨 · 천 · 방어도 36', quality: 'uncommon', icon: 'inv_shoulder_06',
+    rows: [['요구 레벨 31', '착용 시 귀속 (BoE · 재봉 145 · 교관)']],
+    stats: ['지능 +11'],
+    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 8만큼 증가합니다.'],
+    compare: {
+      equipped: '장미 어깨보호대',
+      deltas: [
+        { v: '+6 지능', type: 'pos' },
+        { v: '+3 모든 주문력', type: 'pos' },
+        { v: '+6 방어도', type: 'pos' }
+      ]
+    },
+    note: '⭐ 현재 Lv.33 즉시 착용 가능! 경매 완제품 24.99s로 장미 어깨 완승'
+  },
+  '붉은 마법매듭 바지': {
+    en: 'Red Mageweave Pants', kind: '다리 · 천 · 방어도 49', quality: 'uncommon', icon: 'inv_pants_01',
+    rows: [['요구 레벨 38', '착용 시 귀속 (BoE · 재봉 180 · 월드 드랍)']],
+    stats: ['지능 +12'],
+    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 14만큼 증가합니다.'],
+    compare: {
+      equipped: '집정관의 바지',
+      deltas: [
+        { v: '-1 지능', type: 'neg' },
+        { v: '+7 기본 주문력 (키트 전)', type: 'pos' }
+      ]
+    },
+    note: '📍 30대 후반 가성비 다리 (키트 +4 적용 시 주문 +18)'
+  },
+  '붉은 마법매듭 장갑': {
+    en: 'Red Mageweave Gloves', kind: '손 · 천 · 방어도 37', quality: 'uncommon', icon: 'inv_gauntlets_05',
+    rows: [['요구 레벨 40', '착용 시 귀속 (BoE · 재봉 190 · 월드 드랍)']],
+    stats: ['지능 +10'],
+    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 11만큼 증가합니다.'],
+    compare: {
+      equipped: '성난 비전의 현인 장갑',
+      deltas: [
+        { v: '+10 지능', type: 'pos' },
+        { v: '동일 +11 주문력 (모든 주문)', type: 'pos' }
+      ]
+    },
+    note: '📍 꿈매듭 장갑(지4/주18) 대비 지능 +6 우위 & 물레 불필요'
+  },
+  '검은 마법매듭 어깨보호구': {
+    en: 'Black Mageweave Shoulders', kind: '어깨 · 천 · 방어도 45', quality: 'uncommon', icon: 'inv_shoulder_09',
+    rows: [['요구 레벨 41', '착용 시 귀속 (BoE · 재봉 190 · 교관)']],
+    stats: ['지능 +9'],
+    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 10만큼 증가합니다.'],
+    compare: {
+      equipped: '장미 어깨보호대',
+      deltas: [
+        { v: '+4 지능', type: 'pos' },
+        { v: '+5 모든 주문력', type: 'pos' }
+      ]
+    },
+    note: '📍 교관 무료 학습 · 황천광채 어깨(34g) 안 만들 때 가성비 최고'
+  },
+  '붉은 마법매듭 어깨보호구': {
+    en: 'Red Mageweave Shoulders', kind: '어깨 · 천 · 방어도 46', quality: 'uncommon', icon: 'inv_shoulder_19',
+    rows: [['요구 레벨 42', '착용 시 귀속 (BoE · 재봉 195 · 월드 드랍)']],
+    stats: ['지능 +15'],
+    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 7만큼 증가합니다.'],
+    compare: {
+      equipped: '장미 어깨보호대',
+      deltas: [
+        { v: '+10 지능', type: 'pos' },
+        { v: '+2 모든 주문력', type: 'pos' }
+      ]
+    },
+    note: '📍 지능 +15 확보용 (주문력 우선 시 검은 마법매듭/황천광채 추천)'
+  },
+  '황금 덧신': {
+    en: 'Golden Sandals', kind: '발 · 천 · 방어도 54', quality: 'rare', icon: 'inv_boots_cloth_05',
+    rows: [['요구 레벨 50', '획득 시 귀속 (BoP · 재봉 235 · 물레 필요)']],
+    stats: ['체력 +13', '지능 +9'],
+    effects: ['착용 효과: 비전 주문 및 효과의 공격력이 최대 20만큼 증가합니다.'],
+    compare: {
+      equipped: '성난 비전의 현인 장화',
+      deltas: [
+        { v: '+9 체력', type: 'pos' },
+        { v: '+9 지능', type: 'pos' },
+        { v: '+9 비전 주문력', type: 'pos' }
+      ]
+    },
+    note: '📍 붉은마루 [미빈 섀도위브] 상인의 호의 90 · 50레벨대 최강 비전 장화(원가 48g)'
+  },
+  '룬매듭 머리띠': {
+    en: 'Runecloth Headband', kind: '머리 · 천 · 방어도 62', quality: 'uncommon', icon: 'inv_helmet_31',
+    rows: [['요구 레벨 54', '착용 시 귀속 (BoE · 재봉 260 · 월드 드랍)']],
+    stats: ['지능 +20'],
+    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 15만큼 증가합니다.'],
+    compare: {
+      equipped: '독수리의 내구력 모자',
+      deltas: [
+        { v: '-8 체력', type: 'neg' },
+        { v: '+12 지능', type: 'pos' },
+        { v: '+15 모든 주문력', type: 'pos' }
+      ]
+    },
+    note: '📍 유령매듭 두건(정18/주21) 대신 마나풀+치명 선호 비전 법사 최적'
+  },
+  '룬매듭 어깨보호구': {
+    en: 'Runecloth Shoulders', kind: '어깨 · 천 · 방어도 59', quality: 'uncommon', icon: 'inv_shoulder_06',
+    rows: [['요구 레벨 56', '착용 시 귀속 (BoE · 재봉 260 · 월드 드랍)']],
+    stats: ['지능 +15'],
+    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 12만큼 증가합니다.'],
+    compare: {
+      equipped: '장미 어깨보호대',
+      deltas: [
+        { v: '+10 지능', type: 'pos' },
+        { v: '+7 모든 주문력', type: 'pos' }
+      ]
+    },
+    note: '📍 유령매듭 어깨(정12/주15) 대비 지능 +15 우위'
+  },
+  '맹독분출 발보호구': {
+    en: 'Venomspew Footpads', kind: '발 · 천 · 방어도 57', quality: 'rare', icon: 'inv_boots_05',
+    rows: [['요구 레벨 53', '착용 시 귀속 (BoE · 재봉 295 · 베틀 필요)']],
+    stats: ['정신력 +8', '자연 저항 +8'],
+    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 22만큼 증가합니다.'],
+    compare: {
+      equipped: '성난 비전의 현인 장화',
+      deltas: [
+        { v: '-4 체력', type: 'neg' },
+        { v: '+8 정신력', type: 'pos' },
+        { v: '+11 비전 주문력 (모든 주문 +22)', type: 'pos' }
+      ]
+    },
+    note: '📍 실리더스 [미쉬타] 세나리온 의회 우호 · 황금 덧신(48g)의 1/4 비용 가성비!'
+  },
+  '은빛 여명회 어깨보호구': {
+    en: 'Argent Shoulders', kind: '어깨 · 천 · 방어도 65', quality: 'rare', icon: 'inv_shoulder_13',
+    rows: [['요구 레벨 56', '착용 시 귀속 (BoE · 재봉 290 · 베틀 필요)']],
+    stats: ['정신력 +7', '암흑 저항 +5'],
+    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 25만큼 증가합니다.'],
+    compare: {
+      equipped: '장미 어깨보호대',
+      deltas: [
+        { v: '-5 지능', type: 'neg' },
+        { v: '+7 정신력', type: 'pos' },
+        { v: '+20 모든 주문력', type: 'pos' }
+      ]
+    },
+    note: '📍 은빛 여명회 매우 우호적 평판 도안 (단일 어깨 주문력 +25 최상위)'
+  },
+  '화염핵 다리보호구': {
+    en: 'Flarecore Leggings', kind: '다리 · 천 · 방어도 94', quality: 'epic', icon: 'inv_pants_11',
+    rows: [['요구 레벨 60', '착용 시 귀속 (BoE · 재봉 300 · 베틀 필요)']],
+    stats: ['체력 +21', '화염 저항 +16'],
+    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 43만큼 증가합니다.'],
+    compare: {
+      equipped: '집정관의 바지',
+      deltas: [
+        { v: '+21 체력', type: 'pos' },
+        { v: '-13 지능', type: 'neg' },
+        { v: '+32 모든 주문력 (키트 적용 현바지 대비)', type: 'pos' }
+      ]
+    },
+    note: '📍 검은바위 나락 [로크토스] 토륨 대장조합 매우 우호 · 단일 부위 주문력 최강급!'
+  }
 };
 
 const ADDON_DB = {
@@ -11587,219 +11824,6 @@ const ADDON_DB = {
     rows: [['다운로드: ~430만+ (CurseForge)', '인기도: AI 음성 더빙 인기 애드온'], ['범위: 퀘스트·책·지역·보스', '명령어: /sp · /sp previous']],
     desc: '퀘스트 대사, NPC 가십, 도서관 책/편지, 지역 및 보스 전승을 한국어 음성으로 읽어주는 통합 내레이션 애드온입니다.',
     note: '🟡 얼라이언스 전용 플레이 시 SpokenQuestsAudioHorde_koKR 팩은 꺼둬도 무방'
-  },
-  // --- 11/24 추가 재봉 재료 & 업그레이드 장비 ---
-  '화염 오일': {
-    en: 'Fire Oil', kind: '연금술 오일 · 시세 1s', quality: 'common', icon: 'inv_potion_19',
-    rows: [['현재 시세 (11/24 14:49)', '1s (매물 850개)'], ['주요 용도', '심홍색 비단 어깨/장갑/망토 · 연금 화염비약']],
-    desc: '불지느러미퉁돔(연금술 130)에서 추출하는 오일입니다.',
-    note: '📍 경매장 물량이 850개 이상으로 상시 1s 내외 저가 형성'
-  },
-  '적색 염료': {
-    en: 'Red Dye', kind: '재봉 상점 염료 · 상점가 50c', quality: 'common', icon: 'inv_potion_11',
-    rows: [['NPC 상점가', '50c (무제한)'], ['경매 시세 (11/24 14:49)', '1.05s (매물 177개 · 경매 비추!)']],
-    desc: '재봉용품 상인이 50c에 무제한 판매하는 기본 염료입니다. 심홍색·붉은 마법매듭 시리즈에 공통 투입됩니다.',
-    note: '💡 경매장(1.05s)은 상점가의 2배이므로 반드시 재봉 상인에게 50c로 구매!'
-  },
-  '온전한 가죽': {
-    en: 'Pristine Leather', kind: '포에버 무두질 재료 · 시세 1.23s', quality: 'common', icon: 'inv_misc_leatherscrap_02',
-    rows: [['현재 시세 (11/24 14:49)', '1.23s (매물 369개)'], ['주요 용도', '황금 덧신(4) · 포에버 신규 제작품']],
-    note: '📍 무두질 또는 경매장 저렴 구매'
-  },
-  '수호자의 돌': {
-    en: 'Guardian Stone', kind: '만렙 희귀 돌 · 시세 ~20g', quality: 'rare', icon: 'inv_misc_gem_stone_01',
-    rows: [['현재 시세 (11/24 14:49)', '~20g (매물 37개)'], ['주요 용도', '은빛 여명회 어깨보호구(2) · 장화(2)']],
-    note: '📍 운고로 분화구 수호자 정령 드랍 / 경매장'
-  },
-  '눈부신 작은 결정': {
-    en: 'Small Brilliant Shard', kind: '마부 마력추출 결정 · 시세 46.92s', quality: 'rare', icon: 'inv_enchant_shardbrilliantlarge',
-    rows: [['현재 시세 (11/24 14:49)', '46.92s (매물 140개)'], ['주요 용도', '맹독분출 발보호구(1) · 후반 마법부여']],
-    note: '📍 Lv.51~55 희귀 장비 마력 추출 / 경매장'
-  },
-  '불꽃의 정수': {
-    en: 'Fiery Core', kind: '화산 심장부 레이드 재료', quality: 'rare', icon: 'spell_fire_volcano',
-    rows: [['용도', '화염핵 다리보호구(5) · 화염핵 로브(2)']],
-    note: '📍 화산 심장부 드랍 · 토륨 대장조합 상인'
-  },
-  '화산의 정수': {
-    en: 'Lava Core', kind: '화산 심장부 레이드 재료', quality: 'rare', icon: 'spell_fire_soulburn',
-    rows: [['용도', '화염핵 다리보호구(3) · 화염핵 로브(3)']],
-    note: '📍 화산 심장부 드랍 · 토륨 대장조합 상인'
-  },
-  '녹색 비단 어깨보호구': {
-    en: 'Green Silken Shoulders', kind: '어깨 · 천 · 방어도 36', quality: 'uncommon', icon: 'inv_shoulder_06',
-    rows: [['요구 레벨 31', '착용 시 귀속 (BoE · 재봉 145 · 교관)']],
-    stats: ['지능 +11'],
-    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 8만큼 증가합니다.'],
-    compare: {
-      equipped: '장미 어깨보호대',
-      deltas: [
-        { v: '+6 지능', type: 'pos' },
-        { v: '+3 모든 주문력', type: 'pos' },
-        { v: '+6 방어도', type: 'pos' }
-      ]
-    },
-    note: '⭐ 현재 Lv.33 즉시 착용 가능! 경매 완제품 24.99s로 장미 어깨 완승'
-  },
-  '심홍색 비단 어깨보호구': {
-    en: 'Crimson Silk Shoulders', kind: '어깨 · 천 · 방어도 38', quality: 'uncommon', icon: 'inv_shoulder_19',
-    rows: [['요구 레벨 33', '착용 시 귀속 (BoE · 재봉 155 · 월드 드랍)']],
-    stats: ['지능 +8', '정신력 +7'],
-    effects: ['⚠️ 포에버 1.60.1에서는 화염/일반 주문력이 삭제되었습니다!'],
-    compare: {
-      equipped: '장미 어깨보호대',
-      deltas: [
-        { v: '+3 지능', type: 'pos' },
-        { v: '+7 정신력', type: 'pos' },
-        { v: '-5 모든 주문력', type: 'neg' }
-      ]
-    },
-    note: '📌 Lv.31 녹색 비단 어깨보호구(지11/주문+8)가 주문력·가격 모두 압도적 우위'
-  },
-  '붉은 마법매듭 바지': {
-    en: 'Red Mageweave Pants', kind: '다리 · 천 · 방어도 49', quality: 'uncommon', icon: 'inv_pants_01',
-    rows: [['요구 레벨 38', '착용 시 귀속 (BoE · 재봉 180 · 월드 드랍)']],
-    stats: ['지능 +12'],
-    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 14만큼 증가합니다.'],
-    compare: {
-      equipped: '집정관의 바지',
-      deltas: [
-        { v: '-1 지능', type: 'neg' },
-        { v: '+7 기본 주문력 (키트 전)', type: 'pos' }
-      ]
-    },
-    note: '📍 30대 후반 가성비 다리 (키트 +4 적용 시 주문 +18)'
-  },
-  '붉은 마법매듭 장갑': {
-    en: 'Red Mageweave Gloves', kind: '손 · 천 · 방어도 37', quality: 'uncommon', icon: 'inv_gauntlets_05',
-    rows: [['요구 레벨 40', '착용 시 귀속 (BoE · 재봉 190 · 월드 드랍)']],
-    stats: ['지능 +10'],
-    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 11만큼 증가합니다.'],
-    compare: {
-      equipped: '성난 비전의 현인 장갑',
-      deltas: [
-        { v: '+10 지능', type: 'pos' },
-        { v: '동일 +11 주문력 (모든 주문)', type: 'pos' }
-      ]
-    },
-    note: '📍 꿈매듭 장갑(지4/주18) 대비 지능 +6 우위 & 물레 불필요'
-  },
-  '검은 마법매듭 어깨보호구': {
-    en: 'Black Mageweave Shoulders', kind: '어깨 · 천 · 방어도 45', quality: 'uncommon', icon: 'inv_shoulder_09',
-    rows: [['요구 레벨 41', '착용 시 귀속 (BoE · 재봉 190 · 교관)']],
-    stats: ['지능 +9'],
-    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 10만큼 증가합니다.'],
-    compare: {
-      equipped: '장미 어깨보호대',
-      deltas: [
-        { v: '+4 지능', type: 'pos' },
-        { v: '+5 모든 주문력', type: 'pos' }
-      ]
-    },
-    note: '📍 교관 무료 학습 · 황천광채 어깨(34g) 안 만들 때 가성비 최고'
-  },
-  '붉은 마법매듭 어깨보호구': {
-    en: 'Red Mageweave Shoulders', kind: '어깨 · 천 · 방어도 46', quality: 'uncommon', icon: 'inv_shoulder_19',
-    rows: [['요구 레벨 42', '착용 시 귀속 (BoE · 재봉 195 · 월드 드랍)']],
-    stats: ['지능 +15'],
-    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 7만큼 증가합니다.'],
-    compare: {
-      equipped: '장미 어깨보호대',
-      deltas: [
-        { v: '+10 지능', type: 'pos' },
-        { v: '+2 모든 주문력', type: 'pos' }
-      ]
-    },
-    note: '📍 지능 +15 확보용 (주문력 우선 시 검은 마법매듭/황천광채 추천)'
-  },
-  '황금 덧신': {
-    en: 'Golden Sandals', kind: '발 · 천 · 방어도 54', quality: 'rare', icon: 'inv_boots_cloth_05',
-    rows: [['요구 레벨 50', '획득 시 귀속 (BoP · 재봉 235 · 물레 필요)']],
-    stats: ['체력 +13', '지능 +9'],
-    effects: ['착용 효과: 비전 주문 및 효과의 공격력이 최대 20만큼 증가합니다.'],
-    compare: {
-      equipped: '성난 비전의 현인 장화',
-      deltas: [
-        { v: '+9 체력', type: 'pos' },
-        { v: '+9 지능', type: 'pos' },
-        { v: '+9 비전 주문력', type: 'pos' }
-      ]
-    },
-    note: '📍 붉은마루 [미빈 섀도위브] 상인의 호의 90 · 50레벨대 최강 비전 장화(원가 48g)'
-  },
-  '룬매듭 머리띠': {
-    en: 'Runecloth Headband', kind: '머리 · 천 · 방어도 62', quality: 'uncommon', icon: 'inv_helmet_31',
-    rows: [['요구 레벨 54', '착용 시 귀속 (BoE · 재봉 260 · 월드 드랍)']],
-    stats: ['지능 +20'],
-    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 15만큼 증가합니다.'],
-    compare: {
-      equipped: '독수리의 내구력 모자',
-      deltas: [
-        { v: '-8 체력', type: 'neg' },
-        { v: '+12 지능', type: 'pos' },
-        { v: '+15 모든 주문력', type: 'pos' }
-      ]
-    },
-    note: '📍 유령매듭 두건(정18/주21) 대신 마나풀+치명 선호 비전 법사 최적'
-  },
-  '룬매듭 어깨보호구': {
-    en: 'Runecloth Shoulders', kind: '어깨 · 천 · 방어도 59', quality: 'uncommon', icon: 'inv_shoulder_06',
-    rows: [['요구 레벨 56', '착용 시 귀속 (BoE · 재봉 260 · 월드 드랍)']],
-    stats: ['지능 +15'],
-    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 12만큼 증가합니다.'],
-    compare: {
-      equipped: '장미 어깨보호대',
-      deltas: [
-        { v: '+10 지능', type: 'pos' },
-        { v: '+7 모든 주문력', type: 'pos' }
-      ]
-    },
-    note: '📍 유령매듭 어깨(정12/주15) 대비 지능 +15 우위'
-  },
-  '맹독분출 발보호구': {
-    en: 'Venomspew Footpads', kind: '발 · 천 · 방어도 57', quality: 'rare', icon: 'inv_boots_05',
-    rows: [['요구 레벨 53', '착용 시 귀속 (BoE · 재봉 295 · 베틀 필요)']],
-    stats: ['정신력 +8', '자연 저항 +8'],
-    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 22만큼 증가합니다.'],
-    compare: {
-      equipped: '성난 비전의 현인 장화',
-      deltas: [
-        { v: '-4 체력', type: 'neg' },
-        { v: '+8 정신력', type: 'pos' },
-        { v: '+11 비전 주문력 (모든 주문 +22)', type: 'pos' }
-      ]
-    },
-    note: '📍 실리더스 [미쉬타] 세나리온 의회 우호 · 황금 덧신(48g)의 1/4 비용 가성비!'
-  },
-  '은빛 여명회 어깨보호구': {
-    en: 'Argent Shoulders', kind: '어깨 · 천 · 방어도 65', quality: 'rare', icon: 'inv_shoulder_13',
-    rows: [['요구 레벨 56', '착용 시 귀속 (BoE · 재봉 290 · 베틀 필요)']],
-    stats: ['정신력 +7', '암흑 저항 +5'],
-    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 25만큼 증가합니다.'],
-    compare: {
-      equipped: '장미 어깨보호대',
-      deltas: [
-        { v: '-5 지능', type: 'neg' },
-        { v: '+7 정신력', type: 'pos' },
-        { v: '+20 모든 주문력', type: 'pos' }
-      ]
-    },
-    note: '📍 은빛 여명회 매우 우호적 평판 도안 (단일 어깨 주문력 +25 최상위)'
-  },
-  '화염핵 다리보호구': {
-    en: 'Flarecore Leggings', kind: '다리 · 천 · 방어도 94', quality: 'epic', icon: 'inv_pants_11',
-    rows: [['요구 레벨 60', '착용 시 귀속 (BoE · 재봉 300 · 베틀 필요)']],
-    stats: ['체력 +21', '화염 저항 +16'],
-    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 43만큼 증가합니다.'],
-    compare: {
-      equipped: '집정관의 바지',
-      deltas: [
-        { v: '+21 체력', type: 'pos' },
-        { v: '-13 지능', type: 'neg' },
-        { v: '+32 모든 주문력 (키트 적용 현바지 대비)', type: 'pos' }
-      ]
-    },
-    note: '📍 검은바위 나락 [로크토스] 토륨 대장조합 매우 우호 · 단일 부위 주문력 최강급!'
   }
 };
 
@@ -13058,12 +13082,6 @@ const WOW_ITEM_META = {
     craftCost: '48.6s (경매 완제품 24.99s 특가! · 11/24 14:49)',
     enchantable: '어깨 평판 마부 가능'
   },
-  '심홍색 비단 어깨보호구': {
-    bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
-    source: '재봉술 155 제작 — Lv.33~45 월드 드랍 도안 (포에버 주문력 0 주의)',
-    craftCost: '51.6s (경매 완제품 80~85s · 11/24 14:49)',
-    enchantable: '어깨 평판 마부 가능'
-  },
   '붉은 마법매듭 바지': {
     bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
     source: '재봉술 180 제작 — Lv.38~49 월드 드랍 도안',
@@ -13123,6 +13141,31 @@ const WOW_ITEM_META = {
     source: '재봉술 300 제작 — 검은바위 나락 [로크토스] 토륨 대장조합 매우 우호 ([베틀] 필요)',
     craftCost: '21g 87.48s+ (레이드 핵 별도 · 11/24 14:49)',
     enchantable: '혈장/줄구룹 다리 마부 가능'
+  },
+  '최하급 속도': {
+    bind: '장화 마법부여 (숙련 225)',
+    source: '마법부여 교관 학습 (재료: 하급 황천 정수 1 + 남옥 1 + 하급 찬란 결정 1)',
+    enchantable: '장화 이동 속도 +8% (방어구 키트 대체 가능)'
+  },
+  '따끈따끈한 거북이 수프': {
+    bind: '비귀속 (요리 175 제작 · 경매 가능)',
+    source: '동부왕국 > 힐스브래드 구릉지 사우스쇼어 요리 퀘스트 보상 도안'
+  },
+  '미스릴송어': {
+    bind: '비귀속 (낚시 수급 · 경매 가능)',
+    source: '스톰윈드 운하·저습지·힐스브래드 물가 낚시 (50~150+)'
+  },
+  '두꺼운 마법 붕대': {
+    bind: '비귀속 (응급치료 240)',
+    source: '테라모어 응급치료 225 퀘스트 후 구스타프 반하우젠 학습'
+  },
+  '룬매듭 붕대': {
+    bind: '비귀속 (응급치료 260)',
+    source: '테라모어 응급치료 225 퀘스트 후 구스타프 반하우젠 학습'
+  },
+  '잘못 놓인 보급품 상자': {
+    bind: '획득/납품용 (유일/가방 보관)',
+    source: '필드 몬스터·보물상자 드랍 → 보급품 채워 삼거리 반납 시 [상인의 호의] 획득'
   }
 };
 
@@ -15600,8 +15643,8 @@ const RECENTLY_UPDATED_TABS = {
     text: '전 메뉴 토글 하위 제목 일괄 정리(불필요 날짜·버전 라벨 제거 및 중앙 정렬)'
   },
   'tab-prof': {
-    v: '2026-11-24-v11',
-    text: '재료 추이 5종(작은진주·자홍·황금진주·화염오일·적색염료) 완비 + 심홍색 비단 어깨 분석 & 녹색 비단 어깨/황금 덧신 등 누락 업글 12종 보강!'
+    v: '2026-11-24-v12',
+    text: '녹색 비단 어깨보호구 외 누락 툴팁·별칭 전수 보완 + 심홍색 비단 어깨보호구 후보 제외!'
   },
   'tab-rules': {
     v: '2026-11-24-v4',
