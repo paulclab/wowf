@@ -9829,10 +9829,18 @@ const WOW_DB = {
     rows: [['머리 · 천', '방어도 43 · i36 · 요구 Lv.31'], ['놈리건 막넴 [기계박사 텔마플러그]', '획득 시 귀속']],
     stats: ['지능 +8', '정신력 +9'],
     effects: ['착용 효과: 모든 주문 공격력 및 치유량 +8 (와우 포에버 기준)', '사용 효과: 3초 후 전방 원뿔 범위 번개 피해 (쿨 30분)'],
-    note: '⭐ 1순위 업글! 현 [독수리의 내구력 모자](체8·지8) 대비 주문력 +8·정신 +9 대폭 상승'
+    note: '✅ 현재 착용 중! 11/25 놈리건 막넴 득템 (기존 독수리의 내구력 모자 대비 주문 +8 · 정신 +9↑)'
   },
   'Electromagnetic Gigaflux Reactivator': { alias: '기가볼트 전자반응기' },
   'Gigaflux Reactivator': { alias: '기가볼트 전자반응기' },
+  '땅거미 마법봉': {
+    en: 'Wand of Eventide', kind: '원거리 · 마법봉 · 고급', quality: 'uncommon', icon: 'inv_wand_07',
+    rows: [['원거리 (마법봉)', 'i32 · 요구 Lv.27 · 속도 1.30'], ['기본 23-44 (DPS 25.8)', '전문화 2/2 반영 29-55 (DPS 32.2)']],
+    effects: ['착용 효과: 모든 주문 공격력 및 치유량 +5'],
+    note: '✅ 현재 착용 중! 기존 [하늘부름 마법봉](1.60초 · 비전+6) 대비 속도·DPS·전학파 주문력 대폭 상승 (ID:5214)'
+  },
+  'Wand of Eventide': { alias: '땅거미 마법봉' },
+  '황혼의 마법봉': { alias: '땅거미 마법봉' },
   '수력지팡이': {
     en: 'Hydrocane', kind: '양손 · 지팡이 · 희귀', quality: 'rare', icon: 'inv_staff_13',
     rows: [['양손 지팡이', 'i32 · 요구 Lv.27 · 놈리건 드랍'], ['획득 시 귀속', '수중 호흡 유틸 영구 소장']],
@@ -12092,8 +12100,13 @@ const WOW_ITEM_META = {
   },
   '기가볼트 전자반응기': {
     bind: '획득 시 귀속 (BoP)',
-    source: '동부왕국 > 던 모로 놈리건(/way 24.4 39.6) 막넴 [기계박사 텔마플러그] (9.8%)',
+    source: '동부왕국 > 던 모로 놈리건(/way 24.4 39.6) 막넴 [기계박사 텔마플러그] (9.8%) · 현재 착용 중 ✅',
     enchantable: '부여 불가 (현 구간)'
+  },
+  '땅거미 마법봉': {
+    bind: '착용 시 귀속 (BoE)',
+    source: 'Lv.27~35 월드 드랍 / 경매장 (ID:5214) · 현재 착용 중 ✅',
+    enchantable: '부여 불가'
   },
   '수력지팡이': {
     bind: '획득 시 귀속 (BoP)',
@@ -13593,10 +13606,10 @@ function toggleMemphisTheme() {
   applyMemphisTheme(next);
 }
 
-/* --- IN-GAME 3-TREE TALENT DATA & INTERACTIVE SIMULATOR (Lv.33 23/0/1 · 신비한 정신 1/5 · 정밀함 1/3) --- */
+/* --- IN-GAME 3-TREE TALENT DATA & INTERACTIVE SIMULATOR (Lv.34 24/0/1 · 신비한 정신 2/5 · 정밀함 1/3) --- */
 const IG_TALENT_TREES = {
   arcane: {
-    name: '비전 (Arcane)', pts: 23, icon: 'spell_arcane_blast', bg: 'bg-arcane',
+    name: '비전 (Arcane)', pts: 24, icon: 'spell_arcane_blast', bg: 'bg-arcane',
     arrows: [
       { r1: 2, c1: 3, r2: 4, c2: 3 },  // 신비한 정신 집중 -> 신비한 명상
       { r1: 3, c1: 4, r2: 4, c2: 4 },  // 비전 작렬 -> 비전 격노
@@ -13650,7 +13663,7 @@ const IG_TALENT_TREES = {
       { r:5, c:2, base:1, cur:1, max:1, key:'냉정', icon:'spell_nature_enchantarmor', en:'Presence of Mind',
         steps:['습득 (다음 주문 즉시 시전 · 3분 쿨)'],
         fmt: () => `활성화 시 시전 시간 10초 미만 다음 마법사 주문을 즉시 시전으로 만듭니다 (Off-GCD, 쿨 3분).` },
-      { r:5, c:3, base:1, cur:1, max:5, key:'신비한 정신', icon:'spell_shadow_charm', en:'Arcane Mind',
+      { r:5, c:3, base:2, cur:2, max:5, key:'신비한 정신', icon:'spell_shadow_charm', en:'Arcane Mind',
         steps:['지능 +2% · 비전 치명피해 +20%','+4% · +40%','+6% · +60%','+8% · +80%','+10% · +100%'],
         fmt: r => `총 지능이 ${r*2}% 증가하고, 비전 주문의 치명타 피해 보너스가 ${r*20}% 증가(치명 배율 ${150 + r*10}%)합니다.` },
       { r:6, c:3, base:0, cur:0, max:3, key:'신비한 불안정성', icon:'spell_shadow_teleport', en:'Arcane Instability',
@@ -13873,7 +13886,7 @@ function syncTalentEntryToWowDb(specId, node) {
     : '';
   const simHint = TALENT_SIM_STATE.simMode
     ? (TALENT_SIM_STATE.unlimited ? '🔓 무제한 시뮬레이션 ON — 클릭 +1 / 우클릭 -1' : '🧪 시뮬레이션 ON — 클릭 +1 / 우클릭 -1')
-    : '📘 실제 Lv.33 (23/0/1) 기준 · 상단 [시뮬레이션] 토글로 수치 실험 가능';
+    : '📘 실제 Lv.34 (24/0/1) 기준 · 상단 [시뮬레이션] 토글로 수치 실험 가능';
 
   WOW_DB[node.key] = {
     en: node.en || node.key,
@@ -13948,21 +13961,21 @@ function renderTalentImpactSummary() {
   if (!grid || !tags) return;
 
   const m = getActiveTalentMods();
-  const baseInt = Number(document.getElementById('stInt')?.value) || 113;
-  const baseSpi = Number(document.getElementById('stSpi')?.value) || 86;
-  const baseGenSp = Number(document.getElementById('stGenSp')?.value) || 70;
-  const baseArcSp = Number(document.getElementById('stArcSp')?.value) || 80;
-  const baseCrit = Number(document.getElementById('stCrit')?.value) || 5.08;
+  const baseInt = Number(document.getElementById('stInt')?.value) || 123;
+  const baseSpi = Number(document.getElementById('stSpi')?.value) || 98;
+  const baseGenSp = Number(document.getElementById('stGenSp')?.value) || 86;
+  const baseArcSp = Number(document.getElementById('stArcSp')?.value) || 74;
+  const baseCrit = Number(document.getElementById('stCrit')?.value) || 5.35;
   const mageArmor = document.getElementById('stMageArmor')?.checked ? 0.50 : 0;
 
-  // Baseline Lv.33 (23/0/1: 신비한 정신 1/5 [+2% 지능 · 160% 비전 치명배율], 정밀함 1/3 [+2% 적중], 신비한 명상 3/3, 냉정 1/1)
-  const rawIntBase = baseInt / 1.02;
+  // Baseline Lv.34 (24/0/1: 신비한 정신 2/5 [+4% 지능 · 170% 비전 치명배율], 정밀함 1/3 [+2% 적중], 신비한 명상 3/3, 냉정 1/1)
+  const rawIntBase = baseInt / 1.04;
   const effInt = Math.round(rawIntBase * (1 + m.intPct));
   const intDelta = effInt - baseInt;
-  const effMp = 2106 + (effInt - 113) * 15;
-  const baseMp = 2106 + (baseInt - 113) * 15;
+  const effMp = 2277 + (effInt - 123) * 15;
+  const baseMp = 2277 + (baseInt - 123) * 15;
   const armorBonus = Math.round(effInt * m.armorFromIntPct);
-  const effArmor = 451 + armorBonus;
+  const effArmor = 464 + armorBonus;
 
   const outCastMp5 = Math.round(((13 + baseSpi / 4) * 2.5) * 10) / 10;
   const combatKeep = Math.min(1, m.meditation + mageArmor);
@@ -13973,25 +13986,25 @@ function renderTalentImpactSummary() {
   const critFromInt = intDelta * 0.03;
   const effAllCrit = baseCrit + m.allCritPct + critFromInt;
   const effAbCrit = effAllCrit + m.abFblExtraCrit;
-  const effArcCritMult = 1 + m.arcaneCritBonus; // 1.50 ~ 2.00 (실제 Lv.33 기준 1.60)
+  const effArcCritMult = 1 + m.arcaneCritBonus; // 1.50 ~ 2.00 (실제 Lv.34 기준 1.70)
 
   const totalArcSp = baseGenSp + baseArcSp;
-  const deltaArc = totalArcSp - 150;
-  const deltaGen = baseGenSp - 70;
+  const deltaArc = totalArcSp - 160;
+  const deltaGen = baseGenSp - 86;
   const allMul = 1 + m.allDmgPct;
   const abStep = effInt * 0.12;
-  const ab0 = (148.8 + deltaArc * 0.4286) * allMul;
-  const ab0Base = 148.8 + deltaArc * 0.4286;
+  const ab0 = (153.1 + deltaArc * 0.4286) * allMul;
+  const ab0Base = 153.1 + deltaArc * 0.4286;
   const ab0Exp = ab0 * (1 + (effAbCrit / 100) * m.arcaneCritBonus);
-  const ab0BaseExp = ab0Base * (1 + (baseCrit / 100) * 0.60);
+  const ab0BaseExp = ab0Base * (1 + (baseCrit / 100) * 0.70);
 
-  const awDmg = ((274.5 + deltaArc) + effMp * 0.05) * allMul;
-  const awBase = (274.5 + deltaArc) + baseMp * 0.05;
+  const awDmg = ((284.5 + deltaArc) + effMp * 0.05) * allMul;
+  const awBase = (284.5 + deltaArc) + baseMp * 0.05;
   const awCast = Math.max(1.0, 3.5 - m.wrathCastReduce);
 
-  const wandAvg = 34.8 * (1 + m.wandPct / 100);
-  const fblDmg = (193.0 + deltaGen * 0.4286) * allMul * (1 + m.fireDmgPct);
-  const fblBase = 193.0 + deltaGen * 0.4286;
+  const wandAvg = 33.5 * (1 + m.wandPct / 100);
+  const fblDmg = (199.9 + deltaGen * 0.4286) * allMul * (1 + m.fireDmgPct);
+  const fblBase = 199.9 + deltaGen * 0.4286;
 
   const dBadge = (diff, unit, digits = 0) => {
     if (Math.abs(diff) < 0.05) return '';
@@ -14001,7 +14014,7 @@ function renderTalentImpactSummary() {
 
   if (badge) {
     if (!TALENT_SIM_STATE.simMode) {
-      badge.textContent = '실제 Lv.33 기준 (23/0/1)';
+      badge.textContent = '실제 Lv.34 기준 (24/0/1)';
       badge.className = 'badge verified';
     } else if (TALENT_SIM_STATE.unlimited) {
       badge.textContent = '🔓 무제한 시뮬레이션 반영 중';
@@ -14030,9 +14043,9 @@ function renderTalentImpactSummary() {
     {
       lbl: '비전 치명타율 & 배율',
       val: `${effAbCrit.toFixed(2)}% · ×${Math.round(effArcCritMult*100)}%`,
-      delta: dBadge(effArcCritMult*100 - 160, '%배율'),
+      delta: dBadge(effArcCritMult*100 - 170, '%배율'),
       sub: `공용 ${effAllCrit.toFixed(2)}% · 비작 +${m.abFblExtraCrit}% · 충돌 +${m.arcaneExtraCrit}%`,
-      changed: Math.abs(effAbCrit - baseCrit) >= 0.05 || Math.abs(effArcCritMult - 1.6) >= 0.01
+      changed: Math.abs(effAbCrit - baseCrit) >= 0.05 || Math.abs(effArcCritMult - 1.7) >= 0.01
     },
     {
       lbl: '비전 작렬 (0중 기대값)',
@@ -14106,7 +14119,7 @@ function updateTalentChromeUI() {
   }
   if (modeBadge) {
     if (!TALENT_SIM_STATE.simMode) {
-      modeBadge.textContent = '✅ Lv.33 (24pt 투자 완료)';
+      modeBadge.textContent = '✅ Lv.34 (25pt 투자 완료)';
       modeBadge.className = 'badge verified';
     } else if (TALENT_SIM_STATE.unlimited) {
       modeBadge.textContent = '🔓 무제한 시뮬레이션';
@@ -14119,7 +14132,7 @@ function updateTalentChromeUI() {
   if (ptsTxt) {
     ptsTxt.innerHTML = TALENT_SIM_STATE.unlimited
       ? `무제한 투자: <strong>${total}pt</strong> <small>(트리 순서·포인트 한도 해제됨)</small>`
-      : `투자: <strong>${total}</strong> / ${TALENT_SIM_STATE.maxTotal}pt <small>(Lv.33 실측 · 23/0/1)</small>`;
+      : `투자: <strong>${total}</strong> / ${TALENT_SIM_STATE.maxTotal}pt <small>(Lv.34 실측 · 24/0/1)</small>`;
   }
   if (legendTip) {
     legendTip.textContent = TALENT_SIM_STATE.simMode
@@ -14494,9 +14507,9 @@ const SIM_SPELLS = {
     note: '4레벨 (마나 165 · 기본 148~178 + 일반 70 = ~193) · 즉시(On-GCD 1.5초) · 8초 쿨'
   },
   wd: {
-    id: 'wd', short: '법봉', name: '하늘부름 마법봉', wowKey: '하늘부름 마법봉', icon: 'inv_wand_07',
-    mana: 0, cast: 1.6, baseDmg: 43.5, coeff: 0, school: 'wand',
-    note: '마나 0 · 5SR 마나 회복 유지 · 비전 24-45 × 마법봉 전문화 2/2(+25%) = 30-57 (평균 ~43.5 · 27.2 DPS)'
+    id: 'wd', short: '법봉', name: '땅거미 마법봉', wowKey: '땅거미 마법봉', icon: 'inv_wand_07',
+    mana: 0, cast: 1.3, baseDmg: 41.9, coeff: 0, school: 'wand',
+    note: '마나 0 · 5SR 마나 회복 유지 · 기본 23-44 × 마법봉 전문화 2/2(+25%) = 29-55 (평균 ~41.9 · 32.2 DPS · 모든 주문 +5)'
   }
 };
 
@@ -14533,7 +14546,7 @@ let customComboCounter = 5;
 function getSimEnv() {
   const haste = document.getElementById('rotHasteCb')?.checked ? 1.15 : 1.0;
   const oil = document.getElementById('rotOilCb')?.checked ? 8 : 0;
-  return { haste, oil, wrathMpExtra: 0, abStepSp: 13.1 };
+  return { haste, oil, wrathMpExtra: 0, abStepSp: 14.8 };
 }
 
 function calcComboMetrics(combo, env) {
@@ -14607,7 +14620,7 @@ function renderSingleSpellTable() {
   if (pill) {
     const hStr = env.haste > 1 ? '가속 +15% · ' : '';
     const oStr = env.oil > 0 ? ' (오일 +8)' : '';
-    pill.textContent = `${hStr}비전 SP +${150 + env.oil}${oStr} · 일반 +${70 + env.oil}`;
+    pill.textContent = `${hStr}비전 SP +${160 + env.oil}${oStr} · 일반 +${86 + env.oil}`;
   }
 
   const mkToggle = (key) => {
@@ -14675,12 +14688,12 @@ function renderSingleSpellTable() {
       dps: `<strong>${(fblDmg / (1.5 / env.haste)).toFixed(1)} DPS</strong>`
     },
     {
-      name: '<code>하늘부름 마법봉</code> <em>(전문화 2/2)</em>',
+      name: '<code>땅거미 마법봉</code> <em>(전문화 2/2)</em>',
       mana: '<strong>0</strong> <em>(5SR 유지)</em>',
-      time: (1.6 / env.haste).toFixed(2) + '초',
-      coeff: '<span class="coeff-pill gen-only">0%</span> <em style="font-size:11px;">비전 24-45 &times; 1.25 = 30-57</em>',
-      dmg: '<strong>~43.5 / 발</strong> <em>(비전 SP +6 포함)</em>',
-      dps: `${(43.5 / (1.6 / env.haste)).toFixed(1)} DPS`
+      time: (1.3 / env.haste).toFixed(2) + '초',
+      coeff: '<span class="coeff-pill gen-only">0%</span> <em style="font-size:11px;">기본 23-44 &times; 1.25 = 29-55</em>',
+      dmg: '<strong>~41.9 / 발</strong> <em>(모든 주문 +5 포함)</em>',
+      dps: `${(41.9 / (1.3 / env.haste)).toFixed(1)} DPS`
     },
     {
       name: `<code>신비한 폭발</code> <em>(3 레벨 · 10m 광역)</em> ${mkToggle('ae')}`,
@@ -15069,17 +15082,17 @@ function cycleRowAbStack(rowKey) {
 
 function applyCharPreset(mode) {
   const setVal = (id, v) => { const el = document.getElementById(id); if (el) el.value = v; };
-  setVal('stSta', 64); setVal('stInt', 113); setVal('stSpi', 86);
-  setVal('stGenSp', 70); setVal('stArcSp', 80); setVal('stCrit', 5.08); setVal('stHaste', 0);
+  setVal('stSta', 56); setVal('stInt', 123); setVal('stSpi', 98);
+  setVal('stGenSp', 86); setVal('stArcSp', 74); setVal('stCrit', 5.35); setVal('stHaste', 0);
   const medDefault = (typeof getActiveTalentMods === 'function') ? getActiveTalentMods().meditation : 0.50;
   setVal('stMed', medDefault === 0 ? '0' : medDefault.toFixed(2));
-  const ma = document.getElementById('stMageArmor'); if (ma) ma.checked = false;
+  const ma = document.getElementById('stMageArmor'); if (ma) ma.checked = true;
 
-  if (mode === 'fullbuff') { setVal('stSta', 98); setVal('stInt', 136); setVal('stSpi', 95); setVal('stCrit', 5.77); setVal('stHaste', 15); } // 11/24 14:30 풀버프 실측 (1,557 HP / 2,451 MP)
-  else if (mode === 'haste') { setVal('stHaste', 15); } // 스톰윈드의 힘: +300 HP(917->1,217), +15% 가속
-  else if (mode === 'intbuff') { setVal('stInt', 128); setVal('stCrit', 5.53); } // 신비한 지능 3레벨 (+15 지능)
-  else if (mode === 'oil') { setVal('stGenSp', 78); } // 최하급 마술사 오일 +8 SP
-  else if (mode === 'sp20') { setVal('stGenSp', 90); }
+  if (mode === 'fullbuff') { setVal('stSta', 62); setVal('stInt', 152); setVal('stSpi', 108); setVal('stCrit', 6.17); setVal('stHaste', 15); if (ma) ma.checked = false; } // 11/25 01:52 버프 실측 (1,213 HP / 2,712 MP)
+  else if (mode === 'haste') { setVal('stHaste', 15); } // 스톰윈드의 힘: +300 HP(853->1,153), +15% 가속
+  else if (mode === 'intbuff') { setVal('stInt', 138); setVal('stCrit', 5.78); } // 신비한 지능 3레벨 (+15 지능)
+  else if (mode === 'oil') { setVal('stGenSp', 94); } // 최하급 마술사 오일 +8 SP
+  else if (mode === 'sp20') { setVal('stGenSp', 106); }
   updateCharStatLab();
 }
 
@@ -15094,25 +15107,25 @@ function updateCharStatLab() {
   const med = Number(document.getElementById('stMed')?.value) || 0;
   const mageArmor = document.getElementById('stMageArmor')?.checked ? 0.50 : 0;
 
-  // Apply live talent modifiers from Talent Simulator (baseline Lv.33 already includes 신비한 정신 1/5 = +2% Int)
+  // Apply live talent modifiers from Talent Simulator (baseline Lv.34 already includes 신비한 정신 2/5 = +4% Int)
   const tm = (typeof getActiveTalentMods === 'function') ? getActiveTalentMods() : {
-    intPct: 0.02, arcaneCritBonus: 0.60, frostCritBonus: 0.50, wandPct: 25,
+    intPct: 0.04, arcaneCritBonus: 0.70, frostCritBonus: 0.50, wandPct: 25,
     allDmgPct: 0, allCritPct: 0, arcaneExtraCrit: 0, abFblExtraCrit: 0,
     fireExtraCrit: 0, fireDmgPct: 0, wrathCastReduce: 0, frostCastReduce: 0, frostDmgPct: 0, rWand: 2
   };
-  const rawIntel = baseIntel / 1.02;
+  const rawIntel = baseIntel / 1.04;
   const intel = Math.round(rawIntel * (1 + tm.intPct));
   const intDeltaFromTalent = intel - baseIntel;
   const critPct = baseCritPct + tm.allCritPct + (intDeltaFromTalent * 0.03);
 
   const totalArcSp = genSp + arcOnlySp;
-  const deltaArc = totalArcSp - 150;
-  const deltaGen = genSp - 70;
-  const deltaSta = sta - 64;
-  const deltaInt = intel - 113;
+  const deltaArc = totalArcSp - 160;
+  const deltaGen = genSp - 86;
+  const deltaSta = sta - 56;
+  const deltaInt = intel - 123;
   const swMightHp = hastePct >= 15 ? 300 : 0; // 스톰윈드의 힘 (+300 HP · 15% 가속)
-  const estMaxHp = 917 + deltaSta * 10 + swMightHp;
-  const estMaxMp = 2106 + deltaInt * 15;
+  const estMaxHp = 853 + deltaSta * 10 + swMightHp;
+  const estMaxMp = 2277 + deltaInt * 15;
   const wrathMpBonus = estMaxMp * 0.05;
   const abStep = intel * 0.12;
   const hasteMul = 1 + hastePct / 100;
@@ -15128,7 +15141,7 @@ function updateCharStatLab() {
   const combatKeep = Math.min(1, med + mageArmor);
   const combatMp5 = outCastMp5 * combatKeep;
   const effGcd = Math.max(1.0, 1.5 / hasteMul);
-  const effWand = 1.1 / hasteMul; // 하늘부름 마법봉 1.60 - 0.50 = 1.10초 (15% 가속 시 0.96초)
+  const effWand = 1.3 / hasteMul; // 땅거미 마법봉 1.30초 (15% 가속 시 1.13초)
 
   const setTxt = (id, txt) => { const el = document.getElementById(id); if (el) el.textContent = txt; };
   setTxt('outStaInt', `${Math.round(estMaxHp).toLocaleString()} HP / ${Math.round(estMaxMp).toLocaleString()} MP`);
@@ -15138,24 +15151,24 @@ function updateCharStatLab() {
   setTxt('outSpiRegen', `MP5 ${outCastMp5.toFixed(1)} (2s ${(outCastMp5/2.5).toFixed(1)})`);
   setTxt('outSpiCombat', `시전 중 MP5 ${combatMp5.toFixed(1)} (${Math.round(combatKeep*100)}% 유지)`);
   setTxt('outHasteGcd', `GCD ${effGcd.toFixed(2)}s`);
-  setTxt('outHasteCap', `하늘부름 쿨 ${effWand.toFixed(2)}s · 하한 1.00s`);
+  setTxt('outHasteCap', `땅거미 쿨 ${effWand.toFixed(2)}s · 하한 1.00s`);
 
   if (typeof renderTalentImpactSummary === 'function') renderTalentImpactSummary();
 
   // Representative skill live damage & DPS table
   const tbody = document.getElementById('charSkillDpsBody');
   if (tbody) {
-    const ab0 = (148.8 + deltaArc * 0.4286) * allMul;
-    const ab1 = (148.8 + deltaArc * 0.4286 + abStep * 0.4286) * allMul;
-    const awDmg = ((274.5 + deltaArc) + wrathMpBonus) * allMul;
-    const amDmg = (565.0 + deltaArc) * allMul;
+    const ab0 = (153.1 + deltaArc * 0.4286) * allMul;
+    const ab1 = (153.1 + deltaArc * 0.4286 + abStep * 0.4286) * allMul;
+    const awDmg = ((284.5 + deltaArc) + wrathMpBonus) * allMul;
+    const amDmg = (575.0 + deltaArc) * allMul;
     const amPer = amDmg / 5;
-    const fblDmg = (193.0 + deltaGen * 0.4286) * allMul * (1 + tm.fireDmgPct);
-    const aeDmg = (122.4 + deltaArc * 0.1429) * allMul;
-    const wandDmg = 34.8 * (1 + tm.wandPct / 100);
-    const wandMin = Math.round(24 * (1 + tm.wandPct / 100));
-    const wandMax = Math.round(45 * (1 + tm.wandPct / 100));
-    const fb1Dmg = (42.9 + deltaGen * 0.33) * allMul * (1 + tm.frostDmgPct);
+    const fblDmg = (199.9 + deltaGen * 0.4286) * allMul * (1 + tm.fireDmgPct);
+    const aeDmg = (123.8 + deltaArc * 0.1429) * allMul;
+    const wandDmg = 33.5 * (1 + tm.wandPct / 100);
+    const wandMin = Math.round(23 * (1 + tm.wandPct / 100));
+    const wandMax = Math.round(44 * (1 + tm.wandPct / 100));
+    const fb1Dmg = (48.2 + deltaGen * 0.33) * allMul * (1 + tm.frostDmgPct);
 
     const skills = [
       { name: '비전 작렬 (2 레벨 · 0→1중)', cast: 1.5 / hasteMul, dmg: ab0, mul: arcCritMul(tm.abFblExtraCrit), dmgText: `<strong>~${Math.round(ab0)}</strong> → ~${Math.round(ab1)}` },
@@ -15164,7 +15177,7 @@ function updateCharStatLab() {
       { name: '신비한 화살 (화살 탄막)', cast: 2.5 / hasteMul, dmg: amDmg, mul: arcCritMul(0), dmgText: `<strong>${Math.round(amDmg)}</strong> <em style="font-size:11px;opacity:0.82;">(발당 ~${amPer.toFixed(1)})</em>` },
       { name: '화염 작렬 (4 레벨)', cast: effGcd, dmg: fblDmg, mul: fireCritMul(tm.abFblExtraCrit + tm.fireExtraCrit), dmgText: `<strong>~${Math.round(fblDmg)}</strong>` },
       { name: '신비한 폭발 (3 레벨 · 광역)', cast: effGcd, dmg: aeDmg, mul: arcCritMul(tm.arcaneExtraCrit), dmgText: `~${Math.round(aeDmg)} <em style="font-size:11px;opacity:0.82;">/ 대상</em>` },
-      { name: `하늘부름 마법봉 (전문화 ${tm.rWand}/2)`, cast: 1.6 / hasteMul, dmg: wandDmg, mul: critMul, dmgText: `~${wandDmg.toFixed(1)} <em style="font-size:11px;opacity:0.82;">(${wandMin}-${wandMax})</em>` },
+      { name: `땅거미 마법봉 (전문화 ${tm.rWand}/2)`, cast: 1.3 / hasteMul, dmg: wandDmg, mul: critMul, dmgText: `~${wandDmg.toFixed(1)} <em style="font-size:11px;opacity:0.82;">(${wandMin}-${wandMax})</em>` },
       { name: '얼음 화살 (1 레벨)', cast: Math.max(1.0, 1.5 - tm.frostCastReduce) / hasteMul, dmg: fb1Dmg, mul: frostCritMul, dmgText: `~${Math.round(fb1Dmg)}` }
     ];
     tbody.innerHTML = skills.map(s => {
@@ -15682,24 +15695,24 @@ const RECENTLY_UPDATED_TABS = {
     text: '11/25 애드온 패치노트 반영 (FDJ 2.1.5·BiS 1.5.0·Shadowflare 0.26.5·QuestieDB 1.1.6 + EzWoW·LayerSwap 신규)'
   },
   'tab-prof': {
-    v: '2026-11-24-v12',
-    text: '녹색 비단 어깨보호구 외 누락 툴팁·별칭 전수 보완 + 심홍색 비단 어깨보호구 후보 제외!'
+    v: '2026-11-25-v1',
+    text: '11/25 낚시 22/75 반영 · 녹색 비단 어깨보호구 장착 완료 · 재봉술 5대 재료 시세 차트'
   },
   'tab-rules': {
-    v: '2026-11-24-v4',
-    text: '토글 하위 제목 심플 텍스트 넘버링(01.) 적용 · 불필요 code 박스 제거 및 설명 간소화'
+    v: '2026-11-25-v1',
+    text: '11/25 경험치 계산기 기준 Lv.34 동기화 · 토글 하위 제목 심플 넘버링'
   },
   'tab-talent': {
-    v: '2026-11-24-v3',
-    text: '11/24 14:30 실측 Lv.33 23/0/1(신비한 정신 1/5 · 정밀함 1/3) · 기본 HP 917/MP 2,106(풀버프 1,557/2,451) · 14:30 풀버프 프리셋 추가'
+    v: '2026-11-25-v1',
+    text: '11/25 01:52 실측 Lv.34 24/0/1(신비한 정신 2/5·배율 170% · 마법사 갑옷 100% 재생) · 비전 +160(86+74)'
   },
   'tab-quests': {
-    v: '2026-11-25-v1',
-    text: '11/25 놈리건 1회차 완료 4종 반영 & 2회차 잔여 5종(폐기물 수집→유일한 치료법·인공장치 7/12·자료 회수·케르노비·반지) 및 다음 계획'
+    v: '2026-11-25-v2',
+    text: '11/25 놈리건 1회차 막넴 기가볼트 전자반응기 획득 완료 ✅ · 2회차 잔여 5종 체크리스트'
   },
   'tab-gear': {
-    v: '2026-11-24-v5',
-    text: '아카이브 토글 제목 간소화 및 놈리건 국문 득템 Lv.33 비교 동기화'
+    v: '2026-11-25-v1',
+    text: '11/25 Lv.34 3부위 교체 반영(기가볼트 전자반응기 · 녹색 비단 어깨보호구 · 땅거미 마법봉 툴팁 신규 등록)'
   }
 };
 
