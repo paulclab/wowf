@@ -3141,160 +3141,275 @@
   /* ===== UPGRADE v3.9: INDIVIDUAL MATERIAL PRICE TREND LINE CHARTS ===== */
   .price-chart-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(min(248px, 100%), 1fr));
+    gap: 12px;
   }
   .pchart-card {
-    border: 1.5px solid var(--border, rgba(148,163,184,0.32));
-    border-radius: 10px;
-    background: var(--surface-2, rgba(255,255,255,0.04));
-    padding: 10px 11px 8px;
+    border: 1.5px solid var(--rd-line-2, rgba(148,163,184,0.4));
+    border-radius: 12px;
+    background: var(--rd-paper, #fff);
+    padding: 12px 13px 10px;
     display: flex;
     flex-direction: column;
     gap: 6px;
+    min-width: 0;
+  }
+  html[data-theme="dark"] .pchart-card {
+    background: rgba(15, 23, 42, 0.56);
+    border-color: rgba(148, 163, 184, 0.28);
   }
   .pchart-head {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
     gap: 6px;
   }
   .pchart-title {
-    font-size: 12.6px;
+    font-size: 13.2px;
     font-weight: 800;
-    line-height: 1.2;
+    line-height: 1.3;
   }
   .pchart-now {
     display: inline-flex;
     align-items: center;
     gap: 5px;
     font-family: var(--font-mono);
-    font-size: 12.2px;
+    font-size: 12.8px;
     font-weight: 800;
     white-space: nowrap;
   }
   .pchart-delta {
-    font-size: 10.6px;
+    font-size: 11.5px;
     font-weight: 800;
-    padding: 1px 5px;
-    border-radius: 5px;
+    padding: 2px 6px;
+    border-radius: 6px;
   }
   .pchart-delta.down { background: rgba(16, 185, 129, 0.16); color: #059669; }
   .pchart-delta.up   { background: rgba(239, 68, 68, 0.15); color: #dc2626; }
-  .pchart-delta.flat { background: rgba(148, 163, 184, 0.18); color: #64748b; }
+  .pchart-delta.flat { background: rgba(148, 163, 184, 0.18); color: #475569; }
   html[data-theme="dark"] .pchart-delta.down { color: #34d399; }
   html[data-theme="dark"] .pchart-delta.up   { color: #f87171; }
+  html[data-theme="dark"] .pchart-delta.flat { color: #cbd5e1; }
   .pchart-svg {
     width: 100%;
-    height: 108px;
+    height: 118px;
     display: block;
-    overflow: visible;
+    overflow: hidden;
   }
-  .pchart-gridline { stroke: var(--border, rgba(148,163,184,0.28)); stroke-dasharray: 2 3; stroke-width: 1; }
-  .pchart-axis-lbl { fill: currentColor; opacity: 0.62; font-size: 9.8px; font-family: var(--font-mono); }
-  .pchart-line { fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
-  .pchart-dot { stroke: var(--rd-paper, #fff); stroke-width: 1.8; cursor: pointer; }
-  .pchart-val-lbl { fill: currentColor; font-size: 9.8px; font-weight: 800; font-family: var(--font-mono); }
+  .pchart-gridline { stroke: var(--rd-line-2, rgba(148,163,184,0.32)); stroke-dasharray: 2 3; stroke-width: 1; }
+  .pchart-axis-lbl { fill: currentColor; opacity: 0.78; font-size: 11px; font-family: var(--font-mono); }
+  .pchart-line { fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+  .pchart-dot { stroke: var(--rd-paper, #fff); stroke-width: 2; cursor: pointer; }
+  html[data-theme="dark"] .pchart-dot { stroke: #0f172a; }
+  .pchart-val-lbl { fill: currentColor; font-size: 11px; font-weight: 800; font-family: var(--font-mono); }
 
-  /* ===== CENTER-LINE INTERACTIVE TAILORING TIMELINE & COMPARISON CARDS ===== */
-  .tailor-stepper {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 8px;
+  /* ===== HORIZONTAL INTERACTIVE TAILORING TIMELINE & COMPARISON CARDS (v4.1) ===== */
+  .tailor-stepper-wrap {
     margin: 14px 0 16px;
-    padding: 4px 0;
+    padding: 14px 12px 12px;
+    background: var(--rd-paper-2, #f8fafc);
+    border: 2px solid var(--rd-ink, #111827);
+    border-radius: 14px;
+    box-shadow: var(--rd-shadow-sm, 3px 3px 0 rgba(17,24,39,0.16));
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
   }
-  .tailor-stepper::before {
-    content: '';
-    position: absolute;
-    top: 20px;
-    left: 12.5%;
-    right: 12.5%;
-    height: 3px;
-    background: var(--border, rgba(148,163,184,0.4));
-    border-radius: 2px;
-    z-index: 0;
+  html[data-theme="dark"] .tailor-stepper-wrap {
+    background: rgba(15, 23, 42, 0.62);
+    border-color: rgba(148, 163, 184, 0.36);
+    box-shadow: none;
+  }
+  .tailor-stepper {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(146px, 1fr));
+    min-width: 584px;
+    gap: 0;
   }
   .tailor-step {
     position: relative;
-    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 6px;
-    padding: 4px 6px 8px;
+    gap: 10px;
+    padding: 0 6px;
     background: transparent;
-    border: 1.5px solid transparent;
-    border-radius: 10px;
+    border: none;
     cursor: pointer;
     font: inherit;
     color: inherit;
-    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+    min-width: 0;
   }
-  .tailor-step:hover {
-    background: rgba(148,163,184,0.08);
-    transform: translateY(-1px);
+  .tailor-step:focus-visible .tailor-step-card {
+    outline: 2px solid var(--arcane, #7c3aed);
+    outline-offset: 2px;
+  }
+  /* Dedicated top rail: split left/right connectors strictly between dot edges (never pierces card) */
+  .tailor-step-dot-wrap {
+    position: relative;
+    width: calc(100% + 12px);
+    margin: 0 -6px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .tailor-step-dot-wrap::before,
+  .tailor-step-dot-wrap::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    height: 3px;
+    width: calc(50% - 19px);
+    transform: translateY(-50%);
+    background: var(--rd-line-2, rgba(100,116,139,0.45));
+    z-index: 0;
+    transition: background 0.18s ease;
+  }
+  .tailor-step-dot-wrap::before { left: 0; }
+  .tailor-step-dot-wrap::after  { right: 0; }
+  .tailor-step:first-child .tailor-step-dot-wrap::before { display: none; }
+  .tailor-step:last-child  .tailor-step-dot-wrap::after  { display: none; }
+  .tailor-step.passed .tailor-step-dot-wrap::before,
+  .tailor-step.passed .tailor-step-dot-wrap::after,
+  .tailor-step.active .tailor-step-dot-wrap::before {
+    background: #7c3aed;
+  }
+  html[data-theme="dark"] .tailor-step-dot-wrap::before,
+  html[data-theme="dark"] .tailor-step-dot-wrap::after {
+    background: rgba(148, 163, 184, 0.35);
+  }
+  html[data-theme="dark"] .tailor-step.passed .tailor-step-dot-wrap::before,
+  html[data-theme="dark"] .tailor-step.passed .tailor-step-dot-wrap::after,
+  html[data-theme="dark"] .tailor-step.active .tailor-step-dot-wrap::before {
+    background: #a855f7;
   }
   .tailor-step-dot {
-    width: 28px;
-    height: 28px;
+    position: relative;
+    z-index: 1;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 11.5px;
-    font-weight: 800;
+    font-size: 13px;
+    font-weight: 850;
     background: var(--rd-paper, #fff);
-    border: 2.5px solid var(--border, #94a3b8);
-    color: var(--rd-ink-2, #475569);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-    transition: all 0.18s ease;
+    border: 2.5px solid var(--rd-ink, #111827);
+    color: var(--rd-ink, #111827);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    transition: transform 0.16s ease, background 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+    flex-shrink: 0;
   }
-  .tailor-step.active {
-    background: rgba(124, 58, 237, 0.06);
-    border-color: rgba(124, 58, 237, 0.35);
+  .tailor-step.passed .tailor-step-dot {
+    background: #ede9fe;
+    border-color: #7c3aed;
+    color: #5b21b6;
   }
   .tailor-step.active .tailor-step-dot {
     background: #7c3aed;
-    border-color: #ffd700;
+    border-color: var(--rd-ink, #111827);
     color: #fff;
-    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.18);
-    transform: scale(1.1);
+    box-shadow: 0 0 0 3px var(--rd-yellow, #facc15);
+    transform: scale(1.08);
+  }
+  .tailor-step-card {
+    width: 100%;
+    padding: 9px 10px;
+    border-radius: 10px;
+    background: var(--rd-paper, #fff);
+    border: 1.5px solid var(--rd-line-2, rgba(148,163,184,0.45));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+  }
+  .tailor-step:hover .tailor-step-card {
+    border-color: #7c3aed;
+    transform: translateY(-2px);
+  }
+  .tailor-step.active .tailor-step-card {
+    background: #fef9c3;
+    border: 2px solid var(--rd-ink, #111827);
+    box-shadow: 3px 3px 0 var(--rd-ink, #111827);
   }
   .tailor-step-title {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 850;
     line-height: 1.25;
+    color: var(--rd-ink, #111827);
+    white-space: nowrap;
   }
   .tailor-step.active .tailor-step-title {
-    color: var(--arcane, #6d28d9);
+    color: #111827;
   }
   .tailor-step-sub {
-    font-size: 11px;
-    opacity: 0.72;
-    line-height: 1.25;
+    font-size: 12px;
+    font-weight: 650;
+    color: var(--rd-ink-3, #475569);
+    line-height: 1.3;
+    word-break: keep-all;
+  }
+  .tailor-step.active .tailor-step-sub {
+    color: #4c1d95;
   }
   html[data-theme="dark"] .tailor-step-dot {
     background: #1e293b;
-    border-color: #64748b;
-    color: #cbd5e1;
+    border-color: #94a3b8;
+    color: #f1f5f9;
   }
-  html[data-theme="dark"] .tailor-step.active {
-    background: rgba(168, 85, 247, 0.14);
-    border-color: rgba(168, 85, 247, 0.45);
-  }
-  html[data-theme="dark"] .tailor-step.active .tailor-step-title {
+  html[data-theme="dark"] .tailor-step.passed .tailor-step-dot {
+    background: rgba(168, 85, 247, 0.24);
+    border-color: #a855f7;
     color: #e9d5ff;
   }
+  html[data-theme="dark"] .tailor-step.active .tailor-step-dot {
+    background: #9333ea;
+    border-color: #facc15;
+    color: #fff;
+    box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.28);
+  }
+  html[data-theme="dark"] .tailor-step-card {
+    background: rgba(30, 41, 59, 0.72);
+    border-color: rgba(148, 163, 184, 0.28);
+  }
+  html[data-theme="dark"] .tailor-step.active .tailor-step-card {
+    background: rgba(124, 58, 237, 0.28);
+    border: 2px solid #facc15;
+    box-shadow: 0 3px 12px rgba(124, 58, 237, 0.28);
+  }
+  html[data-theme="dark"] .tailor-step-title { color: #f8fafc; }
+  html[data-theme="dark"] .tailor-step.active .tailor-step-title { color: #fef08a; }
+  html[data-theme="dark"] .tailor-step-sub { color: #cbd5e1; }
+  html[data-theme="dark"] .tailor-step.active .tailor-step-sub { color: #e9d5ff; }
+  .tailor-scroll-hint {
+    display: none;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--rd-ink-3, #475569);
+    text-align: right;
+    margin: -10px 2px 10px;
+  }
+  html[data-theme="dark"] .tailor-scroll-hint { color: #94a3b8; }
+  @media (max-width: 720px) {
+    .tailor-scroll-hint { display: block; }
+  }
+
   .tailor-tl-panel {
     display: none;
-    background: var(--bg2, rgba(148,163,184,0.06));
-    border: 1.5px solid var(--border, rgba(148,163,184,0.32));
-    border-radius: 12px;
-    padding: 13px 14px;
-    margin-bottom: 14px;
+    background: var(--rd-paper-2, rgba(148,163,184,0.06));
+    border: 1.5px solid var(--rd-line-2, rgba(148,163,184,0.35));
+    border-radius: 14px;
+    padding: 15px 16px;
+    margin-bottom: 16px;
+  }
+  html[data-theme="dark"] .tailor-tl-panel {
+    background: rgba(15, 23, 42, 0.45);
+    border-color: rgba(148, 163, 184, 0.28);
   }
   .tailor-tl-panel.active {
     display: block;
@@ -3305,127 +3420,158 @@
     align-items: center;
     justify-content: space-between;
     gap: 8px;
-    margin-bottom: 10px;
-    font-size: 13.5px;
-    font-weight: 800;
+    margin-bottom: 12px;
+    font-size: 14.5px;
+    font-weight: 850;
+    color: var(--rd-ink, #111827);
   }
+  html[data-theme="dark"] .tailor-tl-head { color: #f8fafc; }
   .tailor-tl-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+    gap: 13px;
   }
   .tailor-item-card {
     background: var(--rd-paper, #fff);
-    border: 1.5px solid var(--border, rgba(148,163,184,0.34));
-    border-radius: 10px;
-    padding: 12px 14px;
-    font-size: 13px;
+    border: 1.5px solid var(--rd-line-2, rgba(148,163,184,0.42));
+    border-radius: 12px;
+    padding: 14px 15px;
+    font-size: 13.5px;
     line-height: 1.55;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
+    min-width: 0;
   }
   html[data-theme="dark"] .tailor-item-card {
-    background: rgba(15, 23, 42, 0.56);
+    background: rgba(15, 23, 42, 0.68);
+    border-color: rgba(148, 163, 184, 0.28);
   }
   .tailor-item-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 8px;
-    font-size: 13.4px;
-    font-weight: 700;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    font-size: 14px;
+    font-weight: 800;
   }
   .tailor-item-top > span:first-child {
     display: inline-flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 6px;
+    min-width: 0;
+  }
+  .tailor-slot-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 1px 7px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 750;
+    background: rgba(148, 163, 184, 0.18);
+    color: var(--rd-ink-2, #334155);
+    white-space: nowrap;
+  }
+  html[data-theme="dark"] .tailor-slot-tag {
+    background: rgba(148, 163, 184, 0.2);
+    color: #e2e8f0;
   }
   .tailor-item-meta {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
-    font-size: 11.5px;
+    gap: 6px;
+    font-size: 12px;
     align-items: center;
   }
   .tailor-item-line {
-    font-size: 12.6px;
-    opacity: 0.94;
+    font-size: 13px;
+    color: var(--rd-ink-2, #334155);
+    line-height: 1.5;
+    word-break: keep-all;
   }
+  html[data-theme="dark"] .tailor-item-line { color: #cbd5e1; }
   .tailor-stat-line {
-    font-size: 12.8px;
-    padding: 5px 9px;
-    border-radius: 6px;
-    background: rgba(124, 58, 237, 0.06);
-    border-left: 3px solid var(--arcane, #7c3aed);
+    font-size: 13.2px;
+    padding: 7px 10px;
+    border-radius: 8px;
+    background: rgba(124, 58, 237, 0.07);
+    border-left: 3.5px solid var(--arcane, #7c3aed);
+    line-height: 1.48;
+    word-break: keep-all;
   }
   html[data-theme="dark"] .tailor-stat-line {
-    background: rgba(168, 85, 247, 0.12);
+    background: rgba(168, 85, 247, 0.14);
   }
   .tailor-mat-list {
-    margin-top: 3px;
-    padding: 8px 10px;
-    border-radius: 7px;
+    margin-top: 2px;
+    padding: 9px 11px;
+    border-radius: 9px;
     background: rgba(148, 163, 184, 0.08);
-    border: 1px solid rgba(148, 163, 184, 0.24);
+    border: 1px solid rgba(148, 163, 184, 0.26);
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
   }
   .tailor-mat-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 8px;
-    font-size: 12.3px;
-    line-height: 1.4;
+    flex-wrap: wrap;
+    gap: 2px 10px;
+    font-size: 13px;
+    line-height: 1.45;
   }
   .tailor-mat-row > span:first-child {
     display: inline-flex;
     align-items: center;
-    flex-wrap: nowrap;
-    white-space: nowrap;
-    gap: 5px;
+    flex-wrap: wrap;
+    gap: 4px;
+    min-width: 0;
   }
   .tailor-mat-row > span:last-child {
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 12.5px;
+    font-weight: 700;
     white-space: nowrap;
-    opacity: 0.9;
+    margin-left: auto;
+    color: var(--rd-ink-2, #334155);
   }
+  html[data-theme="dark"] .tailor-mat-row > span:last-child { color: #cbd5e1; }
   .tailor-mat-total {
     margin-top: 4px;
-    padding-top: 5px;
-    border-top: 1px dashed rgba(148, 163, 184, 0.42);
+    padding-top: 6px;
+    border-top: 1.5px dashed rgba(148, 163, 184, 0.45);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 12.8px;
-    font-weight: 800;
+    gap: 8px;
+    font-size: 13.5px;
+    font-weight: 850;
   }
   .core-sum-list {
     list-style: none;
     padding: 0;
-    margin: 8px 0 0;
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
+    margin: 10px 0 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+    gap: 9px;
   }
   .core-sum-list li {
     display: flex;
     flex-direction: column;
-    gap: 2px;
-    padding: 7px 10px;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.65);
-    border: 1px solid rgba(148, 163, 184, 0.35);
-    font-size: 12.5px;
-    line-height: 1.45;
+    gap: 4px;
+    padding: 9px 12px;
+    border-radius: 9px;
+    background: var(--rd-paper, #fff);
+    border: 1.5px solid rgba(148, 163, 184, 0.36);
+    font-size: 13.5px;
+    line-height: 1.48;
   }
   html[data-theme="dark"] .core-sum-list li {
-    background: rgba(15, 23, 42, 0.45);
-    border-color: rgba(148, 163, 184, 0.25);
+    background: rgba(15, 23, 42, 0.56);
+    border-color: rgba(148, 163, 184, 0.26);
   }
   .core-sum-row {
     display: flex;
@@ -3434,23 +3580,151 @@
     flex-wrap: wrap;
     gap: 6px;
   }
+  .core-sum-note {
+    font-size: 12.5px;
+    color: var(--rd-ink-3, #475569);
+    line-height: 1.48;
+    word-break: keep-all;
+  }
+  html[data-theme="dark"] .core-sum-note { color: #cbd5e1; }
   .core-sum-row code, .tailor-item-card code {
     white-space: nowrap;
   }
   .core-sum-total {
-    margin-top: 9px;
-    padding-top: 8px;
+    margin-top: 10px;
+    padding-top: 9px;
     border-top: 1.5px dashed rgba(148, 163, 184, 0.45);
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 6px;
-    font-size: 13px;
+    font-size: 14px;
   }
-  @media (max-width: 640px) {
-    .tailor-stepper { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 12px; }
-    .tailor-stepper::before { display: none; }
+
+  /* ===== DISMISSIBLE INSTANCE Q&A / MEMO TOGGLE (v4.1) ===== */
+  details.dismissible-fold {
+    margin: 10px 0 14px;
+    border: 1.5px dashed var(--rd-ink-3, #64748b);
+    border-radius: 12px;
+    background: var(--rd-paper-2, #f8fafc);
+    box-shadow: none;
+    overflow: hidden;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  html[data-theme="dark"] details.dismissible-fold {
+    background: rgba(30, 41, 59, 0.52);
+    border-color: rgba(148, 163, 184, 0.42);
+  }
+  details.dismissible-fold.is-dismissing {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+  details.dismissible-fold.is-dismissed {
+    display: none !important;
+  }
+  details.dismissible-fold > summary {
+    padding: 11px 14px;
+    font-size: 13.5px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  details.dismissible-fold > summary::after {
+    display: none;
+  }
+  .dismiss-fold-title {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    min-width: 0;
+    flex: 1;
+  }
+  .dismiss-fold-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .dismiss-fold-chevron {
+    font-size: 12px;
+    font-weight: 750;
+    padding: 3px 9px;
+    border-radius: 999px;
+    border: 1.5px solid var(--rd-line-2, #94a3b8);
+    color: var(--rd-ink-2, #334155);
+    white-space: nowrap;
+  }
+  html[data-theme="dark"] .dismiss-fold-chevron {
+    color: #e2e8f0;
+    border-color: rgba(148, 163, 184, 0.45);
+  }
+  details.dismissible-fold[open] .dismiss-fold-chevron .lbl-closed,
+  details.dismissible-fold:not([open]) .dismiss-fold-chevron .lbl-open {
+    display: none;
+  }
+  .fold-dismiss-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    border: 1.5px solid rgba(220, 38, 38, 0.45);
+    background: rgba(239, 68, 68, 0.08);
+    color: #dc2626;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.14s ease, color 0.14s ease, transform 0.12s ease;
+  }
+  .fold-dismiss-btn:hover {
+    background: #dc2626;
+    color: #fff;
+  }
+  html[data-theme="dark"] .fold-dismiss-btn {
+    border-color: rgba(248, 113, 113, 0.5);
+    background: rgba(239, 68, 68, 0.16);
+    color: #fca5a5;
+  }
+  html[data-theme="dark"] .fold-dismiss-btn:hover {
+    background: #ef4444;
+    color: #fff;
+  }
+  details.dismissible-fold .fold-body {
+    padding: 12px 15px 14px;
+    font-size: 13.5px;
+    line-height: 1.62;
+  }
+  .dismissed-restore-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 10px;
+    font-size: 12.5px;
+    color: var(--rd-ink-3, #64748b);
+  }
+  .dismissed-restore-bar[hidden] { display: none !important; }
+  .dismissed-restore-btn {
+    border: 1.5px solid var(--rd-line-2, #94a3b8);
+    background: transparent;
+    color: inherit;
+    border-radius: 999px;
+    padding: 3px 10px;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 750;
+    cursor: pointer;
+  }
+  .dismissed-restore-btn:hover {
+    border-color: var(--arcane, #7c3aed);
+    color: var(--arcane, #7c3aed);
   }
 
   /* ===== CUTE SIMPLE "N" BADGE (CLICK TO DISMISS) ===== */
@@ -4938,7 +5212,7 @@
                     <tr><td><strong>1 &rarr; 45</strong></td><td><code>리넨 두루마리</code> &times; 132</td><td><code>리넨 옷감</code> 264 &times; <strong><code>1.91s</code></strong></td><td><code>5g 4.24s</code> <small>(추가 217개=4g 14.47s)</small></td><td>리넨 <code>20c</code> 복귀 시 217개=<strong><code>43.4s</code></strong></td></tr>
                     <tr><td><strong>45 &rarr; 70</strong></td><td><code>두꺼운 리넨 장갑</code> &times; 35</td><td>리넨 두루마리 70 + <code>굵은 실타래</code> 35 (NPC 10c)</td><td><strong><code>3.5s</code></strong></td><td><strong>50 달성</strong> 시 수습(150) 승급 (<code>5s</code>)</td></tr>
                     <tr><td><strong>70 &rarr; 75</strong></td><td><code>강화 리넨 망토</code> &times; 5</td><td>리넨 두루마리 10 + <code>굵은 실타래</code> 15 (NPC 10c)</td><td><strong><code>1.5s</code></strong></td><td>상점 매각 소액 회수</td></tr>
-                    <tr><td><strong>75 &rarr; 100</strong></td><td><code>양모 두루마리</code> &times; 45</td><td><code>양모 옷감</code> 135 &times; <strong><code>1.75s</code></strong></td><td><code>2g 36.25s</code> <small>(추가 <strong>35개=61.25s</strong>)</small></td><td>완제품 <code>3.99s</code> vs 직접 <code>5.25s</code></td></tr>
+                    <tr><td><strong>75 &rarr; 100</strong></td><td><code>양모 두루마리</code> &times; 45</td><td><code>양모 옷감</code> 135 &times; <strong><code>1.75s</code></strong></td><td><code>2g 36.25s</code> <small>(45개 감기 35장=61.25s / 보유 1개 활용 시 32장=56s)</small></td><td>완제품 <code>3.99s</code> vs 직접 <code>5.25s</code></td></tr>
                     <tr><td><strong>100 &rarr; 110</strong></td><td><code>수수한 킬트</code> &times; 13</td><td>리넨 두루마리 52 + <code>가는 실타래</code> 13 (NPC 1s)</td><td><strong><code>13s</code></strong></td><td>두루마리 <code>7.5s</code> (직접 감기 <code>3.82s</code>가 쌈)</td></tr>
                     <tr><td><strong>110 &rarr; 125</strong></td><td><code>이중 바느질 양모 어깨</code> &times; 15</td><td>양모 두루마리 45 + <code>가는 실타래</code> 30 (NPC 1s)</td><td><strong><code>30s</code></strong></td><td><strong>125 달성!</strong> 전문(225) 승급 (<code>50s</code>)</td></tr>
                     <tr><td><strong>125 &rarr; 145</strong></td><td><code>비단 두루마리</code> &times; 40 <small>(선택)</small></td><td><code>비단 옷감</code> 160 &times; <strong><code>1.84s</code></strong></td><td><code>2g 94.4s</code> <small>(추가 <strong>136개=2g 50.24s</strong>)</small></td><td>완제품 <code>9.94s</code> vs 직접 <code>7.36s</code></td></tr>
@@ -4949,43 +5223,54 @@
                 <div class="callout" style="margin:0;">
                   <strong>🎒 현재 보유 재료 (<code>12:31</code> 가방 실측 기준)</strong><br>
                   &bull; <code>리넨 옷감</code> <strong>47개</strong> &rarr; 추가 필요 <strong>217개</strong><br>
-                  &bull; <code>양모 옷감</code> <strong>100개</strong> + <code>양모 두루마리</code> <strong>1개</strong> &rarr; 추가 필요 <strong>35개</strong> (<code>61.25s</code>)<br>
+                  &bull; <code>양모 옷감</code> <strong>100개</strong> + <code>양모 두루마리</code> <strong>1개</strong> &rarr; 45개 전체 감기 시 <strong>35개</strong>(<code>61.25s</code>) / 보유 1개 활용 시 <strong>32개</strong>(<code>56s</code>)<br>
                   &bull; <code>비단 옷감</code> <strong>24개</strong> (145 확장 시 136개) &middot; <strong><code>도안: 세공된 진줏빛 머리장식</code> 보유 ✅</strong>
                 </div>
                 <div class="callout verified" style="margin:0;">
                   <strong>🧾 <code>1 &rarr; 125</code> 최종 비용 요약 (훈련비 ~55.1s 포함)</strong><br>
-                  &bull; <strong>12:31 전액 / 보유차감:</strong> <code>8g 43.59s</code> / <code>5g 78.82s</code><br>
+                  &bull; <strong>12:31 전액 / 보유차감:</strong> <code>8g 43.59s</code> / <code>5g 78.82s</code> <span class="core-sum-note">(보유 양모 두루마리 1개 차감 시 5g 73.57s)</span><br>
                   &bull; <strong>리넨 <code>20c</code> 복귀 대기 시 실지출:</strong> <strong><code>~2g 7.75s</code></strong> 🎯<br>
                   &bull; <strong>가용 골드:</strong> <strong><code>31g 32.17s</code></strong> (전환 후 장비까지 여유 충분)
                 </div>
               </div>
 
               <h3>추천 장비 타임라인</h3>
-              <p style="margin-top:0; font-size:12.6px; opacity:0.86;">레벨 구간 점을 클릭하면 해당 구간 장비가 열립니다. <strong>아이템명을 호버·클릭</strong>하면 스탯과 <strong>인게임 방식 현재 장비 비교</strong> 툴팁이 표시되며, 각 카드에는 재료별 단가·원가 합계를 표기했습니다.</p>
+              <p style="margin-top:0; font-size:13.2px; color:var(--rd-ink-2);">레벨 구간 카드를 누르면 해당 구간 제작 장비가 열립니다. <strong>아이템명을 호버·탭</strong>하면 스탯과 <strong>현재 착용 장비 비교</strong> 툴팁이 표시됩니다.</p>
 
-              <!-- Centered Interactive Stepper -->
-              <div class="tailor-stepper" id="tailorStepper" role="tablist" aria-label="재봉술 레벨 구간">
-                <button type="button" class="tailor-step active" data-tstage="0" onclick="selectTailorStage(0)" aria-expanded="true">
-                  <span class="tailor-step-dot">1</span>
-                  <span class="tailor-step-title">Lv.31 ~ 35</span>
-                  <span class="tailor-step-sub">현재 구간 (숙련 125~175)</span>
-                </button>
-                <button type="button" class="tailor-step" data-tstage="1" onclick="selectTailorStage(1)" aria-expanded="false">
-                  <span class="tailor-step-dot">2</span>
-                  <span class="tailor-step-title">Lv.38 ~ 45</span>
-                  <span class="tailor-step-sub">꿈매듭·마법매듭 (180~225)</span>
-                </button>
-                <button type="button" class="tailor-step" data-tstage="2" onclick="selectTailorStage(2)" aria-expanded="false">
-                  <span class="tailor-step-dot">3</span>
-                  <span class="tailor-step-title">Lv.47 ~ 56</span>
-                  <span class="tailor-step-sub">유령·룬·평판 (215~290)</span>
-                </button>
-                <button type="button" class="tailor-step" data-tstage="3" onclick="selectTailorStage(3)" aria-expanded="false">
-                  <span class="tailor-step-dot">4</span>
-                  <span class="tailor-step-title">Lv.57 ~ 60</span>
-                  <span class="tailor-step-sub">만렙 종결 BiS (295~300)</span>
-                </button>
+              <!-- Horizontal Interactive Stepper (Dedicated Top Dot Rail - Zero Line Overflow) -->
+              <div class="tailor-stepper-wrap">
+                <div class="tailor-stepper" id="tailorStepper" role="tablist" aria-label="재봉술 레벨 구간">
+                  <button type="button" class="tailor-step active" data-tstage="0" onclick="selectTailorStage(0)" aria-expanded="true">
+                    <span class="tailor-step-dot-wrap"><span class="tailor-step-dot">1</span></span>
+                    <span class="tailor-step-card">
+                      <span class="tailor-step-title">Lv.31 ~ 35</span>
+                      <span class="tailor-step-sub">현재 구간 (125~175)</span>
+                    </span>
+                  </button>
+                  <button type="button" class="tailor-step" data-tstage="1" onclick="selectTailorStage(1)" aria-expanded="false">
+                    <span class="tailor-step-dot-wrap"><span class="tailor-step-dot">2</span></span>
+                    <span class="tailor-step-card">
+                      <span class="tailor-step-title">Lv.38 ~ 45</span>
+                      <span class="tailor-step-sub">꿈매듭·마법매듭 (180~205)</span>
+                    </span>
+                  </button>
+                  <button type="button" class="tailor-step" data-tstage="2" onclick="selectTailorStage(2)" aria-expanded="false">
+                    <span class="tailor-step-dot-wrap"><span class="tailor-step-dot">3</span></span>
+                    <span class="tailor-step-card">
+                      <span class="tailor-step-title">Lv.47 ~ 56</span>
+                      <span class="tailor-step-sub">유령·룬·평판 (215~290)</span>
+                    </span>
+                  </button>
+                  <button type="button" class="tailor-step" data-tstage="3" onclick="selectTailorStage(3)" aria-expanded="false">
+                    <span class="tailor-step-dot-wrap"><span class="tailor-step-dot">4</span></span>
+                    <span class="tailor-step-card">
+                      <span class="tailor-step-title">Lv.57 ~ 60</span>
+                      <span class="tailor-step-sub">만렙 종결 BiS (295~300)</span>
+                    </span>
+                  </button>
+                </div>
               </div>
+              <div class="tailor-scroll-hint">↔ 좌우로 밀어 전체 레벨 구간을 볼 수 있습니다</div>
 
               <!-- Stage 0 (Default Active): Lv.31~35 -->
               <div class="tailor-tl-panel active" data-tstage="0">
@@ -4995,7 +5280,7 @@
                 </div>
                 <div class="tailor-tl-grid">
                   <div class="tailor-item-card">
-                    <div class="tailor-item-top"><span><code>세공된 진줏빛 머리장식</code> <small>(머리)</small></span><strong><code>2g 72.88s</code></strong></div>
+                    <div class="tailor-item-top"><span><code>세공된 진줏빛 머리장식</code> <span class="tailor-slot-tag">머리</span></span><strong><code>2g 72.88s</code></strong></div>
                     <div class="tailor-item-meta"><span class="badge arcane">BoP &middot; 재봉 125</span><span class="badge">Lv.25</span><span class="badge verified">도안 보유 ✅</span></div>
                     <div class="tailor-stat-line"><strong>능력치:</strong> 체력 +12 &middot; <strong>비전 +14</strong></div>
                     <div class="tailor-mat-list">
@@ -5005,11 +5290,11 @@
                       <div class="tailor-mat-row"><span><code>반짝이는 작은 진주</code> &times; 6</span><span>@2s &rarr; 12s</span></div>
                       <div class="tailor-mat-total"><span>원가 합계</span><span>2g 72.88s</span></div>
                     </div>
-                    <div class="tailor-item-line"><strong>도안:</strong> 가방 보유 중 ✅ (월드/던전 드랍 27~34 몹)</div>
+                    <div class="tailor-item-line"><strong>도안:</strong> 가방 보유 중 ✅ (27~34레벨 월드·던전 드랍)</div>
                   </div>
 
                   <div class="tailor-item-card">
-                    <div class="tailor-item-top"><span><code>하늘빛 폭풍매듭 수도두건</code> <small>(머리)</small></span><strong><code>97.58s</code></strong></div>
+                    <div class="tailor-item-top"><span><code>하늘빛 폭풍매듭 수도두건</code> <span class="tailor-slot-tag">머리</span></span><strong><code>97.58s</code></strong></div>
                     <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge">Lv.30 / 숙련 175</span></div>
                     <div class="tailor-stat-line"><strong>능력치:</strong> 체력 +9 &middot; 지능 +9</div>
                     <div class="tailor-mat-list">
@@ -5019,11 +5304,11 @@
                       <div class="tailor-mat-row"><span>청색 염료 &times; 4 (NPC)</span><span>@50c &rarr; 2s</span></div>
                       <div class="tailor-mat-total"><span>원가 합계</span><span>97.58s</span></div>
                     </div>
-                    <div class="tailor-item-line"><strong>도안:</strong> 알터랙 산맥 <code>대마법사 알바로</code> 구매</div>
+                    <div class="tailor-item-line"><strong>도안:</strong> 알터랙 산맥 <code>대마법사 알바로</code> 판매 (도안 <strong>10g</strong> &middot; 키린 토 약간 우호적 &rarr; 완제품 경매 추천)</div>
                   </div>
 
                   <div class="tailor-item-card">
-                    <div class="tailor-item-top"><span><code>거미줄 허리띠</code> <small>(허리)</small></span><strong><code>46.11s</code></strong></div>
+                    <div class="tailor-item-top"><span><code>거미줄 허리띠</code> <span class="tailor-slot-tag">허리</span></span><strong><code>46.11s</code></strong></div>
                     <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge">Lv.31 / 숙련 145</span></div>
                     <div class="tailor-stat-line"><strong>능력치:</strong> 지능 +8 &middot; <strong>사용: 이동불가 해제+5초 면역</strong></div>
                     <div class="tailor-mat-list">
@@ -5032,11 +5317,11 @@
                       <div class="tailor-mat-row"><span><code>철제 죔쇠</code> &times; 1</span><span>@1.87s &rarr; 1.87s</span></div>
                       <div class="tailor-mat-total"><span>원가 합계</span><span>46.11s</span></div>
                     </div>
-                    <div class="tailor-item-line"><strong>도안:</strong> 월드 드랍 (경매장 완제품·의뢰 추천)</div>
+                    <div class="tailor-item-line"><strong>도안:</strong> Lv.33~44 월드 드랍 (경매 완제품·의뢰 추천)</div>
                   </div>
 
                   <div class="tailor-item-card">
-                    <div class="tailor-item-top"><span><code>황금 끌신</code> <small>(발)</small></span><strong><code>11g 41.98s</code></strong></div>
+                    <div class="tailor-item-top"><span><code>황금 끌신</code> <span class="tailor-slot-tag">발</span></span><strong><code>11g 41.98s</code></strong></div>
                     <div class="tailor-item-meta"><span class="badge arcane">BoP &middot; 재봉 150</span><span class="badge">Lv.30 / 교관</span></div>
                     <div class="tailor-stat-line"><strong>능력치:</strong> 체력 +6 &middot; 지능 +7 &middot; 정신력 +4 &middot; <strong>비전 +13</strong></div>
                     <div class="tailor-mat-list">
@@ -5051,15 +5336,15 @@
                   </div>
 
                   <div class="tailor-item-card">
-                    <div class="tailor-item-top"><span><code>마력의 로브</code> <small>(가슴)</small></span><strong><code>3g 10.86s</code></strong></div>
+                    <div class="tailor-item-top"><span><code>마력의 로브</code> <span class="tailor-slot-tag">가슴</span></span><strong><code>3g 10.86s</code></strong></div>
                     <div class="tailor-item-meta"><span class="badge arcane">BoP &middot; 재봉 155</span><span class="badge warn">물레 필요</span><span class="badge">Lv.33</span></div>
                     <div class="tailor-stat-line"><strong>능력치:</strong> 지능 +12 &middot; 정신력 +8 &middot; <strong>모든 주문 +14</strong></div>
                     <div class="tailor-mat-list">
                       <div class="tailor-mat-row"><span><code>마법 두루마리</code> &times; 2 (10장)</span><span>@6.15s &rarr; 61.5s</span></div>
-                      <div class="tailor-mat-row"><span>불의 원소 &times; 2</span><span>@57s &rarr; 1g 14s</span></div>
-                      <div class="tailor-mat-row"><span>대지의 원소 &times; 2</span><span>@39.99s &rarr; 79.98s</span></div>
-                      <div class="tailor-mat-row"><span>바람의 원소 &times; 2</span><span>@16.29s &rarr; 32.58s</span></div>
-                      <div class="tailor-mat-row"><span>물의 원소 &times; 2</span><span>@6.4s &rarr; 12.8s</span></div>
+                      <div class="tailor-mat-row"><span><code>불의 원소</code> &times; 2</span><span>@57s &rarr; 1g 14s</span></div>
+                      <div class="tailor-mat-row"><span><code>대지의 원소</code> &times; 2</span><span>@39.99s &rarr; 79.98s</span></div>
+                      <div class="tailor-mat-row"><span><code>바람의 원소</code> &times; 2</span><span>@16.29s &rarr; 32.58s</span></div>
+                      <div class="tailor-mat-row"><span><code>물의 원소</code> &times; 2</span><span>@6.4s &rarr; 12.8s</span></div>
                       <div class="tailor-mat-row"><span><code>비단 실타래</code> &times; 2 (NPC)</span><span>@5s &rarr; 10s</span></div>
                       <div class="tailor-mat-total"><span>원가 합계</span><span>3g 10.86s</span></div>
                     </div>
@@ -5067,7 +5352,7 @@
                   </div>
 
                   <div class="tailor-item-card">
-                    <div class="tailor-item-top"><span><code>황금 손등싸개</code> <small>(손)</small></span><strong><code>15g 61.98s</code></strong></div>
+                    <div class="tailor-item-top"><span><code>황금 손등싸개</code> <span class="tailor-slot-tag">손</span></span><strong><code>15g 61.98s</code></strong></div>
                     <div class="tailor-item-meta"><span class="badge arcane">BoP &middot; 재봉 165</span><span class="badge warn">물레 필요</span><span class="badge">Lv.35</span></div>
                     <div class="tailor-stat-line"><strong>능력치:</strong> 체력 +9 &middot; 지능 +7 &middot; <strong>비전 +14</strong></div>
                     <div class="tailor-mat-list">
@@ -5078,12 +5363,12 @@
                       <div class="tailor-mat-row"><span><code>황금 진주</code> &times; 4</span><span>@1g 98s &rarr; 7g 92s</span></div>
                       <div class="tailor-mat-total"><span>원가 합계</span><span>15g 61.98s</span></div>
                     </div>
-                    <div class="tailor-item-line"><strong>도안:</strong> 붉은마루 <code>미빈 섀도위브</code> (상인의 호의 60)<br><em>※ <code>찬란하게 빛나는 손등싸개</code>는 <strong>신성 +14 전용</strong></em></div>
+                    <div class="tailor-item-line"><strong>도안:</strong> 붉은마루 <code>미빈 섀도위브</code> (호의 60) &middot; <em>※ <code>찬란하게 빛나는 손등싸개</code>는 신성+14 전용</em></div>
                   </div>
 
                   <div class="tailor-item-card">
-                    <div class="tailor-item-top"><span><code>별장식 허리띠</code> <small>(허리)</small></span><strong><code>1g 50.12s</code></strong></div>
-                    <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge">Lv.35 / 숙련 165</span></div>
+                    <div class="tailor-item-top"><span><code>별장식 허리띠</code> <span class="tailor-slot-tag">허리</span></span><strong><code>1g 50.12s</code></strong></div>
+                    <div class="tailor-item-meta"><span class="badge verified">BoE &middot; 고급</span><span class="badge">Lv.35 / 숙련 165</span></div>
                     <div class="tailor-stat-line"><strong>능력치:</strong> 정신력 +4 &middot; <strong>모든 주문 +13</strong></div>
                     <div class="tailor-mat-list">
                       <div class="tailor-mat-row"><span><code>마법 두루마리</code> &times; 4 (20장)</span><span>@6.15s &rarr; 1g 23s</span></div>
@@ -5093,7 +5378,7 @@
                       <div class="tailor-mat-row"><span><code>비단 실타래</code> &times; 1 (NPC)</span><span>@5s &rarr; 5s</span></div>
                       <div class="tailor-mat-total"><span>원가 합계</span><span>1g 50.12s</span></div>
                     </div>
-                    <div class="tailor-item-line"><strong>도안:</strong> 수도원&middot;줄파락 등 월드 드랍</div>
+                    <div class="tailor-item-line"><strong>도안:</strong> 붉은십자군 수도원(용사 0.15%) &middot; 줄파락 등 월드 드랍</div>
                   </div>
                 </div>
               </div>
@@ -5101,12 +5386,12 @@
               <!-- Stage 1: Lv.38~45 -->
               <div class="tailor-tl-panel" data-tstage="1">
                 <div class="tailor-tl-head">
-                  <span>Lv.38 ~ 45 구간 (중반 전성기 &middot; 숙련 180~225)</span>
+                  <span>Lv.38 ~ 45 구간 (중반 전성기 &middot; 숙련 180~205)</span>
                   <span class="badge gold">꿈매듭 &amp; 마법매듭 핵심 구간</span>
                 </div>
                 <div class="tailor-tl-grid">
                   <div class="tailor-item-card">
-                    <div class="tailor-item-top"><span><code>검은 마법매듭 장갑</code> <small>(손)</small></span><strong><code>1g 1.5s</code></strong></div>
+                    <div class="tailor-item-top"><span><code>검은 마법매듭 장갑</code> <span class="tailor-slot-tag">손</span></span><strong><code>1g 1.5s</code></strong></div>
                     <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge">Lv.38 / 숙련 180</span></div>
                     <div class="tailor-stat-line"><strong>능력치:</strong> <strong>모든 주문 +15</strong></div>
                     <div class="tailor-mat-list">
@@ -5118,7 +5403,7 @@
                   </div>
 
                   <div class="tailor-item-card">
-                    <div class="tailor-item-top"><span><code>꿈매듭 조끼</code> <small>(가슴)</small></span><strong><code>2g 34.28s</code></strong></div>
+                    <div class="tailor-item-top"><span><code>꿈매듭 조끼</code> <span class="tailor-slot-tag">가슴</span></span><strong><code>2g 34.28s</code></strong></div>
                     <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge warn">물레 필요</span><span class="badge">Lv.40 / 숙련 190</span></div>
                     <div class="tailor-stat-line"><strong>능력치:</strong> 지능 +9 &middot; 정신력 +14 &middot; <strong>모든 주문 +18</strong></div>
                     <div class="tailor-mat-list">
@@ -5132,7 +5417,7 @@
                   </div>
 
                   <div class="tailor-item-card">
-                    <div class="tailor-item-top"><span><code>꿈매듭 장갑</code> <small>(손)</small></span><strong><code>1g 72.18s</code></strong></div>
+                    <div class="tailor-item-top"><span><code>꿈매듭 장갑</code> <span class="tailor-slot-tag">손</span></span><strong><code>1g 72.18s</code></strong></div>
                     <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge warn">물레 필요</span><span class="badge">Lv.42 / 숙련 190</span></div>
                     <div class="tailor-stat-line"><strong>능력치:</strong> 지능 +4 &middot; 정신력 +7 &middot; <strong>모든 주문 +18</strong></div>
                     <div class="tailor-mat-list">
@@ -5146,7 +5431,7 @@
                   </div>
 
                   <div class="tailor-item-card">
-                    <div class="tailor-item-top"><span><code>붉은 마법매듭 머리띠</code> <small>(머리)</small></span><strong><code>1g 64s</code></strong></div>
+                    <div class="tailor-item-top"><span><code>붉은 마법매듭 머리띠</code> <span class="tailor-slot-tag">머리</span></span><strong><code>1g 64s</code></strong></div>
                     <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge">Lv.43 / 숙련 200</span></div>
                     <div class="tailor-stat-line"><strong>능력치:</strong> <strong>지능 +20 &middot; 모든 주문 +19</strong></div>
                     <div class="tailor-mat-list">
@@ -5155,11 +5440,11 @@
                       <div class="tailor-mat-row"><span><code>큰 비단 실타래</code> &times; 2 (NPC)</span><span>@20s &rarr; 40s</span></div>
                       <div class="tailor-mat-total"><span>원가 합계</span><span>1g 64s</span></div>
                     </div>
-                    <div class="tailor-item-line"><strong>도안:</strong> Lv.40~50 월드 드랍 (경매 확인 필수)</div>
+                    <div class="tailor-item-line"><strong>도안:</strong> Lv.43~55 월드 드랍 (경매 확인 필수)</div>
                   </div>
 
                   <div class="tailor-item-card">
-                    <div class="tailor-item-top"><span><code>꿈매듭 머리장식</code> <small>(머리)</small></span><strong><code>3g 41.87s</code></strong></div>
+                    <div class="tailor-item-top"><span><code>꿈매듭 머리장식</code> <span class="tailor-slot-tag">머리</span></span><strong><code>3g 41.87s</code></strong></div>
                     <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge warn">물레 필요</span><span class="badge">Lv.45 / 숙련 205</span></div>
                     <div class="tailor-stat-line"><strong>능력치:</strong> 지능 +10 &middot; 정신력 +12 &middot; <strong>모든 주문 +21</strong></div>
                     <div class="tailor-mat-list">
@@ -5184,7 +5469,7 @@
                 </div>
                 <div class="tailor-tl-grid">
                   <div class="tailor-item-card">
-                    <div class="tailor-item-top"><span><code>유령매듭 요대</code> <small>(허리)</small></span><strong><code>3g 44.6s</code></strong></div>
+                    <div class="tailor-item-top"><span><code>유령매듭 요대</code> <span class="tailor-slot-tag">허리</span></span><strong><code>3g 44.6s</code></strong></div>
                     <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge">Lv.47 / 숙련 215</span></div>
                     <div class="tailor-stat-line"><strong>능력치:</strong> 정신력 +11 &middot; <strong>모든 주문 +14</strong></div>
                     <div class="tailor-mat-list">
@@ -5198,7 +5483,7 @@
                   </div>
 
                   <div class="tailor-item-card">
-                    <div class="tailor-item-top"><span><code>룬매듭 소매장식</code> <small>(손목)</small></span><strong><code>2g 85.5s</code></strong></div>
+                    <div class="tailor-item-top"><span><code>룬매듭 소매장식</code> <span class="tailor-slot-tag">손목</span></span><strong><code>2g 85.5s</code></strong></div>
                     <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge">Lv.52 / 숙련 250</span></div>
                     <div class="tailor-stat-line"><strong>능력치:</strong> 지능 +10 &middot; <strong>모든 주문 +11</strong></div>
                     <div class="tailor-mat-list">
@@ -5211,7 +5496,7 @@
                   </div>
 
                   <div class="tailor-item-card">
-                    <div class="tailor-item-top"><span><code>유령매듭 바지</code> <small>(다리)</small></span><strong><code>5g 45.4s</code></strong></div>
+                    <div class="tailor-item-top"><span><code>유령매듭 바지</code> <span class="tailor-slot-tag">다리</span></span><strong><code>5g 45.4s</code></strong></div>
                     <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge">Lv.53 / 숙련 245</span></div>
                     <div class="tailor-stat-line"><strong>능력치:</strong> 정신력 +20 &middot; <strong>모든 주문 +26</strong></div>
                     <div class="tailor-mat-list">
@@ -5220,11 +5505,11 @@
                       <div class="tailor-mat-row"><span><code>룬문자 실타래</code> &times; 1 (NPC)</span><span>@50s &rarr; 50s</span></div>
                       <div class="tailor-mat-total"><span>원가 합계</span><span>5g 45.4s</span></div>
                     </div>
-                    <div class="tailor-item-line"><strong>도안:</strong> 스트라솔름 드랍 / 경매장</div>
+                    <div class="tailor-item-line"><strong>도안:</strong> 스트라솔름(Spectral Citizen 0.4%) / 경매장</div>
                   </div>
 
                   <div class="tailor-item-card">
-                    <div class="tailor-item-top"><span><code>유령매듭 어깨보호구</code> <small>(어깨)</small></span><strong><code>5g 40.5s</code></strong></div>
+                    <div class="tailor-item-top"><span><code>유령매듭 어깨보호구</code> <span class="tailor-slot-tag">어깨</span></span><strong><code>5g 40.5s</code></strong></div>
                     <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge">Lv.54 / 숙련 250</span></div>
                     <div class="tailor-stat-line"><strong>능력치:</strong> 정신력 +12 &middot; <strong>모든 주문 +15</strong></div>
                     <div class="tailor-mat-list">
@@ -5238,17 +5523,17 @@
                   </div>
 
                   <div class="tailor-item-card">
-                    <div class="tailor-item-top"><span><code>나무구렁일족 어깨보호대</code> <small>(어깨)</small></span><strong><code>23g 74.9s</code> <small>(자급)</small></strong></div>
+                    <div class="tailor-item-top"><span><code>나무구렁일족 어깨보호대</code> <span class="tailor-slot-tag">어깨</span></span><strong><code>23g 74.9s</code> <span class="tailor-slot-tag">자급</span></strong></div>
                     <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge">Lv.56 / 숙련 290</span></div>
                     <div class="tailor-stat-line"><strong>능력치:</strong> 지능 +13 &middot; <strong>주문 +17 &middot; 치명 1%</strong></div>
                     <div class="tailor-mat-list">
-                      <div class="tailor-mat-row"><span><code>달빛 옷감</code> &times; 5 (10장 자급)</span><span>@65.6s &rarr; 3g 28s <small>(경매 269g)</small></span></div>
+                      <div class="tailor-mat-row"><span><code>달빛 옷감</code> &times; 5 (지옥 10장 자급)</span><span>@65.6s &rarr; 3g 28s</span></div>
                       <div class="tailor-mat-row"><span><code>대지의 정수</code> &times; 5</span><span>@3g 29.98s &rarr; 16g 49.9s</span></div>
                       <div class="tailor-mat-row"><span><code>생명의 정수</code> &times; 5</span><span>@37s &rarr; 1g 85s</span></div>
                       <div class="tailor-mat-row"><span><code>강철그물 거미줄</code> &times; 2</span><span>@1g 6s &rarr; 2g 12s</span></div>
-                      <div class="tailor-mat-total"><span>원가 합계 (달빛 자급)</span><span>23g 74.9s</span></div>
+                      <div class="tailor-mat-total"><span>원가 합계 (달빛 자급 · 경매 시 +266g)</span><span>23g 74.9s</span></div>
                     </div>
-                    <div class="tailor-item-line"><strong>도안:</strong> 악령의 숲 <code>메일로쉬</code> 평판 상인 판매</div>
+                    <div class="tailor-item-line"><strong>도안:</strong> 악령의 숲 <code>메일로쉬</code> 판매 (나무구렁 요새 매우 우호적 · 4g)</div>
                   </div>
                 </div>
               </div>
@@ -5261,7 +5546,7 @@
                 </div>
                 <div class="tailor-tl-grid">
                   <div class="tailor-item-card">
-                    <div class="tailor-item-top"><span><code>대마법사의 로브</code> <small>(가슴)</small></span><strong><code>134g 91.86s</code></strong></div>
+                    <div class="tailor-item-top"><span><code>대마법사의 로브</code> <span class="tailor-slot-tag">가슴</span></span><strong><code>134g 91.86s</code></strong></div>
                     <div class="tailor-item-meta"><span class="badge arcane">BoP &middot; 마법사 전용</span><span class="badge warn">베틀 필요</span><span class="badge">Lv.57 / 숙련 295</span></div>
                     <div class="tailor-stat-line"><strong>능력치:</strong> 지12 &middot; <strong>주문 +40 &middot; 치명 1%</strong> &middot; 사용: 마나 500</div>
                     <div class="tailor-mat-list">
@@ -5278,7 +5563,7 @@
                   </div>
 
                   <div class="tailor-item-card">
-                    <div class="tailor-item-top"><span><code>대마법사의 허리띠</code> <small>(허리)</small></span><strong><code>123g 48.5s</code> <small>(자급)</small></strong></div>
+                    <div class="tailor-item-top"><span><code>대마법사의 허리띠</code> <span class="tailor-slot-tag">허리</span></span><strong><code>123g 48.5s</code> <span class="tailor-slot-tag">자급</span></strong></div>
                     <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge warn">베틀 필요</span><span class="badge">Lv.57 / 숙련 295</span></div>
                     <div class="tailor-stat-line"><strong>능력치:</strong> 체10 &middot; 지16 &middot; <strong>주문 +20 &middot; 치명 1%</strong></div>
                     <div class="tailor-mat-list">
@@ -5296,16 +5581,17 @@
                   </div>
 
                   <div class="tailor-item-card">
-                    <div class="tailor-item-top"><span><code>붉은덩굴 의복 3셋</code> <small>(가슴/다리/발)</small></span><strong><code>레이드 재료</code></strong></div>
+                    <div class="tailor-item-top"><span><code>붉은덩굴 의복 3셋</code> <span class="tailor-slot-tag">가슴/다리/발</span></span><strong><code>레이드 재료</code></strong></div>
                     <div class="tailor-item-meta"><span class="badge arcane">3셋 치명+2% 재봉 300 전용!</span><span class="badge">Lv.60 / 숙련 300</span></div>
                     <div class="tailor-stat-line"><strong>능력치:</strong> 합계 <strong>적중 4% &middot; 주문 +83 &middot; (3) 치명 +2%</strong></div>
                     <div class="tailor-mat-list">
-                      <div class="tailor-mat-row"><span><code>달빛 옷감</code> (조끼3 기준)</span><span>@65.6s 자급 / 53.8g 경매</span></div>
-                      <div class="tailor-mat-row"><span><code>강철그물 거미줄</code> (개당)</span><span>@1g 6s</span></div>
-                      <div class="tailor-mat-row"><span><code>마력 깃든 가죽</code> (개당)</span><span>@1g 97.99s</span></div>
-                      <div class="tailor-mat-row"><span><code>붉은덩굴</code> (줄구룹 채집/드랍)</span><span>현재 경매 미등록</span></div>
+                      <div class="tailor-mat-row"><span><code>달빛 옷감</code> &times; 3 (조끼)</span><span>@65.6s 자급 / 53.8g 경매</span></div>
+                      <div class="tailor-mat-row"><span><code>강력한 모조</code> &times; 4 (조끼)</span><span>줄구룹 드랍 / 경매장</span></div>
+                      <div class="tailor-mat-row"><span><code>강철그물 거미줄</code> &times; 2 (조끼)</span><span>@1g 6s &rarr; 2g 12s</span></div>
+                      <div class="tailor-mat-row"><span><code>룬무늬 두루마리</code> &times; 4 (조끼)</span><span>@5.18s &rarr; 1g 3.6s</span></div>
+                      <div class="tailor-mat-row"><span><code>붉은덩굴</code> &times; 5 (조끼)</span><span>줄구룹 채집/드랍 (장화에 <code>마력 깃든 가죽</code>)</span></div>
                     </div>
-                    <div class="tailor-item-line"><strong>도안:</strong> 요잠바 섬 <code>린워쇼</code> (잔달라 매우 우호)</div>
+                    <div class="tailor-item-line"><strong>도안:</strong> 요잠바 섬 <code>린워쇼</code> (잔달라 매우 우호 · 조끼 5g 29s)</div>
                   </div>
 
                   <div class="tailor-item-card">
@@ -5315,58 +5601,69 @@
                     <div class="tailor-mat-list">
                       <div class="tailor-mat-row"><span><code>유연한 자연의 정수</code> &times; 2 / 1</span><span>하이잘 레이드/평판 재료</span></div>
                       <div class="tailor-mat-row"><span><code>달빛 옷감</code> &times; 2 / 1</span><span>@65.6s 자급 / 53.8g 경매</span></div>
-                      <div class="tailor-mat-row"><span><code>룬무늬 두루마리</code> &times; 7 / 5</span><span>@25.9s &rarr; 1g 81.3s / 1g 29.5s</span></div>
+                      <div class="tailor-mat-row"><span><code>룬무늬 두루마리</code> &times; 7 / 5 (35/25장)</span><span>@5.18s &rarr; 1g 81.3s / 1g 29.5s</span></div>
                     </div>
                     <div class="tailor-item-line"><strong>도안:</strong> 하이잘 산 포에버 신규 도안 (<code>베틀</code> 필요)</div>
                   </div>
                 </div>
               </div>
 
-              <!-- Clean Summary Comparison Cards (Fixed Borders & Structured Rows) -->
-              <div class="grid-2" style="margin-bottom:16px;">
-                <div class="callout gold" style="margin:0;">
-                  <strong>Lv.31~45 실전 Core 4종 (전부 BoE &middot; 툴팁에서 현 장비 비교)</strong>
-                  <ul class="core-sum-list">
-                    <li>
-                      <div class="core-sum-row"><span><code>거미줄 허리띠</code> <small>(Lv.31 &middot; 지8+이동불가 해제)</small></span><strong><code>46.11s</code></strong></div>
-                    </li>
-                    <li>
-                      <div class="core-sum-row"><span><code>검은 마법매듭 장갑</code> <small>(Lv.38 &middot; 주문력 +15)</small></span><strong><code>1g 1.5s</code></strong></div>
-                    </li>
-                    <li>
-                      <div class="core-sum-row"><span><code>꿈매듭 조끼</code> <small>(Lv.40 &middot; 지9/정14/주문+18)</small></span><strong><code>2g 34.28s</code></strong></div>
-                    </li>
-                    <li>
-                      <div class="core-sum-row"><span><code>꿈매듭 머리장식</code> <small>(Lv.45 &middot; 지10/정12/주문+21)</small></span><strong><code>3g 41.87s</code></strong></div>
-                      <small style="opacity:0.84;">가성비 대안: <code>붉은 마법매듭 머리띠</code> (<code>1g 64s</code>)</small>
-                    </li>
-                  </ul>
-                  <div class="core-sum-total">
-                    <span><strong>4종 재료 원가 합계</strong></span>
-                    <strong><code>7g 23.76s</code></strong>
-                  </div>
-                </div>
-                <div class="callout warn" style="margin:0;">
-                  <strong><code>찬란하게 빛나는 손등싸개</code> 검증 &amp; <code>물레</code>/<code>베틀</code> 시세</strong>
-                  <ul class="core-sum-list">
-                    <li>
-                      <div class="core-sum-row"><span><code>찬란하게 빛나는 손등싸개</code> <small>(Lv.35 BoP)</small></span><span class="badge warn">신성 +14 전용</span></div>
-                      <small style="opacity:0.88;">비전+14가 아닌 <strong>신성 공격력 +14</strong>(사제/신기용)입니다. 비전 +14 쌍둥이는 <strong><code>황금 손등싸개</code></strong>(Lv.35 &middot; 지7/체9/비전+14 &middot; 원가 <code>15g 61.98s</code>)이며 1단계 타임라인에 추가했습니다.</small>
-                    </li>
-                    <li>
-                      <div class="core-sum-row"><span><code>물레</code> (숙련 140) <small>&middot; 경매 시세</small></span><strong><code>71.95s</code> <small>(매물 45개)</small></strong></div>
-                      <small style="opacity:0.88;"><code>도안: 물레</code>(알터랙 <code>불안정한 파수병</code> 10% 드랍)는 <strong><code>16g 98s</code></strong>이므로 도안을 사지 말고 <strong>경매장에서 완제품 <code>물레(71.95s)</code> 직구</strong>가 16골드+ 이득입니다!</small>
-                    </li>
-                    <li>
-                      <div class="core-sum-row"><span><code>베틀</code> (숙련 300) <small>&middot; 경매 시세</small></span><strong><code>6g 99.99s</code> <small>(매물 14개)</small></strong></div>
-                      <small style="opacity:0.88;"><code>도안: 베틀</code>(스트라솔름 <code>남작부인 아나스타리</code> 7.7%, 경매 <code>17g</code>) &middot; 재료 <code>병에 담긴 비명</code>(<code>2g 50s</code>)+룬두루4+단순나무4 = 원가 <code>3g 57.6s</code></small>
-                    </li>
-                  </ul>
+              <!-- Core 4 Summary Card (Full-width clean 2-col grid) -->
+              <div class="callout gold" style="margin:0 0 12px;">
+                <strong>Lv.31~45 실전 Core 4종 (전부 BoE &middot; 툴팁에서 현 장비 비교)</strong>
+                <ul class="core-sum-list">
+                  <li>
+                    <div class="core-sum-row"><span><code>거미줄 허리띠</code> <span class="tailor-slot-tag">Lv.31</span></span><strong><code>46.11s</code></strong></div>
+                    <span class="core-sum-note">지능 +8 &middot; 이동불가 해제 + 5초 면역</span>
+                  </li>
+                  <li>
+                    <div class="core-sum-row"><span><code>검은 마법매듭 장갑</code> <span class="tailor-slot-tag">Lv.38</span></span><strong><code>1g 1.5s</code></strong></div>
+                    <span class="core-sum-note">모든 주문력 +15 (방어구 키트 적용 가능)</span>
+                  </li>
+                  <li>
+                    <div class="core-sum-row"><span><code>꿈매듭 조끼</code> <span class="tailor-slot-tag">Lv.40</span></span><strong><code>2g 34.28s</code></strong></div>
+                    <span class="core-sum-note">지능 +9 &middot; 정신력 +14 &middot; 모든 주문력 +18</span>
+                  </li>
+                  <li>
+                    <div class="core-sum-row"><span><code>꿈매듭 머리장식</code> <span class="tailor-slot-tag">Lv.45</span></span><strong><code>3g 41.87s</code></strong></div>
+                    <span class="core-sum-note">지능 +10 &middot; 정신력 +12 &middot; 주문 +21 (가성비 대안: <code>붉은 마법매듭 머리띠</code> <code>1g 64s</code>)</span>
+                  </li>
+                </ul>
+                <div class="core-sum-total">
+                  <span><strong>Core 4종 재료 원가 합계</strong></span>
+                  <strong><code>7g 23.76s</code></strong>
                 </div>
               </div>
 
+              <!-- Dismissible Instance Memo: Spinning Wheel / Loom & Radiant vs Golden -->
+              <details class="fold-card dismissible-fold" data-dismiss-id="prof-tailor-equip-memo" data-restore-scope="tab-prof">
+                <summary>
+                  <span class="dismiss-fold-title">📌 <strong>야영 설비(<code>물레</code>/<code>베틀</code>) 시세 &amp; <code>손등싸개</code> 확인 메모</strong> <span class="badge">선택 메모</span></span>
+                  <span class="dismiss-fold-actions">
+                    <span class="dismiss-fold-chevron"><span class="lbl-closed">열기 ▾</span><span class="lbl-open">접기 ▴</span></span>
+                    <button type="button" class="fold-dismiss-btn" onclick="dismissFoldNote(event, 'prof-tailor-equip-memo')" title="이 메모 영역을 숨깁니다">✕ 지우기</button>
+                  </span>
+                </summary>
+                <div class="fold-body">
+                  <ul class="core-sum-list" style="margin-top:0;">
+                    <li>
+                      <div class="core-sum-row"><span><code>물레</code> (숙련 140)</span><strong><code>71.95s</code> (매물 45개)</strong></div>
+                      <span class="core-sum-note"><code>도안: 물레</code>(알터랙 정예 <code>불안정한 파수병</code> 10% 드랍)는 <strong><code>16g 98s</code></strong>이므로 도안을 사지 말고 경매장에서 완제품 직구가 16골+ 이득입니다.</span>
+                    </li>
+                    <li>
+                      <div class="core-sum-row"><span><code>베틀</code> (숙련 300)</span><strong><code>6g 99.99s</code> (매물 14개)</strong></div>
+                      <span class="core-sum-note"><code>도안: 베틀</code>(스트라솔름 아나스타리 7.7%, 경매 <code>17g</code>) &middot; 재료 <code>병에 담긴 비명</code>(<code>2g 50s</code>)+룬두루4+단순나무4 = 원가 <code>3g 57.6s</code>.</span>
+                    </li>
+                    <li>
+                      <div class="core-sum-row"><span><code>찬란하게 빛나는 손등싸개</code></span><span class="badge warn">신성 +14 전용</span></div>
+                      <span class="core-sum-note">비전 마법사 대상이 아니라 신성 전용입니다. 비전 +14 쌍둥이는 1단계 타임라인의 <code>황금 손등싸개</code>(호의 60 &middot; 원가 <code>15g 61.98s</code>)입니다.</span>
+                    </li>
+                  </ul>
+                </div>
+              </details>
+
               <h3>주요 재료 가격 추이</h3>
-              <p style="margin-top:0; font-size:12.4px; opacity:0.82;">모든 재료 추이는 동일하게 <code>11/22</code>부터 <code>11/24 12:31</code>까지 이어집니다. 각 재료명을 탭/호버하면 획득처&middot;상점가 툴팁이 열립니다.</p>
+              <p style="margin-top:0; font-size:13px; color:var(--rd-ink-2);">모든 재료 추이는 <code>11/22</code>부터 <code>11/24 12:31</code>까지 이어집니다. 각 재료명을 호버·탭하면 획득처&middot;시세 툴팁이 열립니다.</p>
               <div id="tailoringPriceChartGrid" class="price-chart-grid" style="margin-bottom:0;"></div>
             </div>
           </details>
@@ -5375,13 +5672,22 @@
           <details class="fold-card">
             <summary><span>✨ <strong>마법부여 (Enchanting)</strong> <span class="badge">128 / 150</span></span></summary>
             <div class="fold-body">
-              <div class="callout warn" style="margin-top:0; margin-bottom:12px;">
-                <strong>✅ 현재 마법부여 <code>128</code> &rarr; 재봉술 전환 직전 필수 체크리스트 (삭제해도 발린 마부는 유지됨!):</strong><br>
-                1. <strong>가방·창고 녹·파템 전량 마력 추출 + <code>Lv.5+</code> 추출용 부캐 세팅:</strong> 와우 포에버는 Lv.5+ 숙련 1 부캐로도 전 구간 장비 추출이 가능합니다.<br>
-                2. <strong>망토(<code>하급 보호 +20</code>, 숙련 115):</strong> 교관(<code>루칸 코델 43.0, 64.4</code>) 직접 학습 &amp; 구리막대로 시전 가능. <em>(⚠️ 단, 오늘 <code>11/24 08:47</code> 기준 <code>희미하게 빛나는 작은 결정</code>이 <code>53s</code>로 급등해 원가 <code>57s 38c</code>이므로 결정 저점일 때 적용 권장!)</em><br>
-                3. <strong><code>최하급 마술사 오일 (+8)</code> 여분 제작:</strong> 마부 없이도 사용 가능하므로 남은 <code>이상한 가루</code>로 2~3병 제작.<br>
-                4. <strong>⚠️ <code>은마법막대</code> 오늘 <code>5s 49c</code> 폭락!</strong> 재봉 전환 대기 중 <code>130</code>까지 올려둘 의향이 있다면 오늘 <code>은마법막대 5.49s</code>만 1개 사두어도 좋습니다 (<code>룬문자 은마법막대</code> 총 원가 <code>39s 75c</code>).
-              </div>
+              <details class="fold-card dismissible-fold" data-dismiss-id="prof-ench-switch-checklist" data-restore-scope="tab-prof" style="margin-top:0;">
+                <summary>
+                  <span class="dismiss-fold-title">📌 <strong>재봉술 전환 직전 체크리스트</strong> <span class="badge warn">전환 전 확인</span></span>
+                  <span class="dismiss-fold-actions">
+                    <span class="dismiss-fold-chevron"><span class="lbl-closed">열기 ▾</span><span class="lbl-open">접기 ▴</span></span>
+                    <button type="button" class="fold-dismiss-btn" onclick="dismissFoldNote(event, 'prof-ench-switch-checklist')" title="이 체크리스트 영역을 숨깁니다">✕ 지우기</button>
+                  </span>
+                </summary>
+                <div class="fold-body">
+                  <strong>삭제해도 이미 장비에 발린 마부는 유지됩니다!</strong><br>
+                  1. <strong>가방·창고 녹·파템 전량 마력 추출 + <code>Lv.5+</code> 추출용 부캐 세팅:</strong> 와우 포에버는 Lv.5+ 숙련 1 부캐로도 전 구간 장비 추출이 가능합니다.<br>
+                  2. <strong>망토(<code>하급 보호 +20</code>):</strong> 현재 <code>성난 비전의 인간사냥꾼 망토</code>는 <strong>방어도 +20 적용 완료 ✅</strong>. 추후 새 망토 교체 예정 시에만 결정 저점일 때 적용하세요.<br>
+                  3. <strong><code>최하급 마술사 오일 (+8)</code> 여분 제작:</strong> 마부 없이도 사용 가능하므로 남은 <code>이상한 가루</code>로 2~3병 제작.<br>
+                  4. <strong><code>은마법막대</code> <code>5.49s</code> 저점:</strong> 재봉 전환 대기 중 <code>130</code>까지 올려둘 의향이 있다면 <code>은마법막대 5.49s</code>만 1개 사두어도 좋습니다 (<code>룬문자 은마법막대</code> 총 원가 <code>39.75s</code>).
+                </div>
+              </details>
               <div class="callout verified" style="margin-top:0; margin-bottom:12px;">
                 <strong>💡 최신 시세 핵심 요약 (현재 숙련 <code>128/150</code> · <code>11/24 08:47</code>):</strong> <code>은마법막대</code>가 <strong><code>5.49s</code></strong>로 폭락했고, <code>희미하게 빛나는 큰 결정</code>(<strong><code>68.57s</code></strong>) &amp; <code>영혼 가루</code>(<strong><code>4.85s</code></strong>) 급락으로 <code>무기 - 계시</code> 원가가 <strong><code>~9g 08s</code></strong>까지 내려왔습니다! 반면 <code>상급 마법의 정수</code>(<code>8.50s</code>) &amp; <code>작은 결정</code>(<code>53s</code>)은 급등 구간.
               </div>
@@ -5408,7 +5714,7 @@
               </div>
 
               <h3>재료별 시세 추이 <span class="badge gold">단위: 실버(s)</span></h3>
-              <p style="margin-top:0; font-size:12.4px; opacity:0.82;">각 재료명을 탭/호버하면 <strong>획득처·추출 iLv 상세 툴팁</strong>이 열립니다. (단위: 실버 <code>s</code>)</p>
+              <p style="margin-top:0; font-size:13px; color:var(--rd-ink-2);">각 재료명을 탭/호버하면 <strong>획득처·추출 iLv 상세 툴팁</strong>이 열립니다. (단위: 실버 <code>s</code>)</p>
               <div id="matPriceChartGrid" class="price-chart-grid" style="margin-bottom:16px;"></div>
 
               <h3>유용한 마법부여 &amp; 제작 원가 <span class="badge arcane">방어구 키트 4부위 제외</span></h3>
@@ -5425,8 +5731,8 @@
                     <tr><td><strong>60</strong></td><td><code>손목 - 최하급 정신력</code></td><td>손목 &middot; <strong>정신력 +3</strong></td><td><code>하급 마법의 정수</code> 1 &mdash; <code>2.83s</code></td><td><span class="badge">마나 재생 선택</span></td></tr>
                     <tr><td><strong>70</strong></td><td><code>손목 - 최하급 지능</code></td><td>손목 &middot; <strong>지능 +3</strong></td><td><code>하급 마법의 정수</code> 1 &mdash; <strong><code>2.83s</code></strong></td><td><span class="badge warn">획귀 드랍 (경매 불가)</span></td></tr>
                     <tr><td><strong>110 / 130+</strong></td><td><strong><code>무기 - 계시</code></strong></td><td>무기 &middot; 비치명 직접 주문 시 다음 직접 주문 <strong>치명타 +100%</strong></td><td><code>영혼 가루</code> 8 + <code>희미하게 빛나는 큰 결정</code> 6 + <code>상급 별의 정수</code> 2 + <code>감청색 염료</code> 4 + <code>유황산</code> 4(<code>27.6s</code>) &mdash; <strong><code>~9g 08s</code></strong></td><td><span class="badge gold">⭐ 딜러 종결 무기 마부</span></td></tr>
-                    <tr><td><strong>125</strong></td><td><code>수습생의 보주</code></td><td>보조장비(BoP) &middot; 지능&middot;주문력</td><td>중급 마부 재료 (도안 구매 후 확인)</td><td><code>현자 지팡이</code>와 비교</td></tr>
-                    <tr><td><strong>125</strong></td><td><code>망토 - 하급 저항력</code></td><td>망토 &middot; <strong>모든 저항력 +1~3</strong></td><td><code>이상한 가루</code> 1 + 하급 별의 정수 1 &mdash; <code>10.26s</code></td><td><span class="badge">현재 방어+10 대안</span></td></tr>
+                    <tr><td><strong>125</strong></td><td><code>수습생의 보주</code></td><td>보조장비(BoP) &middot; 지능&middot;주문력</td><td>중급 마부 재료 (도안 구매 후 확인)</td><td>현재 <code>타락한 용의 홀</code>(양손) 장착 중</td></tr>
+                    <tr><td><strong>125</strong></td><td><code>망토 - 하급 저항력</code></td><td>망토 &middot; <strong>모든 저항력 +1~3</strong></td><td><code>이상한 가루</code> 1 + 하급 별의 정수 1 &mdash; <code>10.26s</code></td><td><span class="badge">현재 방어+20 대안</span></td></tr>
                     <tr><td><strong>130</strong></td><td><strong><code>손목 - 하급 체력</code></strong></td><td>손목 &middot; <strong>체력 +4</strong></td><td><code>영혼 가루</code> 1 &mdash; <strong><code>4.85s</code></strong></td><td><span class="badge verified">✅ 육성 겸 즉시 업글</span></td></tr>
                     <tr><td><strong>140</strong></td><td><strong><code>무기 - 통찰</code></strong></td><td>무기 &middot; 주문 시전 시 확률로 <strong>10초간 정신력 +100%</strong></td><td><code>이상한 가루</code> 10 + <code>희미하게 빛나는 큰 결정</code> 4 + <code>상급 별의 정수</code> 4 + <code>황철석</code> 4 + <code>주름진 이끼</code> 4(<code>1.62g</code>) &mdash; <strong><code>~5g 27s</code></strong></td><td><span class="badge db">가성비 마나 유지</span></td></tr>
                     <tr><td><strong>150</strong></td><td><strong><code>손목 - 하급 지능</code></strong></td><td>손목 &middot; <strong>지능 +3</strong></td><td><code>상급 별의 정수</code> 2 &mdash; <code>34.66s</code></td><td><span class="badge db">드랍 없이 교관 학습</span></td></tr>
@@ -5434,7 +5740,7 @@
                     <tr><td><strong>170</strong></td><td><strong><code>손목 - 체력</code></strong></td><td>손목 &middot; <strong>체력 +6</strong></td><td><code>영혼 가루</code> 6 &mdash; <code>29.10s</code></td><td><span class="badge verified">30~40대 생존 추천</span></td></tr>
                     <tr><td><strong>200</strong></td><td><strong><code>하급 마술사 오일</code></strong></td><td>무기 임시(Lv.30) &middot; <strong>모든 주문력 +16</strong> (30분&middot;5회)</td><td><code>환상 가루</code> 1(<code>8.69s</code>) + <code>가시덤불 씨앗</code> 2 + <code>납 약병</code> 1 &mdash; <code>~17.09s</code> <small>(경매 27.80s)</small></td><td><span class="badge arcane">🔥 30~40 최강 오일</span></td></tr>
                     <tr><td><strong>210</strong></td><td><strong><code>손목 - 지능</code></strong></td><td>손목 &middot; <strong>지능 +5</strong></td><td>하급 황천의 정수 2 &mdash; <code>1g 44s 98c</code></td><td><span class="badge db">40대 마나/비작 시너지</span></td></tr>
-                    <tr><td><strong>210</strong></td><td><strong><code>목걸이 - 주문력</code></strong></td><td>목걸이 &middot; <strong>모든 주문력 +6</strong></td><td><code>상급 황천의 정수</code> 5 + <code>큰 찬란한 결정</code> 3 + <code>꿈가루</code> 8 + <code>감청색 염료</code> 4 + 자홍 염료 4 &mdash; <strong><code>~32g 33s</code></strong></td><td><span class="badge gold">중후반 핵심 마부</span></td></tr>
+                    <tr><td><strong>210</strong></td><td><strong><code>목걸이 - 주문력</code></strong></td><td>목걸이 &middot; <strong>모든 주문력 +6</strong></td><td><code>상급 황천의 정수</code> 5 + <code>큰 찬란한 결정</code> 3 + <code>꿈가루</code> 8 + <code>감청색 염료</code> 4 + <code>자홍색 염료</code> 4 &mdash; <strong><code>~31g 33s</code></strong></td><td><span class="badge gold">중후반 핵심 마부</span></td></tr>
                     <tr><td><strong>240+</strong></td><td><strong><code>보조장비 - 지혜</code></strong></td><td>보조장비 &middot; <strong>지능 +6 &middot; 정신력 +5</strong></td><td><code>큰 눈부신 결정</code> 6 + <code>환상 가루</code> 18 + 바람/물의 정수 각 1 &mdash; <strong><code>~28g 66s</code></strong></td><td><span class="badge gold">후반 보조장비 마부</span></td></tr>
                     <tr><td><strong>270+</strong></td><td><strong><code>손목 - 상급 주문력</code></strong></td><td>손목 &middot; <strong>모든 주문력 +12</strong></td><td>후반 특수 마부 재료</td><td><span class="badge gold">만렙 손목 종결</span></td></tr>
                     <tr><td><strong>300</strong></td><td><strong><code>무기 - 주문력</code></strong> / <code>망토 - 미묘함</code></td><td>무기 <strong>주문력 +30~40</strong> / 망토 <strong>위협 -2%</strong></td><td><code>큰 눈부신 결정</code> 등 레이드 재료</td><td><span class="badge gold">레이드 최종 종결</span></td></tr>
@@ -5446,17 +5752,17 @@
               <div class="grid-3" style="margin-bottom:0;">
                 <div class="callout arcane" style="margin:0;">
                   <strong>✨ <code>무기 - 계시</code> (Revelation)</strong> <span class="badge verified">딜러 추천</span><br>
-                  <small>습득 110 / 은마법막대 130+ &middot; 상인의 호의 45개 &middot; <strong>11/24 08:47 원가 ~9g 08s</strong></small><br><br>
+                  <span class="core-sum-note">습득 110 / 은마법막대 130+ &middot; 상인의 호의 45개 &middot; <strong>원가 ~9g 08s</strong></span><br><br>
                   비주기적 직접 피해 주문이 <strong>치명타로 적중하지 않을 때 확률 발동</strong> &rarr; 다음 직접 피해 주문 <strong>치명타 +100%</strong> <em>(기본 치명이 낮을수록 발동률 상승)</em>
                 </div>
                 <div class="callout gold" style="margin:0;">
                   <strong>💧 <code>무기 - 통찰</code> (Insight)</strong> <span class="badge gold">유지력용</span><br>
-                  <small>요구 140 / 은마법막대 130+ &middot; 상인의 호의 45개 &middot; <strong>11/24 08:47 원가 ~5g 27s</strong></small><br><br>
+                  <span class="core-sum-note">요구 140 / 은마법막대 130+ &middot; 상인의 호의 45개 &middot; <strong>원가 ~5g 27s</strong></span><br><br>
                   주문 시전 시 확률 발동 &rarr; <strong>10초간 정신력 +100%</strong>. <code>신비한 명상</code> + <code>마법사 갑옷</code>과 시너지 우수.
                 </div>
                 <div class="callout" style="margin:0;">
                   <strong>🛡️ <code>무기 - 회복</code> (Recovery)</strong> <span class="badge">근접/탱용</span><br>
-                  <small>요구 140 / 은마법막대 130+ &middot; 상인의 호의 45개</small><br><br>
+                  <span class="core-sum-note">요구 140 / 은마법막대 130+ &middot; 상인의 호의 45개</span><br><br>
                   물리 공격이 회피/무기 막기 당할 시 <strong>최대 생명력 5% 회복</strong> (쿨 10초). <em>(물리 전용 &mdash; 마법사 불필요)</em>
                 </div>
               </div>
@@ -5468,28 +5774,28 @@
             <summary><span>🐺 <strong>무두질 (Skinning)</strong> <span class="badge verified">205 / 225</span></span></summary>
             <div class="fold-body">
               <div class="callout gold" style="margin-top:0;">
-                <strong>핵심 공식 (<code>내 숙련 ÷ 5 = 채집 가능 최대 야수 레벨</code>):</strong> 현재 숙련 <code>200</code>은 최대 <strong>Lv.40 야수</strong>까지, 승급 없이 <code>225</code>에 막히면 최대 <strong>Lv.45 야수</strong>까지만 채집할 수 있습니다. <code>200 &rarr; 225</code>까지 25pt밖에 남지 않아 곧 상한에 닿으므로 <strong><code>200</code> 달성 기념으로(또는 늦어도 <code>225</code> 직전) 반드시 대가(300) 승급</strong>을 해야 합니다!
+                <strong>핵심 공식 (<code>내 숙련 ÷ 5 = 채집 가능 최대 야수 레벨</code>):</strong> 현재 숙련 <code>205</code>는 최대 <strong>Lv.41 야수</strong>까지, 승급 없이 <code>225</code>에 막히면 최대 <strong>Lv.45 야수</strong>까지만 채집할 수 있습니다. <code>205 &rarr; 225</code>까지 20pt밖에 남지 않아 곧 상한에 닿으므로 <strong>늦어도 <code>225</code> 직전 반드시 대가(300) 승급</strong>을 진행하세요!
               </div>
-              <div class="grid-2" style="margin-bottom:12px;">
+              <div class="grid-2" style="margin-bottom:0;">
                 <div class="callout verified" style="margin:0;">
                   <strong>💰 <code>4g 50s</code> 승급을 반드시 해야 하는 4가지 이유</strong><br>
                   1. <strong>빠른 상한 돌파 방지:</strong> Lv.40+ 가시덤불&middot;타나리스&middot;페랄라스&middot;줄파락 입성 즉시 <code>225</code> 한계에 걸려 가죽을 못 까게 됩니다.<br>
-                  2. <strong>빠른 투자금 회수:</strong> <code>200~225+</code>부터 <code>두꺼운 가죽</code>&middot;<code>튼튼한 가죽</code>&middot;<code>거북이 비늘</code> 단가가 올라 야수 몇 묶음만 팔아도 4.5g를 금방 회수합니다.<br>
-                  3. <strong>유일한 패시브 골드 수입원:</strong> 마법부여 육성비와 Lv.40 탈것 골드를 사냥 동선 그대로 충당해 줍니다. (경매장 보증금 1코퍼!)<br>
+                  2. <strong>빠른 투자금 회수:</strong> <code>205~225+</code>부터 <code>두꺼운 가죽</code>(<code>4.69s</code>)&middot;<code>튼튼한 가죽</code>(<code>17.4s</code>)&middot;거북이 비늘 단가가 올라 금방 회수합니다.<br>
+                  3. <strong>유일한 패시브 골드 수입원:</strong> 재봉술 육성비와 Lv.40 탈것 골드를 사냥 동선 그대로 충당해 줍니다. (경매장 보증금 1코퍼!)<br>
                   4. <strong>교관이 스톰윈드에 위치:</strong> 멀리 갈 필요 없이 스톰윈드 구시가지에서 바로 승급 가능합니다.
                 </div>
                 <div class="callout" style="margin:0;">
                   <strong>📍 승급 NPC &amp; 구간별 파밍 사냥터</strong><br>
                   &bull; <strong>대가(300) 승급 NPC:</strong> 스톰윈드 구시가지 <code>&lt;가죽세공점&gt;</code> <strong><code>마리스 그레인저 (72.2, 62.0)</code></strong> (정가 5g &rarr; 우호 할인 <strong><code>4g 50s</code></strong>)<br>
-                  &bull; <strong>골드 아끼는 타이밍 팁:</strong> 당장 마부/스킬 골드가 급하다면 <code>200</code>에 바로 내지 말고 <code>225</code> 직전까지 사냥한 뒤 승급해도 손실 없음!<br>
-                  &bull; <strong>198 &rarr; 225 구간:</strong> 힐스브래드 해안 거북이&middot;사자, 소금 평원(Lv.30~33), 가시덤불 북부 야수<br>
+                  &bull; <strong>골드 아끼는 타이밍 팁:</strong> 현재 소지금(<code>31.3g</code>) 여유가 충분하므로 스톰윈드 귀환 시 바로 승급해도 좋습니다.<br>
+                  &bull; <strong>205 &rarr; 225 구간:</strong> 힐스브래드 해안 거북이&middot;사자, 소금 평원(Lv.30~35), 가시덤불 북부 야수<br>
                   &bull; <strong>225 &rarr; 300 구간:</strong> 페랄라스&middot;동부 내륙지&middot;타나리스(Lv.40~49) &rarr; 운고로 분화구&middot;여명의 설원(Lv.50~60)
                 </div>
               </div>
             </div>
           </details>
 
-          <!-- 3. COOKING -->
+          <!-- 4. COOKING -->
           <details class="fold-card">
             <summary><span>🍳 <strong>요리 (Cooking)</strong> <span class="badge verified">150 / 150</span></span></summary>
             <div class="fold-body">
@@ -5500,21 +5806,21 @@
                 <div class="callout" style="margin:0;">
                   <strong>⭐ <code>150 &rarr; 225</code> 확장 시 4가지 장점</strong><br>
                   1. <strong>상위 회복량 &amp; 전투 스탯 해금:</strong> <code>따끈따끈한 거북이 수프</code>&middot;<code>미스릴송어</code> 등 175~225 요리로 붕대&middot;음료 절약 + 상위 스탯 획득.<br>
-                  2. <strong>드랍 고기&middot;낚시 산물 낭비 방지:</strong> Lv.30~45 사냥 중 나오는 거북이 고기&middot;중급 물고기를 공짜 숙련&middot;버프 음식으로 전환.<br>
+                  2. <strong>드랍 고기&middot;낚시 산물 낭비 방지:</strong> Lv.33~45 사냥 중 나오는 거북이 고기&middot;중급 물고기를 공짜 숙련&middot;버프 음식으로 전환.<br>
                   3. <strong>캠핑 시스템 시너지:</strong> 캠프파이어&middot;철제 오븐 기반 파티/솔플 버프 요리 활용 폭 확대.<br>
                   4. <strong>Lv.35 대가 요리(300) 선행:</strong> 타나리스 가젯잔 <code>더지 퀵클리브</code> <code>조개맛 별미</code> 퀘스트 연결.
                 </div>
                 <div class="callout arcane" style="margin:0;">
                   <strong>📍 <code>고급 요리책</code>(1g) 구매처 &amp; 추천 타이밍</strong><br>
                   &bull; <strong>NPC:</strong> <strong><code>산드리나 (Shandrina)</code></strong> [<code>칼림도어 북부 &gt; 잿빛골짜기 남동부 실바람 산장 (49.5, 67.1)</code>] (요리 125+ / Lv.20+ 사용 가능)<br>
-                  &bull; <strong>가장 편한 추천 동선:</strong> 일부러 원정 가지 말고, <strong>Lv.30 직업 퀘스트(테라모어)</strong>나 <strong>검은심연의 나락(BFD)</strong> 등으로 칼림도어 갈 때 <code>메네실 북쪽 부두 &rarr; 아우버다인 &rarr; 아스트라나르(그리폰 해금!) &rarr; 실바람 산장</code> 겸사 방문.<br>
+                  &bull; <strong>가장 편한 추천 동선:</strong> 일부러 원정 가지 말고, <strong>Lv.33+ 칼림도어 일정(테라모어·잊혀진 땅·돌발톱)</strong> 이동 시 <code>아우버다인(해금됨) &rarr; 아스트라나르(그리폰 해금!) &rarr; 실바람 산장</code> 겸사 방문.<br>
                   &bull; <strong>이동 생략 대안:</strong> <code>고급 요리책</code>은 <strong>비귀속</strong>이므로 스톰윈드 경매장에 1g 근처 매물이 있으면 즉시 구매 가능!
                 </div>
               </div>
             </div>
           </details>
 
-          <!-- 4. FIRST AID -->
+          <!-- 5. FIRST AID -->
           <details class="fold-card">
             <summary><span>🩹 <strong>응급치료 (First Aid)</strong> <span class="badge">91 / 150</span></span></summary>
             <div class="fold-body">
@@ -5537,7 +5843,7 @@
             </div>
           </details>
 
-          <!-- 5. FISHING -->
+          <!-- 6. FISHING -->
           <details class="fold-card">
             <summary><span>🎣 <strong>낚시 (Fishing)</strong> <span class="badge">20 / 75</span></span></summary>
             <div class="fold-body">
@@ -5550,7 +5856,7 @@
                     <tr><th>구간</th><th>추천 장소 &amp; 방법</th><th>승급 NPC / 서적 구매처</th></tr>
                   </thead>
                   <tbody>
-                    <tr><td><strong>5 &rarr; 50</strong></td><td>스톰윈드 운하에서 낚싯대 + 미끼 장착 후 낚시 (<code>50</code> 달성 즉시 승급)</td><td>스톰윈드 운하 <strong><code>캐서린 리랜드</code></strong>(용품) &amp; <strong><code>아놀드 리랜드 (55.0, 69.6)</code></strong> 숙련(150) 승급</td></tr>
+                    <tr><td><strong>20 &rarr; 50</strong></td><td>스톰윈드 운하에서 낚싯대 + 미끼 장착 후 낚시 (<code>50</code> 달성 즉시 승급)</td><td>스톰윈드 운하 <strong><code>캐서린 리랜드</code></strong>(용품) &amp; <strong><code>아놀드 리랜드 (55.0, 69.6)</code></strong> 숙련(150) 승급</td></tr>
                     <tr><td><strong>50 &rarr; 150</strong></td><td>스톰윈드 운하·엘윈 숲·저습지 물가 (요리 <code>미스릴송어</code> 대비 재료 동시 수급)</td><td>별도 제한 없이 150까지 상승 가능</td></tr>
                     <tr><td><strong>125 / 150 &rarr; 225</strong></td><td>가시덤불·아라시·먼지진흙 해안/강가</td><td><strong>숙련 125 &amp; Lv.20:</strong> <code>노인 헤밍</code> [<code>동부왕국 &gt; 가시덤불 골짜기 무법항 (27.4, 77.0)</code>] &mdash; <strong><code>고급 낚시정보</code></strong>(1g) 구매</td></tr>
                   </tbody>
@@ -5559,27 +5865,35 @@
             </div>
           </details>
 
-          <!-- 6. MERCHANT'S FAVOR -->
+          <!-- 7. MERCHANT'S FAVOR -->
           <details class="fold-card">
-            <summary><span>🪙 <strong>상인의 호의 (Merchant's Favor) &amp; 아제로스 상업 관리국</strong></span></summary>
+            <summary><span>🪙 <strong>상인의 호의 (Merchant's Favor) &amp; 아제로스 상업 관리국</strong> <span class="badge gold">보유 55개</span></span></summary>
             <div class="fold-body">
               <div class="callout arcane" style="margin-top:0;">
-                <strong>한 줄 요약:</strong> 와우 포에버 전용 전문기술 특수 도안(마법부여 <code>계시/통찰</code>, 목걸이&middot;보조장비 마부, 재봉 <code>진줏빛</code> 세트 등)을 사기 위한 <strong>캐릭터 귀속 화폐(상인의 호의)</strong>와 <strong>평판 세력(아제로스 상업 관리국)</strong> 시스템입니다.
+                <strong>한 줄 요약 (현재 <code>55개</code> 보유 ✅):</strong> 와우 포에버 전용 전문기술 특수 도안(마법부여 <code>계시/통찰</code>, 목걸이&middot;보조장비 마부, 재봉 <code>진줏빛 화장복</code>&middot;<code>황금 손등싸개</code> 등)을 사기 위한 <strong>캐릭터 귀속 화폐(상인의 호의)</strong>와 <strong>평판 세력(아제로스 상업 관리국)</strong> 시스템입니다.
               </div>
-              <div class="callout gold" style="margin-top:0;">
-                <strong>🔎 내가 가진 '상인의 호의'는 어디서 확인하나요?</strong><br>
-                와우 포에버는 클래식 UI 기반이라 리테일처럼 기본 화폐 탭(Currency Tab)이 따로 열리지 않습니다.<br>
-                1. <strong>기본 확인법 (야영지 상인 창):</strong> 붉은마루 삼거리 <code>(11.2, 71.5)</code>의 <strong><code>알린시아</code></strong> 또는 <strong><code>마시 베커</code></strong>에게 말을 걸어 상점/교환 창을 열면 현재 보유한 <code>상인의 호의</code> 잔량이 표시됩니다. <em>(캐릭터 귀속 &mdash; 부캐 공유 불가)</em><br>
-                2. <strong>평판 확인:</strong> 단축키 <strong><code>U</code></strong> (평판 창) &rarr; <strong><code>아제로스 상업 관리국</code></strong>에서 언제든 현재 평판 단계 확인 가능.<br>
-                3. <strong>상시 확인 추천 애드온:</strong> CurseForge의 <strong><code>Forever Favor</code></strong> 애드온을 설치하면 야영지에 가지 않아도 언제 어디서나 보유 호의 잔량과 경매장 최저가 상자를 바로 볼 수 있습니다!
-              </div>
+              <details class="fold-card dismissible-fold" data-dismiss-id="prof-favor-howto" data-restore-scope="tab-prof">
+                <summary>
+                  <span class="dismiss-fold-title">🔎 <strong>내가 가진 '상인의 호의' 확인 방법</strong> <span class="badge">간단 Q&amp;A</span></span>
+                  <span class="dismiss-fold-actions">
+                    <span class="dismiss-fold-chevron"><span class="lbl-closed">열기 ▾</span><span class="lbl-open">접기 ▴</span></span>
+                    <button type="button" class="fold-dismiss-btn" onclick="dismissFoldNote(event, 'prof-favor-howto')" title="이 Q&A 영역을 숨깁니다">✕ 지우기</button>
+                  </span>
+                </summary>
+                <div class="fold-body">
+                  와우 포에버는 클래식 UI 기반이라 리테일처럼 기본 화폐 탭(Currency Tab)이 따로 열리지 않습니다.<br>
+                  1. <strong>기본 확인법 (야영지 상인 창):</strong> 붉은마루 삼거리 <code>(11.2, 71.5)</code>의 <strong><code>알린시아</code></strong> 또는 <strong><code>마시 베커</code></strong>에게 말을 걸어 상점/교환 창을 열면 현재 보유한 <code>상인의 호의</code> 잔량이 표시됩니다. <em>(캐릭터 귀속 &mdash; 부캐 공유 불가)</em><br>
+                  2. <strong>평판 확인:</strong> 단축키 <strong><code>U</code></strong> (평판 창) &rarr; <strong><code>아제로스 상업 관리국</code></strong>에서 언제든 현재 평판 단계 확인 가능.<br>
+                  3. <strong>상시 확인 추천 애드온:</strong> CurseForge의 <strong><code>Forever Favor</code></strong> 애드온을 설치하면 야영지에 가지 않아도 언제 어디서나 보유 호의 잔량과 경매장 최저가 상자를 바로 볼 수 있습니다!
+                </div>
+              </details>
               <div class="grid-2" style="margin-bottom:12px;">
                 <div class="callout" style="margin:0;">
                   <strong>📍 얼라이언스 야영지 위치 &amp; 핵심 NPC</strong><br>
                   &bull; <strong>위치:</strong> <code>동부왕국 &gt; 붉은마루 산맥 남서쪽 '붉은마루 삼거리' 야영지 (11.2, 71.5)</code> <em>(엘윈 숲 &middot; 그늘숲 경계)</em><br>
                   &bull; <strong>보급품 상자 반납 NPC:</strong> <strong><code>마시 베커 (Marcy Baker)</code></strong><br>
                   &bull; <strong>마법부여 도안 상인:</strong> <strong><code>알린시아 (Alynsia)</code></strong> (<code>수습생의 보주</code> 10개 &middot; <code>계시/통찰</code> 45개 &middot; <code>목걸이 주문력</code> 120개 &middot; <code>보조장비 지혜</code> 240개)<br>
-                  &bull; <strong>재봉술 도안 상인:</strong> <strong><code>미빈 섀도위브</code></strong> (<code>진줏빛</code> 세트 등)
+                  &bull; <strong>재봉술 도안 상인:</strong> <strong><code>미빈 섀도위브</code></strong> (<code>진줏빛 화장복</code> 30개 &middot; <code>황금 손등싸개</code> 60개 &middot; <code>황천광채 어깨보호구</code> 60개)
                 </div>
                 <div class="callout verified" style="margin:0;">
                   <strong>⭐ 꼭 알아야 할 핵심 꿀팁 2가지</strong><br>
@@ -5593,29 +5907,36 @@
                     <tr><th>구분 (2가지 자원 분리)</th><th>역할</th><th>획득 방법 (단계별)</th></tr>
                   </thead>
                   <tbody>
-                    <tr><td><strong>① 상인의 호의<br><small>(Merchant's Favor · 화폐)</small></strong></td><td>특수 도안&middot;주문식&middot;탈것을 <strong>구매하는 화폐</strong></td><td>1) 필드 드랍 또는 <strong>경매장</strong>에서 빈 <code>잘못 놓인 보급품 상자</code> 확보<br>2) 상자가 요구하는 재료(옷감&middot;광석&middot;부품 등)를 가방에 넣고 상자 클릭 &rarr; <strong>봉인된 상자</strong> 완성<br>3) 붉은마루 삼거리 <code>마시 베커 (11.2, 71.5)</code>에게 반납해 호의 수령</td></tr>
-                    <tr><td><strong>② 아제로스 상업 관리국<br><small>(평판 단계)</small></strong></td><td>상위 등급 도안 구매를 위한 <strong>평판 해금 조건</strong></td><td>&bull; <strong>초반:</strong> 드랍/경매장 <strong><code>장인의 계약서</code></strong> 완료 반납 (+75 평판) + 첫 반납 <code>배송 라벨</code> (+2,000 평판)<br>&bull; <strong>약간 우호적 이후:</strong> 야영지 상인이 파는 <strong><code>위조된 배송 영수증</code></strong>으로 빈 상자 + 소량의 호의를 평판으로 바로 전환 가능</td></tr>
+                    <tr><td><strong>① 상인의 호의<br><span class="core-sum-note">(Merchant's Favor · 화폐)</span></strong></td><td>특수 도안&middot;주문식&middot;탈것을 <strong>구매하는 화폐</strong></td><td>1) 필드 드랍 또는 <strong>경매장</strong>에서 빈 <code>잘못 놓인 보급품 상자</code> 확보<br>2) 상자가 요구하는 재료(옷감&middot;광석&middot;부품 등)를 가방에 넣고 상자 클릭 &rarr; <strong>봉인된 상자</strong> 완성<br>3) 붉은마루 삼거리 <code>마시 베커 (11.2, 71.5)</code>에게 반납해 호의 수령</td></tr>
+                    <tr><td><strong>② 아제로스 상업 관리국<br><span class="core-sum-note">(평판 단계)</span></strong></td><td>상위 등급 도안 구매를 위한 <strong>평판 해금 조건</strong></td><td>&bull; <strong>초반:</strong> 드랍/경매장 <strong><code>장인의 계약서</code></strong> 완료 반납 (+75 평판) + 첫 반납 <code>배송 라벨</code> (+2,000 평판)<br>&bull; <strong>약간 우호적 이후:</strong> 야영지 상인이 파는 <strong><code>위조된 배송 영수증</code></strong>으로 빈 상자 + 소량의 호의를 평판으로 바로 전환 가능</td></tr>
                   </tbody>
                 </table>
               </div>
             </div>
           </details>
 
-          <!-- 8. COMPARISON ANALYSIS (ARCHIVED TOP 2 CALLOUTS) -->
-          <details class="fold-card">
-            <summary><span>⚖️ <strong>마부 vs 재봉술 비교 분석</strong></span></summary>
+          <!-- 8. COMPARISON ANALYSIS (DISMISSIBLE INSTANCE TOGGLE) -->
+          <details class="fold-card dismissible-fold" data-dismiss-id="prof-ench-vs-tailor" data-restore-scope="tab-prof">
+            <summary>
+              <span class="dismiss-fold-title">⚖️ <strong>마부 vs 재봉술 비교 분석</strong> <span class="badge">전환 검토 메모</span></span>
+              <span class="dismiss-fold-actions">
+                <span class="dismiss-fold-chevron"><span class="lbl-closed">열기 ▾</span><span class="lbl-open">접기 ▴</span></span>
+                <button type="button" class="fold-dismiss-btn" onclick="dismissFoldNote(event, 'prof-ench-vs-tailor')" title="전환 결정 후 이 영역을 숨깁니다">✕ 지우기</button>
+              </span>
+            </summary>
             <div class="fold-body">
               <div class="callout verified" style="margin-top:0;">
-                <strong>🎯 추천 로드맵 ("리넨 대기 &middot; 저점 선매집 후 일괄 전환"):</strong> ① <code>12:31</code> 기준 <code>리넨(1.91s)</code>·<code>리넨 두루마리(7.5s)</code>가 품귀 가격대이니 매수 보류하고 <strong><code>자홍 염료(1g 10.99s)</code>&middot;<code>야생덩굴(30c)</code>&middot;<code>비단(1.84s)</code>&middot;<code>감청 염료(99s)</code></strong> 등 저점 품목만 선확보, ② <code>리넨 20~25c</code> 복귀 시 부족분 217개 일괄 매수 후 <strong><code>Lv.5+</code> 추출 부캐 세팅 + 5분 만에 한방 전환</strong>하세요!
+                <strong>🎯 추천 로드맵 ("리넨 대기 &middot; 저점 선매집 후 일괄 전환"):</strong> ① <code>12:31</code> 기준 <code>리넨 옷감</code>(<code>1.91s</code>)&middot;<code>리넨 두루마리</code>(<code>7.5s</code>)가 품귀 가격대이니 매수 보류하고 <strong><code>자홍색 염료</code>(<code>1g 10.99s</code>)&middot;<code>야생덩굴</code>(<code>30c</code>)&middot;<code>비단 옷감</code>(<code>1.84s</code>)&middot;<code>감청색 염료</code>(<code>99s</code>)</strong> 등 저점 품목만 선확보, ② <code>리넨 20~25c</code> 복귀 시 부족분 217개 일괄 매수 후 <strong><code>Lv.5+</code> 추출 부캐 세팅 + 5분 만에 한방 전환</strong>하세요!
               </div>
               <div class="callout arcane" style="margin-bottom:0;">
                 <strong>⚖️ 핵심 비교 (성장 체감 vs 만렙 특권):</strong><br>
                 &bull; <strong>마법부여의 현실적 약점:</strong> 레벨업 중 무기를 바꿀 때마다 <code>계시(9.08g)</code>&middot;<code>통찰(5.27g)</code> 비용이 증발하고, 거래창 하단 슬롯으로 타인에게 받아도 효과가 동일합니다.<br>
-                &bull; <strong>재봉술의 냉정한 현실:</strong> Lv.32~56 추천품 대부분(<code>거미줄 허리띠 46.1s</code> &middot; <code>검은 마법매듭 장갑 1g 1.5s</code> &middot; <code>꿈매듭 조끼 2g 34.3s</code> &middot; <code>붉은 마법매듭 머리띠 1g 64s</code> &middot; <code>꿈매듭 머리장식 3g 41.9s</code>)은 <strong>BoE(경매/의뢰 가능)</strong>이지만, <strong>만렙(Lv.57~60) <code>대마법사의 로브</code>(주문+40, BoP)와 <code>붉은덩굴 3셋</code>(치명 +2%, 재봉 300 전용)</strong>은 재봉만의 독점 스펙입니다.
+                &bull; <strong>재봉술의 냉정한 현실:</strong> Lv.32~56 추천품 대부분(<code>거미줄 허리띠</code> <code>46.11s</code> &middot; <code>검은 마법매듭 장갑</code> <code>1g 1.5s</code> &middot; <code>꿈매듭 조끼</code> <code>2g 34.28s</code> &middot; <code>붉은 마법매듭 머리띠</code> <code>1g 64s</code> &middot; <code>꿈매듭 머리장식</code> <code>3g 41.87s</code>)은 <strong>BoE(경매/의뢰 가능)</strong>이지만, <strong>만렙(Lv.57~60) <code>대마법사의 로브</code>(주문+40, BoP)와 <code>붉은덩굴 의복 3셋</code>(치명 +2%, 재봉 300 전용)</strong>은 재봉만의 독점 스펙입니다.
               </div>
             </div>
           </details>
         </div>
+        <div class="dismissed-restore-bar" data-restore-bar="tab-prof" hidden></div>
       </section>
 
       <!-- TAB: QUESTS -->
@@ -8779,8 +9100,8 @@ const WOW_DB = {
   '성난 비전의 인간사냥꾼 망토': {
     en: 'Headhunter Cloak of Arcane Wrath', kind: '등 (망토) · 고급 · 현재 착용 ✅', quality: 'uncommon', icon: 'inv_misc_cape_02',
     rows: [['등 (망토)', 'ID: 15354 · 현재 착용 중']],
-    effects: ['착용 효과: 비전 주문과 효과에 의한 공격력이 최대 10만큼 증가합니다.', '마법부여: 방어도 +10'],
-    note: '✅ 2026-11-23 스냅샷 실측 교체 (기존 비늘 망토 +9 대비 비전 +1↑, 방어도 +1↑)'
+    effects: ['착용 효과: 비전 주문과 효과에 의한 공격력이 최대 10만큼 증가합니다.', '마법부여: 방어도 +20 (하급 보호 완료 ✅)'],
+    note: '✅ 2026-11-23 스냅샷 실측 교체 (기존 비늘 망토 +9 대비 비전 +1↑ · 하급 보호 +20 적용)'
   },
   '독수리의 녹옥 부적': {
     en: 'Jade Talisman of the Eagle', kind: '목 · 고급 · 현재 착용 ✅', quality: 'uncommon', icon: 'inv_jewelry_necklace_01',
@@ -9371,7 +9692,7 @@ const WOW_DB = {
   },
   '큰 눈부신 결정': {
     en: 'Large Brilliant Shard', kind: '마법부여 결정 (만렙) · 시세 3g 30s 0c', quality: 'rare', icon: 'inv_enchant_shardbrilliantlarge',
-    rows: [['현재 시세 (11/24 08:47)', '3g 30s 0c (▼ 27% 급락!)'], ['용도', '보조장비 - 지혜 (6개) · 대마법사의 허리띠(6) · 무기 주문력']],
+    rows: [['현재 시세 (11/24 08:47)', '3g 30s 0c (▼ 27% 급락!)'], ['용도', '보조장비 - 지혜 (6개) · 대마법사의 허리띠(4) · 무기 주문력']],
     note: '📍 획득처: iLv 56+ 만렙 5인 던전/레이드 희귀 장비 마력 추출 / 경매장 구매'
   },
   '손목 - 최하급 정신력': {
@@ -9683,7 +10004,7 @@ const WOW_DB = {
   },
   '달빛 옷감': {
     en: 'Mooncloth', kind: '재봉술 만렙 변환품 · 시세 53.8g', quality: 'uncommon', icon: 'inv_fabric_moonrag_01',
-    rows: [['현재 시세 (11/24 12:31)', '53.8g (매물 45개 · 4일 쿨타임!)'], ['주요 용도', '나무구렁 어깨(5)·대마법사 허리띠(10)·붉은덩굴']],
+    rows: [['현재 시세 (11/24 12:31)', '53.8g (매물 45개 · 4일 쿨타임!)'], ['주요 용도', '나무구렁 어깨(5) · 대마법사의 허리띠(8) · 붉은덩굴']],
     desc: '지옥 옷감 2장으로 달빛 우물에서 변환하는 4일 쿨타임 최고가 재봉 재료입니다.',
     note: '💰 만렙 재봉 250+ 달성 시 직접 변환하면 개당 65.6s 원가로 제작 가능!'
   },
@@ -9779,7 +10100,7 @@ const WOW_DB = {
     note: '📍 경매장 구매(8s) 또는 채광 유저 의뢰'
   },
   '철제 죔쇠': {
-    en: 'Iron Buckle', kind: '대장기술 재료 · 시세 1.87s', quality: 'common', icon: 'inv_potion_35',
+    en: 'Iron Buckle', kind: '대장기술 재료 · 시세 1.87s', quality: 'common', icon: 'inv_ingot_08',
     rows: [['현재 시세 (11/24 12:31)', '1.87s (매물 186개)'], ['제작 (대장 120)', '철 주괴 × 1 (2개 생성)'], ['용도', '거미줄 허리띠(1개) · 별장식 허리띠(1개)']],
     desc: '대장기술 숙련 120으로 철 주괴 1개를 가공해 만드는 허리띠 죔쇠입니다.',
     note: '📍 경매장 구매 (1.87s — 매우 저렴!)'
@@ -9961,7 +10282,7 @@ const WOW_DB = {
         { v: '+1 지능', type: 'pos' }
       ]
     },
-    note: '📍 도안: 알터랙 산맥 [대마법사 알바로] 판매 (얼라이언스 전용)'
+    note: '📍 도안: 알터랙 산맥 [대마법사 알바로] 10g 판매 (키린 토 약간 우호적 · 얼라이언스 전용)'
   },
   '심홍색 비단 조끼': {
     en: 'Crimson Silk Vest', kind: '가슴 · 천 · 방어도 49', quality: 'uncommon', icon: 'inv_shirt_04',
@@ -9992,7 +10313,7 @@ const WOW_DB = {
   },
   '마력의 로브': {
     en: 'Robe of Power', kind: '가슴 · 천 · 방어도 55', quality: 'rare', icon: 'inv_chest_cloth_02',
-    rows: [['요구 레벨 33', '획득 시 귀속 (BoP · 재봉 190 · 물레 필요)']],
+    rows: [['요구 레벨 33', '획득 시 귀속 (BoP · 재봉 155 · 물레 필요)']],
     stats: ['지능 +12', '정신력 +8'],
     effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 14만큼 증가합니다.'],
     compare: {
@@ -10006,8 +10327,8 @@ const WOW_DB = {
     note: '📍 도안: 재봉 교관 학습 (물레 완제품 경매 구매 후 제작)'
   },
   '별장식 허리띠': {
-    en: 'Star Belt', kind: '허리 · 천 · 방어도 30', quality: 'rare', icon: 'inv_belt_06',
-    rows: [['요구 레벨 35', '착용 시 귀속 (BoE · 재봉 200)']],
+    en: 'Star Belt', kind: '허리 · 천 · 방어도 30', quality: 'uncommon', icon: 'inv_belt_06',
+    rows: [['요구 레벨 35', '착용 시 귀속 (BoE · 재봉 165)']],
     stats: ['정신력 +4'],
     effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 13만큼 증가합니다.'],
     compare: {
@@ -10017,7 +10338,7 @@ const WOW_DB = {
         { v: '+13 모든 계열 주문력 (비전 +13 유지)', type: 'pos' }
       ]
     },
-    note: '📍 도안: 수도원·줄파락 등 월드 드랍 (BoE)'
+    note: '📍 도안: 붉은십자군 수도원(용사 0.15%)·줄파락 등 월드 드랍 (BoE)'
   },
   '검은 마법매듭 장갑': {
     en: 'Black Mageweave Gloves', kind: '손 · 천 · 방어도 35', quality: 'uncommon', icon: 'inv_gauntlets_05',
@@ -10268,8 +10589,38 @@ const WOW_DB = {
   },
   '유령 염료': {
     en: 'Ghost Dye', kind: '연금술 특수 염료 · 시세 85s 0c', quality: 'common', icon: 'inv_poison_mindnumbing',
-    rows: [['현재 시세 (11/24 08:47)', '85s 0c'], ['용도', '유령매듭 바지(4) · 대마법사의 허리띠(10)']],
+    rows: [['현재 시세 (11/24 08:47)', '85s 0c'], ['용도', '유령매듭 바지(4) · 대마법사의 허리띠(8)']],
     note: '📍 유령버섯 기반 연금술 제조 / 경매장 구매'
+  },
+  '불의 원소': {
+    en: 'Elemental Fire', kind: '원소 재료 · 시세 57s', quality: 'common', icon: 'spell_fire_volcano',
+    rows: [['현재 시세 (11/24 12:31)', '57s'], ['용도', '마력의 로브(2) · 화염 저항 장비']],
+    note: '📍 아라시 고원·이글거리는 협곡 화염 정령 드랍 / 경매장'
+  },
+  '대지의 원소': {
+    en: 'Elemental Earth', kind: '원소 재료 · 시세 39.99s', quality: 'common', icon: 'spell_nature_strengthofearthtotem02',
+    rows: [['현재 시세 (11/24 12:31)', '39.99s'], ['용도', '마력의 로브(2) · 연금술 보호 물약']],
+    note: '📍 황야의 땅·아라시 고원 대지 정령 드랍 / 경매장'
+  },
+  '바람의 원소': {
+    en: 'Elemental Air', kind: '원소 재료 · 시세 16.29s', quality: 'common', icon: 'spell_nature_earthbind',
+    rows: [['현재 시세 (11/24 12:31)', '16.29s'], ['용도', '마력의 로브(2) · 중급 제작']],
+    note: '📍 아라시 고원·실리더스 바람 정령 드랍 / 경매장'
+  },
+  '물의 원소': {
+    en: 'Elemental Water', kind: '원소 재료 · 시세 6.4s', quality: 'common', icon: 'spell_nature_acid_01',
+    rows: [['현재 시세 (11/24 12:31)', '6.4s'], ['용도', '마력의 로브(2) · 중급 제작']],
+    note: '📍 아라시 고원·가시덤불 물 정령 드랍 / 경매장'
+  },
+  '강력한 모조': {
+    en: 'Powerful Mojo', kind: '줄구룹 특수 재료', quality: 'uncommon', icon: 'inv_potion_19',
+    rows: [['용도', '붉은덩굴 조끼(4) · 만렙 제작 도안']],
+    note: '📍 줄구룹·동부 내륙지 고레벨 트롤 드랍 / 경매장'
+  },
+  '도안: 세공된 진줏빛 머리장식': {
+    en: 'Pattern: Filigreed Pearly Circlet', kind: '재봉술 도안 (숙련 125) · 가방 보유 ✅', quality: 'rare', icon: 'inv_scroll_03',
+    rows: [['요구 숙련', '재봉술 125'], ['제작품', '세공된 진줏빛 머리장식 (체12 · 비전+14 · BoP)']],
+    note: '✅ 11/24 12:31 Syndicator 가방 보유 실측 완료! (27~34레벨 월드·던전 드랍)'
   },
   '마력 깃든 가죽': {
     en: 'Enchanted Leather', kind: '마법부여 변환 가죽 · 시세 1g 97s 99c', quality: 'common', icon: 'inv_misc_rune_05',
@@ -10338,7 +10689,7 @@ const WOW_DB = {
         { v: '+2 비전 주문력', type: 'pos' }
       ]
     },
-    note: '📍 도안: 재봉 교관 학습 (원가 약 11.7g)'
+    note: '📍 도안: 재봉 교관 학습 (원가 11g 41.98s · 11/24 12:31)'
   },
   '황금 손등싸개': {
     en: 'Golden Handwraps', kind: '손 · 천 · 방어도 36', quality: 'rare', icon: 'inv_gauntlets_17',
@@ -11030,7 +11381,7 @@ const WOW_ITEM_META = {
   },
   '하늘빛 폭풍매듭 수도두건': {
     bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
-    source: '재봉술 175 제작 — 알터랙 산맥 [대마법사 알바로] 도안 구매 (얼라이언스 전용)',
+    source: '재봉술 175 제작 — 알터랙 산맥 [대마법사 알바로] 10g 도안 구매 (키린 토 약간 우호적)',
     enchantable: '부여 불가 (현 구간)'
   },
   '심홍색 비단 조끼': {
@@ -11045,12 +11396,12 @@ const WOW_ITEM_META = {
   },
   '마력의 로브': {
     bind: '획득 시 귀속 (BoP)',
-    source: '재봉술 190 제작 — 재봉 교관 학습 ([물레] 필요)',
+    source: '재봉술 155 제작 — 재봉 교관 학습 ([물레] 필요)',
     enchantable: '방어구 키트 / 가슴 마부 가능'
   },
   '별장식 허리띠': {
     bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
-    source: '재봉술 200 제작 — 수도원·줄파락 등 월드 드랍 도안',
+    source: '재봉술 165 제작 — 붉은십자군 수도원(용사 0.15%)·줄파락 등 월드 드랍 도안',
     enchantable: '부여 불가'
   },
   '검은 마법매듭 장갑': {
@@ -11432,7 +11783,7 @@ const WOW_ITEM_META = {
   '자홍색 염료': {
     bind: '비귀속 (거래·경매 가능)',
     source: '연금술 특수 염료 제조 / 경매장',
-    ahPrice: '1g 35s 99c (11/24 08:47 · 42% 급락!)'
+    ahPrice: '1g 10.99s (11/24 12:31 · 추가 25s 신저점!)'
   },
   '청록색 염료': {
     bind: '비귀속 (거래·경매 가능)',
@@ -11462,126 +11813,154 @@ const WOW_ITEM_META = {
   '리넨 옷감': {
     bind: '비귀속 (거래·경매 가능)',
     source: 'Lv.5~20 인간형 몹(엘윈 숲·서부몰락지대·폐광) 드랍 / 경매장',
-    ahPrice: '2s 0c (11/24 08:47 품귀 급등! · 47장+두루마리1 보유)'
+    ahPrice: '1.91s (11/24 12:31 품귀 지속 · 47장 보유)'
   },
   '리넨 두루마리': {
     bind: '비귀속 (거래·경매 가능)',
     source: '재봉술(1) 제작 (리넨 옷감 × 2) / 경매장',
-    ahPrice: '65c (11/24 08:47 · 옷감 2장 4s 대비 84% 저렴!)',
-    craftCost: '4s 0c (옷감 2s × 2 — 오늘은 두루마리 직구 압도적 유리!)'
+    ahPrice: '7.5s (11/24 12:31 · 오전 저가 소진)',
+    craftCost: '3.82s (옷감 1.91s × 2 — 직접 감기가 저렴!)'
   },
   '양모 옷감': {
     bind: '비귀속 (거래·경매 가능)',
     source: 'Lv.16~30 인간형 몹(지하감옥·그늘숲·저습지) 드랍 / 경매장',
-    ahPrice: '1s 9c (11/24 08:47 신저점! · 100장 보유!)'
+    ahPrice: '1.75s (11/24 12:31 반등 · 100장+두루마리1 보유)'
   },
   '양모 두루마리': {
     bind: '비귀속 (거래·경매 가능)',
     source: '재봉술(75) 제작 (양모 옷감 × 3) / 경매장',
-    ahPrice: '4s 0c (11/24 08:47 실측)',
-    craftCost: '3s 27c (옷감 1s 9c × 3 — 직접 감기가 저렴!)'
+    ahPrice: '3.99s (11/24 12:31 실측 · 완제품 24% 저렴)',
+    craftCost: '5.25s (옷감 1.75s × 3 — 75→100 숙련작 겸용)'
   },
   '비단 옷감': {
     bind: '비귀속 (거래·경매 가능)',
     source: 'Lv.25~40 인간형 몹(지하감옥·수도원·힐스브래드) 드랍 / 경매장',
-    ahPrice: '1s 80c (11/24 08:47 신저점! · 24장 보유)'
+    ahPrice: '1.84s (11/24 12:31 저점 안정 · 24장 보유)'
   },
   '비단 두루마리': {
     bind: '비귀속 (거래·경매 가능)',
     source: '재봉술(125) 제작 (비단 옷감 × 4) / 경매장',
-    ahPrice: '11s 95c (11/24 08:47 실측)',
-    craftCost: '7s 20c (옷감 1s 80c × 4 — 직접 감기가 40% 저렴!)'
+    ahPrice: '9.94s (11/24 12:31 실측)',
+    craftCost: '7.36s (옷감 1.84s × 4 — 직접 감기가 26% 저렴!)'
   },
   '마법 옷감': {
     bind: '비귀속 (거래·경매 가능)',
     source: 'Lv.40~50 인간형 몹(줄파락·페랄라스·타나리스 해적 등) 드랍 / 경매장',
-    ahPrice: '5s 65c (11/24 08:47 신저점!)'
+    ahPrice: '6.15s (11/24 12:31 실측 · 매물 4,349개)'
   },
   '마법 두루마리': {
     bind: '비귀속 (거래·경매 가능)',
     source: '재봉술(175) 제작 (마법 옷감 × 5) / 경매장',
-    ahPrice: '34s 30c (11/24 08:47 실측)',
-    craftCost: '28s 25c (옷감 5s 65c × 5 — 18% 절약)'
+    ahPrice: '34.3s (11/24 실측)',
+    craftCost: '30.75s (옷감 6.15s × 5)'
   },
   '룬무늬 옷감': {
     bind: '비귀속 (거래·경매 가능)',
     source: 'Lv.50+ 인간형 몹(역병지대·여명의 설원·만렙 인던) 드랍 / 경매장',
-    ahPrice: '5s 14c (11/24 08:47 실측)'
+    ahPrice: '5.18s (11/24 12:31 실측 · 매물 6,263개)'
   },
   '룬무늬 두루마리': {
     bind: '비귀속 (거래·경매 가능)',
     source: '재봉술(250) 제작 (룬무늬 옷감 × 5) / 경매장',
-    ahPrice: '33s 0c (11/24 08:47 실측)',
-    craftCost: '25s 70c (옷감 5s 14c × 5 — 22% 절약)'
+    ahPrice: '33s (11/24 실측)',
+    craftCost: '25.9s (옷감 5.18s × 5 — 22% 절약)'
   },
   '지옥 옷감': {
     bind: '비귀속 (거래·경매 가능)',
     source: '악령의 숲·아즈샤라 사티로스 몬스터 드랍 / 경매장',
-    ahPrice: '31s 80c (11/24 08:47 실측)'
+    ahPrice: '32.8s (11/24 12:31 실측 · 매물 215개)'
   },
   '달빛 옷감': {
     bind: '비귀속 (거래·경매 가능)',
     source: '재봉술(250+) 달빛 우물 변환 (지옥 옷감 2 · 4일 쿨타임) / 경매장',
-    ahPrice: '54g 80s 0c (11/24 08:47 실측)'
+    ahPrice: '53.8g (11/24 12:31 실측 · 자급 원가 65.6s)'
   },
   '거미줄': {
     bind: '비귀속 (거래·경매 가능)',
     source: 'Lv.18~30 거미 몬스터(그늘숲·저습지·잿빛골짜기) 드랍 / 경매장',
-    ahPrice: '10s 25c (11/24 08:47 · 반토막 하락)'
+    ahPrice: '10.25s (11/24 실측)'
   },
   '굵은 거미줄': {
     bind: '비귀속 (거래·경매 가능)',
     source: 'Lv.31+ 거미 몬스터(가시덤불·황야의 땅) 드랍 / 경매장',
-    ahPrice: '7s 50c (11/24 08:47 실측)'
+    ahPrice: '7.4s (11/24 12:31 실측)'
   },
   '그늘 거미줄': {
     bind: '비귀속 (거래·경매 가능)',
     source: '이글거리는 협곡·저주받은 땅·검은바위 산 거미 드랍 / 경매장',
-    ahPrice: '10s 0c (11/24 08:47 실측)'
+    ahPrice: '10s (11/24 실측)'
   },
   '강철그물 거미줄': {
     bind: '비귀속 (거래·경매 가능)',
     source: '동/서 역병지대·검은바위 첨탑 하층 거미 드랍 / 경매장',
-    ahPrice: '1g 6s 0c (11/24 08:47 실측)'
+    ahPrice: '1g 6s (11/24 실측)'
   },
   '반짝이는 작은 진주': {
     bind: '비귀속 (거래·경매 가능)',
     source: '멀록·나가 드랍 [작은 조개] 개봉 / 경매장',
-    ahPrice: '2s 0c (11/24 08:47 실측)'
+    ahPrice: '2s (11/24 실측)'
   },
   '황금 진주': {
     bind: '비귀속 (거래·경매 가능)',
     source: '타나리스·아즈샤라 거대 조개 개봉 / 경매장',
-    ahPrice: '1g 98s 0c (11/24 08:47 신저점!)'
+    ahPrice: '1g 98s (11/24 12:31 저점 유지!)'
   },
   '야생덩굴': {
     bind: '비귀속 (거래·경매 가능)',
     source: '가시덤불 골짜기·동부 내륙지 트롤 드랍 및 보라연꽃 채집 / 경매장',
-    ahPrice: '41c (11/24 08:47 · 역대급 바닥!)'
+    ahPrice: '30c (11/24 12:31 · 역대 최저가!)'
   },
   '야생의 싹': {
     bind: '비귀속 (거래·경매 가능)',
     source: '운고로 분화구·페랄라스·악령의 숲 정령·식물형 드랍 / 경매장',
-    ahPrice: '3s 54c (11/24 08:47 실측)'
+    ahPrice: '3.99s (11/24 12:31 실측 · 매물 536개)'
   },
   '은괴': {
     bind: '비귀속 (거래·경매 가능)',
     source: '채광 은 광맥 제련 / 경매장 구매',
-    ahPrice: '7s 44c (11/24 08:47 실측)'
+    ahPrice: '7.44s (11/24 실측)'
   },
   '철제 죔쇠': {
     bind: '비귀속 (거래·경매 가능)',
     source: '대장기술(120) 제작 (철 주괴 1 → 2개) / 경매장 구매',
-    ahPrice: '1s 88c (11/24 08:47 실측)'
+    ahPrice: '1.87s (11/24 12:31 실측 · 매물 186개)'
   },
   '두꺼운 가죽': {
     bind: '비귀속 (거래·경매 가능)',
-    source: 'Lv.41~50 야수 무두질 (질긴 가죽 2s 7c / 튼튼한 가죽 18s 77c) / 경매장',
-    ahPrice: '46c (11/24 08:47 · 질긴 가죽 2s 7c / 튼튼한 가죽 18s 77c)'
+    source: 'Lv.41~50 야수 무두질 (질긴 가죽 2.18s / 튼튼한 가죽 17.4s) / 경매장',
+    ahPrice: '4.69s (11/24 12:31 실측 · 질긴 2.18s / 튼튼한 17.4s)'
   },
   '붉은덩굴': {
     bind: '비귀속 (거래·경매 가능)',
     source: '줄구룹 약초 채집(약초 300 + 피의 낫) / 혈사제 드랍 / 경매장'
+  },
+  '불의 원소': {
+    bind: '비귀속 (거래·경매 가능)',
+    source: '아라시 고원·이글거리는 협곡 화염 정령 드랍 / 경매장',
+    ahPrice: '57s (11/24 12:31 실측)'
+  },
+  '대지의 원소': {
+    bind: '비귀속 (거래·경매 가능)',
+    source: '황야의 땅·아라시 고원 대지 정령 드랍 / 경매장',
+    ahPrice: '39.99s (11/24 12:31 실측)'
+  },
+  '바람의 원소': {
+    bind: '비귀속 (거래·경매 가능)',
+    source: '아라시 고원·실리더스 바람 정령 드랍 / 경매장',
+    ahPrice: '16.29s (11/24 12:31 실측)'
+  },
+  '물의 원소': {
+    bind: '비귀속 (거래·경매 가능)',
+    source: '아라시 고원·가시덤불 물 정령 드랍 / 경매장',
+    ahPrice: '6.4s (11/24 12:31 실측)'
+  },
+  '강력한 모조': {
+    bind: '비귀속 (거래·경매 가능)',
+    source: '줄구룹·동부 내륙지 고레벨 트롤 드랍 / 경매장'
+  },
+  '도안: 세공된 진줏빛 머리장식': {
+    bind: '학습 전 거래 가능 (현재 가방 보유 ✅)',
+    source: 'Lv.27~34 월드·던전 몬스터 드랍 / 경매장'
   },
 
   // --- 마법부여 레시피 (18종 · 11/24 08:47 원가 반영) ---
@@ -11680,7 +12059,7 @@ const WOW_ITEM_META = {
 
   // --- 전문/보조기술 요약 항목 ---
   '무두질': {
-    bind: '주 전문기술 (현재 202 / 225)',
+    bind: '주 전문기술 (현재 205 / 225)',
     source: '대가(300) 승급: 스톰윈드 구시가지 [마리스 그레인저](72.2, 62.0)',
     vendorPrice: '승급비 4g 50s (우호 할인)'
   },
@@ -13958,8 +14337,11 @@ function selectTailorStage(idx) {
   const stepper = document.getElementById('tailorStepper');
   if (!stepper) return;
   stepper.querySelectorAll('.tailor-step').forEach(btn => {
-    const active = Number(btn.dataset.tstage) === idx;
+    const stage = Number(btn.dataset.tstage);
+    const active = stage === idx;
+    const passed = stage < idx;
     btn.classList.toggle('active', active);
+    btn.classList.toggle('passed', passed);
     btn.setAttribute('aria-expanded', active ? 'true' : 'false');
   });
   document.querySelectorAll('.tailor-tl-panel').forEach(panel => {
@@ -13967,10 +14349,17 @@ function selectTailorStage(idx) {
   });
 }
 
+function formatChartSilver(val, compact) {
+  if (val >= 1000) return `${(val / 100).toFixed(0)}g`;
+  if (val >= 100) return `${(val / 100).toFixed(compact ? 1 : 2)}g`;
+  if (val >= 10) return `${val.toFixed(compact ? 0 : 1)}s`;
+  return `${val.toFixed(compact ? 1 : 2)}s`;
+}
+
 function renderPriceChartsInto(mountId, historyArr) {
   const mount = document.getElementById(mountId);
   if (!mount) return;
-  const W = 264, H = 104, padL = 32, padR = 14, padT = 18, padB = 22;
+  const W = 284, H = 118, padL = 44, padR = 16, padT = 20, padB = 24;
   const plotW = W - padL - padR, plotH = H - padT - padB;
 
   mount.innerHTML = historyArr.map(m => {
@@ -13986,7 +14375,7 @@ function renderPriceChartsInto(mountId, historyArr) {
     let minV = Math.min(...vals), maxV = Math.max(...vals);
     if (maxV - minV < 0.2) { minV = Math.max(0, minV - 0.5); maxV = maxV + 0.5; }
     else {
-      const margin = (maxV - minV) * 0.22;
+      const margin = (maxV - minV) * 0.24;
       minV = Math.max(0, minV - margin);
       maxV = maxV + margin;
     }
@@ -14001,22 +14390,21 @@ function renderPriceChartsInto(mountId, historyArr) {
     const midV = (minV + maxV) / 2;
     const yTicks = [maxV, midV, minV].map((val, idx) => {
       const yy = padT + (idx / 2) * plotH;
-      const fmt = val >= 10 ? val.toFixed(0) : val.toFixed(1);
-      return `<line class="pchart-gridline" x1="${padL}" y1="${yy.toFixed(1)}" x2="${W - padR}" y2="${yy.toFixed(1)}"/><text class="pchart-axis-lbl" x="${padL - 4}" y="${(yy + 3).toFixed(1)}" text-anchor="end">${fmt}s</text>`;
+      return `<line class="pchart-gridline" x1="${padL}" y1="${yy.toFixed(1)}" x2="${W - padR}" y2="${yy.toFixed(1)}"/><text class="pchart-axis-lbl" x="${padL - 5}" y="${(yy + 3.5).toFixed(1)}" text-anchor="end">${formatChartSilver(val, true)}</text>`;
     }).join('');
 
     const dotsAndLabels = coords.map((c, idx) => {
       const anchor = pts.length === 1 ? 'middle' : (idx === 0 ? 'start' : (idx === coords.length - 1 ? 'end' : 'middle'));
-      const vFmt = c.v >= 10 ? c.v.toFixed(1) : c.v.toFixed(2);
-      return `<circle class="pchart-dot" cx="${c.x.toFixed(1)}" cy="${c.y.toFixed(1)}" r="4" fill="${m.color}"><title>${m.name} (${c.d}): ${c.v.toFixed(2)}실버</title></circle>` +
-        `<text class="pchart-val-lbl" x="${c.x.toFixed(1)}" y="${(c.y - 7).toFixed(1)}" text-anchor="${anchor}">${vFmt}</text>` +
+      const vFmt = formatChartSilver(c.v, c.v >= 100);
+      return `<circle class="pchart-dot" cx="${c.x.toFixed(1)}" cy="${c.y.toFixed(1)}" r="4.2" fill="${m.color}"><title>${m.name} (${c.d}): ${formatChartSilver(c.v, false)}</title></circle>` +
+        `<text class="pchart-val-lbl" x="${c.x.toFixed(1)}" y="${(c.y - 8).toFixed(1)}" text-anchor="${anchor}">${vFmt}</text>` +
         `<text class="pchart-axis-lbl" x="${c.x.toFixed(1)}" y="${H - 5}" text-anchor="${anchor}">${c.d}</text>`;
     }).join('');
 
     return `<div class="pchart-card">
       <div class="pchart-head">
         <div class="pchart-title"><code>${m.name}</code></div>
-        <div class="pchart-now"><span>${cur.toFixed(2)}s</span><span class="pchart-delta ${dCls}">${dTxt}</span></div>
+        <div class="pchart-now"><span>${formatChartSilver(cur, false)}</span><span class="pchart-delta ${dCls}">${dTxt}</span></div>
       </div>
       <svg class="pchart-svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" aria-label="${m.name} 시세 추이">
         ${yTicks}
@@ -14034,6 +14422,73 @@ function renderMatPriceCharts() {
   renderPriceChartsInto('tailoringPriceChartGrid', TAILORING_PRICE_HISTORY);
 }
 
+/* ===== DISMISSIBLE INSTANCE Q&A / MEMO TOGGLES (v4.1) ===== */
+function getDismissedNotesMap() {
+  try {
+    return JSON.parse(safeStorageGet('wowf_dismissed_notes_v1', '{}') || '{}') || {};
+  } catch (e) {
+    return {};
+  }
+}
+
+function syncDismissedRestoreBars() {
+  const dismissed = getDismissedNotesMap();
+  document.querySelectorAll('.dismissed-restore-bar[data-restore-bar]').forEach(bar => {
+    const scope = bar.getAttribute('data-restore-bar');
+    const nodes = Array.from(document.querySelectorAll(`details.dismissible-fold[data-restore-scope="${scope}"]`));
+    const hiddenCount = nodes.filter(el => !!dismissed[el.getAttribute('data-dismiss-id')]).length;
+    if (hiddenCount > 0) {
+      bar.hidden = false;
+      bar.innerHTML = `<span>숨긴 일회성 메모 ${hiddenCount}개</span><button type="button" class="dismissed-restore-btn" onclick="restoreDismissedNotes('${scope}')">↺ 다시 보기</button>`;
+    } else {
+      bar.hidden = true;
+      bar.innerHTML = '';
+    }
+  });
+}
+
+function dismissFoldNote(ev, dismissId) {
+  if (ev) {
+    ev.preventDefault();
+    ev.stopPropagation();
+  }
+  if (!dismissId) return;
+  const dismissed = getDismissedNotesMap();
+  dismissed[dismissId] = true;
+  safeStorageSet('wowf_dismissed_notes_v1', JSON.stringify(dismissed));
+  document.querySelectorAll(`details.dismissible-fold[data-dismiss-id="${dismissId}"]`).forEach(el => {
+    el.classList.add('is-dismissing');
+    setTimeout(() => {
+      el.classList.add('is-dismissed');
+      el.classList.remove('is-dismissing');
+      syncDismissedRestoreBars();
+    }, 180);
+  });
+}
+
+function restoreDismissedNotes(scope) {
+  const dismissed = getDismissedNotesMap();
+  document.querySelectorAll(`details.dismissible-fold[data-restore-scope="${scope}"]`).forEach(el => {
+    const id = el.getAttribute('data-dismiss-id');
+    if (id && dismissed[id]) delete dismissed[id];
+    el.classList.remove('is-dismissed', 'is-dismissing');
+    el.open = false;
+  });
+  safeStorageSet('wowf_dismissed_notes_v1', JSON.stringify(dismissed));
+  syncDismissedRestoreBars();
+}
+
+function initDismissibleFolds() {
+  const dismissed = getDismissedNotesMap();
+  document.querySelectorAll('details.dismissible-fold[data-dismiss-id]').forEach(el => {
+    const id = el.getAttribute('data-dismiss-id');
+    if (id && dismissed[id]) {
+      el.classList.add('is-dismissed');
+    }
+  });
+  syncDismissedRestoreBars();
+}
+
 /* ===== CUTE RECENTLY UPDATED MENU "N" BADGE (CLICK TO DISMISS) ===== */
 // 대시보드 메뉴 수정 시 최근 업데이트된 탭 ID와 버전(v)을 갱신하면
 // 사이드바(.nav-btn) 및 모바일 퀵탭(.q-pill) 메뉴 제목 우측 위에 귀여운 N 뱃지가 표시되며,
@@ -14044,8 +14499,8 @@ const RECENTLY_UPDATED_TABS = {
     text: '11/24 애드온 패치노트 일괄 토글 + 내 캐릭터 핵심 요약 최상단 통합 · Attune koKR 패치'
   },
   'tab-prof': {
-    v: '2026-11-24-v3',
-    text: '11/24 12:31 Auctionator 실측 자동 반영 · 재봉술 전환 진단/장비 원가/시세 추이 + 가방 실측(진줏빛 도안 보유) 동기화'
+    v: '2026-11-24-v4',
+    text: '11/24 전문기술 데이터 전수 교차검증(1.60.1 Mastercraft·WOW_ITEM_META 동기화) · 가로 타임라인 선 넘침/폰트 가독성 전면 개선 · 일회성 메모 삭제가능 토글(✕) 적용'
   },
   'tab-rules': {
     v: '2026-11-24-v2',
@@ -14139,7 +14594,7 @@ function applyNavUpdatedBadges() {
 function toggleAllProfMenus() {
   const stack = document.getElementById('profFoldStack');
   if (!stack) return;
-  const folds = Array.from(stack.querySelectorAll(':scope > details.fold-card'));
+  const folds = Array.from(stack.querySelectorAll(':scope > details.fold-card:not(.is-dismissed)'));
   const anyClosed = folds.some(d => !d.open);
   folds.forEach(d => { d.open = anyClosed; });
 }
@@ -14184,6 +14639,7 @@ function bootDashboard() {
   runSafe('initMicroMap', initMicroMap);
   runSafe('initQuestChecks', initQuestChecks);
   runSafe('renderMatPriceCharts', renderMatPriceCharts);
+  runSafe('initDismissibleFolds', initDismissibleFolds);
 
   const saved = safeStorageGet('wowf_active_tab_v2', null);
   if (saved && document.getElementById(saved)) {

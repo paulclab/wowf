@@ -15,7 +15,8 @@ docs/
 │   ├── 03-settings-and-addons.md               # 인게임 필수 설정법(누르고 있어 시전 등) & 1.60.1 추천 애드온
 │   ├── 04-stats-and-formulas.md                # 스탯별 증가 수치(체력+10/지능+15·치명타/정신력) & 2차 스탯 공식
 │   ├── 05-leveling-camping-and-dungeon-rules.md # 경험치·캠핑·휴식·인던 레벨차 패널티 & 5초 규칙/전투 메커니즘
-│   └── 06-patch-notes-kst.md                   # 최근 패치노트 & 핫픽스(KST) — 최상단 내 캐릭터 영향 요약 고정
+│   ├── 06-patch-notes-kst.md                   # 최근 패치노트 & 핫픽스(KST) — 최상단 내 캐릭터 영향 요약 고정
+│   └── 07-dashboard-design-guide.md            # 대시보드(Memphis Edition) 디자인·타이포·타임라인·삭제가능 토글 가이드 (모든 에이전트 필수)
 ├── 02-growth/                                  # [성장 관련] 캐릭터/특성, 스킬/사이클, 사냥터/던전, 장비/아이템
 │   ├── 01-character-and-talents.md             # 26레벨 캐릭터 스냅샷(261118) & 비전 특성(17pt) 분석·로드맵
 │   ├── 02-skills-and-rotation.md               # 레벨별 핵심 스킬 습득표 & 단일/광역 딜 사이클·마나 관리
@@ -37,6 +38,7 @@ docs/
 - **[04-stats-and-formulas.md](../docs/01-system/04-stats-and-formulas.md)**: 체력(+10 HP)·지능(+15 마나/극대화/`비전 작렬` 12%)·정신력(`13+정신/4`, 인간 +10%, `신비한 명상`+`마법사 갑옷`), 통합 적중(4%/17%)/치명타 150%/가속 GCD 1.0초 하한/저항·주문 관통력 공식
 - **[05-leveling-camping-and-dungeon-rules.md](../docs/01-system/05-leveling-camping-and-dungeon-rules.md)**: 요리 `포만감`(+5% 처치 XP)·`아늑한 침낭`(+1~3%)·캠핑/텐트(5% 휴식 XP)·`생선 그릇`(+8% 기본 스탯), 인던 12레벨 차 패널티, 마나 5초 규칙(5SR) & 시전 밀림 방어
 - **[06-patch-notes-kst.md](../docs/01-system/06-patch-notes-kst.md)**: 최근 와우 포에버 공식 핫픽스 & 패치노트(KST) — **최상단에 내 캐릭터 직·간접 영향 요약 고정**
+- **[07-dashboard-design-guide.md](../docs/01-system/07-dashboard-design-guide.md)**: `dashboard.html` 수정 시 모든 에이전트가 반드시 준수해야 할 **최소 폰트 크기(`>= 12px`/`11px`), 가로 타임라인 분할 레일, 모바일 오버플로 방지, `html[data-theme="dark"]`, 일회성 Q&A 삭제 가능 토글(`.dismissible-fold`), `WOW_DB`+`WOW_ITEM_META` 동시 동기화 표준**
 
 ## 2. 성장 관련 (`docs/02-growth/`)
 - **[01-character-and-talents.md](../docs/02-growth/01-character-and-talents.md)**: 26레벨 캐릭터 상태(HP 642 / MP 1,380 / 비전 +121) 및 비전 17포인트(`마법봉 전문화 2/2`, `정신 집중 연마 5/5`, `신비한 미묘함 2/2`, `신비한 정신 집중 4/5`, `화살 탄막 2/2`, `비전 작렬 1/1`, `비전 격노 1/1`) 분석과 27~40레벨 특성 로드맵
