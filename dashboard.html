@@ -1610,6 +1610,34 @@
   details.fold-card .fold-body {
     padding: 16px 20px 18px;
   }
+  .fold-grid-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+    align-items: start;
+    margin-bottom: 18px;
+  }
+  .fold-grid-row.patch-cards {
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  }
+  .fold-grid-row > details.fold-card {
+    margin-bottom: 0;
+  }
+  .fold-grid-row > details.fold-card > summary {
+    padding: 12px 14px;
+    font-size: 14px;
+    gap: 8px;
+  }
+  .fold-grid-row > details.fold-card > summary > span {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    min-width: 0;
+  }
+  .fold-grid-row > details.fold-card[open] {
+    grid-column: 1 / -1;
+  }
 
   /* Addon Table Title Hover & CurseForge Link Button */
   .addon-title-ref {
@@ -6595,34 +6623,154 @@
           </div>
         </div>
 
-        <details class="fold-card">
-          <summary>✅ 실측 진단 &amp; 최적화 포인트 (<code>2026-11-24</code> 로컬 스캔 기준)</summary>
-          <div class="fold-body">
-            <ul style="margin:0;">
-              <li><span class="badge verified">✅ <code>Auctionator (352)</code> 본가 툴팁 수정 반영</span><br><code>352</code> 업데이트(<code>Quick fix for tooltips in other locales</code>)에 <code>DBKeyFromLink.lua</code>의 <code>else callback({basicKey}) end</code>가 공식 반영되었습니다. <small>(단, <code>not name or not baseName</code> nil 가드와 <code>Main.lua</code> <code>pcall</code> 가드는 덮어쓰기로 초기화됨)</small></li>
-              <li><span class="badge arcane">🆕 <code>CharExport (v2.3.1)</code> + Auctionator 제작재료 114종</span><br><code>/ce</code>(캐릭터 스냅샷 전용, 시세 미포함) · <code>/cea</code> 또는 <code>/ce ah</code>(무두질 27 · 마법부여 52 · 재봉술 35 재료 시세 전용) · <code>/ceall</code> 또는 <code>/ce all</code>(캐릭터+시세 전체 통합) 복사창 출력.</li>
-              <li><span class="badge verified">✅ <code>Mastercraft (2.1.1)</code> 신규 기능 &amp; 툴팁 정리</span><br><code>2.1.0</code>에서 Crafters 끄기 스위치·원형 채집 노드·정수 통합(1 상급=3 하급)이 추가됐고, <code>2.1.1</code>에서 타 경매 애드온과의 UI 겹침이 개선되었습니다. <code>Auctionator 1d</code> 표시는 <code>/mc</code> &rarr; <code>설정</code> &rarr; <code>툴팁</code> &rarr; <code>경매장 가격</code>으로 끌 수 있습니다.</li>
-              <li><span class="badge arcane">📘 <code>ForeverLevelingBiS (v1.4.7)</code> BoE 출처 미표기</span><br>던전·퀘스트 고정 드랍만 출처를 표시하고 월드 드랍 BoE(예: <code>별똥별 마법봉</code>, <code>마법의 정수 장갑</code>)는 출처를 생략하므로 경매장(<code>Auctionator</code>)에서 직접 검색하세요. (<code>v1.4.7</code>에서 반지·장신구·한손무기 슬롯 비교 툴팁 확장)</li>
-              <li><span class="badge verified">✅ 충돌 0건 · <code>RangeDisplay (v6.3.7)</code></span><br><code>SquareMinimap (1.4.8)</code> 단독 구성 · <code>RangeDisplay</code> 적대 전용(<code>33m</code> &rarr; <code>30m</code> 조정 추천).</li>
-              <li><span class="badge gold">🟡 경량화 &amp; 버전 체크</span><br>
-                &bull; <code>BetterBlizzFrames (v2.2.3c)</code>: <code>.toc</code>가 <code>120105</code> 기준이라 접속 시 '구버전 애드온 불러오기' 체크 필요.<br>
-                &bull; <code>SpokenQuestsAudioHorde_koKR</code> · <code>QuestieTrace</code> · <code>SpokenContributions</code> · <code>Details_Streamer/Vanguard</code>: 필요 시 비활성화 가능.
-              </li>
-            </ul>
-          </div>
-        </details>
+        <div class="fold-grid-row">
+          <details class="fold-card">
+            <summary><span>✅ <strong>실측 진단 &amp; 최적화 포인트</strong> <span class="badge verified">2026-11-24</span></span></summary>
+            <div class="fold-body">
+              <ul style="margin:0;">
+                <li><span class="badge verified">✅ <code>Details!</code> 한국어 메뉴 글꼴 깨짐(<code>□□□</code>) 로컬 패치</span><br><code>Libs/DF/cooltip.lua</code>의 <code>--fontFace = font or fontFace</code> 주석 버그와 <code>Libs/DF/languages.lua</code> 한글 UTF-8 미감지·<code>core/windows.lua</code> <code>CooltipPreset</code> 하드코딩을 패치해 <code>기본 글꼴(2002.TTF)</code>이 정상 적용되도록 수정했습니다. <small>(인게임 <code>/reload</code>로 즉시 적용)</small></li>
+                <li><span class="badge verified">✅ <code>Auctionator (352)</code> 본가 툴팁 수정 반영</span><br><code>352</code> 업데이트(<code>Quick fix for tooltips in other locales</code>)에 <code>DBKeyFromLink.lua</code>의 <code>else callback({basicKey}) end</code>가 공식 반영되었습니다. <small>(단, <code>not name or not baseName</code> nil 가드와 <code>Main.lua</code> <code>pcall</code> 가드는 덮어쓰기로 초기화됨)</small></li>
+                <li><span class="badge arcane">🆕 <code>CharExport (v2.3.1)</code> + Auctionator 제작재료 114종</span><br><code>/ce</code>(캐릭터 스냅샷 전용, 시세 미포함) · <code>/cea</code> 또는 <code>/ce ah</code>(무두질 27 · 마법부여 52 · 재봉술 35 재료 시세 전용) · <code>/ceall</code> 또는 <code>/ce all</code>(캐릭터+시세 전체 통합) 복사창 출력.</li>
+                <li><span class="badge verified">✅ <code>Mastercraft (2.1.1)</code> 신규 기능 &amp; 툴팁 정리</span><br><code>2.1.0</code>에서 Crafters 끄기 스위치·원형 채집 노드·정수 통합(1 상급=3 하급)이 추가됐고, <code>2.1.1</code>에서 타 경매 애드온과의 UI 겹침이 개선되었습니다. <code>Auctionator 1d</code> 표시는 <code>/mc</code> &rarr; <code>설정</code> &rarr; <code>툴팁</code> &rarr; <code>경매장 가격</code>으로 끌 수 있습니다.</li>
+                <li><span class="badge arcane">📘 <code>ForeverLevelingBiS (v1.4.7)</code> BoE 출처 미표기</span><br>던전·퀘스트 고정 드랍만 출처를 표시하고 월드 드랍 BoE(예: <code>별똥별 마법봉</code>, <code>마법의 정수 장갑</code>)는 출처를 생략하므로 경매장(<code>Auctionator</code>)에서 직접 검색하세요.</li>
+                <li><span class="badge verified">✅ 충돌 0건 · <code>RangeDisplay (v6.3.7)</code></span><br><code>SquareMinimap (1.4.8)</code> 단독 구성 · <code>RangeDisplay</code> 적대 전용(<code>33m</code> &rarr; <code>30m</code> 조정 추천).</li>
+                <li><span class="badge gold">🟡 경량화 &amp; 버전 체크</span><br>
+                  &bull; <code>BetterBlizzFrames (v2.2.3c)</code>: <code>.toc</code>가 <code>120105</code> 기준이라 접속 시 '구버전 애드온 불러오기' 체크 필요.<br>
+                  &bull; <code>SpokenQuestsAudioHorde_koKR</code> · <code>QuestieTrace</code> · <code>SpokenContributions</code> · <code>Details_Streamer/Vanguard</code>: 필요 시 비활성화 가능.
+                </li>
+              </ul>
+            </div>
+          </details>
 
-        <details class="fold-card">
-          <summary>➕ 미설치 추가 추천 애드온 (<code>1.60.1</code>)</summary>
-          <div class="fold-body">
-            <ul style="margin:0;">
-              <li><strong><a href="https://www.curseforge.com/wow/addons/better-spell-power-tooltips" target="_blank" rel="noopener noreferrer">Better Spell Power Tooltips</a></strong>: 현재 비전 주문력(<code>+142</code>)과 <code>비전 작렬</code> 중첩이 반영된 실시간 예상 피해량을 스킬 툴팁에 표시.</li>
-              <li><strong><a href="https://www.curseforge.com/wow/addons/findparty" target="_blank" rel="noopener noreferrer">FindParty Forever</a></strong> / <strong>LFG Bulletin Board</strong>: 채팅 파티 모집글을 발굴현장·놈리건·수도원 등 던전별로 자동 분류.</li>
-              <li><strong>MinimapButtonButton (또는 HidingBar)</strong>: <code>SquareMinimap</code> 테두리 애드온 아이콘이 많아질 때 하나로 깔끔하게 정리.</li>
-              <li><strong>Plater Nameplates (선택)</strong>: 30+ 던전·광역 시 적 시전바(<code>마법 차단</code>) 및 <code>변이</code>·<code>얼음 회오리</code> 디버프 타이머 강화.</li>
-            </ul>
+          <details class="fold-card">
+            <summary><span>➕ <strong>미설치 추가 추천 애드온</strong> <span class="badge">1.60.1</span></span></summary>
+            <div class="fold-body">
+              <ul style="margin:0;">
+                <li><strong><a href="https://www.curseforge.com/wow/addons/better-spell-power-tooltips" target="_blank" rel="noopener noreferrer">Better Spell Power Tooltips</a></strong>: 현재 비전 주문력(<code>+150</code>)과 <code>비전 작렬</code> 중첩이 반영된 실시간 예상 피해량을 스킬 툴팁에 표시.</li>
+                <li><strong><a href="https://www.curseforge.com/wow/addons/findparty" target="_blank" rel="noopener noreferrer">FindParty Forever</a></strong> / <strong>LFG Bulletin Board</strong>: 채팅 파티 모집글을 발굴현장·놈리건·수도원 등 던전별로 자동 분류.</li>
+                <li><strong>MinimapButtonButton (또는 HidingBar)</strong>: <code>SquareMinimap</code> 테두리 애드온 아이콘이 많아질 때 하나로 깔끔하게 정리.</li>
+                <li><strong>Plater Nameplates (선택)</strong>: 30+ 던전·광역 시 적 시전바(<code>마법 차단</code>) 및 <code>변이</code>·<code>얼음 회오리</code> 디버프 타이머 강화.</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+
+        <div class="card" style="margin-bottom:14px;">
+          <h2 style="margin-bottom:6px;">📦 11/24 애드온 업데이트 패치노트 <span class="badge arcane">11개 스위트 · 13개 애드온/DB</span> <small style="font-weight:500; opacity:0.75;">(각 카드를 클릭하면 상세 변경사항이 펼쳐집니다)</small></h2>
+          <div class="fold-grid-row patch-cards" style="margin-bottom:0; margin-top:12px;">
+            <details class="fold-card">
+              <summary><span><strong>Auctionator</strong> <span class="badge verified">351 → 352</span></span></summary>
+              <div class="fold-body">
+                <ul style="margin:0;">
+                  <li><strong>다국어/한국어 툴팁 수정 공식 반영</strong>: <code>DBKeyFromLink.lua</code>에 <code>else callback({basicKey}) end</code>가 본가 <code>352</code>에 포함됨.</li>
+                  <li><small>(참고: 어제 로컬에서 추가한 <code>not name or not baseName</code> nil 가드와 <code>Main.lua</code> <code>pcall</code> 가드는 업데이트 덮어쓰기로 초기화됨)</small></li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="fold-card">
+              <summary><span><strong>Mastercraft</strong> <span class="badge verified">2.0.9 → 2.1.1</span></span></summary>
+              <div class="fold-body">
+                <ul style="margin:0;">
+                  <li><strong>2.1.0</strong>: Crafters 기능 완전 끄기 스위치(공유·파티찾기 카드 제거), 원형 채집 노드 아이콘(기본값), <strong>마부 정수 통합 계산(1 상급 = 3 하급)</strong>, 낚시 릴 소리/퀘템 루팅/접속 직후 회색템 판매/화살 우편 제외 수정.</li>
+                  <li><strong>2.1.1</strong>: <code>AuctionMaster</code> 등 타 경매 애드온과의 제작창 하단 가격 문구 UI 겹침 보정.</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="fold-card">
+              <summary><span><strong>OpenMap</strong> <span class="badge verified">0.8.12 → 0.8.13</span></span></summary>
+              <div class="fold-body">
+                <ul style="margin:0;">
+                  <li><strong>미탐험 지역 표시 줌·팬 렉 제거</strong>: 화면 밖 지역 윤곽선 매 프레임 재계산 중단.</li>
+                  <li>로그인 직후 탐험 지역 카운트 누락(예: 불모의 땅 3/25) 및 닫을 때 스택 오버플로우 수정.</li>
+                  <li>전투 중 닫은 지도 재오픈 시 마지막 위치 유지 · 동굴/대형 지역 타일 프리워밍 개선.</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="fold-card">
+              <summary><span><strong>ForeverLevelingBiS</strong> <span class="badge verified">1.4.5 → 1.4.7</span></span></summary>
+              <div class="fold-body">
+                <ul style="margin:0;">
+                  <li><strong>1.4.6</strong>: 통합 목록(One list) 상한 최대 25개 확장, 미개방 줄구룹 <code>피덩굴(Bloodvine)</code> 제작 13종 제외, 주 특성 비교 기준 오류 수정.</li>
+                  <li><strong>1.4.7</strong>: <strong>반지 · 장신구 · 한손무기(주/보조)</strong> 착용 슬롯 교체 비교 툴팁 확장.</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="fold-card">
+              <summary><span><strong>Questie 세트</strong> <span class="badge verified">12.13 / 1.1.5</span></span></summary>
+              <div class="fold-body">
+                <ul style="margin:0;">
+                  <li><strong>Questie 12.13.0</strong>: 옵션창 검색 바 추가, <strong>[Forever] 추적기에서 지도 열 때 오염(taint) 수정</strong>, SoD 일퀘·<code>Khan Shaka</code> 제외.</li>
+                  <li><strong>QuestieDB 1.1.5</strong>: [Forever] 퀘스트 경험치 데이터 갱신, <code>Zimmix's Great Escape</code> 위치 추가, 전체 퀘스트/NPC/오브젝트 DB 및 번역 갱신.</li>
+                  <li><strong>QuestieTrace 1.14.0</strong>: Questie 12.13.0 동봉 수집 로거 버전업.</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="fold-card">
+              <summary><span><strong>DungeonJournal</strong> <span class="badge verified">2.1.3 → 2.1.4</span></span></summary>
+              <div class="fold-body">
+                <ul style="margin:0;">
+                  <li><strong>길안내 화살표 개선</strong>: 300야드 내 미해금 비행거점이 더 빠르면 먼저 안내, 타나리스 사막 가로지르기·페랄라스 모자케 야영지 얼라이언스 우회 경로 반영.</li>
+                  <li>줄파락 나무망치에 가라앉은 사원 <code>The Ancient Egg</code> 동시 진행 버튼 추가 · <strong>루트 필터 캐릭터별 독립 저장</strong>.</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="fold-card">
+              <summary><span><strong>Shadowflare</strong> <span class="badge verified">0.25.0 → 0.26.2</span></span></summary>
+              <div class="fold-body">
+                <ul style="margin:0;">
+                  <li><strong>0.26.0</strong>: 각 알림 중앙에 원형 아이콘 핸들 추가 — 드래그 이동, <strong>마우스 휠 크기 조절 / <code>Shift+휠</code> 회전</strong>.</li>
+                  <li><strong>0.26.1~0.26.2</strong>: 전사 제압(Overpower) Bloodthrill 프록 태세 표시 및 재발동 타이머 리셋 수정.</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="fold-card">
+              <summary><span><strong>Attune</strong> <span class="badge verified">44 → 16001-45</span></span></summary>
+              <div class="fold-body">
+                <ul style="margin:0;">
+                  <li>마라우돈 연퀘에 <code>Strange Pylons</code>~<code>Rot and Regret</code> 추가 · <code>Zum'rah's Head</code> 오표기 수정.</li>
+                  <li><strong>현재 캐릭터 진행도 초기화 버튼</strong> 추가 · 로그인 시 자동 길드 조사 제거 · 길드 완료 메시지 복구 · 울다만/BRD 정리.</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="fold-card">
+              <summary><span><strong>Spoken 코어</strong> <span class="badge verified">3.11.0 → 3.12.1</span></span></summary>
+              <div class="fold-body">
+                <ul style="margin:0;">
+                  <li><code>/sp previous</code>(이전 대사 다시 듣기) · <code>/sp mute on|off</code>(음소거 토글) 등 재생 제어 추가.</li>
+                  <li>창 닫기 트리거 및 퀘스트/보스 다국어 이름 매칭 개선 (한국어 음성팩 7종 버전 유지).</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="fold-card">
+              <summary><span><strong>Books on map</strong> <span class="badge gold">2.3.3 → 2.4.0</span></span></summary>
+              <div class="fold-body">
+                <ul style="margin:0;">
+                  <li>로컬 <code>.toc</code> 버전 상승(<code>2.3.3 → 2.4.0</code>) 확인 완료.</li>
+                  <li><small>(애드온 폴더 내 별도 체인지로그 파일 미포함 · CurseForge 상세 노트 미색인)</small></li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="fold-card">
+              <summary><span><strong>SquareMinimap</strong> <span class="badge gold">1.4.7 → 1.4.8</span></span></summary>
+              <div class="fold-body">
+                <ul style="margin:0;">
+                  <li>로컬 <code>.toc</code> 버전 상승(<code>1.4.7 → 1.4.8</code>) 확인 완료.</li>
+                  <li><small>(애드온 폴더 내 별도 체인지로그 파일 미포함 · CurseForge 마이너 노트 미색인)</small></li>
+                </ul>
+              </div>
+            </details>
           </div>
-        </details>
+        </div>
       </section>
 
       <!-- TAB: WORKSPACE & SOURCES -->
@@ -10269,7 +10417,7 @@ const ADDON_DB = {
     kind: '전투 · 딜미터',
     quality: 'rare',
     icon: 'inv_misc_pocketwatch_01',
-    rows: [['다운로드: ~3억 7,700만+ (CurseForge)', '인기도: 최상위 글로벌 필수'], ['설치 버전: 20261109.15410.172', '구성: 본체 + 7 플러그인']],
+    rows: [['다운로드: ~3억 7,700만+ (CurseForge)', '인기도: 최상위 글로벌 필수'], ['구성: 본체 + 7 플러그인', '패치: 한국어 메뉴 글꼴 보정']],
     desc: '실시간 DPS·HPS, 주문별 피해 비중, TinyThreat 어그로 미터기, 마법 차단 기록 및 보스 페이즈 분석을 제공합니다.',
     note: '💡 Streamer / Vanguard 플러그인은 필요 시 비활성화해 메모리를 아낄 수 있습니다.'
   },
@@ -10279,9 +10427,9 @@ const ADDON_DB = {
     kind: '전투 · 프록 알림',
     quality: 'spell',
     icon: 'spell_arcane_arcane04',
-    rows: [['다운로드: ~5.88만+ (CurseForge)', '인기도: 와우 포에버 특화 인기'], ['설치 버전: 0.26.2', '지원: 1.60.1 네이티브']],
+    rows: [['다운로드: ~5.88만+ (CurseForge)', '인기도: 와우 포에버 특화 인기'], ['지원: 1.60.1 네이티브', '조작: 중앙 핸들 드래그·휠']],
     desc: '와우 포에버 전용 직업 프록(화살 탄막, 신비한 정신 집중 등)을 별도 쿨다운 매니저 없이 기본 UI 감성으로 즉시 표시합니다.',
-    note: '⚡ 0.26.x: 아이콘 중앙 핸들 드래그·휠 크기 조절 및 제압(Overpower) 타이머 리셋 개선'
+    note: '⚡ 비전 마법사의 화살 탄막/정신 집중 타이밍 포착 및 휠 크기 조절 핵심 애드온'
   },
   'addon:ForeverCombatText': {
     title: 'Forever Combat Text',
@@ -10289,7 +10437,7 @@ const ADDON_DB = {
     kind: '전투 · 피해 텍스트',
     quality: 'spell',
     icon: 'spell_fire_fireball02',
-    rows: [['다운로드: CurseForge 호스팅 (신규)', '인기도: 와우 포에버 전용'], ['설치 버전: 0.17.0', '특징: 이름표 학파 색상']],
+    rows: [['다운로드: CurseForge 호스팅 (신규)', '인기도: 와우 포에버 전용'], ['특징: 이름표 학파 색상', '유형: 경량 전투 텍스트']],
     desc: '와우 포에버 클라이언트용 경량 전투 텍스트로, 적 이름표 위에 주문 학파별 색상으로 피해·치유 수치를 직관적으로 띄워줍니다.',
     note: '✨ 비전·화염·냉기 주문 학파 색 구분에 최적화'
   },
@@ -10299,7 +10447,7 @@ const ADDON_DB = {
     kind: '전투 · 사거리 측정',
     quality: 'rare',
     icon: 'ability_hunter_snipershot',
-    rows: [['다운로드: ~400만+ (CurseForge)', '인기도: 장수 원거리 표준'], ['설치 버전: v6.3.7', '설정: 적대 대상 전용 (33m)']],
+    rows: [['다운로드: ~400만+ (CurseForge)', '인기도: 장수 원거리 표준'], ['설정: 적대 대상 전용 (33m)', '명령어: /rangedisplay']],
     desc: '대상·주시·마우스오버까지의 예상 거리를 미터 단위로 실시간 표시합니다(/rangedisplay).',
     note: '🎯 비전 마법사 주력 사거리(30m)에 맞춰 Target 장거리 기준을 30으로 조정 추천'
   },
@@ -10309,9 +10457,9 @@ const ADDON_DB = {
     kind: '퀘스트 · 지도 핀',
     quality: 'rare',
     icon: 'inv_misc_map_01',
-    rows: [['다운로드: ~2억 2,900만+ (CurseForge)', '인기도: 클래식·포에버 절대 표준'], ['설치 버전: 12.13.0 (DB 1.1.5)', '구성: Questie + DB + Trace']],
+    rows: [['다운로드: ~2억 2,900만+ (CurseForge)', '인기도: 클래식·포에버 절대 표준'], ['구성: Questie + DB + Trace', '기능: 포에버 XP/목표 DB']],
     desc: '와우 포에버 전역의 수락 가능/진행 중/완료 퀘스트 위치와 목표 몹·오브젝트를 지도와 미니맵에 핀으로 표시합니다.',
-    note: '💡 QuestieTrace(1.14.0)는 제보 수집용 로거이므로 기여 목적이 아니면 꺼둘 수 있습니다.'
+    note: '💡 QuestieTrace는 제보 수집용 로거이므로 기여 목적이 아니면 꺼둘 수 있습니다.'
   },
   'addon:Books_on_map_Forever': {
     title: 'Books on map (Forever)',
@@ -10319,7 +10467,7 @@ const ADDON_DB = {
     kind: '도서관 책 수집',
     quality: 'uncommon',
     icon: 'inv_misc_book_09',
-    rows: [['다운로드: ~60.4만+ (CurseForge)', '인기도: 포에버 수집 필수 1순위'], ['설치 버전: 2.4.0', '기능: 월드맵·미니맵 자동 숨김']],
+    rows: [['다운로드: ~60.4만+ (CurseForge)', '인기도: 포에버 수집 필수 1순위'], ['기능: 월드맵·미니맵 자동 숨김', '명령어: /bom']],
     desc: '와우 포에버 전용 도서관 책 위치를 세계 지도와 미니맵에 모두 표시하고, 습득 즉시 핀을 숨기며 보상 진행도를 추적합니다.',
     note: '📚 도서관 반납 장비·평판 파밍에 필수'
   },
@@ -10329,9 +10477,9 @@ const ADDON_DB = {
     kind: '통합 세계 지도',
     quality: 'uncommon',
     icon: 'inv_misc_map02',
-    rows: [['다운로드: CurseForge 호스팅 (오픈소스)', '인기도: 포에버 지도 인기 애드온'], ['설치 버전: v0.8.13 (+NoDungeonMap v1.2)', '명령어: /openmap']],
+    rows: [['다운로드: CurseForge 호스팅 (오픈소스)', '인기도: 포에버 지도 인기 애드온'], ['구성: OpenMap + NoDungeonMap', '명령어: /openmap']],
     desc: '바닐라 아트 스타일을 유지한 채 모든 대륙·지역 지도를 끊김 없이 이어붙여 줌인/줌아웃 및 드래그 탐색을 제공합니다.',
-    note: '🗺️ v0.8.13: 미탐험 지역 줌 렉·탐험 카운트·전투 중 창 위치 복원 등 성능·안정성 대폭 개선'
+    note: '🗺️ OpenMap_NoDungeonMap 패치로 ForeverDungeonJournal과 충돌 없이 연동'
   },
   'addon:SquareMinimap': {
     title: 'Square Minimap by Foofi',
@@ -10339,7 +10487,7 @@ const ADDON_DB = {
     kind: 'UI · 사각 미니맵',
     quality: 'uncommon',
     icon: 'inv_misc_spyglass_02',
-    rows: [['다운로드: CurseForge 호스팅 (포에버 전용)', '인기도: 포에버 UI 커스텀'], ['설치 버전: 1.4.8', '상태: 단독 구성 (충돌 0)']],
+    rows: [['다운로드: CurseForge 호스팅 (포에버 전용)', '인기도: 포에버 UI 커스텀'], ['상태: 단독 구성 (충돌 0)', '명령어: /sqm']],
     desc: '와우 포에버의 원형 미니맵을 클래식 브론즈 프레임 사각 미니맵으로 변환하고 애드온 아이콘을 테두리에 정리해 줍니다.',
     note: '✅ 기존 충돌 원인이던 Forever Minimap 제거 후 안정 동작 중'
   },
@@ -10349,7 +10497,7 @@ const ADDON_DB = {
     kind: '좌표 내비게이션',
     quality: 'rare',
     icon: 'ability_spy',
-    rows: [['다운로드: ~9,300만+ (CurseForge)', '인기도: 글로벌 표준 내비'], ['설치 버전: v4.4.1-release', '명령어: /way X Y']],
+    rows: [['다운로드: ~9,300만+ (CurseForge)', '인기도: 글로벌 표준 내비'], ['명령어: /way X Y', '기능: 화살표·거리 안내']],
     desc: '입력한 좌표나 연동 애드온이 지정한 목표 지점까지 화면 화살표·거리·예상 도착 시간을 안내하는 휴대용 내비게이션입니다.',
     note: '🧭 대시보드 지도/퀘스트 좌표를 /way 로 바로 찍어 이동할 때 활용'
   },
@@ -10359,9 +10507,9 @@ const ADDON_DB = {
     kind: '던전 도감 · 공략',
     quality: 'rare',
     icon: 'inv_misc_book_07',
-    rows: [['다운로드: ~2,070만+ (CurseForge)', '인기도: 글로벌 인기 던전 도감'], ['설치 버전: 2.1.4', '연동: OpenMap 던전 아이콘']],
+    rows: [['다운로드: ~2,070만+ (CurseForge)', '인기도: 글로벌 인기 던전 도감'], ['연동: OpenMap 던전 아이콘', '기능: 캐릭터별 루트 필터']],
     desc: '클래식·와우 포에버의 각 던전별 보스 목록, 드랍 아이템 테이블, 관련 퀘스트 및 지도 위치를 인게임에서 통합 조회합니다.',
-    note: '🏰 2.1.4: 길안내 화살표(타나리스·페랄라스·미해금 비행거점) 및 캐릭터별 루트 필터 저장'
+    note: '🏰 OpenMap_NoDungeonMap과 연동하며 길안내 화살표 지원'
   },
   'addon:Attune': {
     title: 'Attune',
@@ -10369,9 +10517,9 @@ const ADDON_DB = {
     kind: '입장 연퀘 추적',
     quality: 'uncommon',
     icon: 'inv_misc_key_14',
-    rows: [['다운로드: ~1,480만+ (CurseForge)', '인기도: 클래식 입장 연퀘 표준'], ['설치 버전: 16001-45', '지원: 포에버 던전·레이드']],
+    rows: [['다운로드: ~1,480만+ (CurseForge)', '인기도: 클래식 입장 연퀘 표준'], ['지원: 포에버 던전·레이드', '기능: 선행 연퀘·진행도 트리']],
     desc: '오닉시아·화산 심장부·검은날개 둥지·던전 열쇠 등 입장 선행 연퀘와 평판 진행률을 단계별 트리로 보여줍니다.',
-    note: '🔑 16001-45: 마라우돈·울다만·검은바위 나락 연퀘 보정 및 캐릭터별 초기화 버튼 추가'
+    note: '🔑 만렙 레이드/인던 입장 준비도 체크 및 캐릭터별 초기화 지원'
   },
   'addon:ForeverLootSparkles': {
     title: 'Forever Loot Sparkles',
@@ -10379,7 +10527,7 @@ const ADDON_DB = {
     kind: '편의 · 루팅 반짝임',
     quality: 'uncommon',
     icon: 'spell_holy_flashheal',
-    rows: [['다운로드: ~160만+ (CurseForge)', '인기도: 포에버 편의 필수'], ['설치 버전: v2.0.0', '동작: 로그인·옵션 변경 시 자동 복구']],
+    rows: [['다운로드: ~160만+ (CurseForge)', '인기도: 포에버 편의 필수'], ['동작: 로그인·옵션 변경 시 자동 복구', '대상: 루팅·퀘스트 오브젝트']],
     desc: '그래픽 프리셋 변경 등으로 꺼지기 쉬운 루팅 시체·퀘스트 오브젝트의 반짝임 효과를 항상 켜진 상태로 유지해 줍니다.',
     note: '✨ 필드 오브젝트 및 무두질 대상 시인성 확보'
   },
@@ -10389,9 +10537,9 @@ const ADDON_DB = {
     kind: '성장 · 장비 BiS',
     quality: 'rare',
     icon: 'inv_chest_cloth_17',
-    rows: [['다운로드: ~95.6만+ (CurseForge)', '인기도: 포에버 레벨링 필수'], ['설치 버전: v1.4.7', '특징: 종족·직업·특성별 맞춤']],
+    rows: [['다운로드: ~95.6만+ (CurseForge)', '인기도: 포에버 레벨링 필수'], ['특징: 종족·직업·특성별 맞춤', '명령어: /bis']],
     desc: '현재 캐릭터의 종족·직업·특성·레벨에 맞는 퀘스트 보상, 던전 드랍, 제작 BiS 장비를 슬롯별로 추천하고 비교해 줍니다.',
-    note: '⚠️ 월드 드랍 BoE는 출처 텍스트가 생략되며, v1.4.7에서 반지·장신구·한손무기 슬롯 비교 툴팁이 확장됨'
+    note: '⚠️ 월드 드랍 BoE는 출처 텍스트가 생략되므로 경매장(Auctionator)에서 직접 확인 필요'
   },
   'addon:CharExport': {
     title: 'CharExport (로컬 커스텀)',
@@ -10399,7 +10547,7 @@ const ADDON_DB = {
     kind: '로컬 커스텀 · AI 연동',
     quality: 'talent',
     icon: 'inv_scroll_03',
-    rows: [['배포 상태: 로컬 전용 (미등록)', '버전: 2.3.1 (Interface 16001)'], ['명령어: /ce · /cea · /ceall', '추적: 제작재료 114종']],
+    rows: [['배포 상태: 로컬 전용 (미등록)', '지원: 1.60.1 네이티브'], ['명령어: /ce · /cea · /ceall', '추적: 제작재료 114종']],
     desc: '/ce는 캐릭터 스탯·버프·특성·장비·스킬만, /cea는 114종 제작재료 시세만, /ceall은 캐릭터+시세 전체를 복사창으로 출력합니다.',
     note: '🛠️ /ce(시세 제외) · /cea(114종 시세) · /ceall(전체 통합)'
   },
@@ -10409,9 +10557,9 @@ const ADDON_DB = {
     kind: '경제 · 경매장',
     quality: 'rare',
     icon: 'inv_misc_coin_02',
-    rows: [['다운로드: ~2억 1,600만+ (CurseForge)', '인기도: 최상위 경매장 표준'], ['설치 버전: 352', '패치: 본가 다국어 툴팁 수정 반영']],
+    rows: [['다운로드: ~2억 1,600만+ (CurseForge)', '인기도: 최상위 경매장 표준'], ['기능: 경매장 스캔·시세 툴팁', '상태: 본가 다국어 툴팁 수정 반영']],
     desc: '빠른 경매장 전체 스캔, 일괄 판매/언더컷 출품, 쇼핑 리스트 및 아이템 툴팁 시세/상점가 표시를 제공합니다.',
-    note: '✅ 352 공식 업데이트에 한국어/타 언어 랜덤 접두사 툴팁 데드락 수정(else callback) 반영 완료'
+    note: '✅ 한국어 랜덤 접두사 장비 툴팁 데드락 수정이 본가에 공식 반영됨'
   },
   'addon:Mastercraft': {
     title: 'Mastercraft',
@@ -10419,9 +10567,9 @@ const ADDON_DB = {
     kind: '전문기술 · 수익 분석',
     quality: 'rare',
     icon: 'trade_engraving',
-    rows: [['다운로드: ~120만+ (CurseForge)', '인기도: 포에버 전문기술 종합 1순위'], ['설치 버전: 2.1.1', '명령어: /mc']],
+    rows: [['다운로드: ~120만+ (CurseForge)', '인기도: 포에버 전문기술 종합 1순위'], ['기능: 1~300 가이드·손익·마추 판정', '명령어: /mc']],
     desc: '1~300 전문기술 육성 가이드, 제작법별 손익, 마력 추출 vs 상점가 판정, 채집 노드 지도, 낚시/야영 유틸을 통합 제공합니다.',
-    note: '💡 2.1.0~2.1.1: Crafters 끄기, 원형 채집 노드, 정수 통합 계산, 타 경매 애드온 제작창 겹침 수정'
+    note: '💡 툴팁의 Auctionator 1d 표시를 숨기려면 /mc → 설정 → 툴팁 → 경매장 가격 끄기'
   },
   'addon:Baganator': {
     title: 'Baganator',
@@ -10429,7 +10577,7 @@ const ADDON_DB = {
     kind: '통합 가방 UI',
     quality: 'rare',
     icon: 'inv_misc_bag_08',
-    rows: [['다운로드: ~4,600만+ (CurseForge)', '인기도: 차세대 통합 가방 대세'], ['설치 버전: 868', '연동: Syndicator (재고 엔진)']],
+    rows: [['다운로드: ~4,600만+ (CurseForge)', '인기도: 차세대 통합 가방 대세'], ['연동: Syndicator (재고 엔진)', '기능: 카테고리 정렬·검색']],
     desc: '모든 가방과 은행을 하나의 깔끔한 창으로 통합하고 카테고리 자동 정렬, 실시간 검색, 장비 세트 구분을 지원합니다.',
     note: '🎒 가벼운 성능과 직관적인 카테고리 뷰 제공'
   },
@@ -10439,7 +10587,7 @@ const ADDON_DB = {
     kind: '계정 재고 추적 엔진',
     quality: 'uncommon',
     icon: 'inv_box_01',
-    rows: [['다운로드: ~3,250만+ (CurseForge)', '인기도: Baganator 필수 동반 애드온'], ['설치 버전: 293', '역할: 부캐·은행·우편 재고 DB']],
+    rows: [['다운로드: ~3,250만+ (CurseForge)', '인기도: Baganator 필수 동반 애드온'], ['역할: 부캐·은행·우편 재고 DB', '연동: Baganator 백엔드']],
     desc: '계정 내 모든 캐릭터의 가방·은행·우편함에 보유한 아이템 수량을 실시간으로 추적해 툴팁과 Baganator 검색에 공급합니다.',
     note: '📦 Baganator와 동일 제작자의 핵심 백엔드 애드온'
   },
@@ -10449,7 +10597,7 @@ const ADDON_DB = {
     kind: '마법책 · 스킬 미리보기',
     quality: 'uncommon',
     icon: 'inv_misc_book_11',
-    rows: [['다운로드: ~1,100만+ (CurseForge)', '인기도: 클래식 레벨링 필수'], ['설치 버전: 11.4.9', '위치: 마법책(P) 하단 탭']],
+    rows: [['다운로드: ~1,100만+ (CurseForge)', '인기도: 클래식 레벨링 필수'], ['위치: 마법책(P) 하단 탭', '기능: 레벨별 스킬·골드 비용']],
     desc: '마법책(P)에서 앞으로 레벨이 오르면 직업 교관에게 배울 수 있는 스킬·등급과 학습 골드 비용을 레벨별로 미리 보여줍니다.',
     note: '📘 다음 레벨업 시 귀환/방문할 스킬 비용 미리 계산 가능'
   },
@@ -10459,7 +10607,7 @@ const ADDON_DB = {
     kind: 'UI · 몰입형 퀘스트창',
     quality: 'rare',
     icon: 'inv_letter_15',
-    rows: [['다운로드: ~930만+ (CurseForge)', '인기도: 몰입형 UI 최상위'], ['설치 버전: 1.0.7 c', '특징: 카드형 대화 · 단축키']],
+    rows: [['다운로드: ~930만+ (CurseForge)', '인기도: 몰입형 UI 최상위'], ['특징: 카드형 대화 · 단축키', '연동: BiS/음성 UI 지원']],
     desc: 'NPC 대화 및 퀘스트 수락/완료 창을 가독성 높은 모던 카드로 바꾸고, 스페이스바·숫자키 빠른 선택 및 카메라 연출을 지원합니다.',
     note: '📖 퀘스트 스토리 가독성과 진행 속도 대폭 향상'
   },
@@ -10469,7 +10617,7 @@ const ADDON_DB = {
     kind: 'UI · 창 이동/저장',
     quality: 'uncommon',
     icon: 'ability_rogue_sprint',
-    rows: [['다운로드: ~19.8만+ (CurseForge)', '인기도: 포에버 UI 편의 인기'], ['설치 버전: 1.6.4', '명령어: /fm']],
+    rows: [['다운로드: ~19.8만+ (CurseForge)', '인기도: 포에버 UI 편의 인기'], ['명령어: /fm', '기능: 창 이동·크기 저장']],
     desc: '기본 고정되어 있는 블리자드 UI 창들을 마우스로 자유롭게 드래그해 이동시키고 위치·크기를 저장합니다.',
     note: '🖱️ 커서 아래 특수 프레임도 /fm 명령어로 위치 조절 가능'
   },
@@ -10479,7 +10627,7 @@ const ADDON_DB = {
     kind: 'UI · 마우스 툴팁',
     quality: 'uncommon',
     icon: 'inv_misc_eye_01',
-    rows: [['다운로드: ~1.08만+ (CurseForge)', '인기도: 포에버 전용 유틸'], ['설치 버전: 16001', '기능: 커서 앵커 · ID 표시']],
+    rows: [['다운로드: ~1.08만+ (CurseForge)', '인기도: 포에버 전용 유틸'], ['기능: 커서 앵커 · ID 표시', '지원: 1.60.1 네이티브']],
     desc: '화면 우하단 구석에 고정된 게임 툴팁을 마우스 커서 주변에 띄워 시선 이동을 줄이고, 아이템·NPC·주문 ID 표시를 지원합니다.',
     note: '🖱️ 사냥·가방 정리 시 툴팁 가독성 최적화'
   },
@@ -10489,9 +10637,9 @@ const ADDON_DB = {
     kind: 'UI · 기본 프레임 확장',
     quality: 'rare',
     icon: 'spell_holy_blessingofstrength',
-    rows: [['다운로드: ~970만+ (CurseForge)', '인기도: 기본 프레임 커스텀 1순위'], ['설치 버전: v2.2.3c', '주의: TOC 120105 (구버전 허용)']],
+    rows: [['다운로드: ~970만+ (CurseForge)', '인기도: 기본 프레임 커스텀 1순위'], ['주의: 구버전 애드온 허용 체크', '기능: 버프 필터·시전바']],
     desc: '블리자드 순정 개체창 외형을 유지하면서 버프/디버프 필터링, 파티원 시전바, 전투 중 아이콘 등 세밀한 커스터마이징을 제공합니다.',
-    note: '🟡 .toc Interface가 120105 기준이라 접속 시 "구버전 애드온 불러오기" 체크 필요'
+    note: '🟡 .toc Interface가 본섭 기준이라 접속 시 "구버전 애드온 불러오기" 체크 필요'
   },
   'addon:WhisperMessenger': {
     title: 'Whisper Messenger',
@@ -10499,7 +10647,7 @@ const ADDON_DB = {
     kind: '소통 · 귓속말 메신저',
     quality: 'uncommon',
     icon: 'inv_letter_09',
-    rows: [['다운로드: ~57.2만+ (CurseForge)', '인기도: 포에버/클래식 메신저 인기'], ['설치 버전: v2.1.9', '기능: 대화 로그 저장 · 알림 뱃지']],
+    rows: [['다운로드: ~57.2만+ (CurseForge)', '인기도: 포에버/클래식 메신저 인기'], ['기능: 대화 로그 저장 · 알림 뱃지', '유형: 귓속말 분리창']],
     desc: '채팅창에 흩어지기 쉬운 귓속말을 상대별 메신저 창으로 분리해 주고, 재접속 후에도 대화 기록·접속 상태·안 읽음 뱃지를 유지합니다.',
     note: '💬 거래·파티·길드 귓속말 누락 방지'
   },
@@ -10509,9 +10657,9 @@ const ADDON_DB = {
     kind: '오디오 · 한국어 내레이션',
     quality: 'spell',
     icon: 'inv_misc_horn_01',
-    rows: [['다운로드: ~430만+ (CurseForge)', '인기도: AI 음성 더빙 인기 애드온'], ['설치 버전: 3.12.1 (+koKR 7종)', '범위: 퀘스트·책·지역·보스']],
+    rows: [['다운로드: ~430만+ (CurseForge)', '인기도: AI 음성 더빙 인기 애드온'], ['범위: 퀘스트·책·지역·보스', '명령어: /sp · /sp previous']],
     desc: '퀘스트 대사, NPC 가십, 도서관 책/편지, 지역 및 보스 전승을 한국어 음성으로 읽어주는 통합 내레이션 애드온입니다.',
-    note: '🟡 3.12.1: /sp previous·/sp mute 등 재생 제어 및 다국어 이름 처리 개선 (Horde팩 선택 해제 가능)'
+    note: '🟡 얼라이언스 전용 플레이 시 SpokenQuestsAudioHorde_koKR 팩은 꺼둬도 무방'
   }
 };
 
@@ -13909,8 +14057,8 @@ function renderMatPriceCharts() {
 // 사용자가 해당 메뉴(또는 N 마크)를 클릭하면 사라지고 같은 버전에서는 다시 뜨지 않습니다.
 const RECENTLY_UPDATED_TABS = {
   'tab-addons': {
-    v: '2026-11-24-v2',
-    text: '11/24 애드온 일괄 업데이트 반영 (11개 스위트 · Auctionator 352 본가 툴팁 수정 포함)'
+    v: '2026-11-24-v3',
+    text: '11/24 애드온 패치노트 토글 카드 추가 · 토글 카드 가로 배치 수정 · Details! 한국어 메뉴 글꼴 패치'
   },
   'tab-prof': {
     v: '2026-11-24-v1',
