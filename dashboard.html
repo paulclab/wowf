@@ -1615,8 +1615,102 @@
   details.fold-card[open] > summary {
     border-bottom: var(--fold-border-inner, 1.5px solid var(--rd-line-2, var(--line)));
   }
+  details.fold-card > summary > span {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    min-width: 0;
+  }
+  details.fold-card > summary .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0;
+    padding: 4px 10px;
+    line-height: 1.15;
+    min-height: 22px;
+  }
   details.fold-card .fold-body {
     padding: 16px 20px 18px;
+    counter-reset: fold-sub;
+  }
+  /* Toggle Sub-menu Headings: Auto-numbered Memphis Bar + Centered Core Badge */
+  details.fold-card > .fold-body > h3 {
+    counter-increment: fold-sub;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px 8px;
+    margin: 22px 0 11px;
+    padding: 8px 13px 8px 44px;
+    background: var(--rd-paper-2, #f5f3ec);
+    border: 1.5px solid var(--rd-line-2, rgba(23, 24, 26, 0.16));
+    border-left: 4px solid var(--arcane, #7c3aed);
+    border-radius: 9px;
+    font-size: 14.5px;
+    font-weight: 850;
+    line-height: 1.38;
+    letter-spacing: -0.015em;
+    color: var(--rd-ink, var(--text));
+    word-break: keep-all;
+  }
+  details.fold-card > .fold-body > h3:first-child,
+  details.fold-card > .fold-body > details.dismissible-fold.is-dismissed:first-child + h3 {
+    margin-top: 0;
+  }
+  details.fold-card > .fold-body > details.dismissible-fold + h3 {
+    margin-top: 12px;
+  }
+  details.fold-card > .fold-body > h3::before {
+    content: counter(fold-sub, decimal-leading-zero);
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    height: 22px;
+    padding: 0 6px;
+    border-radius: 6px;
+    background: var(--rd-ink, #17181a);
+    color: var(--rd-yellow, #ffd700);
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+  details.fold-card > .fold-body > h3 .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0;
+    padding: 4px 10px;
+    font-size: 11.8px;
+    font-weight: 800;
+    line-height: 1.15;
+    min-height: 22px;
+    flex-shrink: 0;
+  }
+  details.fold-card > .fold-body > h3 code {
+    font-size: 13px;
+    vertical-align: middle;
+  }
+  html[data-theme="dark"] details.fold-card > .fold-body > h3 {
+    background: rgba(139, 92, 246, 0.13);
+    border-color: rgba(148, 163, 184, 0.24);
+    border-left-color: #a855f7;
+    color: #f8fafc;
+  }
+  html[data-theme="dark"] details.fold-card > .fold-body > h3::before {
+    background: #a855f7;
+    color: #ffffff;
   }
   .fold-grid-row {
     display: grid;
@@ -5139,7 +5233,7 @@
         <!-- 4. COLLAPSIBLE ARCHIVE FOR PAST GEAR UPDATES & MISC NOTES -->
         <div class="wide-fold-row" style="grid-template-columns: 1fr;">
           <details class="fold-card">
-            <summary>📦 과거 장비 변경 아카이브 &amp; 참고 기록 (클릭해서 열기)</summary>
+            <summary>📦 과거 장비 변경 아카이브 &amp; 참고 기록</summary>
             <div class="fold-body">
               <div class="callout" style="margin-top:0;">
                 <strong>2026-11-23 (Lv.32 저습지 졸업 &amp; 장비 업그레이드):</strong>
@@ -5169,8 +5263,8 @@
       <section id="tab-prof" class="tab">
         <div class="kpi-grid">
           <div class="kpi"><div class="label">마법부여</div><div class="val" style="color: var(--arcane);">128 / 150</div><div class="sub">전환 전 추출 부캐 · 오일 여분 권장</div></div>
-          <div class="kpi"><div class="label">재봉 전환 판단</div><div class="val" style="color: var(--gold);">대기 권장 ⏳</div><div class="sub">리넨 품귀 해소 시 ~2g 7.8s (현재 ~5g 78.8s)</div></div>
-          <div class="kpi"><div class="label">보유 재봉 재료</div><div class="val" style="color: var(--verified);">리넨47 · 양모100</div><div class="sub">양모 두루마리1 · 비단24 · 진줏빛 도안 보유 ✅</div></div>
+          <div class="kpi"><div class="label">재봉 전환 판단</div><div class="val" style="color: var(--verified);">지금 전환 추천 ✅</div><div class="sub">리넨 19c 매수 완료! 잔여 실지출 ~1g 12.1s</div></div>
+          <div class="kpi"><div class="label">보유 재봉 재료</div><div class="val" style="color: var(--verified);">양모126 · 비단33</div><div class="sub">리넨 19c 확보 · 양모 두루마리1 · 진줏빛 도안 ✅</div></div>
           <div class="kpi"><div class="label">무두질 / 보조 기술</div><div class="val">205 / 150</div><div class="sub">무두 205(대가 승급 가능) · 응급 91 · 낚시 20</div></div>
         </div>
 
@@ -5184,14 +5278,14 @@
           <details class="fold-card">
             <summary><span>🧵 <strong>재봉술 (Tailoring)</strong></span></summary>
             <div class="fold-body">
-              <h3 style="margin-top:0;">전환 적기 진단 <span class="badge warn">11/24 12:31 · 대기 권장</span></h3>
+              <h3>전환 적기 진단 <span class="badge warn">대기 권장</span></h3>
               <p class="prose-note" style="margin:0 0 14px; font-size:13.4px;">
                 현재 경매장 <code>리넨 옷감</code>과 <code>리넨 두루마리</code>가 평시 대비 급등해 있어 <strong>즉시 전환은 비추천</strong>입니다.<br>
                 <code>리넨 옷감</code>이 평시 가격대(<code>20~25c</code>)로 복귀하면 <code>1&rarr;125</code> 실지출을 약 <strong>3.7g 이상</strong> 절약할 수 있습니다.<br>
                 아래 그래프에서 저점 구간인 <code>야생덩굴</code>&middot;<code>자홍색 염료</code> 등 추후 장비 재료만 미리 확보해 두면 좋습니다.
               </p>
 
-              <h3>승급 구간 방법 <span class="badge">1 &rarr; 125 &middot; 선택 145</span></h3>
+              <h3>승급 구간 방법 <span class="badge">1 &rarr; 125</span></h3>
               <p class="prose-note" style="margin-top:0;">
                 <strong>교관:</strong> <code>셀란두스</code> [스톰윈드 마법사 지구 (<code>42.0, 76.2</code>)] (1~150) &middot; <code>조지오 볼레로</code> (<code>43.2, 73.6</code>) (125~225)<br>
                 실타래는 반드시 옆 상인(<code>10c</code>/<code>1s</code>)에게 직구하세요.
@@ -5776,7 +5870,7 @@
             <div class="fold-body">
               <details class="fold-card dismissible-fold" data-dismiss-id="prof-ench-switch-checklist" data-restore-scope="tab-prof" style="margin-top:0;">
                 <summary>
-                  <span class="dismiss-fold-title">📌 <strong>재봉술 전환 직전 체크리스트</strong> <span class="badge warn">전환 전 확인</span></span>
+                  <span class="dismiss-fold-title">📌 <strong>재봉술 전환 직전 체크리스트</strong></span>
                   <span class="dismiss-fold-actions">
                     <span class="dismiss-fold-chevron"><span class="lbl-closed">열기 ▾</span><span class="lbl-open">접기 ▴</span></span>
                     <button type="button" class="fold-dismiss-btn" onclick="dismissFoldNote(event, 'prof-ench-switch-checklist')" title="이 체크리스트 영역을 숨깁니다">✕ 지우기</button>
@@ -5790,7 +5884,7 @@
                   4. <strong><code>은마법막대</code> <code>5.49s</code> 저점:</strong> 재봉 전환 대기 중 <code>130</code>까지 올려둘 의향이 있다면 <code>은마법막대 5.49s</code>만 1개 사두어도 좋습니다 (<code>룬문자 은마법막대</code> 총 원가 <code>39.75s</code>).
                 </div>
               </details>
-              <h3 style="margin-top:0;">잔여 육성 루트 <span class="badge">128 &rarr; 175</span></h3>
+              <h3>잔여 육성 루트 <span class="badge">128 &rarr; 175</span></h3>
               <div class="table-wrap" style="margin-bottom:12px;">
                 <table>
                   <thead>
@@ -5811,11 +5905,11 @@
                 &nbsp;<strong>128&rarr;131</strong> <code>~96s</code> &middot; <strong>128&rarr;140</strong> <code>~1g 39s</code> &middot; <strong>128&rarr;175</strong> <code>~3g 53s</code>
               </div>
 
-              <h3>재료별 시세 추이 <span class="badge gold">단위: 실버(s)</span></h3>
+              <h3>재료별 시세 추이</h3>
               <p style="margin-top:0; font-size:13px; color:var(--rd-ink-2);">각 재료명을 탭/호버하면 <strong>획득처·추출 iLv 상세 툴팁</strong>이 열립니다. (단위: 실버 <code>s</code>)</p>
               <div id="matPriceChartGrid" class="price-chart-grid" style="margin-bottom:16px;"></div>
 
-              <h3>유용한 마법부여 &amp; 제작 원가 <span class="badge arcane">방어구 키트 4부위 제외</span></h3>
+              <h3>유용한 마법부여 &amp; 제작 원가</h3>
               <p class="prose-note" style="margin-top:0;">
                 <strong>💡 각 레시피·재료 이름을 클릭/호버하면 획득처(NPC &middot; 위치 &middot; 귀속 여부) 툴팁이 표시됩니다.</strong><br>
                 방어구 키트 4부위(가슴&middot;장갑&middot;다리&middot;장화)는 Lv.30~50 마법부여보다 우위이므로 제외했습니다.<br>
@@ -5964,7 +6058,7 @@
               </div>
               <details class="fold-card dismissible-fold" data-dismiss-id="prof-favor-howto" data-restore-scope="tab-prof">
                 <summary>
-                  <span class="dismiss-fold-title">🔎 <strong>내가 가진 '상인의 호의' 확인 방법</strong> <span class="badge">간단 Q&amp;A</span></span>
+                  <span class="dismiss-fold-title">🔎 <strong>내가 가진 '상인의 호의' 확인 방법</strong></span>
                   <span class="dismiss-fold-actions">
                     <span class="dismiss-fold-chevron"><span class="lbl-closed">열기 ▾</span><span class="lbl-open">접기 ▴</span></span>
                     <button type="button" class="fold-dismiss-btn" onclick="dismissFoldNote(event, 'prof-favor-howto')" title="이 Q&A 영역을 숨깁니다">✕ 지우기</button>
@@ -6008,7 +6102,7 @@
           <!-- 8. COMPARISON ANALYSIS (DISMISSIBLE INSTANCE TOGGLE) -->
           <details class="fold-card dismissible-fold" data-dismiss-id="prof-ench-vs-tailor" data-restore-scope="tab-prof">
             <summary>
-              <span class="dismiss-fold-title">⚖️ <strong>마부 vs 재봉술 비교 분석</strong> <span class="badge">전환 검토 메모</span></span>
+              <span class="dismiss-fold-title">⚖️ <strong>마부 vs 재봉술 비교 분석</strong></span>
               <span class="dismiss-fold-actions">
                 <span class="dismiss-fold-chevron"><span class="lbl-closed">열기 ▾</span><span class="lbl-open">접기 ▴</span></span>
                 <button type="button" class="fold-dismiss-btn" onclick="dismissFoldNote(event, 'prof-ench-vs-tailor')" title="전환 결정 후 이 영역을 숨깁니다">✕ 지우기</button>
@@ -6130,7 +6224,7 @@
         </div>
 
         <details class="fold-card" id="q-sec-excav">
-          <summary><span>✅ <strong>2. 완료 &mdash; 발굴 현장: 저습지 (Excavation Site: Wetlands, Lv.26~33)</strong> <span class="badge verified">5/5 퀘스트 완전 졸업 ✅ (11/24)</span></span></summary>
+          <summary><span>✅ <strong>2. 완료 &mdash; 발굴 현장: 저습지 (Excavation Site: Wetlands, Lv.26~33)</strong> <span class="badge verified">5/5 졸업 ✅</span></span></summary>
           <div class="fold-body">
             <div class="callout verified" style="margin-top:0;">
               <strong>2026-11-24 누락 퀘스트까지 5/5 완전 졸업 완료 ✅:</strong> <strong><code>타락한 용의 홀</code></strong>(지+11·정+13·모든 주문 +36) &amp; <strong><code>물약 가방</code></strong>(첫 장신구!) 획득 및 Lv.33 달성!<br>
@@ -6138,7 +6232,7 @@
               <button class="map-jump-btn" onclick="jumpToMicroZone('menethil','hz_wet_raptors')" style="margin-left:6px;">🗺️ 저습지 맵 확인</button>
             </div>
 
-            <h3>발굴 현장: 저습지 — 5종 던전 퀘스트 완료 기록 (자동 저장)</h3>
+            <h3>5종 던전 퀘스트 완료 기록 <span class="badge verified">5/5 완료</span></h3>
             <label class="quest-check done">
               <input type="checkbox" data-qcheck="excav-1" checked onchange="toggleQuestCheck(this)">
               <span class="q-body">
@@ -6175,7 +6269,7 @@
               </span>
             </label>
 
-            <h3>🎯 발굴 현장: 저습지 마법사용 득템 기록 (졸업 아카이브)</h3>
+            <h3>마법사용 득템 기록</h3>
             <div class="table-wrap" style="margin-bottom:0;">
               <table>
                 <thead>
@@ -6734,7 +6828,7 @@
           <details class="fold-card" open>
             <summary><span>🎯 <strong>주문 적중 &amp; 치명타 피해 공식</strong></span></summary>
             <div class="fold-body">
-              <h3 style="margin-top:0;">1) 레벨 차이별 기본 주문 빗나감(저항) 구조 &amp; <code>정밀함</code></h3>
+              <h3>레벨 차이별 기본 주문 빗나감(저항) 구조 &amp; <code>정밀함</code></h3>
               <p style="margin-top:0; font-size:13px;">주문은 물리처럼 회피·무기막기가 없는 대신, <strong>대상과의 레벨 차이에 따른 기본 주문 빗나감(완전 저항) 확률</strong>이 존재합니다. 와우 포에버(<code>1.60.1</code>)에서는 기존 <code>신비한 집중</code>이 삭제되고 냉기 1티어 <strong><code>정밀함 (Precision)</code></strong>이 <strong>비전·화염·냉기 모든 학파 주문 적중 <code>+2% / +4% / +6%</code></strong>로 통합 개편되었습니다.</p>
               <div class="table-wrap" style="margin-bottom:14px;">
                 <table>
@@ -6753,7 +6847,7 @@
                 </table>
               </div>
 
-              <h3>2) 왜 '치명타 피해 보너스 +20%'인데 치명 배율은 +10%p (150% &rarr; 160%)만 오를까?</h3>
+              <h3>왜 '치명타 피해 보너스 +20%'인데 치명 배율은 +10%p (150% &rarr; 160%)만 오를까?</h3>
               <div class="callout arcane" style="margin-top:0; margin-bottom:12px;">
                 <strong>💡 핵심 공식: <code>최종 치명 배율 = 100% + 50% &times; (1 + 보너스%)</code></strong><br>
                 주문 기본 치명타(<code>150%</code>)는 <strong>기본 피해 <code>100%</code> + 치명타 추가 보너스 <code>50%</code></strong>로 구성됩니다.<br>
@@ -6776,7 +6870,7 @@
                 </table>
               </div>
 
-              <h3>3) Lv.32 (23번째 포인트) 실전 비교 &mdash; <code>정밀함</code> vs <code>신비한 정신</code></h3>
+              <h3>실전 비교 &mdash; <code>정밀함</code> vs <code>신비한 정신</code></h3>
               <div class="grid-2" style="margin-bottom:0;">
                 <div class="callout verified" style="margin:0;">
                   <strong>🅰️ 추천 A — <code>정밀함</code> 2/3 선투자 (체감 효율 1위 ⭐)</strong><br>
@@ -6830,7 +6924,7 @@
                 </div>
               </div>
 
-              <h3>1) 몬스터 이름 색상별 6단계 구분 (입력 레벨 자동 연동)</h3>
+              <h3>몬스터 이름 색상별 6단계 구분</h3>
               <div class="table-wrap" style="margin-bottom:16px;">
                 <table>
                   <thead>
@@ -6840,7 +6934,7 @@
                 </table>
               </div>
 
-              <h3>2) 레벨 차이별 실제 획득 경험치 비교 &amp; "왜 동렙 -1~-2가 최고 효율인가?"</h3>
+              <h3>레벨 차이별 실제 획득 경험치 비교 &amp; "왜 동렙 -1~-2가 최고 효율인가?"</h3>
               <div class="table-wrap" style="margin-bottom:12px;">
                 <table>
                   <thead>
@@ -7136,7 +7230,7 @@
 
         <div class="fold-grid-row">
           <details class="fold-card">
-            <summary><span>📦 <strong>애드온 패치노트</strong> <span class="badge arcane">11/24 (11종)</span></span></summary>
+            <summary><span>📦 <strong>애드온 패치노트</strong> <span class="badge arcane">11종</span></span></summary>
             <div class="fold-body">
               <div class="callout warn" style="margin-top:0; margin-bottom:14px;">
                 <strong>⚡ 내 캐릭터(Lv.32 비전 · 마부 128/재봉 전환 · 한국어 클라) 핵심 참고 요약</strong>
@@ -7218,7 +7312,7 @@
           </details>
 
           <details class="fold-card">
-            <summary><span>✅ <strong>실측 진단 &amp; 최적화 포인트</strong> <span class="badge verified">2026-11-24</span></span></summary>
+            <summary><span>✅ <strong>실측 진단 &amp; 최적화 포인트</strong></span></summary>
             <div class="fold-body">
               <ul style="margin:0;">
                 <li><span class="badge verified">✅ <code>Details!</code> 한국어 메뉴 글꼴 깨짐(<code>□□□</code>) 로컬 패치</span><br><code>Libs/DF/cooltip.lua</code>의 <code>--fontFace = font or fontFace</code> 주석 버그와 <code>Libs/DF/languages.lua</code> 한글 UTF-8 미감지·<code>core/windows.lua</code> <code>CooltipPreset</code> 하드코딩을 패치해 <code>기본 글꼴(2002.TTF)</code>이 정상 적용되도록 수정했습니다. <small>(인게임 <code>/reload</code>로 즉시 적용)</small></li>
@@ -7237,7 +7331,7 @@
           </details>
 
           <details class="fold-card">
-            <summary><span>➕ <strong>미설치 추가 추천 애드온</strong> <span class="badge">1.60.1</span></span></summary>
+            <summary><span>➕ <strong>미설치 추가 추천 애드온</strong></span></summary>
             <div class="fold-body">
               <ul style="margin:0;">
                 <li><strong><a href="https://www.curseforge.com/wow/addons/better-spell-power-tooltips" target="_blank" rel="noopener noreferrer">Better Spell Power Tooltips</a></strong>: 현재 비전 주문력(<code>+150</code>)과 <code>비전 작렬</code> 중첩이 반영된 실시간 예상 피해량을 스킬 툴팁에 표시.</li>
@@ -14974,28 +15068,28 @@ function initDismissibleFolds() {
 // 사용자가 해당 메뉴(또는 N 마크)를 클릭하면 사라지고 같은 버전에서는 다시 뜨지 않습니다.
 const RECENTLY_UPDATED_TABS = {
   'tab-addons': {
-    v: '2026-11-24-v4',
-    text: '11/24 애드온 패치노트 일괄 토글 + 내 캐릭터 핵심 요약 최상단 통합 · Attune koKR 패치'
+    v: '2026-11-24-v5',
+    text: '전 메뉴 토글 하위 제목 일괄 정리(불필요 날짜·버전 라벨 제거 및 중앙 정렬)'
   },
   'tab-prof': {
-    v: '2026-11-24-v7',
-    text: '코멘트/안내 문단 문장별 줄바꿈 + 최대 폭 68ch 가독성 제한 적용'
+    v: '2026-11-24-v8',
+    text: '토글 하위 제목 자동 넘버링(01~04) 도입 · 불필요 라벨 제거 및 핵심 상태 중앙 정렬'
   },
   'tab-rules': {
-    v: '2026-11-24-v2',
-    text: '11/24 인게임 규칙 토글 카드 제목 단순화(대표 제목만 유지) · 주문 적중률 공식 최신화'
+    v: '2026-11-24-v3',
+    text: '토글 하위 제목 자동 넘버링(01~03) 통일 및 수동 번호·군더더기 제거'
   },
   'tab-talent': {
     v: '2026-11-24-v3',
     text: '11/24 14:30 실측 Lv.33 23/0/1(신비한 정신 1/5 · 정밀함 1/3) · 기본 HP 917/MP 2,106(풀버프 1,557/2,451) · 14:30 풀버프 프리셋 추가'
   },
   'tab-quests': {
-    v: '2026-11-24-v5',
-    text: '11/24 놈리건(Lv.29~38) 사전 연퀘·5대 특이사항·국문 마법사 득템 및 Lv.33 비교 총정리'
+    v: '2026-11-24-v6',
+    text: '토글 하위 제목 자동 넘버링(01~02) 및 불필요 날짜·접두사 라벨 정리'
   },
   'tab-gear': {
-    v: '2026-11-24-v4',
-    text: '11/24 놈리건 국문 득템명(거미전차 기름걸레·방사능처리 장화) 및 Lv.33 비교 동기화'
+    v: '2026-11-24-v5',
+    text: '아카이브 토글 제목 간소화 및 놈리건 국문 득템 Lv.33 비교 동기화'
   }
 };
 

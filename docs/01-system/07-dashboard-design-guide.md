@@ -55,7 +55,24 @@
 
 ---
 
-## 4. 인스턴스 질문 · 일회성 메모는 반드시 "접이식 + 영역 삭제(`✕`)" 토글로!
+## 4. 토글 메뉴 하위 제목(`fold-body > h3`) 넘버링 & 라벨 정제 규칙 (`2026-11-24`)
+
+> **영구 UX 원칙 (`2026-11-24` 사용자 지시)**:  
+> 토글 메뉴(`<details class="fold-card">`) 내부 하위 제목(`<h3>`)은 본문 일반 텍스트나 상위 카드 제목과 즉시 구분되도록 **CSS 자동 넘버링(`01`, `02`, `03`) + 좌측 포인트 바** 스타일을 유지하며, **쓸모없는 우측 라벨은 모두 제거하고 꼭 필요한 핵심 상태·구간만 중앙 정렬된 단일 뱃지로 표기**합니다.
+
+### 표준 규칙
+1. **CSS 자동 넘버링 (`counter-reset: fold-sub`)**:
+   - `details.fold-card > .fold-body > h3`에 `::before`로 `01`, `02`, `03` 뱃지가 자동 부여됩니다(`position: absolute` 좌측 거터 배치로 모바일 줄바꿈 시에도 제목이 번호 아래로 밀리지 않음).
+   - ❌ **수동 번호 금지**: HTML에 `1)`, `2)`, `3)` 등을 직접 쓰지 말 것 (이중 넘버링 발생).
+   - ❌ **인라인 `style="margin-top:0;"` 생략**: `:first-child` 및 `details.dismissible-fold + h3` 규칙이 자동 처리.
+2. **라벨(`.badge`) 필터링 & 중앙 정렬 원칙**:
+   - ❌ **제거 대상(노이즈)**: 타임스탬프(`11/24 12:31 ·`, `2026-11-24`), 클라 버전(`1.60.1`), 본문·차트에 이미 적힌 중복 설명(`단위: 실버(s)`, `방어구 키트 4부위 제외`), 형식적 문구(`(클릭해서 열기)`, `(자동 저장)`, `간단 Q&A`, `전환 전 확인`, `전환 검토 메모`).
+   - ✅ **유지 대상(핵심 정보만)**: 의사결정 상태(`대기 권장`), 숙련/달성 구간(`1 → 125`, `128 → 175`, `5/5 완료`, `128 / 150`, `11종`).
+   - ✅ **중앙 정렬 필수**: `details.fold-card > .fold-body > h3`와 `summary > span`에 `display: flex; align-items: center;` + `.badge`에 `display: inline-flex; align-items: center; justify-content: center; text-align: center;` 적용.
+
+---
+
+## 5. 인스턴스 질문 · 일회성 메모는 반드시 "접이식 + 영역 삭제(`✕`)" 토글로!
 
 > **영구 UX 원칙 (`2026-11-24` 사용자 지시)**:  
 > 사용자가 채팅 중 일회성으로 물어본 검증 내용(예: *"OO 아이템 검증 결과"*, *"상인의 호의 어디서 확인하나요?"*, *"전환 전 체크리스트"*, *"마부 vs 재봉 비교 메모"*)이나 임시 개선 메모는 **절대 본문에 영구 고정된 `.callout` 박스로 끼워 넣지 않습니다.**
@@ -68,7 +85,7 @@
 ```html
 <details class="fold-card dismissible-fold" data-dismiss-id="고유-메모-id" data-restore-scope="tab-prof">
   <summary>
-    <span class="dismiss-fold-title">📌 <strong>메모 제목</strong> <span class="badge">선택 메모</span></span>
+    <span class="dismiss-fold-title">📌 <strong>메모 제목</strong></span>
     <span class="dismiss-fold-actions">
       <span class="dismiss-fold-chevron"><span class="lbl-closed">열기 ▾</span><span class="lbl-open">접기 ▴</span></span>
       <button type="button" class="fold-dismiss-btn" onclick="dismissFoldNote(event, '고유-메모-id')" title="이 영역을 숨깁니다">✕ 지우기</button>
@@ -82,7 +99,7 @@
 
 ---
 
-## 5. 테마 · 다크모드 · iOS 웹앱 안전 규칙
+## 6. 테마 · 다크모드 · iOS 웹앱 안전 규칙
 
 1. **다크모드 선택자 (절대 실수 금지)**:
    - ✅ 반드시 **`html[data-theme="dark"] .클래스`** 사용!
@@ -95,7 +112,7 @@
 
 ---
 
-## 6. 아이템 툴팁 (`WOW_DB` + `WOW_ITEM_META`) & 데이터 정합성 규칙
+## 7. 아이템 툴팁 (`WOW_DB` + `WOW_ITEM_META`) & 데이터 정합성 규칙
 
 1. **양쪽 동시 동기화 필수**:
    - 아이템·재료 가격/숙련도/획득처를 수정할 때는 **`WOW_DB`와 `WOW_ITEM_META`를 반드시 동시에 갱신**해야 함. (한쪽만 고치면 툴팁 상단과 하단 메타 박스에 서로 다른 시세·숙련도가 동시에 노출됨!)
@@ -109,7 +126,7 @@
 
 ---
 
-## 7. 대시보드 수정 완료 전 필수 체크리스트
+## 8. 대시보드 수정 완료 전 필수 체크리스트
 
 수정 후 `git push origin main` 전에 아래 6항목을 Python 검증 스크립트로 반드시 확인합니다.
 1. JS 괄호 균형 `(brace, paren, bracket) == (0, 0, 0)`
