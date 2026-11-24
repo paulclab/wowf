@@ -3134,6 +3134,80 @@
   .pchart-dot { stroke: var(--rd-paper, #fff); stroke-width: 1.8; cursor: pointer; }
   .pchart-val-lbl { fill: currentColor; font-size: 9.8px; font-weight: 800; font-family: var(--font-mono); }
 
+  /* ===== TAILORING LV.32-60 TIMELINE & CLEAN SUMMARY CARDS ===== */
+  .tailor-tl {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-left: 18px;
+    margin: 10px 0 14px;
+    border-left: 2.5px dashed var(--border, rgba(148,163,184,0.45));
+  }
+  .tailor-tl-stage {
+    position: relative;
+    background: var(--bg2, rgba(148,163,184,0.06));
+    border: 1.5px solid var(--border, rgba(148,163,184,0.28));
+    border-radius: 12px;
+    padding: 12px 14px;
+  }
+  .tailor-tl-stage::before {
+    content: '';
+    position: absolute;
+    left: -25px;
+    top: 16px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--rd-red, #7c3aed);
+    border: 2px solid var(--rd-paper, #fff);
+  }
+  .tailor-tl-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 13.5px;
+    font-weight: 800;
+  }
+  .tailor-tl-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+    gap: 9px;
+  }
+  .tailor-item-card {
+    background: var(--rd-paper, #fff);
+    border: 1px solid var(--border, rgba(148,163,184,0.32));
+    border-radius: 9px;
+    padding: 9px 11px;
+    font-size: 12.2px;
+    line-height: 1.48;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  html[data-theme="dark"] .tailor-item-card {
+    background: rgba(15, 23, 42, 0.52);
+  }
+  .tailor-item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 6px;
+    font-weight: 700;
+  }
+  .tailor-item-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    font-size: 11px;
+  }
+  .tailor-item-line {
+    font-size: 11.8px;
+    opacity: 0.92;
+  }
+
   /* ===== CUTE SIMPLE "N" BADGE (CLICK TO DISMISS) ===== */
   .nav-title-wrap {
     display: inline-flex;
@@ -4561,10 +4635,10 @@
       <!-- TAB: PROFESSIONS (261122 PER-PROFESSION TOGGLE MENUS + ACTIONABLE KPI SUBTEXT + GRID-3 SPACING FIX) -->
       <section id="tab-prof" class="tab">
         <div class="kpi-grid">
-          <div class="kpi"><div class="label">마법부여 (현재 숙련)</div><div class="val" style="color: var(--arcane);">128 &rarr; 175</div><div class="sub">재봉 전환 전: 망토 방어+20(115) &middot; 오일 2~3병 제작 &middot; 5레벨 추출부캐 생성</div></div>
-          <div class="kpi"><div class="label">재봉 전환 시 1&rarr;125</div><div class="val" style="color: var(--verified);">실지출 ~1g 90s</div><div class="sub">전액 ~3g 21s &minus; 보유재료(1g 30s) &middot; 리넨215+양모35 추가매수</div></div>
-          <div class="kpi"><div class="label">무두질 / 요리</div><div class="val" style="color: var(--gold);">202 / 150</div><div class="sub">무두 202! 마리스 대가(300) 승급 가능 &middot; 요리 150 상한(225 서적)</div></div>
-          <div class="kpi"><div class="label">응급치료 / 낚시</div><div class="val">91 / 20</div><div class="sub">응급: 양모 붕대(115&rarr;125 스트롬가드) &middot; 낚시: 20&rarr;50 운하</div></div>
+          <div class="kpi"><div class="label">마법부여 (현재 숙련)</div><div class="val" style="color: var(--arcane);">128 &rarr; 175</div><div class="sub">은마법막대 5.49s 폭락! 전환 전 망토 방어+20&middot;오일 여분&middot;추출 부캐</div></div>
+          <div class="kpi"><div class="label">재봉 전환 적기 (11/24 08:47)</div><div class="val" style="color: var(--gold);">대기 권장 ⏳</div><div class="sub">리넨 2s 품귀로 1&rarr;125 실지출 ~5.71g (리넨 20c 복귀 시 ~1.84g)</div></div>
+          <div class="kpi"><div class="label">보유 재봉 옷감</div><div class="val" style="color: var(--verified);">리넨47 &middot; 양모100</div><div class="sub">+리넨 두루마리 1 &middot; 비단 24 보유 (양모 35개만 추가!)</div></div>
+          <div class="kpi"><div class="label">무두질 / 요리 &middot; 보조</div><div class="val">202 / 150</div><div class="sub">무두 202 대가 승급 가능 &middot; 응급 91 &middot; 낚시 20</div></div>
         </div>
 
         <div class="prof-toggle-bar">
@@ -4573,60 +4647,260 @@
         </div>
 
         <div class="prof-fold-stack" id="profFoldStack">
-          <!-- 1. TAILORING (TOP PRIORITY) -->
+          <!-- 1. TAILORING (TOP PRIORITY - CLEAN OVERHAUL + LV.32-60 TIMELINE) -->
           <details class="fold-card">
-            <summary><span>🧵 <strong>재봉술 (Tailoring)</strong> &mdash; 승급 구간 방법 &middot; 제작 가능 장비 및 재료/원가 &middot; 시세 추이 <span class="badge arcane">1순위 · 메인</span></span></summary>
+            <summary><span>🧵 <strong>재봉술 (Tailoring)</strong> &mdash; 전환 적기 진단 &middot; 1&rarr;125 승급 &middot; Lv.32~60 추천 장비 타임라인 &middot; 시세 추이 <span class="badge arcane">1순위 · 메인</span></span></summary>
             <div class="fold-body">
-              <h3 style="margin-top:0;">1) 승급 구간 방법 (<code>1 &rarr; 125</code> &middot; 선택 <code>145</code>)</h3>
-              <p style="margin-top:0;"><strong>교관 위치:</strong> <code>셀란두스</code> [스톰윈드 마법사 지구 '던칸의 옷감 가게' (<code>42.0, 76.2</code>)] (1~150) &middot; <code>조지오 볼레로</code> (<code>43.2, 73.6</code>) (125~225). <strong>절약 원칙:</strong> 옷감만 경매장에서 사고, 실타래는 반드시 옆 재봉 용품 상인(<code>10c</code>/<code>1s</code>)에게 직구하세요!</p>
-              <div class="table-wrap" style="margin-bottom:12px;">
+              <h3 style="margin-top:0;">📊 전환 적기 진단: 지금(<code>11/24 08:47</code>) 바로 바꾸면 손해! <span class="badge warn">리넨 품귀 · 분리 매수 전략</span></h3>
+              <div class="grid-2" style="margin-bottom:12px;">
+                <div class="callout warn" style="margin:0;">
+                  <strong>⏳ 결론: 전환은 <code>리넨 옷감</code>이 <code>20~25c</code>로 내려올 때!</strong><br>
+                  &bull; 오전 08:47 기준 <code>리넨 옷감</code> 재고가 <strong>187개</strong>로 마르면서 평소 <code>20~21c</code> &rarr; <strong><code>2s 0c</code>(약 10배 폭등!)</strong> 상태입니다.<br>
+                  &bull; 어제(<code>11/23 15:31</code>) 기준 보유 재료 차감 <code>1&rarr;125</code> 실지출이 <strong><code>~1g 90s</code></strong>였으나, 지금 리넨을 2s에 사면 <strong><code>~5g 71s</code></strong>(+3.81g 손해)로 뜁니다.<br>
+                  &bull; <em>팁: <code>리넨 두루마리</code>(65c)가 옷감 2장(4s)보다 6배 싸므로 <code>100&rarr;110</code> 킬트용 52개만 두루마리로 사도 <code>~3g 97s</code>까지 줄지만, 리넨 20c 복귀를 기다리는 편이 압도적으로 이득!</em>
+                </div>
+                <div class="callout verified" style="margin:0;">
+                  <strong>🛒 오늘(<code>11/24 08:47</code>) 먼저 사두면 이득인 저점 재료!</strong><br>
+                  &bull; <strong><code>양모 옷감</code> (<code>1s 9c</code>):</strong> 어제 1s 20c &darr; 하락! 부족분 <strong>35개</strong>(<code>38s 15c</code>) 매수 적기<br>
+                  &bull; <strong><code>비단 옷감</code> (<code>1s 80c</code>):</strong> 4,482개 풍부 &amp; 사흘 내 최저가<br>
+                  &bull; <strong><code>마법 옷감</code> (<code>5s 65c</code>):</strong> <code>6.42s &rarr; 6.65s &rarr; 5.90s &rarr;</code> <strong>오늘 최저점</strong><br>
+                  &bull; <strong><code>야생덩굴</code> (<code>41c</code>) &middot; <code>황금 진주</code> (<code>1g 98s</code>) &middot; <code>감청색 염료</code> (<code>99s</code>):</strong> 전부 급락 저점! (<code>은마법막대</code>도 <code>5s 49c</code>)
+                </div>
+              </div>
+              <div class="table-wrap" style="margin-bottom:16px;">
                 <table>
                   <thead>
-                    <tr><th>구간</th><th>제작 아이템 (수량)</th><th>필요 재료 &middot; 개당 단가</th><th>재료비 소계</th><th>핵심 포인트</th></tr>
+                    <tr><th>스냅샷 시점</th><th>리넨 옷감</th><th>양모 옷감</th><th>비단 옷감</th><th>마법 옷감</th><th><code>1&rarr;125</code> 전액 (훈련포함)</th><th>보유 차감 실지출</th></tr>
                   </thead>
                   <tbody>
-                    <tr><td><strong>1 &rarr; 45</strong></td><td><code>리넨 두루마리</code> &times; 132<br><small>(45까지 102 + 예비 30)</small></td><td><code>리넨 옷감</code> 264개 &times; <strong><code>21c</code></strong></td><td><strong><code>55s 44c</code></strong><br><small>(보유 47+두루마리1 제외 <strong>215개=45s 15c</strong>)</small></td><td>완제품(<code>46c</code>) 대비 직접 감기(<code>42c</code>) 저렴</td></tr>
-                    <tr><td><strong>45 &rarr; 70</strong></td><td><code>두꺼운 리넨 장갑</code> &times; 35</td><td><code>리넨 두루마리</code> 70(기제작)<br>+ <code>굵은 실타래</code> 35개 &times; <strong><code>10c</code></strong> (NPC)</td><td><strong><code>3s 50c</code></strong></td><td><strong>숙련 50</strong>에 <code>수습 재봉사</code>(150) 승급 (<code>5s</code>)</td></tr>
-                    <tr><td><strong>70 &rarr; 75</strong></td><td><code>강화 리넨 망토</code> &times; 5</td><td><code>리넨 두루마리</code> 10(기제작)<br>+ <code>굵은 실타래</code> 15개 &times; <strong><code>10c</code></strong> (NPC)</td><td><strong><code>1s 50c</code></strong></td><td>상점 되팔기로 소액 회수</td></tr>
-                    <tr><td><strong>75 &rarr; 100</strong></td><td><code>양모 두루마리</code> &times; 45</td><td><code>양모 옷감</code> 135개 &times; <strong><code>1s 20c</code></strong></td><td><strong><code>1g 62s 0c</code></strong><br><small>(보유 100 제외 <strong>35개=42s 0c</strong>)</small></td><td>완제품(<code>7s 9c</code>) 대비 직접 감기(<code>3s 60c</code>) 49%↓</td></tr>
-                    <tr><td><strong>100 &rarr; 110</strong></td><td><code>수수한 킬트</code> &times; 13</td><td><code>리넨 두루마리</code> 52(기제작)<br>+ <code>가는 실타래</code> 13개 &times; <strong><code>1s</code></strong> (NPC)</td><td><strong><code>13s 0c</code></strong></td><td>가장 싼 리넨으로 10pt 돌파</td></tr>
-                    <tr><td><strong>110 &rarr; 125</strong></td><td><code>이중 바느질 양모 어깨</code> &times; 15</td><td><code>양모 두루마리</code> 45(기제작)<br>+ <code>가는 실타래</code> 30개 &times; <strong><code>1s</code></strong> (NPC)</td><td><strong><code>30s 0c</code></strong></td><td><strong>125 달성!</strong> <code>조지오 볼레로</code> 전문(225) 승급 (<code>50s</code>)</td></tr>
-                    <tr><td><strong>125 &rarr; 145</strong><br><small>(선택 확장)</small></td><td><code>비단 두루마리</code> &times; 40</td><td><code>비단 옷감</code> 160개 &times; <strong><code>1s 90c</code></strong></td><td><strong><code>3g 4s 0c</code></strong><br><small>(보유 24 제외 <strong>136개=2g 58s 40c</strong>)</small></td><td>완제품(<code>10s 30c</code>) 대비 직접 감기(<code>7s 60c</code>) 26%↓</td></tr>
+                    <tr><td><code>11/22</code> (저점)</td><td>19c</td><td>88c</td><td>1s 40c</td><td>6s 42c</td><td><code>~3g 09s</code></td><td>&mdash;</td></tr>
+                    <tr><td><code>11/23 15:31</code></td><td>21c</td><td>1s 20c</td><td>1s 90c</td><td>5s 90c</td><td><code>~3g 21s</code></td><td><strong><code>~1g 90s</code></strong></td></tr>
+                    <tr><td><strong><code>11/24 08:47</code> (현재)</strong></td><td><strong>2s 0c</strong> ⚠️</td><td><strong>1s 9c</strong> ✅</td><td><strong>1s 80c</strong> ✅</td><td><strong>5s 65c</strong> ✅</td><td><code>~7g 78s</code></td><td><code>~5g 71s</code> <small>(두루마리 혼합 3g 97s)</small></td></tr>
+                    <tr><td><em>리넨 20c 복귀 시</em></td><td><em>20c 가정</em></td><td>1s 9c</td><td>1s 80c</td><td>5s 65c</td><td><em><code>~3g 02s</code></em></td><td><strong><em><code>~1g 84s</code></em></strong></td></tr>
                   </tbody>
                 </table>
-              </div>
-              <div class="callout verified" style="margin-top:0; margin-bottom:16px;">
-                <strong>🧾 승급 구간 총 필요 재료 개수 &amp; 비용 비교 (전액 구매 vs 현재 보유 재료 차감):</strong><br>
-                &bull; <strong>[전액 구매 시] <code>1 &rarr; 125</code>:</strong> <code>리넨 옷감</code> 264(<code>55s 44c</code>) + <code>양모 옷감</code> 135(<code>1g 62s</code>) + <code>굵은 실타래</code> 50(<code>5s</code>) + <code>가는 실타래</code> 43(<code>43s</code>) = 재료 <strong><code>2g 65s 44c</code></strong> + 훈련비(<code>~55s 10c</code>) = <strong>총 <code>~3g 20s 54c</code></strong> <small>(11:33 대비 +29s 64c)</small><br>
-                &nbsp;&nbsp;&rarr; <code>1 &rarr; 145</code> 확장(전액): +<code>비단 옷감</code> 160(<code>3g 4s</code>) = 재료 <strong><code>5g 69s 44c</code></strong> / 훈련 포함 <strong>총 <code>~6g 24s 54c</code></strong><br>
-                &bull; <strong>[보유 재료 차감 실지출 ✅]</strong> 현재 보유: <code>리넨 옷감</code> <strong>47개</strong> + <code>리넨 두루마리</code> <strong>1개</strong> + <code>양모 옷감</code> <strong>100개</strong> + <code>비단 옷감</code> <strong>24개</strong><br>
-                &nbsp;&nbsp;&rarr; <strong><code>1 &rarr; 125</code> 추가 매수:</strong> <code>리넨 옷감</code> <strong>215개</strong>(<code>45s 15c</code>) + <code>양모 옷감</code> <strong>35개</strong>(<code>42s 0c</code>) + <code>실타래 2종</code>(<code>48s</code>) = <strong>순수 재료비 <code>1g 35s 15c</code></strong> + 훈련비 = <strong>실지출 <code>~1g 90s 25c</code>!</strong> (<strong><code>1g 30s 29c</code> 절약</strong>)<br>
-                &nbsp;&nbsp;&rarr; <strong><code>1 &rarr; 145</code> 확장 추가 매수:</strong> 위 재료 + <code>비단 옷감</code> <strong>136개</strong>(<code>2g 58s 40c</code>) = <strong>재료비 <code>3g 93s 55c</code></strong> / 훈련 포함 <strong>실지출 <code>~4g 48s 65c</code></strong> (<strong><code>1g 75s 89c</code> 절약</strong>)
               </div>
 
-              <h3>2) 단계별 제작 가능한 장비 및 재료, 원가</h3>
+              <h3>1) 승급 구간 방법 (<code>1 &rarr; 125</code> &middot; 선택 <code>145</code>)</h3>
+              <p style="margin-top:0;"><strong>교관:</strong> <code>셀란두스</code> [스톰윈드 마법사 지구 (<code>42.0, 76.2</code>)] (1~150) &middot; <code>조지오 볼레로</code> (<code>43.2, 73.6</code>) (125~225). 실타래는 반드시 옆 상인(<code>10c</code>/<code>1s</code>)에게 직구하세요.</p>
               <div class="table-wrap" style="margin-bottom:12px;">
                 <table>
                   <thead>
-                    <tr><th>아이템 (숙련/Lv &middot; 귀속)</th><th>재료 수량 &times; 개당 단가</th><th>총 제작 원가</th><th>현재 장비 대비 판정</th></tr>
+                    <tr><th>구간</th><th>제작품 (수량)</th><th>필요 재료 &middot; <code>11/24</code> 단가</th><th>소계 (보유 차감)</th><th>포인트</th></tr>
                   </thead>
                   <tbody>
-                    <tr><td><strong><code>세공된 진줏빛 머리장식</code></strong><br><small>125 / Lv.25 &middot; <strong>BoP</strong></small></td><td><code>비단 옷감</code> 32(<code>@1s 90c</code>=60s 80c) + <code>가는 실타래</code> 4(<code>@1s</code>=4s) + <code>감청색 염료</code> 2(<code>@1g 5s</code>=2g 10s) + <code>반짝이는 작은 진주</code> 6(<code>@2s 25c</code>=13s 50c)</td><td><strong><code>2g 88s 30c</code></strong><br><small>(+도안값 별도)</small></td><td>🟡 체12/비전+14 vs <code>독수리 모자</code>(체8/지8) &mdash; 놈리건 무료 대안 존재</td></tr>
-                    <tr><td><strong><code>진줏빛 화장복</code></strong><br><small>110 / Lv.22 &middot; <strong>BoP</strong></small></td><td><code>비단 옷감</code> 48(<code>@1s 90c</code>=91s 20c) + <code>비단 실타래</code> 2(<code>@5s</code>=10s) + <code>감청색 염료</code> 6(<code>@1g 5s</code>=6g 30s) + <code>반짝이는 작은 진주</code> 6(<code>@2s 25c</code>=13s 50c) + <code>상급 별의 정수</code> 2(<code>@17s 83c</code>=35s 66c) + <code>은괴</code> 2(<code>@6s 90c</code>=13s 80c)</td><td><strong><code>7g 94s 16c</code></strong><br><small>(도안: 호의 30)</small></td><td>❌ 비전+13으로 현 <code>담쟁이 튜닉</code>(비전+16) 대비 손해</td></tr>
-                    <tr><td><strong><code>거미줄 허리띠</code></strong><br><small>145 / Lv.31 &middot; <strong>BoE</strong></small></td><td><code>비단 옷감</code> 16(<code>@1s 90c</code>=30s 40c) + <code>굵은 거미줄</code> 2(<code>@7s 50c</code>=15s) + <code>철제 죔쇠</code> 1(<code>@2s 12c</code>=2s 12c)</td><td><strong><code>47s 52c</code></strong></td><td>🟡 지8 + 이동불가 해제 스왑용 (BoE라 경매/의뢰 가능)</td></tr>
-                    <tr><td><strong><code>꿈매듭 조끼</code></strong><br><small>190 / Lv.40 &middot; <strong>BoE</strong></small></td><td><code>마법 옷감</code> 30(<code>@5s 90c</code>=1g 77s) + <code>야생덩굴</code> 6(<code>@6s 85c</code>=41s 10c) + <code>야생의 싹</code> 2(<code>@5s 9c</code>=10s 18c) + <code>큰 비단 실타래</code> 2(<code>@20s</code>=40s)</td><td><strong><code>2g 68s 28c</code></strong></td><td>🟢 Lv.40 초고효율 (BoE · 경매 직구/제작 둘 다 유리)</td></tr>
-                    <tr><td><strong><code>황천광채 어깨보호구</code></strong><br><small>195 / Lv.42 &middot; <strong>BoP</strong></small></td><td><code>마법 옷감</code> 80(4g 72s) + <code>큰 비단 실타래</code> 3(60s) + <code>자홍색 염료</code> 4(<code>@2g 33s</code>=9g 32s) + <code>감청색 염료</code> 3(3g 15s) + <strong><code>황금 진주</code> 8(<code>@2g 70s</code>=21g 60s)</strong> + <code>상급 황천의 정수</code> 2(5g 1s 68c)</td><td><strong><code>44g 40s 68c</code></strong></td><td>❌ <code>자홍</code>·<code>황금 진주</code> 고가로 가성비 비추천</td></tr>
+                    <tr><td><strong>1 &rarr; 45</strong></td><td><code>리넨 두루마리</code> &times; 132</td><td><code>리넨 옷감</code> 264 &times; <strong><code>2s 0c</code></strong></td><td><code>5g 28s</code> <small>(추가 215개=4g 30s)</small></td><td>리넨 <code>20c</code> 복귀 시 215개=<strong><code>43s</code></strong></td></tr>
+                    <tr><td><strong>45 &rarr; 70</strong></td><td><code>두꺼운 리넨 장갑</code> &times; 35</td><td>리넨 두루마리 70 + <code>굵은 실타래</code> 35 (NPC 10c)</td><td><strong><code>3s 50c</code></strong></td><td><strong>50 달성</strong> 시 수습(150) 승급 (<code>5s</code>)</td></tr>
+                    <tr><td><strong>70 &rarr; 75</strong></td><td><code>강화 리넨 망토</code> &times; 5</td><td>리넨 두루마리 10 + <code>굵은 실타래</code> 15 (NPC 10c)</td><td><strong><code>1s 50c</code></strong></td><td>상점 매각 소액 회수</td></tr>
+                    <tr><td><strong>75 &rarr; 100</strong></td><td><code>양모 두루마리</code> &times; 45</td><td><code>양모 옷감</code> 135 &times; <strong><code>1s 9c</code></strong></td><td><code>1g 47s 15c</code> <small>(추가 <strong>35개=38s 15c</strong>)</small></td><td>두루마리 <code>4s</code> vs 직접 <code>3s 27c</code></td></tr>
+                    <tr><td><strong>100 &rarr; 110</strong></td><td><code>수수한 킬트</code> &times; 13</td><td>리넨 두루마리 52 + <code>가는 실타래</code> 13 (NPC 1s)</td><td><strong><code>13s 0c</code></strong></td><td>리넨 두루마리 <code>65c</code> 직구 시 33s 80c</td></tr>
+                    <tr><td><strong>110 &rarr; 125</strong></td><td><code>이중 바느질 양모 어깨</code> &times; 15</td><td>양모 두루마리 45 + <code>가는 실타래</code> 30 (NPC 1s)</td><td><strong><code>30s 0c</code></strong></td><td><strong>125 달성!</strong> 전문(225) 승급 (<code>50s</code>)</td></tr>
+                    <tr><td><strong>125 &rarr; 145</strong></td><td><code>비단 두루마리</code> &times; 40 <small>(선택)</small></td><td><code>비단 옷감</code> 160 &times; <strong><code>1s 80c</code></strong></td><td><code>2g 88s</code> <small>(추가 <strong>136개=2g 44s 80c</strong>)</small></td><td>완제품 <code>11s 95c</code> vs 직접 <code>7s 20c</code></td></tr>
                   </tbody>
                 </table>
               </div>
-              <div class="callout gold" style="margin-top:0; margin-bottom:16px;">
-                <strong>🧾 실전 추천 장비 3종(<code>세공된 진줏빛 머리장식</code> + <code>거미줄 허리띠</code> + <code>꿈매듭 조끼</code>) 제작 시 총 재료 개수 &amp; 현재 시세 기준 비용:</strong><br>
-                &bull; <code>비단 옷감</code> <strong>48개</strong>(<code>91s 20c</code>) + <code>마법 옷감</code> <strong>30개</strong>(<code>1g 77s</code>) + <code>가는 실타래</code> <strong>4개</strong>(<code>4s</code>) + <code>큰 비단 실타래</code> <strong>2개</strong>(<code>40s</code>) + <code>감청색 염료</code> <strong>2개</strong>(<code>2g 10s</code>) + <code>반짝이는 작은 진주</code> <strong>6개</strong>(<code>13s 50c</code>) + <code>굵은 거미줄</code> <strong>2개</strong>(<code>15s</code>) + <code>철제 죔쇠</code> <strong>1개</strong>(<code>2s 12c</code>) + <code>야생덩굴</code> <strong>6개</strong>(<code>41s 10c</code>) + <code>야생의 싹</code> <strong>2개</strong>(<code>10s 18c</code>)<br>
-                &nbsp;&nbsp;&rarr; <strong>3종 합계: <code>6g 4s 10c</code></strong> (보유 <code>비단 옷감</code> 24개=<code>45s 60c</code> 차감 시 <strong>실지출 <code>5g 58s 50c</code></strong> / 단품: 머리장식 <code>2g 88s 30c</code> &middot; 허리띠 <code>47s 52c</code> &middot; 꿈매듭 조끼 <code>2g 68s 28c</code>)
+              <div class="grid-2" style="margin-bottom:18px;">
+                <div class="callout" style="margin:0;">
+                  <strong>🎒 현재 보유 재료 (인벤토리 스냅샷 기준)</strong><br>
+                  &bull; <code>리넨 옷감</code> <strong>47개</strong> + <code>리넨 두루마리</code> <strong>1개</strong> &rarr; 추가 필요 <strong>215개</strong><br>
+                  &bull; <code>양모 옷감</code> <strong>100개</strong> &rarr; 추가 필요 <strong>35개</strong> (<code>38s 15c</code>)<br>
+                  &bull; <code>비단 옷감</code> <strong>24개</strong> &rarr; 125까지 <strong>0개</strong> (145 확장 시 136개)
+                </div>
+                <div class="callout verified" style="margin:0;">
+                  <strong>🧾 <code>1 &rarr; 125</code> 최종 비용 요약 (훈련비 ~55s 10c 포함)</strong><br>
+                  &bull; <strong>오늘 전액 / 보유차감:</strong> <code>7g 78s 25c</code> / <code>5g 71s 25c</code><br>
+                  &bull; <strong>오늘 두루마리(65c) 혼합 차감:</strong> <code>3g 97s 05c</code><br>
+                  &bull; <strong>리넨 20c 복귀 대기 시 실지출:</strong> <strong><code>~1g 84s 25c</code></strong> 🎯
+                </div>
+              </div>
+
+              <h3>2) 🗓️ Lv.32 &rarr; Lv.60 재봉술 제작 추천 장비 타임라인 <span class="badge db">wowf.io 전수 검증 &middot; 11/24 원가</span></h3>
+              <p style="margin-top:0;">현재 <strong>Lv.32 비전 마법사(폴)</strong> 기준으로 레벨 구간별 착용 가치가 있는 재봉 제작 장비만 추렸습니다. <strong><code>BoE</code></strong>는 재봉술 없이도 경매장/지인 의뢰가 가능하고, <strong><code>BoP</code></strong>만 본인 재봉술이 필수입니다.</p>
+
+              <div class="tailor-tl">
+                <!-- Stage 1: Lv.31~35 -->
+                <div class="tailor-tl-stage">
+                  <div class="tailor-tl-head">
+                    <span>📍 1단계: Lv.31 ~ 35 (현재 구간 &middot; 숙련 125~175)</span>
+                    <span class="badge verified">즉시/근접 업그레이드</span>
+                  </div>
+                  <div class="tailor-tl-grid">
+                    <div class="tailor-item-card">
+                      <div class="tailor-item-top"><span><code>세공된 진줏빛 머리장식</code> <small>(머리)</small></span><strong><code>2g 71s 60c</code></strong></div>
+                      <div class="tailor-item-meta"><span class="badge arcane">BoP (재봉 125)</span><span class="badge">Lv.25</span></div>
+                      <div class="tailor-item-line"><strong>능력치:</strong> 체력 +12 &middot; <strong>비전 주문력 +14</strong></div>
+                      <div class="tailor-item-line"><strong>재료:</strong> <code>비단 두루마리</code> 8 + <code>가는 실타래</code> 4 + <code>감청색 염료</code> 2 + <code>반짝이는 작은 진주</code> 6</div>
+                      <div class="tailor-item-line"><strong>도안:</strong> 던전 드랍(지하감옥/수도원/우리) &middot; 경매장 구매 (+도안값)</div>
+                    </div>
+                    <div class="tailor-item-card">
+                      <div class="tailor-item-top"><span><code>하늘빛 폭풍매듭 수도두건</code> <small>(머리)</small></span><strong><code>96s 46c</code></strong></div>
+                      <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge">Lv.30 / 숙련 175</span></div>
+                      <div class="tailor-item-line"><strong>능력치:</strong> <strong>체력 +9 &middot; 지능 +9</strong> (현재 <code>독수리 모자</code> 체8/지8 상위)</div>
+                      <div class="tailor-item-line"><strong>재료:</strong> <code>비단 두루마리</code> 7 + <code>하급 신비의 정수</code> 2 + <code>큰 비단 실타래</code> 1 + 청색 염료 4(NPC)</div>
+                      <div class="tailor-item-line"><strong>도안:</strong> 알터랙 산맥 <code>대마법사 알바로</code> 구매 (얼라이언스 전용)</div>
+                    </div>
+                    <div class="tailor-item-card">
+                      <div class="tailor-item-top"><span><code>거미줄 허리띠</code> <small>(허리)</small></span><strong><code>45s 68c</code></strong></div>
+                      <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge">Lv.31 / 숙련 145</span></div>
+                      <div class="tailor-item-line"><strong>능력치:</strong> 지능 +8 + <strong>사용: 이동불가 해제 &amp; 5초 면역</strong> (쿨 30분)</div>
+                      <div class="tailor-item-line"><strong>재료:</strong> <code>비단 두루마리</code> 4 + <code>굵은 거미줄</code> 2 + <code>철제 죔쇠</code> 1(<code>1s 88c</code>)</div>
+                      <div class="tailor-item-line"><strong>도안:</strong> 월드 드랍 (경매장 구하거나 완제품 구매 추천)</div>
+                    </div>
+                    <div class="tailor-item-card">
+                      <div class="tailor-item-top"><span><code>심홍색 비단 조끼</code> &middot; <code>바지</code></span><strong><code>31.8s</code> / <code>39.8s</code></strong></div>
+                      <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge">Lv.32~34 / 숙련 150~160</span></div>
+                      <div class="tailor-item-line"><strong>능력치:</strong> 조끼(<strong>지10+주12</strong>) &middot; 바지(<strong>지13+주8</strong>) &mdash; <em>현 <code>담쟁이 튜닉</code>(비전+20)이 딜 더 셈</em></div>
+                      <div class="tailor-item-line"><strong>재료:</strong> <code>비단 두루마리</code> 4 + 적색 염료 2(NPC 1s) + 실타래 2</div>
+                      <div class="tailor-item-line"><strong>도안:</strong> 스톰윈드 <strong>재봉 교관 학습</strong> (가장 싼 가성비 템)</div>
+                    </div>
+                    <div class="tailor-item-card">
+                      <div class="tailor-item-top"><span><code>마력의 로브</code> <small>(가슴)</small></span><strong><code>3g 5s 30c</code></strong></div>
+                      <div class="tailor-item-meta"><span class="badge arcane">BoP (재봉 155)</span><span class="badge warn">물레 필요</span><span class="badge">Lv.33</span></div>
+                      <div class="tailor-item-line"><strong>능력치:</strong> 지능 +12 &middot; 정신력 +8 &middot; <strong>모든 주문력 +14</strong></div>
+                      <div class="tailor-item-line"><strong>재료:</strong> <code>마법 두루마리</code> 2 + 4원소 정령 각 2 + <code>비단 실타래</code> 2</div>
+                      <div class="tailor-item-line"><strong>도안:</strong> 재봉 교관 학습 (단, 달라란 <code>물레</code> 도안 필요)</div>
+                    </div>
+                    <div class="tailor-item-card">
+                      <div class="tailor-item-top"><span><code>별장식 허리띠</code> <small>(허리)</small></span><strong><code>1g 40s 16c</code></strong></div>
+                      <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge">Lv.35 / 숙련 165</span></div>
+                      <div class="tailor-item-line"><strong>능력치:</strong> 정신력 +4 &middot; <strong>모든 주문력 +13</strong> (딜용 최상위 허리띠)</div>
+                      <div class="tailor-item-line"><strong>재료:</strong> <code>마법 두루마리</code> 4 + <code>질긴 가죽</code> 4 + <code>황수정</code> 1 + <code>철제 죔쇠</code> 1 + 실 1</div>
+                      <div class="tailor-item-line"><strong>도안:</strong> 수도원&middot;줄파락 등 월드 드랍</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Stage 2: Lv.38~45 -->
+                <div class="tailor-tl-stage">
+                  <div class="tailor-tl-head">
+                    <span>📍 2단계: Lv.38 ~ 45 (중반 전성기 &middot; 숙련 180~225)</span>
+                    <span class="badge gold">꿈매듭 &amp; 마법매듭 핵심 구간</span>
+                  </div>
+                  <div class="tailor-tl-grid">
+                    <div class="tailor-item-card">
+                      <div class="tailor-item-top"><span><code>검은 마법매듭 장갑</code> <small>(손)</small></span><strong><code>96s 50c</code></strong></div>
+                      <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge">Lv.38 / 숙련 180</span></div>
+                      <div class="tailor-item-line"><strong>능력치:</strong> <strong>모든 주문력 +15</strong> (육성용 극딜 장갑)</div>
+                      <div class="tailor-item-line"><strong>재료:</strong> <code>마법 두루마리</code> 2(옷감 10) + <code>큰 비단 실타래</code> 2(NPC 40s)</div>
+                      <div class="tailor-item-line"><strong>도안:</strong> 재봉 교관 학습 (원가 1골 미만!)</div>
+                    </div>
+                    <div class="tailor-item-card">
+                      <div class="tailor-item-top"><span><code>꿈매듭 조끼</code> <small>(가슴)</small></span><strong><code>2g 19s 4c</code></strong></div>
+                      <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge warn">물레 필요</span><span class="badge">Lv.40 / 숙련 190</span></div>
+                      <div class="tailor-item-line"><strong>능력치:</strong> 지능 +9 &middot; 정신력 +14 &middot; <strong>모든 주문력 +18</strong></div>
+                      <div class="tailor-item-line"><strong>재료:</strong> <code>마법 두루마리</code> 6 + <code>야생덩굴</code> 6(<code>41c</code>!) + <code>야생의 싹</code> 2 + 큰 비단 실 2</div>
+                      <div class="tailor-item-line"><strong>도안:</strong> 재봉 교관 학습 (Lv.40 최고 효율 상의)</div>
+                    </div>
+                    <div class="tailor-item-card">
+                      <div class="tailor-item-top"><span><code>꿈매듭 장갑</code> <small>(손)</small></span><strong><code>1g 61s 72c</code></strong></div>
+                      <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge warn">물레 필요</span><span class="badge">Lv.42 / 숙련 225</span></div>
+                      <div class="tailor-item-line"><strong>능력치:</strong> 지능 +4 &middot; 정신력 +7 &middot; <strong>모든 주문력 +18</strong></div>
+                      <div class="tailor-item-line"><strong>재료:</strong> <code>마법 두루마리</code> 4 + <code>야생덩굴</code> 4 + <code>야생의 싹</code> 2 + <code>큰 비단 실타래</code> 2</div>
+                      <div class="tailor-item-line"><strong>도안:</strong> 재봉 교관 학습</div>
+                    </div>
+                    <div class="tailor-item-card">
+                      <div class="tailor-item-top"><span><code>붉은 마법매듭 머리띠</code> <small>(머리)</small></span><strong><code>1g 54s 0c</code></strong></div>
+                      <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge">Lv.43 / 숙련 200</span></div>
+                      <div class="tailor-item-line"><strong>능력치:</strong> <strong>지능 +20 &middot; 모든 주문력 +19</strong> (사기급 가성비!)</div>
+                      <div class="tailor-item-line"><strong>재료:</strong> <code>마법 두루마리</code> 4(옷감 20) + 적색 염료 2(NPC 1s) + <code>큰 비단 실타래</code> 2</div>
+                      <div class="tailor-item-line"><strong>도안:</strong> Lv.40~50 월드 드랍 (경매장 도안 확인 필수!)</div>
+                    </div>
+                    <div class="tailor-item-card">
+                      <div class="tailor-item-top"><span><code>꿈매듭 머리장식</code> <small>(머리)</small></span><strong><code>3g 21s 91c</code></strong></div>
+                      <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge warn">물레 필요</span><span class="badge">Lv.45 / 숙련 205</span></div>
+                      <div class="tailor-item-line"><strong>능력치:</strong> 지능 +10 &middot; 정신력 +12 &middot; <strong>모든 주문력 +21</strong></div>
+                      <div class="tailor-item-line"><strong>재료:</strong> <code>마법 두루마리</code> 8 + <code>야생덩굴</code> 4 + <code>야생의 싹</code> 2 + <code>진은 주괴</code> 1 + <code>비취</code> 1 + 큰 실 3</div>
+                      <div class="tailor-item-line"><strong>도안:</strong> 대가 재봉 교관 학습 (프리레이드 직전까지 착용)</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Stage 3: Lv.48~56 -->
+                <div class="tailor-tl-stage">
+                  <div class="tailor-tl-head">
+                    <span>📍 3단계: Lv.48 ~ 56 (후반 돌파 &middot; 숙련 220~290)</span>
+                    <span class="badge db">룬매듭 &middot; 유령매듭 &middot; 평판</span>
+                  </div>
+                  <div class="tailor-tl-grid">
+                    <div class="tailor-item-card">
+                      <div class="tailor-item-top"><span><code>룬매듭 튜닉</code> &middot; <code>허리띠</code> &middot; <code>망토</code></span><strong><code>1g~2g대</code></strong></div>
+                      <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge">Lv.46~48 / 숙련 210~220</span></div>
+                      <div class="tailor-item-line"><strong>능력치:</strong> 튜닉(<strong>지11+주17</strong>) &middot; 허리띠(지12+주8) &middot; 망토(지8+주9)</div>
+                      <div class="tailor-item-line"><strong>재료:</strong> <code>룬무늬 두루마리</code>(장당 <code>5.14s</code>) + <code>룬문자 실타래</code>(50s)</div>
+                      <div class="tailor-item-line"><strong>도안:</strong> 교관(허리) / 여명의 설원 <code>다르날</code>(망토) / 월드 드랍(튜닉)</div>
+                    </div>
+                    <div class="tailor-item-card">
+                      <div class="tailor-item-top"><span><code>유령매듭 바지</code> <small>(다리)</small></span><strong><code>5g 44s 20c</code></strong></div>
+                      <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge">Lv.53 / 숙련 245</span></div>
+                      <div class="tailor-item-line"><strong>능력치:</strong> 정신력 +20 &middot; <strong>모든 주문력 +26</strong></div>
+                      <div class="tailor-item-line"><strong>재료:</strong> <code>룬무늬 두루마리</code> 6(30장=<code>1g 54s</code>) + <code>유령 염료</code> 4(<code>@85s</code>=<code>3g 40s</code>) + <code>룬문자 실타래</code> 1</div>
+                      <div class="tailor-item-line"><strong>도안:</strong> 스트라솔름 드랍 / 경매장</div>
+                    </div>
+                    <div class="tailor-item-card">
+                      <div class="tailor-item-top"><span><code>나무구렁일족 어깨보호대</code> <small>(어깨)</small></span><strong><code>~22.3g</code> <small>(자급시)</small></strong></div>
+                      <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge">Lv.56 / 숙련 290</span></div>
+                      <div class="tailor-item-line"><strong>능력치:</strong> 지능 +13 &middot; <strong>모든 주문력 +17 &middot; 치명타 +14 (1%)</strong></div>
+                      <div class="tailor-item-line"><strong>재료:</strong> <code>달빛 옷감</code> 5(경매 274g / <strong>직접 변환 시 지옥10=3.18g!</strong>) + <code>대지의 정수</code> 5 + <code>생명의 정수</code> 5 + <code>강철그물 거미줄</code> 2</div>
+                      <div class="tailor-item-line"><strong>도안:</strong> 악령의 숲 <code>메일로쉬</code> 평판 상인 판매</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Stage 4: Lv.57~60 Endgame -->
+                <div class="tailor-tl-stage">
+                  <div class="tailor-tl-head">
+                    <span>👑 4단계: Lv.57 ~ 60 (만렙 종결 &middot; 재봉 독점 BiS)</span>
+                    <span class="badge arcane">베틀 필요 &middot; 재봉술 존재 이유</span>
+                  </div>
+                  <div class="tailor-tl-grid">
+                    <div class="tailor-item-card">
+                      <div class="tailor-item-top"><span><code>대마법사의 로브</code> <small>(가슴)</small></span><strong><code>132g 58s</code></strong></div>
+                      <div class="tailor-item-meta"><span class="badge arcane">BoP · 마법사 전용</span><span class="badge warn">베틀 필요</span><span class="badge">Lv.57 / 숙련 295</span></div>
+                      <div class="tailor-item-line"><strong>능력치:</strong> 지12 &middot; <strong>주문력 +40 &middot; 치명 +14(1%)</strong> &middot; 사용: 마나 500</div>
+                      <div class="tailor-item-line"><strong>재료:</strong> <code>룬무늬 두루마리</code> 12 + 4대 정수 각 8 + <code>청록색 염료</code> 10 + <code>룬문자 실타래</code> 2</div>
+                      <div class="tailor-item-line"><strong>도안:</strong> 검은바위 첨탑 하층 [화염술사] 드랍</div>
+                    </div>
+                    <div class="tailor-item-card">
+                      <div class="tailor-item-top"><span><code>대마법사의 허리띠</code> &middot; <code>주문 전문화 장갑</code></span><strong><code>~95g+</code> <small>(달빛자급)</small></strong></div>
+                      <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge warn">베틀 필요</span><span class="badge">Lv.57 / 숙련 295</span></div>
+                      <div class="tailor-item-line"><strong>능력치:</strong> 허리(<strong>지16/체10/주20/치명14</strong>) &middot; 장갑(<strong>지10/주9/치명28</strong>)</div>
+                      <div class="tailor-item-line"><strong>재료:</strong> 허리(룬16+유령염료10+달빛10+물12+불12+큰눈부신6+실6)</div>
+                      <div class="tailor-item-line"><strong>도안:</strong> <code>노트 팀블잭</code>(혈투의 전장) / BWL&middot;월드 드랍</div>
+                    </div>
+                    <div class="tailor-item-card">
+                      <div class="tailor-item-top"><span><code>붉은덩굴 의복 3셋</code> <small>(가슴/다리/발)</small></span><strong><code>레이드 재료</code></strong></div>
+                      <div class="tailor-item-meta"><span class="badge arcane">3셋 치명+2% 재봉 300 전용!</span><span class="badge">Lv.60 / 숙련 300</span></div>
+                      <div class="tailor-item-line"><strong>능력치:</strong> 합계 <strong>적중 +40(4%) &middot; 주문력 +83 &middot; (3) 치명 +2%</strong></div>
+                      <div class="tailor-item-line"><strong>재료:</strong> <code>붉은덩굴</code> &middot; <code>달빛 옷감</code> &middot; <code>강철그물 거미줄</code> &middot; <code>마력 깃든 가죽</code></div>
+                      <div class="tailor-item-line"><strong>도안:</strong> 가시덤불 골짜기 요잠바 섬 <code>린워쇼</code> (잔달라 우호)</div>
+                    </div>
+                    <div class="tailor-item-card">
+                      <div class="tailor-item-top"><span><code>마나 깃든 장식끈</code> &middot; <code>마나섬광 예복</code></span><strong><code>하이잘/베틀</code></strong></div>
+                      <div class="tailor-item-meta"><span class="badge verified">BoE (경매 가능)</span><span class="badge warn">베틀 필요</span><span class="badge">Lv.60 / 숙련 300</span></div>
+                      <div class="tailor-item-line"><strong>능력치:</strong> 장식끈(체21/정18/<strong>비전+20</strong>) &middot; 마나섬광 4셋(적중+마차쿨감+정령딜)</div>
+                      <div class="tailor-item-line"><strong>재료:</strong> <code>유연한 자연의 정수</code> + <code>달빛 옷감</code> + <code>룬무늬 두루마리</code></div>
+                      <div class="tailor-item-line"><strong>도안:</strong> 하이잘 산 <code>아이사라 나이트메도우</code> 판매</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid-2" style="margin-bottom:16px;">
+                <div class="callout gold" style="margin:0;">
+                  <strong>🧾 Lv.31~45 실전 Core 4종 합계 (전부 BoE &middot; 재봉 없이도 구매/의뢰 가능)</strong><br>
+                  &bull; <code>거미줄 허리띠</code>(<code>45s 68c</code>) + <code>검은 마법매듭 장갑</code>(<code>96s 50c</code>)<br>
+                  &bull; + <code>꿈매듭 조끼</code>(<code>2g 19s 4c</code>) + <code>꿈매듭 머리장식</code>(<code>3g 21s 91c</code>)<br>
+                  &rarr; <strong>4종 재료 총계: <code>6g 83s 13c</code></strong> <small>(※ <code>붉은 마법매듭 머리띠</code>(<code>1g 54s</code>) 입수 시 머리 교체 가능)</small>
+                </div>
+                <div class="callout warn" style="margin:0;">
+                  <strong>⚠️ <code>상인의 호의</code> 비전 BoP (<code>황금</code>/<code>황천광채</code>) &amp; <code>물레</code>/<code>베틀</code> 주의</strong><br>
+                  &bull; <code>미빈 섀도위브</code>(붉은마루 <code>11.2, 71.5</code>)의 비전 BoP 도안(<code>황금 끌신 11.7g</code> &middot; <code>손등싸개 15.8g</code> &middot; <code>황천 어깨 33.7g</code> &middot; <code>황금 장식끈 44.6g</code>)은 <code>황금 진주(1.98g)</code>&middot;<code>자홍 염료(1.36g)</code> 원가가 과다해 <strong>레벨업 중 비추천</strong>.<br>
+                  &bull; 포에버 커스텀 <strong><code>물레</code></strong>(Sk 140, 달라란 드랍) / <strong><code>베틀</code></strong>(Sk 300, 도안)은 모닥불 옆 야영 제작물입니다.
+                </div>
               </div>
 
               <h3>3) 재봉술 주요 재료 가격 추이 <span class="badge gold">실측 시세 꺾은선 그래프 &middot; 단위: 실버(s)</span></h3>
-              <p style="margin-top:0; font-size:12.4px; opacity:0.82;">모든 재료 추이는 동일하게 <code>11/22</code>부터 시작합니다. 각 재료명을 탭/호버하면 획득처&middot;상점가 툴팁이 열립니다.</p>
+              <p style="margin-top:0; font-size:12.4px; opacity:0.82;">모든 재료 추이는 동일하게 <code>11/22</code>부터 <code>11/24 08:47</code>까지 이어집니다. 각 재료명을 탭/호버하면 획득처&middot;상점가 툴팁이 열립니다.</p>
               <div id="tailoringPriceChartGrid" class="price-chart-grid" style="margin-bottom:0;"></div>
             </div>
           </details>
@@ -4636,35 +4910,35 @@
             <summary><span>✨ <strong>마법부여 (Enchanting)</strong> &mdash; 현재 <code>128</code> &middot; 전환 전 체크리스트 &middot; 시세 &middot; 도감 18종 <span class="badge">2순위 &middot; 현재 128</span></span></summary>
             <div class="fold-body">
               <div class="callout warn" style="margin-top:0; margin-bottom:12px;">
-                <strong>✅ 현재 마법부여 <code>127</code> &rarr; 재봉술 전환 직전 필수 체크리스트 (삭제해도 발린 마부는 유지됨!):</strong><br>
+                <strong>✅ 현재 마법부여 <code>128</code> &rarr; 재봉술 전환 직전 필수 체크리스트 (삭제해도 발린 마부는 유지됨!):</strong><br>
                 1. <strong>가방·창고 녹·파템 전량 마력 추출 + <code>Lv.5+</code> 추출용 부캐 세팅:</strong> 와우 포에버는 Lv.5+ 숙련 1 부캐로도 전 구간 장비 추출이 가능합니다.<br>
-                2. <strong>망토(<code>하급 보호 +20</code>, 숙련 115):</strong> <strong>주문식 없이 교관(<code>루칸 코델 43.0, 64.4</code>)에게 직접 학습</strong>하며, 은마법막대 없이 <strong><code>룬문자 구리마법막대</code>만으로</strong> <code>이상한 가루 3 + 희미하게 빛나는 작은 결정 1</code>(<code>7s 65c</code>)로 <code>+10 &rarr; +20</code> 바로 적용 가능!<br>
-                3. <strong><code>최하급 마술사 오일 (+8)</code> 여분 제작:</strong> 마부 없이도 사용 가능하므로 남은 가루로 2~3병 제작. <em>(⚠️ <code>마력 깃든 류트</code>는 사용에도 <strong>마부 20 요구 제한</strong>이 있어 전환 후 사용 불가 &mdash; 만들지 마세요!)</em><br>
-                4. <strong>⚠️ 굳이 안 해도 되는 것:</strong> 방어구 키트 4부위 덮어쓰기 금지! 재봉 전환 확정 시 <code>룬문자 은마법막대</code>(은마법막대 경매 <code>27.0s</code>+재료 <code>20.58s</code>, 총 <code>47.58s</code>)도 굳이 만들 필요 없음.
+                2. <strong>망토(<code>하급 보호 +20</code>, 숙련 115):</strong> 교관(<code>루칸 코델 43.0, 64.4</code>) 직접 학습 &amp; 구리막대로 시전 가능. <em>(⚠️ 단, 오늘 <code>11/24 08:47</code> 기준 <code>희미하게 빛나는 작은 결정</code>이 <code>53s</code>로 급등해 원가 <code>57s 38c</code>이므로 결정 저점일 때 적용 권장!)</em><br>
+                3. <strong><code>최하급 마술사 오일 (+8)</code> 여분 제작:</strong> 마부 없이도 사용 가능하므로 남은 <code>이상한 가루</code>로 2~3병 제작.<br>
+                4. <strong>⚠️ <code>은마법막대</code> 오늘 <code>5s 49c</code> 폭락!</strong> 재봉 전환 대기 중 <code>130</code>까지 올려둘 의향이 있다면 오늘 <code>은마법막대 5.49s</code>만 1개 사두어도 좋습니다 (<code>룬문자 은마법막대</code> 총 원가 <code>39s 75c</code>).
               </div>
               <div class="callout verified" style="margin-top:0; margin-bottom:12px;">
-                <strong>💡 최신 시세 핵심 요약 (현재 숙련 <code>127/150</code> · 11/23 15:31):</strong> <code>상급 마법의 정수</code>가 <strong><code>3.76s</code></strong>이므로 3분해 시 <code>하급 마법의 정수</code> 개당 <strong><code>1.25s</code></strong>(직구 <code>2.05s</code> 대비 크게 저렴)! <code>은마법막대</code>는 <strong><code>27.0s</code></strong>로 추가 하락했고, <code>희미하게 빛나는 큰 결정</code>(<code>1g 0s 1c</code>) 진정으로 <code>무기 - 계시</code> 원가는 <strong><code>~11g 37s</code></strong>입니다. <strong>숙련 127이므로 아조라의 탑 전문 승급(50s) 후 3pt만 올리면 130 도달!</strong>
+                <strong>💡 최신 시세 핵심 요약 (현재 숙련 <code>128/150</code> · <code>11/24 08:47</code>):</strong> <code>은마법막대</code>가 <strong><code>5.49s</code></strong>로 폭락했고, <code>희미하게 빛나는 큰 결정</code>(<strong><code>68.57s</code></strong>) &amp; <code>영혼 가루</code>(<strong><code>4.85s</code></strong>) 급락으로 <code>무기 - 계시</code> 원가가 <strong><code>~9g 08s</code></strong>까지 내려왔습니다! 반면 <code>상급 마법의 정수</code>(<code>8.50s</code>) &amp; <code>작은 결정</code>(<code>53s</code>)은 급등 구간.
               </div>
 
-              <h3 style="margin-top:0;">1) <code>127 &rarr; 175</code> 잔여 육성 루트 (전 구간 참고)</h3>
+              <h3 style="margin-top:0;">1) <code>128 &rarr; 175</code> 잔여 육성 루트 (전 구간 참고)</h3>
               <div class="table-wrap" style="margin-bottom:12px;">
                 <table>
                   <thead>
                     <tr><th>구간</th><th>추천 레시피</th><th>1회 재료 &amp; 원가</th><th>예상 시도 (색상)</th><th>구간 예상비</th><th>체크포인트 &amp; 승급 NPC</th></tr>
                   </thead>
                   <tbody>
-                    <tr><td><strong>71 &rarr; 90</strong> <small>(19pt)</small></td><td><code>가슴 - 최하급 흡수</code></td><td><code>하급 마법의 정수</code> 1 (<strong><code>1.25s</code></strong> &larr; 상급 3.76s 분해)</td><td>19회 <em>(주황 확정)</em></td><td><strong><code>23s 81c</code></strong> <small>(상급 7개)</small></td><td>미승급 시 스톰윈드 <code>루칸 코델 (43.0, 64.4)</code> 숙련(150) 승급 (5s)</td></tr>
-                    <tr><td><strong>90 &rarr; 105</strong> <small>(15pt)</small></td><td><code>가슴 - 최하급 흡수</code> 계속</td><td><code>하급 마법의 정수</code> 1 (<strong><code>1.25s</code></strong>)</td><td>~21회 <em>(노랑 90~110)</em></td><td><strong><code>26s 32c</code></strong> <small>(상급 7개)</small></td><td>노랑 기대값 ~<code>1.75s/pt</code> &rarr; 가루 2개(<code>3.10s</code>)보다 저렴</td></tr>
-                    <tr><td><strong>105 &rarr; 130</strong> <small>(25pt)</small></td><td><strong><code>망토 - 최하급 보호</code></strong></td><td><code>이상한 가루</code> 2 (<strong><code>3.10s</code></strong>)</td><td>~34회 <em>(110 주황 / ~130 노랑)</em></td><td><strong><code>1g 5s 40c</code></strong> <small>(가루 68개)</small></td><td><strong>숙련 125</strong>에 엘윈 숲 아조라의 탑 <code>키타 파이어윈드 (64.8, 70.4)</code> 전문(225) 승급 (<strong><code>50s</code></strong>)</td></tr>
-                    <tr><td><strong>130 &rarr; 131</strong> <small>(필수)</small></td><td><strong><code>룬문자 은마법막대</code></strong></td><td><code>은마법막대</code> 1(<code>27.00s</code>) + <code>이상한 가루</code> 6(<code>9.30s</code>) + <code>상급 마법의 정수</code> 3(<code>11.28s</code>)</td><td>1회 <em>(주황 확정)</em></td><td><strong><code>47s 58c</code></strong></td><td><strong>획득처:</strong> <code>키타 파이어윈드</code> 학습 + 베이스 <code>은마법막대</code>는 <strong>경매장 구매(27.0s)</strong> 또는 대장 60 제작 의뢰</td></tr>
-                    <tr><td><strong>131 &rarr; 140</strong> <small>(9pt)</small></td><td><strong><code>손목 - 하급 체력</code></strong></td><td><code>영혼 가루</code> 1 (<strong><code>7.25s</code></strong>)</td><td>9회 <em>(주황 확정)</em></td><td><strong><code>65s 25c</code></strong> <small>(영혼 9개)</small></td><td>내 손목 마부 +3&rarr;+4 갱신 &middot; 무기 <code>계시/통찰</code> 제작 구간 진입</td></tr>
-                    <tr><td><strong>140 &rarr; 175</strong> <small>(35pt)</small></td><td><strong><code>손목 - 하급 체력</code></strong> 계속</td><td><code>영혼 가루</code> 1 (<strong><code>7.25s</code></strong>)</td><td>~44회 <em>(155 주황 / ~175 노랑)</em></td><td><strong><code>3g 19s 0c</code></strong> <small>(영혼 44개)</small></td><td>Lv.30+ 녹템 방어구 직접 추출 시 현금 지출 대폭 감소</td></tr>
+                    <tr><td><strong>71 &rarr; 90</strong> <small>(19pt)</small></td><td><code>가슴 - 최하급 흡수</code></td><td><code>하급 마법의 정수</code> 1 (<strong><code>2.83s</code></strong> &larr; 상급 8.5s 분해)</td><td>19회 <em>(주황 확정)</em></td><td><strong><code>53s 83c</code></strong> <small>(상급 7개)</small></td><td>미승급 시 스톰윈드 <code>루칸 코델 (43.0, 64.4)</code> 숙련(150) 승급 (5s)</td></tr>
+                    <tr><td><strong>90 &rarr; 105</strong> <small>(15pt)</small></td><td><code>가슴 - 최하급 흡수</code> 계속</td><td><code>하급 마법의 정수</code> 1 (<strong><code>2.83s</code></strong>)</td><td>~21회 <em>(노랑 90~110)</em></td><td><strong><code>59s 50c</code></strong> <small>(상급 7개)</small></td><td>노랑 기대값 ~<code>3.97s/pt</code> &rarr; 가루 2개(<code>2.92s</code>)가 더 저렴</td></tr>
+                    <tr><td><strong>105 &rarr; 130</strong> <small>(25pt)</small></td><td><strong><code>망토 - 최하급 보호</code></strong></td><td><code>이상한 가루</code> 2 (<strong><code>2.92s</code></strong>)</td><td>~34회 <em>(110 주황 / ~130 노랑)</em></td><td><strong><code>99s 28c</code></strong> <small>(가루 68개)</small></td><td><strong>숙련 125</strong>에 엘윈 숲 아조라의 탑 <code>키타 파이어윈드 (64.8, 70.4)</code> 전문(225) 승급 (<strong><code>50s</code></strong>)</td></tr>
+                    <tr><td><strong>130 &rarr; 131</strong> <small>(필수)</small></td><td><strong><code>룬문자 은마법막대</code></strong></td><td><code>은마법막대</code> 1(<code>5.49s</code>) + <code>이상한 가루</code> 6(<code>8.76s</code>) + <code>상급 마법의 정수</code> 3(<code>25.50s</code>)</td><td>1회 <em>(주황 확정)</em></td><td><strong><code>39s 75c</code></strong></td><td><strong>획득처:</strong> <code>키타 파이어윈드</code> 학습 + 베이스 <code>은마법막대</code> <strong>경매 5.49s 폭락!</strong></td></tr>
+                    <tr><td><strong>131 &rarr; 140</strong> <small>(9pt)</small></td><td><strong><code>손목 - 하급 체력</code></strong></td><td><code>영혼 가루</code> 1 (<strong><code>4.85s</code></strong>)</td><td>9회 <em>(주황 확정)</em></td><td><strong><code>43s 65c</code></strong> <small>(영혼 9개)</small></td><td>내 손목 마부 +3&rarr;+4 갱신 &middot; 무기 <code>계시/통찰</code> 제작 구간 진입</td></tr>
+                    <tr><td><strong>140 &rarr; 175</strong> <small>(35pt)</small></td><td><strong><code>손목 - 하급 체력</code></strong> 계속</td><td><code>영혼 가루</code> 1 (<strong><code>4.85s</code></strong>)</td><td>~44회 <em>(155 주황 / ~175 노랑)</em></td><td><strong><code>2g 13s 40c</code></strong> <small>(영혼 44개)</small></td><td>영혼 가루 급락(4.85s)으로 175까지 총 비용 대폭 하락</td></tr>
                   </tbody>
                 </table>
               </div>
               <div class="callout" style="margin-bottom:16px;">
-                <strong>📊 현재 <code>127</code> 기준 잔여 원가 요약 (전문 승급 <code>50s</code> + <code>룬문자 은마법막대 47.6s</code> 포함 · 11/23 15:31 시세):</strong>
-                &nbsp;<strong>127&rarr;131</strong> <code>~1g 07s</code> &middot; <strong>127&rarr;140</strong> <code>~1g 72s</code> &middot; <strong>127&rarr;175</strong> <code>~4g 91s</code>
+                <strong>📊 현재 <code>128</code> 기준 잔여 원가 요약 (전문 승급 <code>50s</code> + <code>룬문자 은마법막대 39.75s</code> 포함 · <code>11/24 08:47</code> 시세):</strong>
+                &nbsp;<strong>128&rarr;131</strong> <code>~96s</code> &middot; <strong>128&rarr;140</strong> <code>~1g 39s</code> &middot; <strong>128&rarr;175</strong> <code>~3g 53s</code>
               </div>
 
               <h3>2) 제작 재료별 시세 추이 <span class="badge gold">재료별 독립 차트 · X축 날짜 / Y축 실버</span></h3>
@@ -4680,22 +4954,22 @@
                     <tr><th>숙련</th><th>기술 / 제작품 (탭&middot;호버: 획득처)</th><th>부위 &amp; 효과</th><th>필요 재료 &amp; 1회 원가</th><th>상태 / 추천도</th></tr>
                   </thead>
                   <tbody>
-                    <tr><td><strong>5</strong></td><td><strong><code>최하급 마술사 오일</code></strong></td><td>무기 임시 &middot; <strong>모든 주문력 +8</strong> (30분&middot;5회)</td><td><code>이상한 가루</code> 1(<code>1.55s</code>) + <code>단풍나무 씨앗</code> 1(<code>~1.8~2s</code>) + <code>유리 약병</code> 1(<code>4c</code>) &mdash; <strong><code>~3.4~3.6s</code></strong></td><td><span class="badge verified">✅ 보유 · 7.5s 시 소폭 마진</span></td></tr>
-                    <tr><td><strong>50</strong></td><td><code>손목 - 최하급 체력</code></td><td>손목 &middot; <strong>체력 +3</strong></td><td><code>이상한 가루</code> 3 &mdash; <code>4.65s</code></td><td><span class="badge verified">✅ 현재 적용 중</span></td></tr>
-                    <tr><td><strong>60</strong></td><td><code>손목 - 최하급 정신력</code></td><td>손목 &middot; <strong>정신력 +3</strong></td><td><code>하급 마법의 정수</code> 1 &mdash; <code>1.25s</code></td><td><span class="badge">마나 재생 선택</span></td></tr>
-                    <tr><td><strong>70</strong></td><td><code>손목 - 최하급 지능</code></td><td>손목 &middot; <strong>지능 +3</strong></td><td><code>하급 마법의 정수</code> 1 &mdash; <strong><code>1.25s</code></strong></td><td><span class="badge warn">획귀 드랍 (경매 불가)</span></td></tr>
-                    <tr><td><strong>110 / 130+</strong></td><td><strong><code>무기 - 계시</code></strong></td><td>무기 &middot; 비치명 직접 주문 시 다음 직접 주문 <strong>치명타 +100%</strong></td><td><code>영혼 가루</code> 8 + <code>희미하게 빛나는 큰 결정</code> 6 + <code>상급 별의 정수</code> 2 + <code>감청색 염료</code> 4 + <code>유황산</code> 4(<code>23.2s</code>) &mdash; <strong><code>~11g 37s</code></strong></td><td><span class="badge gold">⭐ 딜러 종결 무기 마부</span></td></tr>
+                    <tr><td><strong>5</strong></td><td><strong><code>최하급 마술사 오일</code></strong></td><td>무기 임시 &middot; <strong>모든 주문력 +8</strong> (30분&middot;5회)</td><td><code>이상한 가루</code> 1(<code>1.46s</code>) + <code>단풍나무 씨앗</code> 1(<code>~1.8~2s</code>) + <code>유리 약병</code> 1(<code>4c</code>) &mdash; <strong><code>~3.3~3.5s</code></strong></td><td><span class="badge verified">✅ 보유 &middot; 경매 6.20s</span></td></tr>
+                    <tr><td><strong>50</strong></td><td><code>손목 - 최하급 체력</code></td><td>손목 &middot; <strong>체력 +3</strong></td><td><code>이상한 가루</code> 3 &mdash; <code>4.38s</code></td><td><span class="badge verified">✅ 현재 적용 중</span></td></tr>
+                    <tr><td><strong>60</strong></td><td><code>손목 - 최하급 정신력</code></td><td>손목 &middot; <strong>정신력 +3</strong></td><td><code>하급 마법의 정수</code> 1 &mdash; <code>2.83s</code></td><td><span class="badge">마나 재생 선택</span></td></tr>
+                    <tr><td><strong>70</strong></td><td><code>손목 - 최하급 지능</code></td><td>손목 &middot; <strong>지능 +3</strong></td><td><code>하급 마법의 정수</code> 1 &mdash; <strong><code>2.83s</code></strong></td><td><span class="badge warn">획귀 드랍 (경매 불가)</span></td></tr>
+                    <tr><td><strong>110 / 130+</strong></td><td><strong><code>무기 - 계시</code></strong></td><td>무기 &middot; 비치명 직접 주문 시 다음 직접 주문 <strong>치명타 +100%</strong></td><td><code>영혼 가루</code> 8 + <code>희미하게 빛나는 큰 결정</code> 6 + <code>상급 별의 정수</code> 2 + <code>감청색 염료</code> 4 + <code>유황산</code> 4(<code>27.6s</code>) &mdash; <strong><code>~9g 08s</code></strong></td><td><span class="badge gold">⭐ 딜러 종결 무기 마부</span></td></tr>
                     <tr><td><strong>125</strong></td><td><code>수습생의 보주</code></td><td>보조장비(BoP) &middot; 지능&middot;주문력</td><td>중급 마부 재료 (도안 구매 후 확인)</td><td><code>현자 지팡이</code>와 비교</td></tr>
-                    <tr><td><strong>125</strong></td><td><code>망토 - 하급 저항력</code></td><td>망토 &middot; <strong>모든 저항력 +1~3</strong></td><td><code>이상한 가루</code> 1 + 하급 별의 정수 1 &mdash; <code>~7.34s</code></td><td><span class="badge">현재 방어+10 대안</span></td></tr>
-                    <tr><td><strong>130</strong></td><td><strong><code>손목 - 하급 체력</code></strong></td><td>손목 &middot; <strong>체력 +4</strong></td><td><code>영혼 가루</code> 1 &mdash; <strong><code>7.25s</code></strong></td><td><span class="badge verified">✅ 육성 겸 즉시 업글</span></td></tr>
-                    <tr><td><strong>140</strong></td><td><strong><code>무기 - 통찰</code></strong></td><td>무기 &middot; 주문 시전 시 확률로 <strong>10초간 정신력 +100%</strong></td><td><code>이상한 가루</code> 10 + <code>희미하게 빛나는 큰 결정</code> 4 + <code>상급 별의 정수</code> 4 + <code>황철석</code> 4 + <code>주름진 이끼</code> 4(<code>1.72g</code>) &mdash; <strong><code>~6g 64s</code></strong></td><td><span class="badge db">가성비 마나 유지</span></td></tr>
-                    <tr><td><strong>150</strong></td><td><strong><code>손목 - 하급 지능</code></strong></td><td>손목 &middot; <strong>지능 +3</strong></td><td><code>상급 별의 정수</code> 2 &mdash; <code>35.66s</code></td><td><span class="badge db">드랍 없이 교관 학습</span></td></tr>
-                    <tr><td><strong>150</strong></td><td><strong><code>최하급 마나 오일</code></strong></td><td>무기 임시 &middot; <strong>5초당 마나 회복 +4~5</strong> (30분&middot;5회)</td><td><code>영혼 가루</code> 1 + <code>단풍나무 씨앗</code> 2 + <code>납 약병</code> 1 &mdash; <strong><code>~11.65s</code></strong> <small>(경매 17.99s)</small></td><td><span class="badge db">인던 장기전 스왑</span></td></tr>
-                    <tr><td><strong>170</strong></td><td><strong><code>손목 - 체력</code></strong></td><td>손목 &middot; <strong>체력 +6</strong></td><td><code>영혼 가루</code> 6 &mdash; <code>43.50s</code></td><td><span class="badge verified">30~40대 생존 추천</span></td></tr>
-                    <tr><td><strong>200</strong></td><td><strong><code>하급 마술사 오일</code></strong></td><td>무기 임시(Lv.30) &middot; <strong>모든 주문력 +16</strong> (30분&middot;5회)</td><td><code>환상 가루</code> 1 + <code>가시덤불 씨앗</code> 2 + <code>납 약병</code> 1</td><td><span class="badge arcane">🔥 30~40 최강 오일</span></td></tr>
-                    <tr><td><strong>210</strong></td><td><strong><code>손목 - 지능</code></strong></td><td>손목 &middot; <strong>지능 +5</strong></td><td>하급 황천의 정수 2</td><td><span class="badge db">40대 마나/비작 시너지</span></td></tr>
-                    <tr><td><strong>210</strong></td><td><strong><code>목걸이 - 주문력</code></strong></td><td>목걸이 &middot; <strong>모든 주문력 +6</strong></td><td><code>상급 황천의 정수</code> 5 + <code>큰 찬란한 결정</code> 3 + <code>꿈가루</code> 8 + <code>감청색 염료</code> 4 + 자홍 염료 4</td><td><span class="badge gold">중후반 핵심 마부</span></td></tr>
-                    <tr><td><strong>240+</strong></td><td><strong><code>보조장비 - 지혜</code></strong></td><td>보조장비 &middot; <strong>지능 +6 &middot; 정신력 +5</strong></td><td><code>큰 눈부신 결정</code> 6 + <code>환상 가루</code> 18 + 바람/물의 정수 각 1</td><td><span class="badge gold">후반 보조장비 마부</span></td></tr>
+                    <tr><td><strong>125</strong></td><td><code>망토 - 하급 저항력</code></td><td>망토 &middot; <strong>모든 저항력 +1~3</strong></td><td><code>이상한 가루</code> 1 + 하급 별의 정수 1 &mdash; <code>10.26s</code></td><td><span class="badge">현재 방어+10 대안</span></td></tr>
+                    <tr><td><strong>130</strong></td><td><strong><code>손목 - 하급 체력</code></strong></td><td>손목 &middot; <strong>체력 +4</strong></td><td><code>영혼 가루</code> 1 &mdash; <strong><code>4.85s</code></strong></td><td><span class="badge verified">✅ 육성 겸 즉시 업글</span></td></tr>
+                    <tr><td><strong>140</strong></td><td><strong><code>무기 - 통찰</code></strong></td><td>무기 &middot; 주문 시전 시 확률로 <strong>10초간 정신력 +100%</strong></td><td><code>이상한 가루</code> 10 + <code>희미하게 빛나는 큰 결정</code> 4 + <code>상급 별의 정수</code> 4 + <code>황철석</code> 4 + <code>주름진 이끼</code> 4(<code>1.62g</code>) &mdash; <strong><code>~5g 27s</code></strong></td><td><span class="badge db">가성비 마나 유지</span></td></tr>
+                    <tr><td><strong>150</strong></td><td><strong><code>손목 - 하급 지능</code></strong></td><td>손목 &middot; <strong>지능 +3</strong></td><td><code>상급 별의 정수</code> 2 &mdash; <code>34.66s</code></td><td><span class="badge db">드랍 없이 교관 학습</span></td></tr>
+                    <tr><td><strong>150</strong></td><td><strong><code>최하급 마나 오일</code></strong></td><td>무기 임시 &middot; <strong>5초당 마나 회복 +4~5</strong> (30분&middot;5회)</td><td><code>영혼 가루</code> 1 + <code>단풍나무 씨앗</code> 2 + <code>납 약병</code> 1 &mdash; <strong><code>~9.25s</code></strong> <small>(경매 15.45s)</small></td><td><span class="badge db">인던 장기전 스왑</span></td></tr>
+                    <tr><td><strong>170</strong></td><td><strong><code>손목 - 체력</code></strong></td><td>손목 &middot; <strong>체력 +6</strong></td><td><code>영혼 가루</code> 6 &mdash; <code>29.10s</code></td><td><span class="badge verified">30~40대 생존 추천</span></td></tr>
+                    <tr><td><strong>200</strong></td><td><strong><code>하급 마술사 오일</code></strong></td><td>무기 임시(Lv.30) &middot; <strong>모든 주문력 +16</strong> (30분&middot;5회)</td><td><code>환상 가루</code> 1(<code>8.69s</code>) + <code>가시덤불 씨앗</code> 2 + <code>납 약병</code> 1 &mdash; <code>~17.09s</code> <small>(경매 27.80s)</small></td><td><span class="badge arcane">🔥 30~40 최강 오일</span></td></tr>
+                    <tr><td><strong>210</strong></td><td><strong><code>손목 - 지능</code></strong></td><td>손목 &middot; <strong>지능 +5</strong></td><td>하급 황천의 정수 2 &mdash; <code>1g 44s 98c</code></td><td><span class="badge db">40대 마나/비작 시너지</span></td></tr>
+                    <tr><td><strong>210</strong></td><td><strong><code>목걸이 - 주문력</code></strong></td><td>목걸이 &middot; <strong>모든 주문력 +6</strong></td><td><code>상급 황천의 정수</code> 5 + <code>큰 찬란한 결정</code> 3 + <code>꿈가루</code> 8 + <code>감청색 염료</code> 4 + 자홍 염료 4 &mdash; <strong><code>~32g 33s</code></strong></td><td><span class="badge gold">중후반 핵심 마부</span></td></tr>
+                    <tr><td><strong>240+</strong></td><td><strong><code>보조장비 - 지혜</code></strong></td><td>보조장비 &middot; <strong>지능 +6 &middot; 정신력 +5</strong></td><td><code>큰 눈부신 결정</code> 6 + <code>환상 가루</code> 18 + 바람/물의 정수 각 1 &mdash; <strong><code>~28g 66s</code></strong></td><td><span class="badge gold">후반 보조장비 마부</span></td></tr>
                     <tr><td><strong>270+</strong></td><td><strong><code>손목 - 상급 주문력</code></strong></td><td>손목 &middot; <strong>모든 주문력 +12</strong></td><td>후반 특수 마부 재료</td><td><span class="badge gold">만렙 손목 종결</span></td></tr>
                     <tr><td><strong>300</strong></td><td><strong><code>무기 - 주문력</code></strong> / <code>망토 - 미묘함</code></td><td>무기 <strong>주문력 +30~40</strong> / 망토 <strong>위협 -2%</strong></td><td><code>큰 눈부신 결정</code> 등 레이드 재료</td><td><span class="badge gold">레이드 최종 종결</span></td></tr>
                   </tbody>
@@ -4706,12 +4980,12 @@
               <div class="grid-3" style="margin-bottom:0;">
                 <div class="callout arcane" style="margin:0;">
                   <strong>✨ <code>무기 - 계시</code> (Revelation)</strong> <span class="badge verified">딜러 추천</span><br>
-                  <small>습득 110 / 은마법막대 130+ &middot; 상인의 호의 45개 &middot; <strong>11/23 15:31 원가 ~11g 37s</strong></small><br><br>
+                  <small>습득 110 / 은마법막대 130+ &middot; 상인의 호의 45개 &middot; <strong>11/24 08:47 원가 ~9g 08s</strong></small><br><br>
                   비주기적 직접 피해 주문이 <strong>치명타로 적중하지 않을 때 확률 발동</strong> &rarr; 다음 직접 피해 주문 <strong>치명타 +100%</strong> <em>(기본 치명이 낮을수록 발동률 상승)</em>
                 </div>
                 <div class="callout gold" style="margin:0;">
                   <strong>💧 <code>무기 - 통찰</code> (Insight)</strong> <span class="badge gold">유지력용</span><br>
-                  <small>요구 140 / 은마법막대 130+ &middot; 상인의 호의 45개 &middot; <strong>11/23 15:31 원가 ~6g 64s</strong></small><br><br>
+                  <small>요구 140 / 은마법막대 130+ &middot; 상인의 호의 45개 &middot; <strong>11/24 08:47 원가 ~5g 27s</strong></small><br><br>
                   주문 시전 시 확률 발동 &rarr; <strong>10초간 정신력 +100%</strong>. <code>신비한 명상</code> + <code>마법사 갑옷</code>과 시너지 우수.
                 </div>
                 <div class="callout" style="margin:0;">
@@ -4866,12 +5140,12 @@
             <summary><span>⚖️ <strong>마부 vs 재봉술 비교 분석</strong> &mdash; 성장 체감 &middot; 만렙 특권 &middot; 전환 로드맵 <span class="badge">비교 분석 아카이브</span></span></summary>
             <div class="fold-body">
               <div class="callout verified" style="margin-top:0;">
-                <strong>🎯 추천 로드맵 ("선 매집·단기 오일 테스트 후 한방 전환"):</strong> 지금 마부 127을 급히 지우지 말고 ① <code>최하급 마술사 오일</code>(원가 <code>~3.4~3.6s</code>, 단풍나무 씨앗 1.8~2s 포함) <strong>소량 테스트</strong>해 시세(7.5s)를 보고, ② 사냥하며 나오는 녹·파템 직접 추출 + ③ 이미 모은 옷감(<code>리넨47·두루마리1·양모100·비단24</code>) 외 부족분(<code>리넨215·양모35</code>)과 비귀속 도안(<code>꿈매듭</code> 등)을 모은 뒤 <strong>준비 완료 시 <code>Lv.5+</code> 부캐 세팅 후 5분 만에 한방 전환</strong>하세요!
+                <strong>🎯 추천 로드맵 ("리넨 대기 &middot; 저점 선매집 후 일괄 전환"):</strong> ① 오늘(<code>11/24</code>)은 리넨(<code>2s</code>)이 품귀니 매수 보류하고 <code>양모(1.09s)</code>&middot;<code>비단(1.80s)</code>&middot;<code>마법(5.65s)</code>&middot;<code>야생덩굴(41c)</code> 등 저점 품목만 확보, ② <code>리넨 20~25c</code> 복귀 시 부족분 215개 일괄 매수 후 <strong><code>Lv.5+</code> 추출 부캐 세팅 + 5분 만에 한방 전환</strong>하세요!
               </div>
               <div class="callout arcane" style="margin-bottom:0;">
                 <strong>⚖️ 핵심 비교 (성장 체감 vs 만렙 특권):</strong><br>
-                &bull; <strong>마법부여의 현실적 약점:</strong> 덮어쓰기는 가능하지만, 레벨업 중 무기를 바꿀 때마다 <code>계시(11.37g)</code>&middot;<code>통찰(6.64g)</code> 비용이 증발하고, 거래창 하단 슬롯으로 타인에게 받아도 효과가 동일합니다. (<code>하급 마술사 오일 +16</code>도 경매장 <code>40s</code> 구매 가능)<br>
-                &bull; <strong>재봉술의 냉정한 현실:</strong> Lv.31~45 추천품 대부분(<code>거미줄 허리띠</code>&middot;<code>꿈매듭 조끼</code>)이 <strong>BoE(경매 구매 가능)</strong>이고, BoP 비전 제작품(<code>진줏빛 화장복 7.94g</code>, <code>황천광채 어깨 44.41g</code>)은 염료&middot;황금진주 비용으로 가성비가 나쁩니다. 단, <strong>만렙(Lv.60) <code>대마법사의 로브</code>(주문+40, BoP)와 <code>붉은덩굴 3셋</code>(치명 +2%, 재봉 300 전용)</strong>은 재봉만의 독점 스펙입니다.
+                &bull; <strong>마법부여의 현실적 약점:</strong> 레벨업 중 무기를 바꿀 때마다 <code>계시(9.08g)</code>&middot;<code>통찰(5.27g)</code> 비용이 증발하고, 거래창 하단 슬롯으로 타인에게 받아도 효과가 동일합니다.<br>
+                &bull; <strong>재봉술의 냉정한 현실:</strong> Lv.32~56 추천품 대부분(<code>거미줄 허리띠 45.7s</code> &middot; <code>검은 마법매듭 장갑 96.5s</code> &middot; <code>꿈매듭 조끼 2.19g</code> &middot; <code>붉은 마법매듭 머리띠 1.54g</code> &middot; <code>꿈매듭 머리장식 3.22g</code>)은 <strong>BoE(경매/의뢰 가능)</strong>이지만, <strong>만렙(Lv.57~60) <code>대마법사의 로브</code>(주문+40, BoP)와 <code>붉은덩굴 3셋</code>(치명 +2%, 재봉 300 전용)</strong>은 재봉만의 독점 스펙입니다.
               </div>
             </div>
           </details>
@@ -8419,73 +8693,73 @@ const WOW_DB = {
     note: '📍 경매장 구매 가능 · 타베사 직업 연퀘 전후로 노릴 수 있는 비전 특화 마법봉'
   },
 
-  // === ENCHANTING MATERIALS & EXTRA RECIPES (261123 15:31 최신 시세 + 획득처 완비) ===
+  // === ENCHANTING MATERIALS & EXTRA RECIPES (261124 08:47 Auctionator 실측 + 획득처 완비) ===
   '상급 마법의 정수': {
-    en: 'Greater Magic Essence', kind: '마법부여 재료 · 시세 3.76s', quality: 'uncommon', icon: 'inv_enchant_essencemagiclarge',
-    rows: [['현재 시세 (11/23 15:31)', '3.76실버'], ['우클릭 분해', '하급 마법의 정수 3개 (개당 1.25s!)']],
+    en: 'Greater Magic Essence', kind: '마법부여 재료 · 시세 8.50s', quality: 'uncommon', icon: 'inv_enchant_essencemagiclarge',
+    rows: [['현재 시세 (11/24 08:47)', '8.50실버 (▲ 급등!)'], ['우클릭 분해', '하급 마법의 정수 3개 (개당 2.83s)']],
     desc: '초반 마법부여 육성 및 룬문자 은마법막대 핵심 정수입니다. 우클릭으로 쪼개면 하급 마법의 정수 3개가 됩니다.',
-    note: '📍 획득처: iLv 16~25 녹템 무기(75%) · 방어구(20%) 마력 추출 / 경매장 구매 (하급 직구 2.05s 대비 저렴!)'
+    note: '📍 획득처: iLv 16~25 녹템 무기(75%) · 방어구(20%) 마력 추출 / 경매장 구매 (하급 직구 3.00s 대비 소폭 절약)'
   },
   '하급 마법의 정수': {
-    en: 'Lesser Magic Essence', kind: '마법부여 재료 · 시세 2.05s', quality: 'uncommon', icon: 'inv_enchant_essencemagicsmall',
-    rows: [['현재 시세 (11/23 15:31)', '2.05실버'], ['상급 분해 원가', '1.25실버 (상급 3.76s ÷ 3)']],
+    en: 'Lesser Magic Essence', kind: '마법부여 재료 · 시세 3.00s', quality: 'uncommon', icon: 'inv_enchant_essencemagicsmall',
+    rows: [['현재 시세 (11/24 08:47)', '3.00실버'], ['상급 분해 원가', '2.83실버 (상급 8.50s ÷ 3)']],
     desc: '71→105 구간 가슴 - 최하급 흡수 및 손목 - 최하급 지능(+3) 재료입니다.',
-    note: '📍 획득처: iLv 6~15 녹템 무기(75%) · 방어구(20%) 마력 추출 / 상급 마법의 정수(3.76s) 쪼개기 추천'
+    note: '📍 획득처: iLv 6~15 녹템 무기(75%) · 방어구(20%) 마력 추출 / 상급 마법의 정수(8.50s) 쪼개기'
   },
   '이상한 가루': {
-    en: 'Strange Dust', kind: '마법부여 재료 · 시세 1.55s', quality: 'common', icon: 'inv_enchant_duststrange',
-    rows: [['현재 시세 (11/23 15:31)', '1.55실버'], ['주요 용도', '최하급 마술사 오일 · 105→130 망토 보호']],
+    en: 'Strange Dust', kind: '마법부여 재료 · 시세 1.46s', quality: 'common', icon: 'inv_enchant_duststrange',
+    rows: [['현재 시세 (11/24 08:47)', '1.46실버'], ['주요 용도', '최하급 마술사 오일 · 105→130 망토 보호 · 통찰']],
     desc: '초반 마법부여와 최하급 마술사 오일에 가장 많이 쓰이는 기본 가루입니다.',
     note: '📍 획득처: iLv 5~25 녹템 방어구(75%) 마력 추출 · 죽음의 폐광 솔플 / 경매장 구매'
   },
   '영혼 가루': {
-    en: 'Soul Dust', kind: '마법부여 재료 · 시세 7.25s', quality: 'common', icon: 'inv_enchant_dustsoul',
-    rows: [['현재 시세 (11/23 15:31)', '7.25실버'], ['주요 용도', '131→175 손목 하급 체력 · 최하급 마나 오일 · 무기 계시']],
+    en: 'Soul Dust', kind: '마법부여 재료 · 시세 4.85s', quality: 'common', icon: 'inv_enchant_dustsoul',
+    rows: [['현재 시세 (11/24 08:47)', '4.85실버 (▼ 33% 급락!)'], ['주요 용도', '131→175 손목 하급 체력 · 최하급 마나 오일 · 무기 계시']],
     desc: '중반 마법부여 육성(131→175)과 무기 계시·마나 오일에 쓰이는 핵심 가루입니다.',
     note: '📍 획득처: iLv 26~35 녹템 방어구(75%) 마력 추출 (지하감옥·놈리건·30대 퀘템) / 경매장 구매'
   },
   '희미하게 빛나는 큰 결정': {
-    en: 'Large Glimmering Shard', kind: '마법부여 결정 · 시세 1g 0.01s', quality: 'rare', icon: 'inv_enchant_shardglimmeringlarge',
-    rows: [['현재 시세 (11/23 15:31)', '1골드 0실버 1코퍼'], ['주요 용도', '무기 - 계시 (6개) · 무기 - 통찰 (4개)']],
+    en: 'Large Glimmering Shard', kind: '마법부여 결정 · 시세 68.57s', quality: 'rare', icon: 'inv_enchant_shardglimmeringlarge',
+    rows: [['현재 시세 (11/24 08:47)', '68실버 57코퍼 (▼ 31% 급락!)'], ['주요 용도', '무기 - 계시 (6개) · 무기 - 통찰 (4개)']],
     desc: '무기 특수 마법부여(계시·통찰·회복)에 대량 소모되는 희귀 결정입니다.',
     note: '📍 획득처: iLv 26~35 희귀(파템) 장비 100% 마력 추출 (지하감옥·놈리건 파템) / 경매장 구매'
   },
   '희미하게 빛나는 작은 결정': {
-    en: 'Small Glimmering Shard', kind: '마법부여 결정 · 시세 3s 0c', quality: 'rare', icon: 'inv_enchant_shardglimmeringsmall',
-    rows: [['현재 시세 (11/23 15:31)', '3s 0c'], ['주요 용도', '망토 - 하급 보호 (+20 방어도, 숙련 115)']],
+    en: 'Small Glimmering Shard', kind: '마법부여 결정 · 시세 53.00s', quality: 'rare', icon: 'inv_enchant_shardglimmeringsmall',
+    rows: [['현재 시세 (11/24 08:47)', '53s 0c (▲ 급등!)'], ['주요 용도', '망토 - 하급 보호 (+20 방어도, 숙련 115)']],
     desc: '저레벨 희귀(파템) 장비 마력 추출로 얻는 작은 결정입니다.',
-    note: '📍 획득처: iLv 20~25 희귀(파템) 장비 마력 추출 / 경매장 구매'
+    note: '📍 획득처: iLv 20~25 희귀(파템) 장비 마력 추출 / 현재 급등 구간이라 저점 대기 추천'
   },
   '상급 별의 정수': {
-    en: 'Greater Astral Essence', kind: '마법부여·재봉 공용 정수 · 시세 17.83s', quality: 'uncommon', icon: 'inv_enchant_essenceastrallarge',
-    rows: [['현재 시세 (11/23 15:31)', '17.83실버'], ['용도', '무기 계시(2) · 통찰(4) · 진줏빛 화장복(2)']],
-    desc: '무기 마부(계시·통찰)와 재봉술 진줏빛 화장복에 함께 쓰이는 중급 정수입니다.',
+    en: 'Greater Astral Essence', kind: '마법부여·재봉 공용 정수 · 시세 17.33s', quality: 'uncommon', icon: 'inv_enchant_essenceastrallarge',
+    rows: [['현재 시세 (11/24 08:47)', '17.33실버 (3분해 5.78s)'], ['용도', '무기 계시(2) · 통찰(4) · 손목 하급 지능(2)']],
+    desc: '무기 마부(계시·통찰)와 손목 하급 지능에 함께 쓰이는 중급 정수입니다.',
     note: '📍 획득처: iLv 31~35 녹템 무기(75%) · 방어구(20%) 마력 추출 / 경매장 구매'
   },
   '감청색 염료': {
-    en: 'Cerulean Dye', kind: '포에버 특수 염료 · 시세 1g 5s 0c', quality: 'uncommon', icon: 'inv_potion_15',
-    rows: [['현재 시세 (11/23 15:31)', '1g 5s 0c'], ['주요 용도', '무기 계시(4) · 진줏빛 머리장식(2) · 화장복(6)']],
-    desc: '와우 포에버 신규 도안(무기 계시·목걸이 주문력·진줏빛 재봉 세트)에 쓰이는 고가 염료입니다.',
+    en: 'Cerulean Dye', kind: '포에버 특수 염료 · 시세 99.00s', quality: 'uncommon', icon: 'inv_potion_15',
+    rows: [['현재 시세 (11/24 08:47)', '99s 0c (▼ 하락!)'], ['주요 용도', '무기 계시(4) · 진줏빛 머리장식(2) · 목걸이 주문력(4)']],
+    desc: '와우 포에버 신규 도안(무기 계시·목걸이 주문력·진줏빛 재봉 세트)에 쓰이는 염료입니다.',
     note: '📍 획득처: 연금술(숙련 35: 주름진 이끼 2 + 유리 약병 1) / 경매장 구매'
   },
   '자홍색 염료': {
-    en: 'Magenta Dye', kind: '포에버 특수 염료 · 시세 2g 33s', quality: 'uncommon', icon: 'inv_potion_11',
-    rows: [['현재 시세 (11/23 15:31)', '2g 33s 0c (▲ 급등!)'], ['주요 용도', '목걸이 주문력(4) · 황천광채 어깨보호구(4) · 달빛 가방']],
+    en: 'Magenta Dye', kind: '포에버 특수 염료 · 시세 1g 35s 99c', quality: 'uncommon', icon: 'inv_potion_11',
+    rows: [['현재 시세 (11/24 08:47)', '1g 35s 99c (▼ 42% 급락!)'], ['주요 용도', '목걸이 주문력(4) · 황천광채 어깨보호구(4) · 달빛 가방']],
     desc: '와우 포에버 중후반 재봉술·마법부여 특수 도안에 들어가는 염료입니다.',
     note: '📍 획득처: 연금술 특수 제조 / 경매장 구매'
   },
   '자홍 염료': { alias: '자홍색 염료' },
   '청록색 염료': {
-    en: 'Teal Dye', kind: '포에버 특수 염료 · 시세 5g 99s 80c', quality: 'uncommon', icon: 'inv_potion_13',
-    rows: [['현재 시세 (11/23 15:31)', '5g 99s 80c (▲ 급등!)'], ['주요 용도', '대마법사의 로브 (10개) · 달빛 가방']],
+    en: 'Teal Dye', kind: '포에버 특수 염료 · 시세 4g 16s 93c', quality: 'uncommon', icon: 'inv_potion_13',
+    rows: [['현재 시세 (11/24 08:47)', '4g 16s 93c (▼ 30% 급락!)'], ['주요 용도', '대마법사의 로브 (10개) · 달빛 가방']],
     desc: '만렙 재봉술(대마법사의 로브·달빛 가방) 제작에 쓰이는 고가 염료입니다.',
     note: '📍 획득처: 연금술 특수 제조 / 경매장 구매'
   },
   '은마법막대': {
-    en: 'Silver Rod', kind: '대장기술 제작 재료 · 시세 27.00s', quality: 'common', icon: 'inv_staff_01',
-    rows: [['상점 판매 여부', '상인 판매 안 함! (구리막대만 판매)'], ['제작 조건', '대장기술 숙련 60 (은괴 6.9s + 돌)']],
+    en: 'Silver Rod', kind: '대장기술 제작 재료 · 시세 5.49s', quality: 'common', icon: 'inv_staff_01',
+    rows: [['상점 판매 여부', '상인 판매 안 함! (구리막대만 판매)'], ['제작 조건', '대장기술 숙련 60 (은괴 7.44s + 돌)']],
     desc: '룬문자 은마법막대 제작의 필수 베이스 막대입니다.',
-    note: '✅ 11/23 15:31 경매 시세 27.00s로 추가 하락 — 룬문자 은마법막대 총 원가 47.58s!'
+    note: '✅ 11/24 08:47 경매 시세 5.49s 폭락 (어제 대비 -80%) — 룬문자 은마법막대 총 원가 39.75s!'
   },
   '단풍나무 씨앗': {
     en: 'Maple Seed', kind: '상인 판매 재료 · 상점가 2s', quality: 'common', icon: 'inv_misc_food_63',
@@ -8508,43 +8782,43 @@ const WOW_DB = {
     note: '📍 획득처: 스톰윈드 마법부여용품 상인 [예사라 코르델] (52.8, 74.3) / 연금술 용품 상인 직구'
   },
   '유황산': {
-    en: 'Vitriol / Sulfuric Acid', kind: '포에버 특수 재료', quality: 'uncommon', icon: 'inv_potion_103',
-    rows: [['용도', '무기 - 계시 (4개)']],
+    en: 'Vitriol / Sulfuric Acid', kind: '포에버 특수 재료 · 시세 6.90s', quality: 'uncommon', icon: 'inv_potion_103',
+    rows: [['현재 시세 (11/24 08:47)', '6s 90c'], ['용도', '무기 - 계시 (4개)']],
     note: '📍 획득처: 경매장 구매 / 연금술·포에버 채집 및 던전 재료'
   },
   '황철석': {
-    en: 'Pyrite', kind: '포에버 광물 재료', quality: 'uncommon', icon: 'inv_misc_gem_emerald_01',
-    rows: [['용도', '무기 - 통찰 (4개) · 무기 - 회복 (4개)']],
+    en: 'Pyrite', kind: '포에버 광물 재료 · 시세 1.68s', quality: 'uncommon', icon: 'inv_misc_gem_emerald_01',
+    rows: [['현재 시세 (11/24 08:47)', '1s 68c'], ['용도', '무기 - 통찰 (4개) · 무기 - 회복 (4개)']],
     note: '📍 획득처: 경매장 구매 / 채광 특수 채집 광물'
   },
   '주름진 이끼': {
-    en: 'Crinkled Moss', kind: '포에버 채집 재료', quality: 'uncommon', icon: 'inv_misc_food_63',
-    rows: [['용도', '무기 - 통찰 (4개)']],
+    en: 'Crinkled Moss', kind: '포에버 채집 재료 · 시세 40.60s', quality: 'uncommon', icon: 'inv_misc_food_63',
+    rows: [['현재 시세 (11/24 08:47)', '40s 60c'], ['용도', '무기 - 통찰 (4개) · 감청색 염료 재료']],
     note: '📍 획득처: 경매장 구매 / 약초·필드 특수 채집'
   },
   '환상 가루': {
-    en: 'Vision Dust', kind: '마법부여 재료 · 시세 12s 45c', quality: 'common', icon: 'inv_enchant_dustvision',
-    rows: [['용도', '하급 마술사 오일 (1개) · 175~225 마부']],
+    en: 'Vision Dust', kind: '마법부여 재료 · 시세 8s 69c', quality: 'common', icon: 'inv_enchant_dustvision',
+    rows: [['현재 시세 (11/24 08:47)', '8s 69c (▼ 30% 하락!)'], ['용도', '하급 마술사 오일 (1개) · 175~225 마부']],
     note: '📍 획득처: iLv 36~45 녹템 방어구(75%) 마력 추출 (수도원·울다만·줄파락) / 경매장 구매'
   },
   '꿈가루': {
-    en: 'Dream Dust', kind: '마법부여 재료 · 시세 28s 0c', quality: 'common', icon: 'inv_enchant_dustdream',
-    rows: [['용도', '목걸이 - 주문력 (8개) · 225~275 마부']],
+    en: 'Dream Dust', kind: '마법부여 재료 · 시세 33s 27c', quality: 'common', icon: 'inv_enchant_dustdream',
+    rows: [['현재 시세 (11/24 08:47)', '33s 27c'], ['용도', '목걸이 - 주문력 (8개) · 225~275 마부']],
     note: '📍 획득처: iLv 46~55 녹템 방어구(75%) 마력 추출 (마라우돈·가라앉은 사원·나락) / 경매장 구매'
   },
   '상급 황천의 정수': {
-    en: 'Greater Nether Essence', kind: '마법부여·재봉 공용 정수 · 시세 2g 50s 84c', quality: 'uncommon', icon: 'inv_enchant_essencenetherlarge',
-    rows: [['용도', '목걸이 - 주문력 (5개) · 황천광채 어깨보호구 (2개)']],
+    en: 'Greater Nether Essence', kind: '마법부여·재봉 공용 정수 · 시세 2g 15s 78c', quality: 'uncommon', icon: 'inv_enchant_essencenetherlarge',
+    rows: [['현재 시세 (11/24 08:47)', '2g 15s 78c'], ['용도', '목걸이 - 주문력 (5개) · 황천광채 어깨보호구 (2개)']],
     note: '📍 획득처: iLv 46~55 녹템 무기(75%) · 방어구(20%) 마력 추출 / 경매장 구매'
   },
   '큰 찬란한 결정': {
-    en: 'Large Radiant Shard', kind: '마법부여 결정 (후반) · 시세 3g 50s 0c', quality: 'rare', icon: 'inv_enchant_shardradientlarge',
-    rows: [['용도', '목걸이 - 주문력 (3개)']],
+    en: 'Large Radiant Shard', kind: '마법부여 결정 (후반) · 시세 3g 15s 89c', quality: 'rare', icon: 'inv_enchant_shardradientlarge',
+    rows: [['현재 시세 (11/24 08:47)', '3g 15s 89c'], ['용도', '목걸이 - 주문력 (3개)']],
     note: '📍 획득처: iLv 46~55 희귀(파템) 장비 100% 마력 추출 / 경매장 구매'
   },
   '큰 눈부신 결정': {
-    en: 'Large Brilliant Shard', kind: '마법부여 결정 (만렙) · 시세 4g 49s 99c', quality: 'rare', icon: 'inv_enchant_shardbrilliantlarge',
-    rows: [['용도', '보조장비 - 지혜 (6개) · 무기 - 주문력 · 망토 - 미묘함']],
+    en: 'Large Brilliant Shard', kind: '마법부여 결정 (만렙) · 시세 3g 30s 0c', quality: 'rare', icon: 'inv_enchant_shardbrilliantlarge',
+    rows: [['현재 시세 (11/24 08:47)', '3g 30s 0c (▼ 27% 급락!)'], ['용도', '보조장비 - 지혜 (6개) · 대마법사의 허리띠(6) · 무기 주문력']],
     note: '📍 획득처: iLv 56+ 만렙 5인 던전/레이드 희귀 장비 마력 추출 / 경매장 구매'
   },
   '손목 - 최하급 정신력': {
@@ -8597,44 +8871,44 @@ const WOW_DB = {
   },
   '가슴 - 최하급 흡수': {
     en: 'Enchant Chest - Minor Absorption', kind: '마법부여 레시피 · 숙련 40', quality: 'spell', icon: 'inv_chest_cloth_07',
-    rows: [['요구 숙련: 40 (주황~90 / 노랑~110)', '재료: 하급 마법의 정수 1'], ['1회 원가: 1.00s (상급 3.00s 분해)', '교관 학습']],
+    rows: [['요구 숙련: 40 (주황~90 / 노랑~110)', '재료: 하급 마법의 정수 1'], ['1회 원가: 2.83s (상급 8.50s 분해)', '교관 학습']],
     effects: ['가슴보호구에 영구적으로 2% 확률로 10의 피해를 흡수하는 효과를 부여합니다.'],
     note: '📍 획득처: 스톰윈드 마법사 지구 마법부여 교관 [루칸 코델] (43.0, 64.4) 학습 · 71→105 최저가 육성 핵심!'
   },
   '망토 - 최하급 보호': {
     en: 'Enchant Cloak - Minor Protection', kind: '마법부여 레시피 · 숙련 70', quality: 'spell', icon: 'inv_misc_cape_02',
-    rows: [['요구 숙련: 70 (주황~110 / 노랑~130)', '재료: 이상한 가루 2'], ['1회 원가: 2.60s (가루 1.30s×2)', '교관 학습']],
+    rows: [['요구 숙련: 70 (주황~110 / 노랑~130)', '재료: 이상한 가루 2'], ['1회 원가: 2.92s (가루 1.46s×2)', '교관 학습']],
     effects: ['망토의 방어도를 영구적으로 10만큼 증가시킵니다.'],
     note: '📍 획득처: 스톰윈드 마법사 지구 마법부여 교관 [루칸 코델] (43.0, 64.4) 학습 · 105→130 육성 핵심'
   },
   '손목 - 최하급 체력': {
     en: 'Enchant Bracer - Minor Stamina', kind: '마법부여 레시피 · 숙련 50', quality: 'spell', icon: 'inv_bracer_07',
-    rows: [['요구 숙련: 50', '재료: 이상한 가루 3'], ['1회 원가: 3.90s (가루 1.30s×3)', '교관 학습']],
+    rows: [['요구 숙련: 50', '재료: 이상한 가루 3'], ['1회 원가: 4.38s (가루 1.46s×3)', '교관 학습']],
     effects: ['손목보호구에 영구적으로 체력 +3을 부여합니다.'],
     note: '📍 획득처: 스톰윈드 마법사 지구 마법부여 교관 [루칸 코델] (43.0, 64.4) 학습 · ✅ 현재 손목 적용 중'
   },
   '손목 - 최하급 지능': {
     en: 'Enchant Bracer - Minor Intellect', kind: '마법부여 레시피 · 숙련 70 · 획귀(BoP)', quality: 'uncommon', icon: 'inv_bracer_07',
-    rows: [['요구 숙련: 70', '재료: 하급 마법의 정수 1 (1.00s)'], ['주문식: 획득 시 귀속 (경매장 불가!)', '몬스터 직접 드랍']],
+    rows: [['요구 숙련: 70', '재료: 하급 마법의 정수 1 (2.83s)'], ['주문식: 획득 시 귀속 (경매장 불가!)', '몬스터 직접 드랍']],
     effects: ['손목보호구에 영구적으로 지능 +3을 부여합니다.'],
     note: '📍 획득처 (획귀 · 직접 파밍 필수): 칼림도어 어둠의 해안 [바다프렌지] (Lv.14~15) / 동부왕국 은빛소나무 숲 [썩은지느러미멀록 바다사냥꾼] (Lv.13~14) 드랍'
   },
   '손목 - 하급 체력': {
     en: 'Enchant Bracer - Lesser Stamina', kind: '마법부여 레시피 · 숙련 130', quality: 'spell', icon: 'inv_bracer_07',
-    rows: [['요구 숙련: 130 (주황~155 / 노랑~175)', '재료: 영혼 가루 1'], ['1회 원가: 7.33s (영혼 가루 1)', '전문 교관 학습']],
+    rows: [['요구 숙련: 130 (주황~155 / 노랑~175)', '재료: 영혼 가루 1'], ['1회 원가: 4.85s (영혼 가루 1)', '전문 교관 학습']],
     effects: ['손목보호구에 영구적으로 체력 +4를 부여합니다.'],
     note: '📍 획득처: 엘윈 숲 아조라의 탑 전문 마법부여 교관 [키타 파이어윈드] (64.8, 70.4) 학습 · 131→175 육성 겸 손목 업글!'
   },
   '무기 - 계시': {
     en: 'Enchant Weapon - Revelation', kind: '무기 마법부여 · 숙련 110 / 은막대 130+ · 획귀', quality: 'rare', icon: 'spell_nature_enchantarmor',
-    rows: [['요구 숙련: 110 (노랑 140 · 은마법막대 필요)', '주문식: 획득 시 귀속'], ['재료: 영혼8+큰결정6+상급별2+감청염료4+유황산4', '11/23 15:31 원가: ~11g 37s']],
+    rows: [['요구 숙련: 110 (노랑 140 · 은마법막대 필요)', '주문식: 획득 시 귀속'], ['재료: 영혼8+큰결정6+상급별2+감청염료4+유황산4', '11/24 08:47 원가: ~9g 08s']],
     effects: ['비주기적 직접 피해 주문이 치명타로 적중하지 않을 때 확률 발동 → 다음 직접 피해 주문의 치명타 확률 +100% 증가.'],
     note: '📍 획득처: 동부왕국 붉은마루 산맥 삼거리 (11.2, 71.5) 상인 [알린시아]에게 [상인의 호의] 45개로 구매 (하단 호의 가이드 참고)'
   },
   '무기 마법부여 - 계시': { alias: '무기 - 계시' },
   '무기 - 통찰': {
     en: 'Enchant Weapon - Insight', kind: '무기 마법부여 · 숙련 140 · 획귀', quality: 'rare', icon: 'spell_nature_enchantarmor',
-    rows: [['요구 숙련: 140 (은마법막대 필요)', '주문식: 획득 시 귀속'], ['재료: 가루10+큰결정4+상급별4+황철석4+주름진이끼4', '11/23 15:31 원가: ~6g 64s']],
+    rows: [['요구 숙련: 140 (은마법막대 필요)', '주문식: 획득 시 귀속'], ['재료: 이상한가루10+큰결정4+상급별4+황철석4+주름진이끼4', '11/24 08:47 원가: ~5g 27s']],
     effects: ['주문 시전 시 확률 발동 → 10초 동안 정신력 +100% 증가.'],
     note: '📍 획득처: 동부왕국 붉은마루 산맥 삼거리 (11.2, 71.5) 상인 [알린시아]에게 [상인의 호의] 45개로 구매 (하단 호의 가이드 참고)'
   },
@@ -8789,76 +9063,76 @@ const WOW_DB = {
   },
   '양모/비단 옷감': { alias: '양모 옷감' },
   '리넨 옷감': {
-    en: 'Linen Cloth', kind: '재봉술 · 응급치료 재료 · 시세 21c', quality: 'common', icon: 'inv_fabric_linen_01',
-    rows: [['현재 시세 (11/23 15:31)', '21코퍼'], ['보유 / 추가 필요', '47장(+두루마리1) 보유 → 215장 추가 필요']],
-    desc: '인간형 몹(엘윈 숲·서부몰락지대·폐광 등)에게 드랍되는 기초 옷감입니다. 완제품 두루마리(46c)보다 직접 사서 감는 편(42c)이 저렴합니다.',
-    note: '📍 1→125 재봉 전환 시 215장(45s 15c) 추가 매수 대상'
+    en: 'Linen Cloth', kind: '재봉술 · 응급치료 재료 · 시세 2s 0c', quality: 'common', icon: 'inv_fabric_linen_01',
+    rows: [['현재 시세 (11/24 08:47)', '2s 0c (▲ 매물 187개 품귀 급등!)'], ['보유 / 추가 필요', '47장(+두루마리1) 보유 → 215장 추가 필요']],
+    desc: '인간형 몹(엘윈 숲·서부몰락지대·폐광 등)에게 드랍되는 기초 옷감입니다. 현재 2s 0c 급등 중이므로 20~25c 복귀 시 매수하거나 리넨 두루마리(65c) 혼합이 유리합니다.',
+    note: '⚠️ 1→125 재봉 전환 시 20c 대기 추천 (오늘 직구 시 4g 30s vs 20c 대기 시 43s)'
   },
   '리넨 두루마리': {
-    en: 'Bolt of Linen Cloth', kind: '재봉술 반제품 · 시세 46c', quality: 'common', icon: 'inv_fabric_linen_02',
-    rows: [['제작 (재봉 1)', '리넨 옷감 × 2 (직접 제작 시 42c)'], ['보유 / 필요 수량', '1개 보유 / 1→125 총 132개 필요']],
-    desc: '리넨 옷감 2장으로 감아 만드는 재봉술 기초 두루마리입니다. 1→45 구간 숙련을 올리며 131개를 추가 제작합니다.',
-    note: '💡 경매장 직구(46c)보다 옷감(21c×2=42c) 직접 감기가 저렴 + 숙련 획득!'
+    en: 'Bolt of Linen Cloth', kind: '재봉술 반제품 · 시세 65c', quality: 'common', icon: 'inv_fabric_linen_02',
+    rows: [['현재 시세 (11/24 08:47)', '65c (옷감 2장 4s 대비 84% 저렴!)'], ['보유 / 필요 수량', '1개 보유 / 1→125 총 132개 필요']],
+    desc: '리넨 옷감 2장으로 감아 만드는 재봉술 기초 두루마리입니다. 11/24 08:47 현재는 옷감(2s)보다 두루마리(65c)가 훨씬 저렴한 역전 현상이 발생했습니다.',
+    note: '💡 1→45 숙련용 45~52회 이후 100→110(수수한 킬트용) 52개는 두루마리 65c 직구로 1g 74s 절약 가능!'
   },
   '양모 옷감': {
-    en: 'Wool Cloth', kind: '재봉술 · 응급치료 재료 · 시세 1s 20c', quality: 'common', icon: 'inv_fabric_wool_01',
-    rows: [['현재 시세 (11/23 15:31)', '1s 20c'], ['보유 / 추가 필요', '100장 보유 → 35장(42s)만 추가 필요!']],
+    en: 'Wool Cloth', kind: '재봉술 · 응급치료 재료 · 시세 1s 9c', quality: 'common', icon: 'inv_fabric_wool_01',
+    rows: [['현재 시세 (11/24 08:47)', '1s 9c (▼ 신저점!)'], ['보유 / 추가 필요', '100장 보유 → 35장(38s 15c)만 추가 필요!']],
     desc: '스톰윈드 지하감옥 데피아즈단·그늘숲 늑대인간 등 Lv.16~30 인간형 몹에게 대량 드랍되는 중저가 옷감입니다.',
-    note: '⭐ 1→125 재봉 전환 시 35장(42s)만 추가 매수하면 완료'
+    note: '⭐ 1→125 재봉 전환 시 35장(38s 15c) 선매집 추천!'
   },
   '양모 두루마리': {
-    en: 'Bolt of Woolen Cloth', kind: '재봉술 반제품 · 시세 7s 9c', quality: 'common', icon: 'inv_fabric_wool_03',
-    rows: [['제작 (재봉 75)', '양모 옷감 × 3 (직접 제작 시 3s 60c)'], ['필요 수량', '75→125 총 45개']],
-    desc: '양모 옷감 3장으로 감아 만드는 두루마리입니다. 완제품(7s 9c) 대비 직접 감기(3s 60c)가 49% 저렴합니다.',
+    en: 'Bolt of Woolen Cloth', kind: '재봉술 반제품 · 시세 4s 0c', quality: 'common', icon: 'inv_fabric_wool_03',
+    rows: [['제작 (재봉 75)', '양모 옷감 × 3 (직접 제작 시 3s 27c)'], ['필요 수량', '75→125 총 45개']],
+    desc: '양모 옷감 3장으로 감아 만드는 두루마리입니다. 직접 감기(3s 27c)가 완제품(4s 0c)보다 저렴하며 숙련도도 얻습니다.',
     note: '📍 110~125 [이중 바느질 양모 어깨보호구] 15개 제작에 전량 소모'
   },
   '비단 옷감': {
-    en: 'Silk Cloth', kind: '재봉술 · 응급치료 재료 · 시세 1s 90c', quality: 'common', icon: 'inv_fabric_silk_01',
-    rows: [['현재 시세 (11/23 15:31)', '1s 90c'], ['보유 / 145 확장 시', '24장 보유 → 136장(2g 58s 40c) 추가']],
+    en: 'Silk Cloth', kind: '재봉술 · 응급치료 재료 · 시세 1s 80c', quality: 'common', icon: 'inv_fabric_silk_01',
+    rows: [['현재 시세 (11/24 08:47)', '1s 80c (▼ 신저점!)'], ['보유 / 145 확장 시', '24장 보유 → 136장(2g 44s 80c) 추가']],
     desc: '지하감옥·수도원·힐스브래드 인간형 몹(Lv.25~40)에게서 나오는 비단 옷감입니다.',
-    note: '💡 비단 두루마리(10s 30c)보다 직접 감기(1s 90c×4=7s 60c)가 26% 저렴!'
+    note: '💡 비단 두루마리(11s 95c)보다 직접 감기(1s 80c×4=7s 20c)가 40% 저렴!'
   },
   '비단 두루마리': {
-    en: 'Bolt of Silk Cloth', kind: '재봉술 반제품 · 시세 10s 30c', quality: 'common', icon: 'inv_fabric_silk_03',
-    rows: [['제작 (재봉 125)', '비단 옷감 × 4 (직접 제작 시 7s 60c)'], ['주요 사용처', '진줏빛 머리장식(8)·화장복(12)·거미줄 허리띠(4)']],
+    en: 'Bolt of Silk Cloth', kind: '재봉술 반제품 · 시세 11s 95c', quality: 'common', icon: 'inv_fabric_silk_03',
+    rows: [['제작 (재봉 125)', '비단 옷감 × 4 (직접 제작 시 7s 20c)'], ['주요 사용처', '진줏빛 머리장식(8)·폭풍매듭(7)·거미줄 허리띠(4)']],
     desc: '비단 옷감 4장으로 감는 중급 두루마리입니다. 125→145 구간을 올리는 핵심 레시피입니다.',
-    note: '📍 125→145 구간 40개(비단 옷감 160장, 보유24 제외 136장=2g 58s 40c) 제작'
+    note: '📍 125→145 구간 40개(비단 옷감 160장, 보유24 제외 136장=2g 44s 80c) 제작'
   },
   '마법 옷감': {
-    en: 'Mageweave Cloth', kind: '재봉술 중후반 재료 · 시세 5s 90c', quality: 'common', icon: 'inv_fabric_mageweave_01',
-    rows: [['현재 시세 (11/23 15:31)', '5s 90c'], ['용도', '재봉 175~250 · 꿈매듭 조끼(30장) · 황천광채 어깨(80장)']],
+    en: 'Mageweave Cloth', kind: '재봉술 중후반 재료 · 시세 5s 65c', quality: 'common', icon: 'inv_fabric_mageweave_01',
+    rows: [['현재 시세 (11/24 08:47)', '5s 65c (▼ 최저가!)'], ['용도', '재봉 175~250 · 꿈매듭 조끼(30장) · 머리띠(20장)']],
     desc: 'Lv.40~50 인간형 몹(줄파락·페랄라스·타나리스 해적 등)이 드랍하는 마법 옷감입니다.',
-    note: '📍 마법 두루마리(37s 40c)보다 직접 감기(5s 90c×5=29s 50c)가 21% 저렴'
+    note: '📍 마법 두루마리(34s 30c)보다 직접 감기(5s 65c×5=28s 25c)가 18% 저렴'
   },
   '마법 두루마리': {
-    en: 'Bolt of Mageweave', kind: '재봉술 반제품 · 시세 37s 40c', quality: 'common', icon: 'inv_fabric_mageweave_03',
-    rows: [['제작 (재봉 175)', '마법 옷감 × 5 (직접 제작 시 29s 50c)'], ['주요 사용처', '꿈매듭 조끼(6)·황천광채 어깨(16)']],
+    en: 'Bolt of Mageweave', kind: '재봉술 반제품 · 시세 34s 30c', quality: 'common', icon: 'inv_fabric_mageweave_03',
+    rows: [['제작 (재봉 175)', '마법 옷감 × 5 (직접 제작 시 28s 25c)'], ['주요 사용처', '꿈매듭 조끼(6)·머리장식(8)·검은 장갑(2)']],
     desc: '마법 옷감 5장으로 감아 만드는 중후반 두루마리입니다.',
     note: '💡 Lv.40 꿈매듭 조끼 제작 시 6개(마법 옷감 30장) 소요'
   },
   '룬무늬 옷감': {
-    en: 'Runecloth', kind: '재봉술 후반 재료 · 시세 5s 31c', quality: 'common', icon: 'inv_fabric_purplefire_01',
-    rows: [['현재 시세 (11/23 15:31)', '5s 31c (마법 옷감보다 저렴!)'], ['용도', '재봉 250~300 · 대마법사의 로브 · 붉은덩굴 세트']],
-    desc: 'Lv.50+ 인간형 몹이 드랍하는 후반 핵심 옷감입니다. 현재 마법 옷감(5s 90c)보다 시세가 싸서 저점 매집 가치가 있습니다.',
-    note: '📍 룬무늬 두루마리(32s 80c)보다 직접 감기(5s 31c×5=26s 55c)가 19% 저렴'
+    en: 'Runecloth', kind: '재봉술 후반 재료 · 시세 5s 14c', quality: 'common', icon: 'inv_fabric_purplefire_01',
+    rows: [['현재 시세 (11/24 08:47)', '5s 14c (마법 옷감보다 저렴!)'], ['용도', '재봉 250~300 · 유령매듭(30장) · 대마법사의 로브']],
+    desc: 'Lv.50+ 인간형 몹이 드랍하는 후반 핵심 옷감입니다. 현재 마법 옷감(5s 65c)보다 시세가 싸서 저점 매집 가치가 있습니다.',
+    note: '📍 룬무늬 두루마리(33s 0c)보다 직접 감기(5s 14c×5=25s 70c)가 22% 저렴'
   },
   '룬무늬 두루마리': {
-    en: 'Bolt of Runecloth', kind: '재봉술 후반 반제품 · 시세 32s 80c', quality: 'common', icon: 'inv_fabric_purplefire_02',
-    rows: [['제작 (재봉 250)', '룬무늬 옷감 × 5 (직접 제작 시 26s 55c)'], ['주요 사용처', '대마법사의 로브(12) · 붉은덩굴 조끼(4)']],
+    en: 'Bolt of Runecloth', kind: '재봉술 후반 반제품 · 시세 33s 0c', quality: 'common', icon: 'inv_fabric_purplefire_02',
+    rows: [['제작 (재봉 250)', '룬무늬 옷감 × 5 (직접 제작 시 25s 70c)'], ['주요 사용처', '유령매듭 바지(6) · 대마법사의 로브(12) · 허리띠(16)']],
     desc: '룬무늬 옷감 5장으로 감아 만드는 만렙권 재봉 반제품입니다.',
     note: '📍 만렙 BiS 제작 대비 필수 재료'
   },
   '지옥 옷감': {
-    en: 'Felcloth', kind: '재봉술 희귀 재료 · 시세 39s 0c', quality: 'common', icon: 'inv_fabric_felrag',
-    rows: [['현재 시세 (11/23 15:31)', '39s 0c'], ['주요 용도', '달빛 옷감 변환 · 지옥매듭 세트']],
+    en: 'Felcloth', kind: '재봉술 희귀 재료 · 시세 31s 80c', quality: 'common', icon: 'inv_fabric_felrag',
+    rows: [['현재 시세 (11/24 08:47)', '31s 80c (▼ 하락!)'], ['주요 용도', '달빛 옷감 변환(2장) · 지옥매듭 세트']],
     desc: '악령의 숲·아즈샤라 사티로스 등이 드랍하며, 달빛 옷감 제작의 원재료입니다.',
-    note: '📍 재봉 250+ 달빛 옷감 변환용'
+    note: '📍 재봉 250+ 달빛 옷감 직접 변환(63.6s vs 경매 54.8g!) 핵심'
   },
   '달빛 옷감': {
-    en: 'Mooncloth', kind: '재봉술 만렙 변환품 · 시세 56g 99s', quality: 'uncommon', icon: 'inv_fabric_moonrag_01',
-    rows: [['현재 시세 (11/23 15:31)', '56g 99s 0c (4일 쿨타임!)'], ['주요 용도', '붉은덩굴 조끼(3)·달빛매듭 세트·18칸 가방']],
+    en: 'Mooncloth', kind: '재봉술 만렙 변환품 · 시세 54g 80s', quality: 'uncommon', icon: 'inv_fabric_moonrag_01',
+    rows: [['현재 시세 (11/24 08:47)', '54g 80s 0c (4일 쿨타임!)'], ['주요 용도', '나무구렁 어깨(5)·대마법사 허리띠(10)·붉은덩굴']],
     desc: '지옥 옷감 2장으로 달빛 우물에서 변환하는 4일 쿨타임 최고가 재봉 재료입니다.',
-    note: '💰 만렙 재봉 250+ 달성 시 4일마다 변환해 고정 수익 창출'
+    note: '💰 만렙 재봉 250+ 달성 시 직접 변환하면 개당 63.6s 원가로 제작 가능!'
   },
   '굵은 실타래': {
     en: 'Coarse Thread', kind: 'NPC 상인 판매 재료 · 10코퍼', quality: 'common', icon: 'inv_fabric_linen_03',
@@ -8897,69 +9171,69 @@ const WOW_DB = {
     note: '📍 대도시 재봉 용품 상인 직구'
   },
   '거미줄': {
-    en: "Spider's Silk", kind: '재봉술 특수 재료 · 시세 28s 60c', quality: 'common', icon: 'spell_nature_web',
-    rows: [['현재 시세 (11/23 15:31)', '28s 60c (▲ 고가 구간)'], ['주요 용도', '거미줄 장화(110) · 거미줄 슬리퍼(115)']],
+    en: "Spider's Silk", kind: '재봉술 특수 재료 · 시세 10s 25c', quality: 'common', icon: 'spell_nature_web',
+    rows: [['현재 시세 (11/24 08:47)', '10s 25c (▼ 반토막 급락!)'], ['주요 용도', '거미줄 장화(110) · 거미줄 슬리퍼(115)']],
     desc: 'Lv.18~30 거미 몬스터(그늘숲·저습지·잿빛골짜기 등)가 드랍하는 재료입니다.',
     note: '📍 그늘숲/저습지 사냥 시 버리지 말고 보관'
   },
   '굵은 거미줄': {
     en: "Thick Spider's Silk", kind: '재봉술 특수 재료 · 시세 7s 50c', quality: 'common', icon: 'spell_nature_web',
-    rows: [['시세 (11/23 15:31)', '7실버 50코퍼'], ['주요 용도', '거미줄 허리띠 (숙련 145, 2개 필요)']],
+    rows: [['현재 시세 (11/24 08:47)', '7실버 50코퍼'], ['주요 용도', '거미줄 허리띠 (숙련 145, 2개 필요)']],
     desc: 'Lv.31+ 거미 몬스터(가시덤불 골짜기·황야의 땅·소금 평원 주변 등)가 드랍합니다.',
     note: '📍 거미줄 허리띠 제작 핵심 재료'
   },
   '그늘 거미줄': {
-    en: 'Shadow Silk', kind: '재봉술 후반 재료 · 시세 9s 90c', quality: 'common', icon: 'spell_nature_web',
-    rows: [['현재 시세 (11/23 15:31)', '9s 90c'], ['주요 용도', '그림자매듭 세트 (180~200)']],
+    en: 'Shadow Silk', kind: '재봉술 후반 재료 · 시세 10s 0c', quality: 'common', icon: 'spell_nature_web',
+    rows: [['현재 시세 (11/24 08:47)', '10s 0c'], ['주요 용도', '그림자매듭 세트 (180~200)']],
     desc: '이글거리는 협곡·저주받은 땅·검은바위 산 고레벨 거미가 드랍합니다.',
     note: '📍 흑마법사·암흑사제 계열 그림자매듭 재료'
   },
   '강철그물 거미줄': {
-    en: 'Ironweb Spider Silk', kind: '재봉술 만렙 재료 · 시세 1g 20s 98c', quality: 'common', icon: 'spell_nature_web',
-    rows: [['현재 시세 (11/23 15:31)', '1g 20s 98c'], ['주요 용도', '붉은덩굴 의복 세트 · 재봉 234~300']],
+    en: 'Ironweb Spider Silk', kind: '재봉술 만렙 재료 · 시세 1g 6s 0c', quality: 'common', icon: 'spell_nature_web',
+    rows: [['현재 시세 (11/24 08:47)', '1g 6s 0c (▼ 하락!)'], ['주요 용도', '나무구렁일족 어깨(2) · 붉은덩굴 세트']],
     desc: '동부/서부 역병지대 및 검은바위 첨탑 하층 거미가 드랍하는 만렙권 재료입니다.',
     note: '📍 만렙 BiS 붉은덩굴 세트 제작 시 필수'
   },
   '반짝이는 작은 진주': {
-    en: 'Small Lustrous Pearl', kind: '재봉·마부 공용 진주 · 시세 2s 25c', quality: 'uncommon', icon: 'inv_misc_gem_pearl_03',
-    rows: [['현재 시세 (11/23 15:31)', '2s 25c'], ['주요 용도', '세공된 진줏빛 머리장식(6) · 진줏빛 화장복(6)']],
+    en: 'Small Lustrous Pearl', kind: '재봉·마부 공용 진주 · 시세 2s 0c', quality: 'uncommon', icon: 'inv_misc_gem_pearl_03',
+    rows: [['현재 시세 (11/24 08:47)', '2s 0c'], ['주요 용도', '세공된 진줏빛 머리장식(6) · 진줏빛 화장복(6)']],
     desc: '멀록·나가 등이 드랍하는 작은 조개를 열면 나오는 진주입니다.',
     note: '📍 잿빛골짜기·저습지 조개 파밍 또는 경매장 저렴 구매'
   },
   '작은 진주': { alias: '반짝이는 작은 진주' },
   '황금 진주': {
-    en: 'Golden Pearl', kind: '희귀 진주 · 시세 2g 70s', quality: 'uncommon', icon: 'inv_misc_gem_pearl_04',
-    rows: [['현재 시세 (11/23 15:31)', '2g 70s 0c'], ['주요 용도', '황천광채 어깨보호구(8개!) · 마부 294 막대']],
+    en: 'Golden Pearl', kind: '희귀 진주 · 시세 1g 98s', quality: 'uncommon', icon: 'inv_misc_gem_pearl_04',
+    rows: [['현재 시세 (11/24 08:47)', '1g 98s 0c (▼ 신저점!)'], ['주요 용도', '황천광채 어깨보호구(8개!) · 마부 294 막대']],
     desc: '타나리스·아즈샤라 바다 거대 조개에서 낮은 확률로 나오는 고가 진주입니다.',
-    note: '11/23 15:31 시세 2.70g — 황천광채 어깨 8개 재료비 21.60g'
+    note: '11/24 08:47 시세 1.98g 신저점 (단, 황천광채 어깨는 총 원가 33.7g으로 여전히 비추천)'
   },
   '야생덩굴': {
-    en: 'Wildvine', kind: '약초·트로피 재료 · 시세 6s 85c', quality: 'common', icon: 'inv_misc_herb_03',
-    rows: [['현재 시세 (11/23 15:31)', '6s 85c (▲ 반등)'], ['주요 용도', '꿈매듭 조끼(6) · 꿈매듭 머리장식(4)']],
+    en: 'Wildvine', kind: '약초·트로피 재료 · 시세 41c', quality: 'common', icon: 'inv_misc_herb_03',
+    rows: [['현재 시세 (11/24 08:47)', '41코퍼 (▼ 역대급 바닥! 선매수 추천!)'], ['주요 용도', '꿈매듭 조끼(6) · 꿈매듭 장갑(4) · 머리장식(4)']],
     desc: '가시덤불 골짜기·동부 내륙지 트롤 몬스터 및 보라연꽃 채집 시 획득합니다.',
-    note: '📍 Lv.40 꿈매듭 세트 제작 핵심 재료 — 11:33(41c) 저점 매진 후 6.85s 반등'
+    note: '⭐ Lv.40 꿈매듭 세트 3부위(14개=5s 74c!) 지금 미리 사두면 대이득!'
   },
   '야생의 싹': {
-    en: 'Heart of the Wild', kind: '재봉·연금 희귀 재료 · 시세 5s 9c', quality: 'common', icon: 'inv_misc_herb_08',
-    rows: [['현재 시세 (11/23 15:31)', '5s 9c'], ['주요 용도', '꿈매듭 조끼(2) · 꿈매듭 머리장식(2)']],
+    en: 'Heart of the Wild', kind: '재봉·연금 희귀 재료 · 시세 3s 54c', quality: 'common', icon: 'inv_misc_herb_08',
+    rows: [['현재 시세 (11/24 08:47)', '3s 54c (▼ 하락!)'], ['주요 용도', '꿈매듭 조끼(2) · 장갑(2) · 머리장식(2)']],
     desc: '운고로 분화구·페랄라스·악령의 숲 정령·식물형 몹이 드랍합니다.',
     note: '📍 꿈매듭 세트 제작 시 저렴하게 구매 가능'
   },
   '은괴': {
-    en: 'Silver Bar', kind: '광물 주괴 · 시세 6s 90c', quality: 'uncommon', icon: 'inv_ingot_01',
-    rows: [['현재 시세 (11/23 15:31)', '6s 90c'], ['용도', '진줏빛 화장복(2개) · 대장 은마법막대']],
+    en: 'Silver Bar', kind: '광물 주괴 · 시세 7s 44c', quality: 'uncommon', icon: 'inv_ingot_01',
+    rows: [['현재 시세 (11/24 08:47)', '7s 44c'], ['용도', '진줏빛 화장복(2개) · 대장 은마법막대']],
     desc: '채광 은 광맥 제련으로 얻는 주괴입니다.',
-    note: '📍 경매장 구매(6s 90c) 또는 채광 유저 의뢰'
+    note: '📍 경매장 구매(7s 44c) 또는 채광 유저 의뢰'
   },
   '철제 죔쇠': {
-    en: 'Iron Buckle', kind: '대장기술 재료 · 시세 2s 12c', quality: 'common', icon: 'inv_potion_35',
-    rows: [['현재 시세 (11/23 15:31)', '2s 12c'], ['제작 (대장 120)', '철 주괴 × 1 (2개 생성)'], ['용도', '거미줄 허리띠(1개) · 심홍색 비단 허리띠']],
+    en: 'Iron Buckle', kind: '대장기술 재료 · 시세 1s 88c', quality: 'common', icon: 'inv_potion_35',
+    rows: [['현재 시세 (11/24 08:47)', '1s 88c'], ['제작 (대장 120)', '철 주괴 × 1 (2개 생성)'], ['용도', '거미줄 허리띠(1개) · 별장식 허리띠(1개)']],
     desc: '대장기술 숙련 120으로 철 주괴 1개를 가공해 만드는 허리띠 죔쇠입니다.',
-    note: '📍 경매장 구매 (2s 12c — 매우 저렴!)'
+    note: '📍 경매장 구매 (1s 88c — 매우 저렴!)'
   },
   '두꺼운 가죽': {
-    en: 'Heavy / Thick Leather', kind: '무두질 골드 핵심 재료', quality: 'uncommon', icon: 'inv_misc_pelt_bear_01',
-    rows: [['Lv.30+ 야수 무두질 채집', '40레벨 탈것(90~100g) 골드 핵심']],
+    en: 'Thick Leather', kind: '무두질 골드 핵심 재료 · 시세 46c', quality: 'uncommon', icon: 'inv_misc_pelt_bear_01',
+    rows: [['현재 시세 (11/24 08:47)', '46c (질긴 2s 7c / 튼튼한 18s 77c)'], ['Lv.30+ 야수 무두질', '40레벨 탈것(90~100g) 골드 핵심']],
     desc: '사우스쇼어·소금 평원·가시덤불 북부·황야의 땅 야수 무두질로 대량 확보해 경매장/상점에 판매하는 주요 수익원입니다.',
     note: '💰 33~40레벨 탈것 골드 마련의 핵심 기둥'
   },
@@ -8990,21 +9264,21 @@ const WOW_DB = {
   },
   '세공된 진줏빛 머리장식': {
     en: 'Filigreed Pearly Circlet', kind: '머리 (천) · 희귀 · BoP · 숙련 125', quality: 'rare', icon: 'inv_helmet_31',
-    rows: [['요구 Lv.25 / iLv 30', '방어도 38 · 획득 시 귀속'], ['제작 원가 (11/23 11:33)', '2g 97s 16c (+도안값)']],
+    rows: [['요구 Lv.25 / iLv 30', '방어도 38 · 획득 시 귀속'], ['제작 원가 (11/24 08:47)', '2g 71s 60c (+도안값)']],
     stats: ['체력 +12'],
     effects: ['착용 효과: 비전 주문 공격력이 최대 14만큼 증가합니다.'],
     note: '📍 재료: 비단 두루마리 8 + 가는 실타래 4 + 감청색 염료 2 + 반짝이는 작은 진주 6 (도안: 던전/경매장)'
   },
   '진줏빛 화장복': {
     en: 'Pearly Gown', kind: '가슴 (천) · 희귀 · BoP · 숙련 110', quality: 'rare', icon: 'inv_chest_cloth_29',
-    rows: [['요구 Lv.22 / iLv 27', '방어도 45 · 획득 시 귀속'], ['제작 원가 (11/23 11:33)', '7g 97s 92c+ (+은괴2·호의30)']],
+    rows: [['요구 Lv.22 / iLv 27', '방어도 45 · 획득 시 귀속'], ['제작 원가 (11/24 08:47)', '7g 69s+ (+은괴2·호의30)']],
     stats: ['체력 +6', '지능 +7', '정신력 +4'],
     effects: ['착용 효과: 비전 주문 공격력이 최대 13만큼 증가합니다.'],
-    note: '❌ 현재 [담쟁이덩굴 튜닉](비전+16) 및 원가 대비 가성비 비추천 (붉은마루 미빈 섀도위브 도안)'
+    note: '❌ 현재 [성난 비전의 엉겅퀴가죽 로브](비전+20) 및 원가 대비 가성비 비추천'
   },
   '거미줄 허리띠': {
     en: 'Spider Belt', kind: '허리 (천) · 고급 · BoE · 숙련 145', quality: 'uncommon', icon: 'inv_belt_25',
-    rows: [['요구 Lv.31 / iLv 36', '방어도 27 · 착용 시 귀속'], ['제작 원가 (11/23 11:33)', '46s 4c+ (+철제 죔쇠 1)']],
+    rows: [['요구 Lv.31 / iLv 36', '방어도 27 · 착용 시 귀속'], ['제작 원가 (11/24 08:47)', '45s 68c']],
     stats: ['지능 +8'],
     effects: ['사용 효과: 현재 걸린 이동 불가 효과를 해제하고 5초간 이동 불가 면역 (쿨 30분).'],
     note: '🟡 BoE라 재봉 없어도 구매/의뢰 가능한 이동불가 해제 유틸 허리띠'
@@ -9012,31 +9286,31 @@ const WOW_DB = {
   '꿈매듭': { alias: '꿈매듭 조끼' },
   '꿈매듭 조끼': {
     en: 'Dreamweave Vest', kind: '가슴 (천) · 희귀 · BoE · 숙련 190', quality: 'rare', icon: 'inv_chest_cloth_42',
-    rows: [['요구 Lv.40 / iLv 45', '방어도 65 · 착용 시 귀속'], ['제작 원가 (11/23 11:33)', '2g 49s 92c']],
+    rows: [['요구 Lv.40 / iLv 45', '방어도 65 · 착용 시 귀속'], ['제작 원가 (11/24 08:47)', '2g 19s 4c (물레 필요)']],
     stats: ['지능 +9', '정신력 +14'],
     effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 18만큼 증가합니다.'],
     note: '🟢 Lv.40 캐스터 가성비 최강 상의 (BoE라 재봉 없어도 경매 구매 가능)'
   },
   '꿈매듭 머리장식': {
-    en: 'Dreamweave Circlet', kind: '머리 (천) · 희귀 · BoE · 숙련 205', quality: 'rare', icon: 'inv_helmet_27',
-    rows: [['요구 Lv.45 / iLv 50', '방어도 58 · 착용 시 귀속'], ['재료', '마법 두루마리 8+야생덩굴 4+야생의 싹 2+진은 주괴 1+비취 1']],
+    en: 'Dreamweave Circlet', kind: '머리 (천) · 희귀 · BoE · 숙련 205', quality: 'rare', icon: 'inv_crown_01',
+    rows: [['요구 Lv.45 / iLv 50', '방어도 58 · 착용 시 귀속'], ['제작 원가 (11/24 08:47)', '3g 21s 91c (물레 필요)']],
     stats: ['지능 +10', '정신력 +12'],
     effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 21만큼 증가합니다.'],
     note: '🟢 Lv.45 프리레이드급 투구 (BoE)'
   },
   '황천광채 어깨보호구': {
     en: 'Nethershine Shoulders', kind: '어깨 (천) · 희귀 · BoP · 숙련 195', quality: 'rare', icon: 'inv_shoulder_13',
-    rows: [['요구 Lv.42 / iLv 47', '방어도 51 · 획득 시 귀속'], ['제작 원가 (11/23 11:33)', '약 47g 22s (황금진주 3.54g·상급황천 2.99g 반영)']],
+    rows: [['요구 Lv.42 / iLv 47', '방어도 51 · 획득 시 귀속'], ['제작 원가 (11/24 08:47)', '약 33g 69s (황금진주 1.98g·자홍 1.36g 반영)']],
     stats: ['체력 +8', '지능 +8', '정신력 +6'],
     effects: ['착용 효과: 비전 주문 공격력이 최대 17만큼 증가합니다.'],
-    note: '황금 진주 급락으로 원가가 절반 이하로 내려왔으나 여전히 고가 — BoP 주의'
+    note: '황금 진주·자홍 염료 하락으로 33.7g까지 떨어졌으나 여전히 레벨업 중 과지출 — BoP 주의'
   },
   '대마법사의 로브': {
     en: 'Robe of the Archmage', kind: '가슴 (천) · 영웅 · BoP · 숙련 295', quality: 'epic', icon: 'inv_chest_cloth_38',
-    rows: [['요구 Lv.57 / 마법사 전용', '방어도 96 · 획득 시 귀속'], ['재료 (포에버)', '룬무늬 두루마리 12+원소 정수 각8+청록 염료 10']],
+    rows: [['요구 Lv.57 / 마법사 전용', '방어도 96 · 획득 시 귀속'], ['제작 원가 (11/24 08:47)', '약 132g 58s (베틀 필요)']],
     stats: ['지능 +12'],
     effects: ['착용 효과: 마법 주문 극대화 및 주문 공격력 +40.', '사용 효과: 즉시 마나 500 회복 (재사용 대기시간 5분).'],
-    note: '⭐ 재봉술을 선택하는 만렙 마법사 1순위 이유 (검은바위 첨탑 도안 드랍)'
+    note: '⭐ 재봉술을 선택하는 만렙 마법사 1순위 이유 (검은바위 첨탑 하층 도안 드랍)'
   },
   '붉은덩굴': {
     en: 'Bloodvine', kind: '만렙 재봉 재료 · 시세 미스캔', quality: 'uncommon', icon: 'inv_misc_herb_09',
@@ -9045,11 +9319,198 @@ const WOW_DB = {
     note: '📍 재봉술 300 본인 전용 세트 보너스(치명 +2%) 재료'
   },
   '붉은덩굴 3셋': { alias: '붉은덩굴 조끼' },
+  '붉은덩굴 의복 3셋': { alias: '붉은덩굴 조끼' },
   '붉은덩굴 조끼': {
     en: 'Bloodvine Vest (3-Set)', kind: '가슴 (천) · 희귀 · 재봉 300 세트', quality: 'rare', icon: 'inv_chest_cloth_07',
     rows: [['요구 Lv.60 · 재봉 300', '조끼 + 다리 + 장화 3부위'], ['3세트 효과 (재봉 300 전용!)', '주문 극대화 확률 +2.0%']],
-    effects: ['착용 효과: 주문 적중/주문력 대폭 상승 + 재봉술 300 본인 착용 시 세트 치명 +2% 발동!'],
+    effects: ['착용 효과: 3부위 합계 적중 +40(4%), 주문력 +83 + 재봉술 300 본인 착용 시 치명 +2% 발동!'],
     note: '⭐ 대마법사의 로브와 함께 만렙 재봉술 유지의 핵심 특권'
+  },
+
+  // === Lv.32~60 재봉술 타임라인 신규 아이템 & 공용 원소/정수/설비 ===
+  '하늘빛 폭풍매듭 수도두건': {
+    en: 'Azure Stormweave Cowl', kind: '머리 (천) · 고급 · BoE · 숙련 175', quality: 'uncommon', icon: 'inv_helmet_30',
+    rows: [['요구 Lv.30', '착용 시 귀속 (경매/의뢰 가능)'], ['제작 원가 (11/24 08:47)', '96s 46c']],
+    stats: ['체력 +9', '지능 +9'],
+    note: '📍 도안: 알터랙 산맥 [대마법사 알바로] 판매 (얼라이언스 전용). 현재 [독수리의 내구력 모자](체8/지8) 상위!'
+  },
+  '심홍색 비단 조끼': {
+    en: 'Crimson Silk Vest', kind: '가슴 (천) · 고급 · BoE · 숙련 150', quality: 'uncommon', icon: 'inv_shirt_04',
+    rows: [['요구 Lv.32', '착용 시 귀속 (경매/의뢰 가능)'], ['제작 원가 (11/24 08:47)', '31s 80c']],
+    stats: ['지능 +10'],
+    effects: ['착용 효과: 주문 공격력 및 치유량이 최대 12만큼 증가합니다.'],
+    note: '📍 스톰윈드 재봉 교관 학습. 단, 현재 [성난 비전의 엉겅퀴가죽 로브](비전+20)가 딜은 더 높음'
+  },
+  '심홍색 비단 바지': {
+    en: 'Crimson Silk Pantaloons', kind: '다리 (천) · 고급 · BoE · 숙련 160', quality: 'uncommon', icon: 'inv_pants_06',
+    rows: [['요구 Lv.34', '착용 시 귀속 (경매/의뢰 가능)'], ['제작 원가 (11/24 08:47)', '39s 80c']],
+    stats: ['지능 +13'],
+    effects: ['착용 효과: 주문 공격력 및 치유량이 최대 8만큼 증가합니다.'],
+    note: '📍 스톰윈드 재봉 교관 학습 (비단 두루마리 4 + 적색 염료 2 + 가는 실타래 2)'
+  },
+  '마력의 로브': {
+    en: 'Robe of Power', kind: '가슴 (천) · 희귀 · BoP · 숙련 155', quality: 'rare', icon: 'inv_chest_cloth_02',
+    rows: [['요구 Lv.33', '획득 시 귀속 · 물레 필요'], ['제작 원가 (11/24 08:47)', '3g 5s 30c']],
+    stats: ['지능 +12', '정신력 +8'],
+    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 14만큼 증가합니다.'],
+    note: '📍 재봉 교관 학습 (단, 달라란 드랍 도안 [물레] 설치 필요)'
+  },
+  '별장식 허리띠': {
+    en: 'Star Belt', kind: '허리 (천) · 희귀 · BoE · 숙련 165', quality: 'rare', icon: 'inv_belt_06',
+    rows: [['요구 Lv.35', '착용 시 귀속 (경매/의뢰 가능)'], ['제작 원가 (11/24 08:47)', '1g 40s 16c']],
+    stats: ['정신력 +4'],
+    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 13만큼 증가합니다.'],
+    note: '📍 Lv.35 전후 월드 드랍 도안. 딜용 최상위 허리띠'
+  },
+  '검은 마법매듭 장갑': {
+    en: 'Black Mageweave Gloves', kind: '손 (천) · 고급 · BoE · 숙련 180', quality: 'uncommon', icon: 'inv_gauntlets_05',
+    rows: [['요구 Lv.38', '착용 시 귀속 (경매/의뢰 가능)'], ['제작 원가 (11/24 08:47)', '96s 50c']],
+    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 15만큼 증가합니다.'],
+    note: '📍 재봉 교관 학습 — 1골드 미만으로 만드는 Lv.38 극딜 손 슬롯'
+  },
+  '꿈매듭 장갑': {
+    en: 'Dreamweave Gloves', kind: '손 (천) · 희귀 · BoE · 숙련 225', quality: 'rare', icon: 'inv_gauntlets_18',
+    rows: [['요구 Lv.42', '착용 시 귀속 · 물레 필요'], ['제작 원가 (11/24 08:47)', '1g 61s 72c']],
+    stats: ['지능 +4', '정신력 +7'],
+    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 18만큼 증가합니다.'],
+    note: '📍 재봉 교관 학습 — Lv.42 4스탯·주문력 균형 최강 손 슬롯'
+  },
+  '붉은 마법매듭 머리띠': {
+    en: 'Red Mageweave Headband', kind: '머리 (천) · 고급 · BoE · 숙련 200', quality: 'uncommon', icon: 'inv_misc_bandana_01',
+    rows: [['요구 Lv.43', '착용 시 귀속 (경매/의뢰 가능)'], ['제작 원가 (11/24 08:47)', '1g 54s 0c']],
+    stats: ['지능 +20'],
+    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 19만큼 증가합니다.'],
+    note: '📍 Lv.40~50 월드 드랍 도안 (가성비 최강 40대 투구!)'
+  },
+  '룬매듭 튜닉': {
+    en: 'Runecloth Tunic', kind: '가슴 (천) · 고급 · BoE · 숙련 215', quality: 'uncommon', icon: 'inv_chest_cloth_04',
+    rows: [['요구 Lv.47', '착용 시 귀속 (경매/의뢰 가능)'], ['재료', '룬무늬 두루마리 5 + 룬문자 실타래 1']],
+    stats: ['지능 +11'],
+    effects: ['착용 효과: 주문 공격력 및 치유량이 최대 17만큼 증가합니다.'],
+    note: '📍 Lv.46~50 구간 저렴한 룬매듭 제작템'
+  },
+  '유령매듭 바지': {
+    en: 'Ghostweave Pants', kind: '다리 (천) · 희귀 · BoE · 숙련 245', quality: 'rare', icon: 'inv_pants_01',
+    rows: [['요구 Lv.53', '착용 시 귀속 (경매/의뢰 가능)'], ['제작 원가 (11/24 08:47)', '5g 44s 20c']],
+    stats: ['정신력 +20'],
+    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 26만큼 증가합니다.'],
+    note: '📍 도안: 스트라솔름 드랍 / 경매장 (유령 염료 4개 = 3g 40s)'
+  },
+  '나무구렁일족 어깨보호대': {
+    en: 'Mantle of the Timbermaw', kind: '어깨 (천) · 희귀 · BoE · 숙련 290', quality: 'rare', icon: 'inv_shoulder_19',
+    rows: [['요구 Lv.56', '착용 시 귀속 (경매/의뢰 가능)'], ['자급 원가 (11/24 08:47)', '~22.3g (달빛 5 직접 변환 시)']],
+    stats: ['지능 +13'],
+    effects: ['착용 효과: 주문 공격력 +17 · 주문 극대화 +14 (1%).'],
+    note: '📍 악령의 숲 [메일로쉬] 평판 도안 — 달빛 옷감 자급 여부에 따라 원가 차이 큼'
+  },
+  '대마법사의 허리띠': {
+    en: 'Belt of the Archmage', kind: '허리 (천) · 영웅 · BoE · 숙련 295', quality: 'epic', icon: 'inv_belt_31',
+    rows: [['요구 Lv.57', '착용 시 귀속 · 베틀 필요'], ['자급 원가 (11/24 08:47)', '~95g+ (달빛 10 직접 변환 시)']],
+    stats: ['체력 +10', '지능 +16'],
+    effects: ['착용 효과: 주문 공격력 +20 · 주문 극대화 +14 (1%).'],
+    note: '📍 혈투의 전장 [노트 팀블잭] 등 드랍 — 60레벨 종결급 에픽 허리띠'
+  },
+  '주문 전문화 장갑': {
+    en: 'Gloves of Spell Mastery', kind: '손 (천) · 영웅 · BoE · 숙련 300', quality: 'epic', icon: 'inv_gauntlets_17',
+    rows: [['요구 Lv.57', '착용 시 귀속 · 베틀 필요'], ['제작 (숙련 300)', '달빛 옷감·황금 진주·룬무늬 두루마리']],
+    stats: ['지능 +10'],
+    effects: ['착용 효과: 주문 공격력 +9 · 주문 극대화 +28 (2%)!'],
+    note: '📍 BWL·만렙 월드 드랍 도안 — 극대화 특화 에픽 장갑'
+  },
+  '마나 깃든 장식끈': {
+    en: 'Mana-Laced Sash', kind: '허리 (천) · 영웅 · BoE · 숙련 300', quality: 'epic', icon: 'inv_belt_31',
+    rows: [['요구 Lv.60', '착용 시 귀속 · 베틀 필요'], ['도안', '하이잘 산 [아이사라 나이트메도우]']],
+    stats: ['체력 +21', '정신력 +18'],
+    effects: ['착용 효과: 비전 주문 공격력이 최대 20만큼 증가합니다.'],
+    note: '📍 와우 포에버 하이잘 만렙 비전 마법사 전용 추천 허리띠'
+  },
+  '마나섬광 예복': {
+    en: 'Manaflash Vestments', kind: '만렙 세트 · BoE · 숙련 300', quality: 'epic', icon: 'inv_chest_cloth_38',
+    rows: [['요구 Lv.60', '착용 시 귀속 · 베틀 필요'], ['도안', '하이잘 산 [아이사라 나이트메도우]']],
+    effects: ['4세트 효과: 주문 적중 상승 + 마법 차단 쿨타임 감소 + 정령/마법 특화'],
+    note: '📍 와우 포에버 만렙 하이잘 세트'
+  },
+  '하급 신비의 정수': {
+    en: 'Lesser Mystic Essence', kind: '마법부여·재봉 공용 정수 · 시세 12s 3c', quality: 'uncommon', icon: 'inv_enchant_essencemysticalsmall',
+    rows: [['현재 시세 (11/24 08:47)', '12s 3c'], ['용도', '하늘빛 폭풍매듭 수도두건(2) · 중급 마부']],
+    note: '📍 iLv 36~40 녹템 추출 / 경매장 구매'
+  },
+  '대지의 정수': {
+    en: 'Essence of Earth', kind: '만렙 원소 정수 · 시세 3g 0s 98c', quality: 'uncommon', icon: 'spell_nature_strengthofearthtotem02',
+    rows: [['현재 시세 (11/24 08:47)', '3g 0s 98c'], ['용도', '나무구렁 어깨(5) · 대마법사의 로브(8)']],
+    note: '📍 고레벨 대지 정령 드랍 / 경매장'
+  },
+  '불의 정수': {
+    en: 'Essence of Fire', kind: '만렙 원소 정수 · 시세 54s 0c', quality: 'uncommon', icon: 'spell_fire_volcano',
+    rows: [['현재 시세 (11/24 08:47)', '54s 0c'], ['용도', '대마법사의 로브(8) · 대마법사의 허리띠(12)']],
+    note: '📍 화산 심장부·협곡 정령 드랍 / 경매장'
+  },
+  '물의 정수': {
+    en: 'Essence of Water', kind: '만렙 원소 정수 · 시세 4g 40s 0c', quality: 'uncommon', icon: 'spell_nature_acid_01',
+    rows: [['현재 시세 (11/24 08:47)', '4g 40s 0c'], ['용도', '대마법사의 로브(8) · 허리띠(12) · 보조장비 지혜(1)']],
+    note: '📍 여명의 설원·역병지대 물 정령 드랍 / 경매장'
+  },
+  '바람의 정수': {
+    en: 'Essence of Air', kind: '만렙 원소 정수 · 시세 2g 90s 0c', quality: 'uncommon', icon: 'spell_nature_earthbind',
+    rows: [['현재 시세 (11/24 08:47)', '2g 90s 0c'], ['용도', '대마법사의 로브(8) · 보조장비 지혜(1)']],
+    note: '📍 실리더스 바람 정령 드랍 / 경매장'
+  },
+  '생명의 정수': {
+    en: 'Living Essence', kind: '만렙 원소 정수 · 시세 38s 88c', quality: 'uncommon', icon: 'spell_nature_abolishmagic',
+    rows: [['현재 시세 (11/24 08:47)', '38s 88c'], ['용도', '나무구렁일족 어깨보호대(5)']],
+    note: '📍 운고로·악령의 숲 식물형 몹 드랍 / 경매장'
+  },
+  '유연한 자연의 정수': {
+    en: 'Supple Essence of Nature', kind: '와우 포에버 하이잘 정수', quality: 'rare', icon: 'spell_nature_abolishmagic',
+    rows: [['용도', '마나 깃든 장식끈 · 마나섬광 예복']],
+    note: '📍 하이잘 산 콘텐츠 관련 특수 정수'
+  },
+  '유령 염료': {
+    en: 'Ghost Dye', kind: '연금술 특수 염료 · 시세 85s 0c', quality: 'common', icon: 'inv_poison_mindnumbing',
+    rows: [['현재 시세 (11/24 08:47)', '85s 0c'], ['용도', '유령매듭 바지(4) · 대마법사의 허리띠(10)']],
+    note: '📍 유령버섯 기반 연금술 제조 / 경매장 구매'
+  },
+  '마력 깃든 가죽': {
+    en: 'Enchanted Leather', kind: '마법부여 변환 가죽', quality: 'common', icon: 'inv_misc_rune_05',
+    rows: [['제작 (마부 250)', '튼튼한 가죽 1 + 하급 영원의 정수 1'], ['용도', '붉은덩굴 의복 세트 · 고급 가죽 장비']],
+    note: '📍 마법부여 250+ 보유자 또는 경매장 구매'
+  },
+  '질긴 가죽': {
+    en: 'Heavy Leather', kind: '무두질 중급 가죽 · 시세 2s 7c', quality: 'common', icon: 'inv_misc_leatherscrap_07',
+    rows: [['현재 시세 (11/24 08:47)', '2s 7c'], ['용도', '별장식 허리띠(4) · Lv.32~40 무두질']],
+    note: '📍 Lv.32~40 야수 무두질로 자체 수급 가능'
+  },
+  '튼튼한 가죽': {
+    en: 'Rugged Leather', kind: '무두질 후반 가죽 · 시세 18s 77c', quality: 'common', icon: 'inv_misc_leatherscrap_02',
+    rows: [['현재 시세 (11/24 08:47)', '18s 77c'], ['용도', '마력 깃든 가죽 · Lv.51~60 무두질']],
+    note: '📍 Lv.51+ 야수 무두질로 고수익 확보'
+  },
+  '황수정': {
+    en: 'Citrine', kind: '보석 재료 · 시세 12s 0c', quality: 'uncommon', icon: 'inv_misc_gem_opal_02',
+    rows: [['현재 시세 (11/24 08:47)', '12s 0c'], ['용도', '별장식 허리띠(1)']],
+    note: '📍 채광 철/미스릴 광맥 · 보석 / 경매장'
+  },
+  '비취': {
+    en: 'Jade', kind: '보석 재료 · 시세 7s 19c', quality: 'uncommon', icon: 'inv_misc_gem_stone_01',
+    rows: [['현재 시세 (11/24 08:47)', '7s 19c'], ['용도', '꿈매듭 머리장식(1)']],
+    note: '📍 채광 철 광맥 / 경매장'
+  },
+  '진은 주괴': {
+    en: 'Truesilver Bar', kind: '희귀 주괴 · 시세 20s 0c', quality: 'uncommon', icon: 'inv_ingot_08',
+    rows: [['현재 시세 (11/24 08:47)', '20s 0c'], ['용도', '꿈매듭 머리장식(1) · 진은마법막대']],
+    note: '📍 채광 진은 광맥 / 경매장'
+  },
+  '물레': {
+    en: 'Spinning Wheel', kind: '와우 포에버 재봉 야영 설비 · 숙련 140', quality: 'uncommon', icon: 'inv_misc_orb_03',
+    rows: [['필요 숙련: 140', '모닥불 옆 야영 제작물'], ['사용처', '마력의 로브 · 꿈매듭 세트 제작 시 필수!']],
+    desc: '와우 포에버 커스텀 재봉 설비로, 물레 도안을 배워 모닥불 옆에서 설치한 상태에서만 마력의 로브·꿈매듭 세트를 제작할 수 있습니다.',
+    note: '📍 도안 획득처: 달라란 몬스터 드랍 (직접 안 구해도 BoE 꿈매듭 완제품은 경매 구매 가능!)'
+  },
+  '베틀': {
+    en: 'Loom', kind: '와우 포에버 만렙 재봉 설비 · 숙련 300', quality: 'rare', icon: 'inv_fabric_moonrag_01',
+    rows: [['필요 숙련: 300', '모닥불 옆 야영 제작물'], ['사용처', '대마법사의 로브/허리띠 · 주문 전문화 장갑 · 마나섬광']],
+    desc: '만렙 고급 재봉 도안(대마법사·하이잘 등)을 제작하기 위해 필요한 포에버 전용 재봉틀 설비입니다.',
+    note: '📍 모닥불 근처 설치 필요 (대마법사의 로브 BoP 제작 전 반드시 확보)'
   }
 };
 
@@ -9645,68 +10106,224 @@ const WOW_ITEM_META = {
   '두꺼운 리넨 장갑': {
     bind: '착용 시 귀속 (BoE)',
     source: '재봉술 45 제작 — 스톰윈드 [셀란두스](42.0, 76.2) 학습',
-    craftCost: '약 66c (리넨 두루마리 2 + 굵은 실타래 1)'
+    craftCost: '약 4s 10c (리넨 두루마리 2 @2s옷감 + 굵은 실타래 1 · 11/24 08:47)'
   },
   '강화 리넨 망토': {
     bind: '착용 시 귀속 (BoE)',
     source: '재봉술 70 제작 — 스톰윈드 [셀란두스](42.0, 76.2) 학습',
-    craftCost: '약 86c (리넨 두루마리 2 + 굵은 실타래 3)'
+    craftCost: '약 1s 60c (두루마리 65c 직구 × 2 + 굵은 실타래 3)'
   },
   '수수한 킬트': {
     bind: '착용 시 귀속 (BoE)',
     source: '재봉술 100 제작 — 스톰윈드 재봉 교관 학습',
-    craftCost: '약 2s 12c (리넨 두루마리 4 + 가는 실타래 1)'
+    craftCost: '약 3s 60c (두루마리 65c × 4 + 가는 실타래 1)'
   },
   '이중 바느질 양모 어깨보호구': {
     bind: '착용 시 귀속 (BoE)',
     source: '재봉술 110 제작 — 스톰윈드 재봉 교관 학습',
-    craftCost: '약 10s 64c (양모 두루마리 3 + 가는 실타래 2)'
+    craftCost: '약 11s 81c (양모 두루마리 3 @3.27s + 가는 실타래 2)'
   },
   '세공된 진줏빛 머리장식': {
     bind: '획득 시 귀속 (BoP)',
     source: '재봉술 125 제작 (도안: 던전 드랍 / 경매장 구매)',
-    craftCost: '약 2g 88s (+도안값, 11/23 15:31 시세)',
+    craftCost: '약 2g 71s 60c (+도안값, 11/24 08:47 시세)',
     enchantable: '부여 불가 (현 구간)'
   },
   '진줏빛 화장복': {
     bind: '획득 시 귀속 (BoP)',
     source: '재봉술 110 제작 — 붉은마루 삼거리 [미빈 섀도위브](11.2, 71.5) 도안 구매',
     favorPrice: '상인의 호의 30개 (도안)',
-    craftCost: '7g 94s 16c (은괴 2개 포함, 11/23 15:31 시세)',
+    craftCost: '약 7g 69s (은괴 2개 포함, 11/24 08:47 시세)',
     enchantable: '방어구 키트 / 가슴 마부 가능'
   },
   '거미줄 허리띠': {
     bind: '착용 시 귀속 (BoE)',
     source: '재봉술 145 제작 — 스톰윈드 [조지오 볼레로](43.2, 73.6) 학습 / 경매장 구매 가능',
-    craftCost: '47s 52c (철제 죔쇠 2s 12c 포함, 11/23 15:31 시세)',
+    craftCost: '45s 68c (철제 죔쇠 1s 88c 포함, 11/24 08:47 시세)',
     enchantable: '부여 불가'
   },
   '꿈매듭 조끼': {
     bind: '착용 시 귀속 (BoE)',
     source: '재봉술 190 제작 — 스톰윈드 [조지오 볼레로](43.2, 73.6) 학습 / 경매장 구매 가능',
-    craftCost: '2g 68s 28c (11/23 15:31 시세)',
+    craftCost: '2g 19s 4c (11/24 08:47 시세 · 야생덩굴 41c 반영)',
     enchantable: '방어구 키트 / 가슴 마부 가능'
   },
   '꿈매듭 머리장식': {
     bind: '착용 시 귀속 (BoE)',
     source: '재봉술 205 제작 — 대가 재봉 교관 학습 / 경매장 구매 가능',
+    craftCost: '3g 21s 91c (11/24 08:47 시세)',
     enchantable: '후반 머리 마법서 가능'
   },
   '황천광채 어깨보호구': {
     bind: '획득 시 귀속 (BoP)',
     source: '재봉술 195 제작 — 붉은마루 삼거리 [미빈 섀도위브](11.2, 71.5) 도안',
-    craftCost: '44g 40s 68c (11/23 15:31 자홍 2.33g·황금진주 2.70g 반영)',
+    craftCost: '33g 68s 52c (11/24 08:47 자홍 1.36g·황금진주 1.98g 반영)',
     enchantable: '부여 불가 (만렙 평판 전)'
   },
   '대마법사의 로브': {
     bind: '획득 시 귀속 (BoP · 마법사 전용)',
     source: '재봉술 295 제작 — 검은바위 첨탑 하층 [화염술사] 도안 드랍',
+    craftCost: '약 132g 58s (11/24 08:47 시세 · 베틀 필요)',
     enchantable: '가슴 마부 가능'
   },
   '붉은덩굴 조끼': {
     bind: '착용 시 귀속 (BoE · 3세트 치명+2%는 재봉 300 전용)',
     source: '재봉술 300 제작 — 잔달라 부족(줄구룹) 우호적 도안 구매',
     enchantable: '가슴 마부 가능'
+  },
+  '하늘빛 폭풍매듭 수도두건': {
+    bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
+    source: '재봉술 175 제작 — 알터랙 산맥 [대마법사 알바로] 도안 구매 (얼라이언스 전용)',
+    craftCost: '96s 46c (11/24 08:47 시세)',
+    enchantable: '부여 불가 (현 구간)'
+  },
+  '심홍색 비단 조끼': {
+    bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
+    source: '재봉술 150 제작 — 스톰윈드 재봉 교관 학습',
+    craftCost: '31s 80c (11/24 08:47 시세)',
+    enchantable: '방어구 키트 / 가슴 마부 가능'
+  },
+  '심홍색 비단 바지': {
+    bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
+    source: '재봉술 160 제작 — 스톰윈드 재봉 교관 학습',
+    craftCost: '39s 80c (11/24 08:47 시세)',
+    enchantable: '방어구 키트 가능'
+  },
+  '마력의 로브': {
+    bind: '획득 시 귀속 (BoP)',
+    source: '재봉술 155 제작 — 재봉 교관 학습 (달라란 드랍 도안 [물레] 필요)',
+    craftCost: '3g 5s 30c (11/24 08:47 시세)',
+    enchantable: '방어구 키트 / 가슴 마부 가능'
+  },
+  '별장식 허리띠': {
+    bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
+    source: '재봉술 165 제작 — 수도원·줄파락 등 월드 드랍 도안',
+    craftCost: '1g 40s 16c (11/24 08:47 시세)',
+    enchantable: '부여 불가'
+  },
+  '검은 마법매듭 장갑': {
+    bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
+    source: '재봉술 180 제작 — 재봉 교관 학습',
+    craftCost: '96s 50c (11/24 08:47 시세)',
+    enchantable: '방어구 키트 가능'
+  },
+  '꿈매듭 장갑': {
+    bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
+    source: '재봉술 225 제작 — 대가 재봉 교관 학습 ([물레] 필요)',
+    craftCost: '1g 61s 72c (11/24 08:47 시세)',
+    enchantable: '방어구 키트 가능'
+  },
+  '붉은 마법매듭 머리띠': {
+    bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
+    source: '재봉술 200 제작 — Lv.40~50 월드 드랍 도안',
+    craftCost: '1g 54s 0c (11/24 08:47 시세)',
+    enchantable: '부여 불가 (현 구간)'
+  },
+  '룬매듭 튜닉': {
+    bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
+    source: '재봉술 215 제작 — 월드 드랍 도안 / 경매장 구매',
+    enchantable: '방어구 키트 / 가슴 마부 가능'
+  },
+  '유령매듭 바지': {
+    bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
+    source: '재봉술 245 제작 — 스트라솔름 드랍 도안 / 경매장',
+    craftCost: '5g 44s 20c (11/24 08:47 시세)',
+    enchantable: '방어구 키트 / 마법부여 가능'
+  },
+  '나무구렁일족 어깨보호대': {
+    bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
+    source: '재봉술 290 제작 — 악령의 숲 [메일로쉬] 평판 도안 판매',
+    craftCost: '약 22.3g (달빛 옷감 자급 시 · 11/24 08:47)',
+    enchantable: '평판 어깨 마부 가능'
+  },
+  '대마법사의 허리띠': {
+    bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
+    source: '재봉술 295 제작 — 혈투의 전장 [노트 팀블잭] 등 드랍 ([베틀] 필요)',
+    craftCost: '약 95g+ (달빛 옷감 자급 시 · 11/24 08:47)',
+    enchantable: '부여 불가'
+  },
+  '주문 전문화 장갑': {
+    bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
+    source: '재봉술 300 제작 — BWL/월드 드랍 도안 ([베틀] 필요)',
+    enchantable: '장갑 마부 가능'
+  },
+  '마나 깃든 장식끈': {
+    bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
+    source: '재봉술 300 제작 — 하이잘 산 [아이사라 나이트메도우] 도안 ([베틀] 필요)',
+    enchantable: '부여 불가'
+  },
+  '마나섬광 예복': {
+    bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
+    source: '재봉술 300 제작 — 하이잘 산 [아이사라 나이트메도우] 도안 ([베틀] 필요)',
+    enchantable: '가슴/방어구 마부 가능'
+  },
+  '유령 염료': {
+    bind: '비귀속 (거래·경매 가능)',
+    source: '연금술 제작 (유령버섯 + 보라연꽃 + 수정약병) / 경매장',
+    ahPrice: '85s 0c (11/24 08:47 실측)'
+  },
+  '하급 신비의 정수': {
+    bind: '비귀속 (거래·경매 가능)',
+    source: 'iLv 36~40 녹템 추출 / 경매장',
+    ahPrice: '12s 3c (11/24 08:47 실측)'
+  },
+  '대지의 정수': {
+    bind: '비귀속 (거래·경매 가능)',
+    source: '고레벨 대지 정령 드랍 / 경매장',
+    ahPrice: '3g 0s 98c (11/24 08:47 실측)'
+  },
+  '불의 정수': {
+    bind: '비귀속 (거래·경매 가능)',
+    source: '화산 심장부·이글거리는 협곡 불 정령 드랍 / 경매장',
+    ahPrice: '54s 0c (11/24 08:47 실측)'
+  },
+  '물의 정수': {
+    bind: '비귀속 (거래·경매 가능)',
+    source: '여명의 설원·동부 역병지대 물 정령 드랍 / 경매장',
+    ahPrice: '4g 40s 0c (11/24 08:47 실측)'
+  },
+  '바람의 정수': {
+    bind: '비귀속 (거래·경매 가능)',
+    source: '실리더스 바람 정령 드랍 / 경매장',
+    ahPrice: '2g 90s 0c (11/24 08:47 실측)'
+  },
+  '생명의 정수': {
+    bind: '비귀속 (거래·경매 가능)',
+    source: '운고로 분화구·악령의 숲 식물형 드랍 / 경매장',
+    ahPrice: '38s 88c (11/24 08:47 실측)'
+  },
+  '질긴 가죽': {
+    bind: '비귀속 (거래·경매 가능)',
+    source: 'Lv.32~40 야수 무두질 / 경매장',
+    ahPrice: '2s 7c (11/24 08:47 실측)'
+  },
+  '튼튼한 가죽': {
+    bind: '비귀속 (거래·경매 가능)',
+    source: 'Lv.51~61 야수 무두질 / 경매장',
+    ahPrice: '18s 77c (11/24 08:47 실측)'
+  },
+  '황수정': {
+    bind: '비귀속 (거래·경매 가능)',
+    source: '채광 철/미스릴 광맥·보물 상자 / 경매장',
+    ahPrice: '12s 0c (11/24 08:47 실측)'
+  },
+  '비취': {
+    bind: '비귀속 (거래·경매 가능)',
+    source: '채광 철 광맥·보물 상자 / 경매장',
+    ahPrice: '7s 19c (11/24 08:47 실측)'
+  },
+  '진은 주괴': {
+    bind: '비귀속 (거래·경매 가능)',
+    source: '채광 진은 광맥 제련 / 경매장',
+    ahPrice: '20s 0c (11/24 08:47 실측)'
+  },
+  '물레': {
+    bind: '와우 포에버 야영 설비 (숙련 140)',
+    source: '달라란 몬스터 드랍 도안 학습 후 모닥불 옆 설치'
+  },
+  '베틀': {
+    bind: '와우 포에버 야영 설비 (숙련 300)',
+    source: '만렙 재봉 도안 학습 후 모닥불 옆 설치'
   },
 
   // --- 소모품 · 방어구 키트 · 오일 · 캠핑 · 교본 ---
@@ -9717,20 +10334,20 @@ const WOW_ITEM_META = {
   '최하급 마술사 오일': {
     bind: '비귀속 (거래·경매 가능 · 사용 제한 없음)',
     source: '마법부여(5) 제작 — 스톰윈드 [예사라 코르델](52.8, 74.3) 주문식 구매 / 경매장',
-    ahPrice: '7s 50c (11/23 15:31 실측)',
-    craftCost: '약 3s 59c (이상한 가루 1.55s + 단풍씨앗 2s + 유리약병 4c)'
+    ahPrice: '6s 20c (11/24 08:47 실측)',
+    craftCost: '약 3s 50c (이상한 가루 1.46s + 단풍씨앗 2s + 유리약병 4c)'
   },
   '최하급 마나 오일': {
     bind: '비귀속 (거래·경매 가능 · 사용 제한 없음)',
     source: '마법부여(150) 제작 — 스톰윈드 [예사라 코르델](52.8, 74.3) 주문식 구매 / 경매장',
-    ahPrice: '17s 99c (11/23 15:31 실측)',
-    craftCost: '약 11s 65c (영혼 가루 7.25s + 단풍씨앗 4s + 납약병 40c · 35% 절약!)'
+    ahPrice: '15s 45c (11/24 08:47 실측)',
+    craftCost: '약 9s 25c (영혼 가루 4.85s + 단풍씨앗 4s + 납약병 40c · 40% 절약!)'
   },
   '하급 마술사 오일': {
     bind: '비귀속 (거래·경매 가능 · 사용 요구 Lv.30)',
     source: '마법부여(200) 제작 — 스톰윈드 [예사라 코르델](52.8, 74.3) 주문식 구매 / 경매장',
-    ahPrice: '40s 0c (11/23 15:31 실측)',
-    craftCost: '약 20s 85c (환상 가루 12.45s + 가시덤불씨앗 8s + 납약병 40c · 48% 절약!)'
+    ahPrice: '27s 80c (11/24 08:47 실측)',
+    craftCost: '약 17s 9c (환상 가루 8.69s + 가시덤불씨앗 8s + 납약병 40c · 39% 절약!)'
   },
   '신비한 고급 방어구 키트': {
     bind: '비귀속 (거래·경매 가능)',
@@ -9783,7 +10400,7 @@ const WOW_ITEM_META = {
   '룬문자 은마법막대': {
     bind: '획득 시 귀속 (BoP · 마법부여 전용 도구)',
     source: '엘윈 숲 아조라의 탑 [키타 파이어윈드](64.8, 70.4) 학습 + 은마법막대 경매/대장 조달',
-    craftCost: '47s 58c (은마법막대 27s + 이상한 가루 9.3s + 상급 마법정수 11.28s)'
+    craftCost: '39s 75c (은마법막대 5.49s + 이상한 가루 8.76s + 상급 마법정수 25.50s)'
   },
 
   // --- 상점 판매 재료 (상점가만 표기! 경매가 배제!) ---
@@ -9838,289 +10455,289 @@ const WOW_ITEM_META = {
     vendorPrice: '25코퍼 (우호 22코퍼)'
   },
 
-  // --- 경매장 거래 재료 (2026-11-23 Auctionator 100% 실측 반영!) ---
+  // --- 경매장 거래 재료 (2026-11-24 08:47 Auctionator 100% 실측 반영!) ---
   '상급 마법의 정수': {
     bind: '비귀속 (거래·경매 가능)',
     source: 'iLv 16~25 녹템 무기(75%)·방어구(20%) 마력 추출 / 경매장',
-    ahPrice: '3s 76c (11/23 15:31 · 우클릭 3분해 시 하급 1s 25c/개!)'
+    ahPrice: '8s 50c (11/24 08:47 · 우클릭 3분해 시 하급 2s 83c/개)'
   },
   '하급 마법의 정수': {
     bind: '비귀속 (거래·경매 가능)',
-    source: 'iLv 6~15 녹템 무기(75%)·방어구(20%) 마력 추출 / 상급 분해(1s 25c)',
-    ahPrice: '2s 5c (11/23 15:31 · 상급 3.76s 분해가 더 저렴!)'
+    source: 'iLv 6~15 녹템 무기(75%)·방어구(20%) 마력 추출 / 상급 분해(2s 83c)',
+    ahPrice: '3s 0c (11/24 08:47 · 상급 8.50s 분해가 소폭 저렴)'
   },
   '이상한 가루': {
     bind: '비귀속 (거래·경매 가능)',
     source: 'iLv 5~25 녹템 방어구(75%) 마력 추출 (폐광 솔플 등) / 경매장',
-    ahPrice: '1s 55c (11/23 15:31 실측)'
+    ahPrice: '1s 46c (11/24 08:47 실측)'
   },
   '영혼 가루': {
     bind: '비귀속 (거래·경매 가능)',
     source: 'iLv 26~35 녹템 방어구(75%) 마력 추출 (지하감옥·저습지·놈리건) / 경매장',
-    ahPrice: '7s 25c (11/23 15:31 실측)'
+    ahPrice: '4s 85c (11/24 08:47 · 33% 급락!)'
   },
   '환상 가루': {
     bind: '비귀속 (거래·경매 가능)',
     source: 'iLv 36~45 녹템 방어구(75%) 마력 추출 (수도원·울다만·줄파락) / 경매장',
-    ahPrice: '12s 45c (11/23 15:31 실측)'
+    ahPrice: '8s 69c (11/24 08:47 · 30% 하락)'
   },
   '꿈가루': {
     bind: '비귀속 (거래·경매 가능)',
     source: 'iLv 46~55 녹템 방어구(75%) 마력 추출 (마라우돈·가라앉은 사원) / 경매장',
-    ahPrice: '28s 0c (11/23 15:31 실측)'
+    ahPrice: '33s 27c (11/24 08:47 실측)'
   },
   '희미하게 빛나는 큰 결정': {
     bind: '비귀속 (거래·경매 가능)',
     source: 'iLv 26~35 희귀(파템) 장비 100% 마력 추출 / 경매장',
-    ahPrice: '1g 0s 1c (11/23 15:31 실측)'
+    ahPrice: '68s 57c (11/24 08:47 · 31% 하락)'
   },
   '희미하게 빛나는 작은 결정': {
     bind: '비귀속 (거래·경매 가능)',
     source: 'iLv 20~25 희귀(파템) 장비 100% 마력 추출 / 경매장',
-    ahPrice: '3s 0c (11/23 15:31 실측)'
+    ahPrice: '53s 0c (11/24 08:47 · 급등!)'
   },
   '상급 별의 정수': {
     bind: '비귀속 (거래·경매 가능)',
     source: 'iLv 31~35 녹템 무기(75%)·방어구(20%) 마력 추출 / 경매장',
-    ahPrice: '17s 83c (11/23 15:31 · 3분해 시 하급 5s 94c)'
+    ahPrice: '17s 33c (11/24 08:47 · 3분해 시 하급 5s 78c)'
   },
   '상급 황천의 정수': {
     bind: '비귀속 (거래·경매 가능)',
     source: 'iLv 46~55 녹템 무기(75%)·방어구(20%) 마력 추출 / 경매장',
-    ahPrice: '2g 50s 84c (11/23 15:31 실측)'
+    ahPrice: '2g 15s 78c (11/24 08:47 실측)'
   },
   '큰 찬란한 결정': {
     bind: '비귀속 (거래·경매 가능)',
     source: 'iLv 46~55 희귀(파템) 장비 100% 마력 추출 / 경매장',
-    ahPrice: '3g 50s 0c (11/23 15:31 실측)'
+    ahPrice: '3g 15s 89c (11/24 08:47 실측)'
   },
   '큰 눈부신 결정': {
     bind: '비귀속 (거래·경매 가능)',
     source: 'iLv 56+ 만렙 5인 던전/레이드 희귀 장비 마력 추출 / 경매장',
-    ahPrice: '4g 49s 99c (11/23 15:31 · 급등!)'
+    ahPrice: '3g 30s 0c (11/24 08:47 · 27% 급락!)'
   },
   '감청색 염료': {
     bind: '비귀속 (거래·경매 가능)',
     source: '연금술(35: 주름진 이끼 2 + 유리 약병 1) 제조 / 경매장',
-    ahPrice: '1g 5s 0c (11/23 15:31 실측)'
+    ahPrice: '99s 0c (11/24 08:47 실측)'
   },
   '자홍색 염료': {
     bind: '비귀속 (거래·경매 가능)',
     source: '연금술 특수 염료 제조 / 경매장',
-    ahPrice: '2g 33s 0c (11/23 15:31 · 급등!)'
+    ahPrice: '1g 35s 99c (11/24 08:47 · 42% 급락!)'
   },
   '청록색 염료': {
     bind: '비귀속 (거래·경매 가능)',
     source: '연금술 특수 염료 제조 / 경매장',
-    ahPrice: '5g 99s 80c (11/23 15:31 · 급등!)'
+    ahPrice: '4g 16s 93c (11/24 08:47 · 30% 급락!)'
   },
   '유황산': {
     bind: '비귀속 (거래·경매 가능)',
     source: '와우 포에버 특수 채집·던전·연금 재료 / 경매장',
-    ahPrice: '5s 80c (11/23 15:31 실측)'
+    ahPrice: '6s 90c (11/24 08:47 실측)'
   },
   '황철석': {
     bind: '비귀속 (거래·경매 가능)',
     source: '와우 포에버 채광 특수 광물 / 경매장',
-    ahPrice: '1s 40c (11/23 15:31 실측)'
+    ahPrice: '1s 68c (11/24 08:47 실측)'
   },
   '주름진 이끼': {
     bind: '비귀속 (거래·경매 가능)',
     source: '와우 포에버 약초·필드 특수 채집 / 경매장',
-    ahPrice: '43s 0c (11/23 15:31 실측)'
+    ahPrice: '40s 60c (11/24 08:47 실측)'
   },
   '은마법막대': {
     bind: '비귀속 (거래·경매 가능 · 상인 미판매!)',
-    source: '대장기술(60) 제작 (은괴 6.9s + 돌) / 경매장 구매',
-    ahPrice: '27s 0c (11/23 15:31 실측)'
+    source: '대장기술(60) 제작 (은괴 7.44s + 돌) / 경매장 구매',
+    ahPrice: '5s 49c (11/24 08:47 · 80% 폭락!)'
   },
   '리넨 옷감': {
     bind: '비귀속 (거래·경매 가능)',
     source: 'Lv.5~20 인간형 몹(엘윈 숲·서부몰락지대·폐광) 드랍 / 경매장',
-    ahPrice: '21c (11/23 15:31 · 47장+두루마리1 보유)'
+    ahPrice: '2s 0c (11/24 08:47 품귀 급등! · 47장+두루마리1 보유)'
   },
   '리넨 두루마리': {
     bind: '비귀속 (거래·경매 가능)',
     source: '재봉술(1) 제작 (리넨 옷감 × 2) / 경매장',
-    ahPrice: '46c (11/23 15:31 실측)',
-    craftCost: '42c (옷감 21c × 2 — 직접 감기가 저렴!)'
+    ahPrice: '65c (11/24 08:47 · 옷감 2장 4s 대비 84% 저렴!)',
+    craftCost: '4s 0c (옷감 2s × 2 — 오늘은 두루마리 직구 압도적 유리!)'
   },
   '양모 옷감': {
     bind: '비귀속 (거래·경매 가능)',
     source: 'Lv.16~30 인간형 몹(지하감옥·그늘숲·저습지) 드랍 / 경매장',
-    ahPrice: '1s 20c (11/23 15:31 · 100장 보유!)'
+    ahPrice: '1s 9c (11/24 08:47 신저점! · 100장 보유!)'
   },
   '양모 두루마리': {
     bind: '비귀속 (거래·경매 가능)',
     source: '재봉술(75) 제작 (양모 옷감 × 3) / 경매장',
-    ahPrice: '7s 9c (11/23 15:31 실측)',
-    craftCost: '3s 60c (옷감 1s 20c × 3 — 직접 감기가 49% 저렴!)'
+    ahPrice: '4s 0c (11/24 08:47 실측)',
+    craftCost: '3s 27c (옷감 1s 9c × 3 — 직접 감기가 저렴!)'
   },
   '비단 옷감': {
     bind: '비귀속 (거래·경매 가능)',
     source: 'Lv.25~40 인간형 몹(지하감옥·수도원·힐스브래드) 드랍 / 경매장',
-    ahPrice: '1s 90c (11/23 15:31 · 24장 보유)'
+    ahPrice: '1s 80c (11/24 08:47 신저점! · 24장 보유)'
   },
   '비단 두루마리': {
     bind: '비귀속 (거래·경매 가능)',
     source: '재봉술(125) 제작 (비단 옷감 × 4) / 경매장',
-    ahPrice: '10s 30c (11/23 15:31 실측)',
-    craftCost: '7s 60c (옷감 1s 90c × 4 — 직접 감기가 26% 저렴!)'
+    ahPrice: '11s 95c (11/24 08:47 실측)',
+    craftCost: '7s 20c (옷감 1s 80c × 4 — 직접 감기가 40% 저렴!)'
   },
   '마법 옷감': {
     bind: '비귀속 (거래·경매 가능)',
     source: 'Lv.40~50 인간형 몹(줄파락·페랄라스·타나리스 해적 등) 드랍 / 경매장',
-    ahPrice: '5s 90c (11/23 15:31 실측)'
+    ahPrice: '5s 65c (11/24 08:47 신저점!)'
   },
   '마법 두루마리': {
     bind: '비귀속 (거래·경매 가능)',
     source: '재봉술(175) 제작 (마법 옷감 × 5) / 경매장',
-    ahPrice: '37s 40c (11/23 15:31 실측)',
-    craftCost: '29s 50c (옷감 5s 90c × 5 — 21% 절약)'
+    ahPrice: '34s 30c (11/24 08:47 실측)',
+    craftCost: '28s 25c (옷감 5s 65c × 5 — 18% 절약)'
   },
   '룬무늬 옷감': {
     bind: '비귀속 (거래·경매 가능)',
     source: 'Lv.50+ 인간형 몹(역병지대·여명의 설원·만렙 인던) 드랍 / 경매장',
-    ahPrice: '5s 31c (11/23 15:31 실측)'
+    ahPrice: '5s 14c (11/24 08:47 실측)'
   },
   '룬무늬 두루마리': {
     bind: '비귀속 (거래·경매 가능)',
     source: '재봉술(250) 제작 (룬무늬 옷감 × 5) / 경매장',
-    ahPrice: '32s 80c (11/23 15:31 실측)',
-    craftCost: '26s 55c (옷감 5s 31c × 5 — 19% 절약)'
+    ahPrice: '33s 0c (11/24 08:47 실측)',
+    craftCost: '25s 70c (옷감 5s 14c × 5 — 22% 절약)'
   },
   '지옥 옷감': {
     bind: '비귀속 (거래·경매 가능)',
     source: '악령의 숲·아즈샤라 사티로스 몬스터 드랍 / 경매장',
-    ahPrice: '39s 0c (11/23 15:31 실측)'
+    ahPrice: '31s 80c (11/24 08:47 실측)'
   },
   '달빛 옷감': {
     bind: '비귀속 (거래·경매 가능)',
     source: '재봉술(250+) 달빛 우물 변환 (지옥 옷감 2 · 4일 쿨타임) / 경매장',
-    ahPrice: '56g 99s 0c (11/23 15:31 실측)'
+    ahPrice: '54g 80s 0c (11/24 08:47 실측)'
   },
   '거미줄': {
     bind: '비귀속 (거래·경매 가능)',
     source: 'Lv.18~30 거미 몬스터(그늘숲·저습지·잿빛골짜기) 드랍 / 경매장',
-    ahPrice: '28s 60c (11/23 15:31 실측)'
+    ahPrice: '10s 25c (11/24 08:47 · 반토막 하락)'
   },
   '굵은 거미줄': {
     bind: '비귀속 (거래·경매 가능)',
     source: 'Lv.31+ 거미 몬스터(가시덤불·황야의 땅) 드랍 / 경매장',
-    ahPrice: '7s 50c (11/23 15:31 실측)'
+    ahPrice: '7s 50c (11/24 08:47 실측)'
   },
   '그늘 거미줄': {
     bind: '비귀속 (거래·경매 가능)',
     source: '이글거리는 협곡·저주받은 땅·검은바위 산 거미 드랍 / 경매장',
-    ahPrice: '9s 90c (11/23 15:31 실측)'
+    ahPrice: '10s 0c (11/24 08:47 실측)'
   },
   '강철그물 거미줄': {
     bind: '비귀속 (거래·경매 가능)',
     source: '동/서 역병지대·검은바위 첨탑 하층 거미 드랍 / 경매장',
-    ahPrice: '1g 20s 98c (11/23 15:31 실측)'
+    ahPrice: '1g 6s 0c (11/24 08:47 실측)'
   },
   '반짝이는 작은 진주': {
     bind: '비귀속 (거래·경매 가능)',
     source: '멀록·나가 드랍 [작은 조개] 개봉 / 경매장',
-    ahPrice: '2s 25c (11/23 15:31 실측)'
+    ahPrice: '2s 0c (11/24 08:47 실측)'
   },
   '황금 진주': {
     bind: '비귀속 (거래·경매 가능)',
     source: '타나리스·아즈샤라 거대 조개 개봉 / 경매장',
-    ahPrice: '2g 70s 0c (11/23 15:31 실측)'
+    ahPrice: '1g 98s 0c (11/24 08:47 신저점!)'
   },
   '야생덩굴': {
     bind: '비귀속 (거래·경매 가능)',
     source: '가시덤불 골짜기·동부 내륙지 트롤 드랍 및 보라연꽃 채집 / 경매장',
-    ahPrice: '6s 85c (11/23 15:31 · 반등)'
+    ahPrice: '41c (11/24 08:47 · 역대급 바닥!)'
   },
   '야생의 싹': {
     bind: '비귀속 (거래·경매 가능)',
     source: '운고로 분화구·페랄라스·악령의 숲 정령·식물형 드랍 / 경매장',
-    ahPrice: '5s 9c (11/23 15:31 실측)'
+    ahPrice: '3s 54c (11/24 08:47 실측)'
   },
   '은괴': {
     bind: '비귀속 (거래·경매 가능)',
     source: '채광 은 광맥 제련 / 경매장 구매',
-    ahPrice: '6s 90c (11/23 15:31 실측)'
+    ahPrice: '7s 44c (11/24 08:47 실측)'
   },
   '철제 죔쇠': {
     bind: '비귀속 (거래·경매 가능)',
     source: '대장기술(120) 제작 (철 주괴 1 → 2개) / 경매장 구매',
-    ahPrice: '2s 12c (11/23 15:31 실측)'
+    ahPrice: '1s 88c (11/24 08:47 실측)'
   },
   '두꺼운 가죽': {
     bind: '비귀속 (거래·경매 가능)',
-    source: 'Lv.41~50 야수 무두질 (질긴 가죽 2s 50c / 튼튼한 가죽 12s 22c) / 경매장',
-    ahPrice: '6s 0c (11/23 15:31 · 질긴 가죽 2s 50c / 튼튼한 가죽 12s 22c)'
+    source: 'Lv.41~50 야수 무두질 (질긴 가죽 2s 7c / 튼튼한 가죽 18s 77c) / 경매장',
+    ahPrice: '46c (11/24 08:47 · 질긴 가죽 2s 7c / 튼튼한 가죽 18s 77c)'
   },
   '붉은덩굴': {
     bind: '비귀속 (거래·경매 가능)',
     source: '줄구룹 약초 채집(약초 300 + 피의 낫) / 혈사제 드랍 / 경매장'
   },
 
-  // --- 마법부여 레시피 (18종 · 11/23 15:31 원가 반영) ---
+  // --- 마법부여 레시피 (18종 · 11/24 08:47 원가 반영) ---
   '가슴 - 최하급 흡수': {
     bind: '교관 학습 (주문식 없음)',
     source: '동부왕국 > 스톰윈드 마법사 지구 [루칸 코델](43.0, 64.4) 학습',
-    craftCost: '1s 25c (상급 마법정수 3s 76c 분해 기준)'
+    craftCost: '2s 83c (상급 마법정수 8s 50c 분해 기준)'
   },
   '손목 - 최하급 체력': {
     bind: '교관 학습 (주문식 없음)',
     source: '동부왕국 > 스톰윈드 마법사 지구 [루칸 코델](43.0, 64.4) 학습',
-    craftCost: '4s 65c (이상한 가루 1.55s × 3)'
+    craftCost: '4s 38c (이상한 가루 1.46s × 3)'
   },
   '손목 - 최하급 정신력': {
     bind: '착용/사용 전 거래 가능 (BoE 주문식)',
     source: '저레벨 필드 몬스터·상자 월드 드랍 주문식 / 경매장',
-    craftCost: '1s 25c (상급 마법정수 분해 기준)'
+    craftCost: '2s 83c (상급 마법정수 분해 기준)'
   },
   '망토 - 최하급 보호': {
     bind: '교관 학습 (주문식 없음)',
     source: '동부왕국 > 스톰윈드 마법사 지구 [루칸 코델](43.0, 64.4) 학습',
-    craftCost: '3s 10c (이상한 가루 1.55s × 2)'
+    craftCost: '2s 92c (이상한 가루 1.46s × 2)'
   },
   '손목 - 최하급 지능': {
     bind: '획득 시 귀속 (BoP 주문식 · 경매장 불가!)',
     source: '어둠의 해안 [바다프렌지] · 은빛소나무 숲 [썩은지느러미멀록 바다사냥꾼] 직접 드랍',
-    craftCost: '1s 25c (상급 마법정수 분해 기준)'
+    craftCost: '2s 83c (상급 마법정수 분해 기준)'
   },
   '망토 - 하급 저항력': {
     bind: '교관 학습 (주문식 없음)',
     source: '동부왕국 > 엘윈 숲 아조라의 탑 [키타 파이어윈드](64.8, 70.4) 학습',
-    craftCost: '7s 34c (이상한 가루 1.55s + 하급 별의 정수 5.79s)'
+    craftCost: '10s 26c (이상한 가루 1.46s + 하급 별의 정수 8.80s)'
   },
   '손목 - 하급 체력': {
     bind: '교관 학습 (주문식 없음)',
     source: '동부왕국 > 엘윈 숲 아조라의 탑 [키타 파이어윈드](64.8, 70.4) 학습',
-    craftCost: '7s 25c (영혼 가루 1개, 11/23 15:31 시세)'
+    craftCost: '4s 85c (영혼 가루 1개, 11/24 08:47 시세)'
   },
   '손목 - 하급 지능': {
     bind: '교관 학습 (주문식 없음)',
     source: '동부왕국 > 엘윈 숲 아조라의 탑 [키타 파이어윈드](64.8, 70.4) 학습',
-    craftCost: '35s 66c (상급 별의 정수 17.83s × 2)'
+    craftCost: '34s 66c (상급 별의 정수 17.33s × 2)'
   },
   '손목 - 체력': {
     bind: '교관 학습 (주문식 없음)',
     source: '동부왕국 > 엘윈 숲 아조라의 탑 [키타 파이어윈드](64.8, 70.4) 학습',
-    craftCost: '43s 50c (영혼 가루 7.25s × 6)'
+    craftCost: '29s 10c (영혼 가루 4.85s × 6)'
   },
   '손목 - 지능': {
     bind: '교관 학습 (주문식 없음)',
     source: '동부왕국 > 황야의 땅 울다만 내부 대가 교관 [안노라] 학습',
-    craftCost: '1g 76s (하급 황천의 정수 88s × 2)'
+    craftCost: '1g 44s 98c (하급 황천의 정수 72.49s × 2)'
   },
   '무기 - 계시': {
     bind: '획득 시 귀속 (BoP 주문식)',
     source: '동부왕국 > 붉은마루 삼거리 [알린시아](11.2, 71.5) 구매',
     favorPrice: '상인의 호의 45개',
-    craftCost: '약 11g 37s (11/23 15:31 실측 · 큰결정 1g 1c + 감청염료 1g 5s)'
+    craftCost: '약 9g 8s (11/24 08:47 실측 · 큰결정 68.57s + 감청염료 99s)'
   },
   '무기 - 통찰': {
     bind: '획득 시 귀속 (BoP 주문식)',
     source: '동부왕국 > 붉은마루 삼거리 [알린시아](11.2, 71.5) 구매',
     favorPrice: '상인의 호의 45개',
-    craftCost: '약 6g 64s (11/23 15:31 실측 · 큰결정 1g 1c + 이끼 43s)'
+    craftCost: '약 5g 27s (11/24 08:47 실측 · 큰결정 68.57s + 이끼 40.6s)'
   },
   '무기 - 회복': {
     bind: '획득 시 귀속 (BoP 주문식)',
@@ -10131,13 +10748,13 @@ const WOW_ITEM_META = {
     bind: '획득 시 귀속 (BoP 주문식)',
     source: '동부왕국 > 붉은마루 삼거리 [알린시아](11.2, 71.5) 구매',
     favorPrice: '상인의 호의 120개',
-    craftCost: '약 38g 80s (11/23 15:31 실측 · 자홍 2.33g 급등 반영)'
+    craftCost: '약 32g 33s (11/24 08:47 실측 · 자홍 1.36g 급락 반영)'
   },
   '보조장비 - 지혜': {
     bind: '획득 시 귀속 (BoP 주문식)',
     source: '동부왕국 > 붉은마루 삼거리 [알린시아](11.2, 71.5) 구매',
     favorPrice: '상인의 호의 240개',
-    craftCost: '약 34g 95s (11/23 15:31 실측 · 큰눈부신 4.50g×6 급등 반영)'
+    craftCost: '약 28g 66s (11/24 08:47 실측 · 큰눈부신 3.30g×6 급락 반영)'
   },
   '손목 - 상급 주문력': {
     bind: '후반 특수 주문식 (BoP/드랍)',
@@ -12189,8 +12806,9 @@ const MAT_PRICE_HISTORY = [
       { d: '11/20', v: 6.88 },
       { d: '11/21', v: 4.90 },
       { d: '11/22', v: 3.00 },
-      { d: '23 11h', v: 3.90 },
-      { d: '23 15h', v: 3.76 }
+      { d: '23.11', v: 3.90 },
+      { d: '23.15', v: 3.76 },
+      { d: '11/24', v: 8.50 }
     ]
   },
   {
@@ -12199,8 +12817,9 @@ const MAT_PRICE_HISTORY = [
       { d: '11/20', v: 10.90 },
       { d: '11/21', v: 2.30 },
       { d: '11/22', v: 1.99 },
-      { d: '23 11h', v: 2.70 },
-      { d: '23 15h', v: 2.05 }
+      { d: '23.11', v: 2.70 },
+      { d: '23.15', v: 2.05 },
+      { d: '11/24', v: 3.00 }
     ]
   },
   {
@@ -12209,8 +12828,9 @@ const MAT_PRICE_HISTORY = [
       { d: '11/20', v: 1.85 },
       { d: '11/21', v: 1.30 },
       { d: '11/22', v: 1.39 },
-      { d: '23 11h', v: 1.50 },
-      { d: '23 15h', v: 1.55 }
+      { d: '23.11', v: 1.50 },
+      { d: '23.15', v: 1.55 },
+      { d: '11/24', v: 1.46 }
     ]
   },
   {
@@ -12219,18 +12839,20 @@ const MAT_PRICE_HISTORY = [
       { d: '11/20', v: 4.86 },
       { d: '11/21', v: 5.94 },
       { d: '11/22', v: 7.40 },
-      { d: '23 11h', v: 7.20 },
-      { d: '23 15h', v: 7.25 }
+      { d: '23.11', v: 7.20 },
+      { d: '23.15', v: 7.25 },
+      { d: '11/24', v: 4.85 }
     ]
   },
   {
     name: '희미하게 빛나는 큰 결정', color: '#0284c7',
     points: [
-      { d: '21 오전', v: 52.50 },
-      { d: '21 오후', v: 48.90 },
+      { d: '21.1', v: 52.50 },
+      { d: '21.2', v: 48.90 },
       { d: '11/22', v: 110.69 },
-      { d: '23 11h', v: 108.49 },
-      { d: '23 15h', v: 100.01 }
+      { d: '23.11', v: 108.49 },
+      { d: '23.15', v: 100.01 },
+      { d: '11/24', v: 68.57 }
     ]
   },
   {
@@ -12239,18 +12861,20 @@ const MAT_PRICE_HISTORY = [
       { d: '11/20', v: 89.00 },
       { d: '11/21', v: 94.00 },
       { d: '11/22', v: 100.90 },
-      { d: '23 11h', v: 106.99 },
-      { d: '23 15h', v: 105.00 }
+      { d: '23.11', v: 106.99 },
+      { d: '23.15', v: 105.00 },
+      { d: '11/24', v: 99.00 }
     ]
   },
   {
     name: '상급 별의 정수', color: '#db2777',
     points: [
-      { d: '21 오전', v: 18.00 },
-      { d: '21 오후', v: 17.70 },
+      { d: '21.1', v: 18.00 },
+      { d: '21.2', v: 17.70 },
       { d: '11/22', v: 18.48 },
-      { d: '23 11h', v: 17.88 },
-      { d: '23 15h', v: 17.83 }
+      { d: '23.11', v: 17.88 },
+      { d: '23.15', v: 17.83 },
+      { d: '11/24', v: 17.33 }
     ]
   }
 ];
@@ -12260,80 +12884,90 @@ const TAILORING_PRICE_HISTORY = [
     name: '리넨 옷감', color: '#059669',
     points: [
       { d: '11/22', v: 0.19 },
-      { d: '23 11h', v: 0.20 },
-      { d: '23 15h', v: 0.21 }
+      { d: '23.11', v: 0.20 },
+      { d: '23.15', v: 0.21 },
+      { d: '11/24', v: 2.00 }
     ]
   },
   {
     name: '양모 옷감', color: '#2563eb',
     points: [
       { d: '11/22', v: 0.88 },
-      { d: '23 11h', v: 1.00 },
-      { d: '23 15h', v: 1.20 }
+      { d: '23.11', v: 1.00 },
+      { d: '23.15', v: 1.20 },
+      { d: '11/24', v: 1.09 }
     ]
   },
   {
     name: '비단 옷감', color: '#0284c7',
     points: [
       { d: '11/22', v: 1.40 },
-      { d: '23 11h', v: 1.94 },
-      { d: '23 15h', v: 1.90 }
+      { d: '23.11', v: 1.94 },
+      { d: '23.15', v: 1.90 },
+      { d: '11/24', v: 1.80 }
     ]
   },
   {
     name: '마법 옷감', color: '#d97706',
     points: [
       { d: '11/22', v: 6.42 },
-      { d: '23 11h', v: 6.65 },
-      { d: '23 15h', v: 5.90 }
+      { d: '23.11', v: 6.65 },
+      { d: '23.15', v: 5.90 },
+      { d: '11/24', v: 5.65 }
     ]
   },
   {
     name: '룬무늬 옷감', color: '#7c3aed',
     points: [
       { d: '11/22', v: 4.99 },
-      { d: '23 11h', v: 5.04 },
-      { d: '23 15h', v: 5.31 }
+      { d: '23.11', v: 5.04 },
+      { d: '23.15', v: 5.31 },
+      { d: '11/24', v: 5.14 }
     ]
   },
   {
     name: '감청색 염료', color: '#4f46e5',
     points: [
       { d: '11/22', v: 100.90 },
-      { d: '23 11h', v: 106.99 },
-      { d: '23 15h', v: 105.00 }
+      { d: '23.11', v: 106.99 },
+      { d: '23.15', v: 105.00 },
+      { d: '11/24', v: 99.00 }
     ]
   },
   {
     name: '자홍색 염료', color: '#e11d48',
     points: [
       { d: '11/22', v: 137.49 },
-      { d: '23 11h', v: 95.00 },
-      { d: '23 15h', v: 233.00 }
+      { d: '23.11', v: 95.00 },
+      { d: '23.15', v: 233.00 },
+      { d: '11/24', v: 135.99 }
     ]
   },
   {
     name: '황금 진주', color: '#ca8a04',
     points: [
       { d: '11/22', v: 698.00 },
-      { d: '23 11h', v: 353.90 },
-      { d: '23 15h', v: 270.00 }
+      { d: '23.11', v: 353.90 },
+      { d: '23.15', v: 270.00 },
+      { d: '11/24', v: 198.00 }
     ]
   },
   {
     name: '야생덩굴', color: '#16a34a',
     points: [
       { d: '11/22', v: 9.48 },
-      { d: '23 11h', v: 0.41 },
-      { d: '23 15h', v: 6.85 }
+      { d: '23.11', v: 0.41 },
+      { d: '23.15', v: 6.85 },
+      { d: '11/24', v: 0.41 }
     ]
   },
   {
     name: '상급 별의 정수', color: '#db2777',
     points: [
       { d: '11/22', v: 18.48 },
-      { d: '23 11h', v: 17.88 },
-      { d: '23 15h', v: 17.83 }
+      { d: '23.11', v: 17.88 },
+      { d: '23.15', v: 17.83 },
+      { d: '11/24', v: 17.33 }
     ]
   }
 ];
@@ -12341,7 +12975,7 @@ const TAILORING_PRICE_HISTORY = [
 function renderPriceChartsInto(mountId, historyArr) {
   const mount = document.getElementById(mountId);
   if (!mount) return;
-  const W = 240, H = 104, padL = 32, padR = 14, padT = 18, padB = 22;
+  const W = 264, H = 104, padL = 32, padR = 14, padT = 18, padB = 22;
   const plotW = W - padL - padR, plotH = H - padT - padB;
 
   mount.innerHTML = historyArr.map(m => {
@@ -12410,6 +13044,10 @@ function renderMatPriceCharts() {
 // 사이드바(.nav-btn) 및 모바일 퀵탭(.q-pill) 메뉴 제목 우측 위에 귀여운 N 뱃지가 표시되며,
 // 사용자가 해당 메뉴(또는 N 마크)를 클릭하면 사라지고 같은 버전에서는 다시 뜨지 않습니다.
 const RECENTLY_UPDATED_TABS = {
+  'tab-prof': {
+    v: '2026-11-24-v1',
+    text: '11/24 08:47 Auctionator 자동 동기화 · 리넨 2s 품귀 전환대기 분석 & 가독성 개편 + Lv.32~60 재봉 장비 타임라인 신설'
+  },
   'tab-rules': {
     v: '2026-11-23-v3',
     text: '인게임 규칙 개편: 주문 적중(정밀함 vs 신비한 정신) · 치명 피해 보너스 공식 추가 + 전체 토글 메뉴화'
