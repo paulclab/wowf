@@ -30,6 +30,7 @@
 ### A. 진단 & 최적화 포인트 (`2026-11-24` 실측)
 1. **✅ 11/24 로컬 패치 & 일괄 업데이트 반영 (`Details!` + 11개 스위트)**:
    - `Details! (20261109.15410.172)` **한국어 메뉴 글꼴 깨짐(`□□□`) 패치 적용**: `Libs/DF/cooltip.lua` 1168/1282행의 `--fontFace = font or fontFace` 주석 버그 수정, `Libs/DF/languages.lua`의 `DetectLanguageId` 한글 UTF-8 범위 직접 감지 추가, `core/windows.lua` `CooltipPreset` `koKR` 기본 글꼴 분기 적용. *(인게임 `/reload` 시 즉시 반영)*
+   - `Attune (16001-45)` **한국어(`koKR`) 미번역·영문 혼재 패치 적용**: `Locales/koKR.lua` 미번역 지역명·UI 8종 번역 보완 + `Attune.lua`에 `Attune_InitLiveKoKRLocale()` 프록시 추가(미번역/누락 `Q1_` 퀘스트·`I_` 아이템을 한국어 클라이언트 API `C_QuestLog.GetTitleForQuestID` / `GetItemInfo`로 자동 조회·비동기 재렌더). *(인게임 `/reload` 시 즉시 반영)*
    - `Auctionator (352)`: 본가 `352` 업데이트에 한국어/타 언어 툴팁 수정(`DBKeyFromLink.lua`의 `else callback({basicKey}) end`)이 공식 반영되었습니다! *(단, 우리가 추가했던 `not name or not baseName` nil 가드와 `Tooltips\Main.lua`의 `pcall` 가드는 352 덮어쓰기로 초기화됨)*
    - `Mastercraft (2.1.1)`: `2.1.0`의 **Crafters 기능 완전 끄기 스위치**·**원형 채집 노드 아이콘**·서버/룰셋 분리·정수(1 상급=3 하급) 통합 계산·낚시/회색템/화살 우편 수정에 더해 `2.1.1`에서 타 경매 애드온(`AuctionMaster` 등)과의 제작창 UI 겹침 보정이 추가되었습니다. *(`Mastercraft_Inbox`는 Sync 앱 전용 선택 폴더로 현재 미설치)*
    - `ForeverLevelingBiS (v1.4.7)`: 던전·퀘스트 고정 드랍만 출처를 표시하고 **월드 드랍 BoE(`별똥별 마법봉`, `마법의 정수 장갑` 등)는 출처 텍스트를 생략**하므로(`UI.lua`), BoE 템은 경매장(`Auctionator`)에서 확인/구매합니다. (`1.4.6~1.4.7`에서 통합 목록 25개, 줄구룹 미개방 피덩굴 제외, 반지·장신구·한손무기 양쪽 슬롯 툴팁 비교 확장 반영)
