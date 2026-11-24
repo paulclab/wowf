@@ -733,6 +733,14 @@
   .callout.arcane {
     box-shadow: inset 5px 0 0 #7c3aed, var(--rd-shadow-sm);
   }
+  .card > p,
+  .fold-body > p,
+  .prose-note,
+  .callout-prose {
+    max-width: 68ch;
+    line-height: 1.72;
+    word-break: keep-all;
+  }
 
   /* ===== VISUAL ARCANE TALENT TREE (Memphis Nodes) ===== */
   .talent-tree-grid {
@@ -5177,12 +5185,17 @@
             <summary><span>🧵 <strong>재봉술 (Tailoring)</strong></span></summary>
             <div class="fold-body">
               <h3 style="margin-top:0;">전환 적기 진단 <span class="badge warn">11/24 12:31 · 대기 권장</span></h3>
-              <p style="margin:0 0 14px; font-size:13.4px; line-height:1.65;">
-                현재 경매장 <code>리넨 옷감</code>과 <code>리넨 두루마리</code>가 평시 대비 급등해 있어 <strong>즉시 전환은 비추천</strong>입니다. <code>리넨 옷감</code>이 평시 가격대(<code>20~25c</code>)로 복귀하면 <code>1&rarr;125</code> 실지출을 약 <strong>3.7g 이상</strong> 절약할 수 있으므로 그때 일괄 전환하는 것이 유리하며, 아래 그래프에서 저점 구간인 <code>야생덩굴</code>&middot;<code>자홍색 염료</code> 등 추후 장비 재료만 미리 확보해 두면 좋습니다.
+              <p class="prose-note" style="margin:0 0 14px; font-size:13.4px;">
+                현재 경매장 <code>리넨 옷감</code>과 <code>리넨 두루마리</code>가 평시 대비 급등해 있어 <strong>즉시 전환은 비추천</strong>입니다.<br>
+                <code>리넨 옷감</code>이 평시 가격대(<code>20~25c</code>)로 복귀하면 <code>1&rarr;125</code> 실지출을 약 <strong>3.7g 이상</strong> 절약할 수 있습니다.<br>
+                아래 그래프에서 저점 구간인 <code>야생덩굴</code>&middot;<code>자홍색 염료</code> 등 추후 장비 재료만 미리 확보해 두면 좋습니다.
               </p>
 
               <h3>승급 구간 방법 <span class="badge">1 &rarr; 125 &middot; 선택 145</span></h3>
-              <p style="margin-top:0;"><strong>교관:</strong> <code>셀란두스</code> [스톰윈드 마법사 지구 (<code>42.0, 76.2</code>)] (1~150) &middot; <code>조지오 볼레로</code> (<code>43.2, 73.6</code>) (125~225). 실타래는 반드시 옆 상인(<code>10c</code>/<code>1s</code>)에게 직구하세요.</p>
+              <p class="prose-note" style="margin-top:0;">
+                <strong>교관:</strong> <code>셀란두스</code> [스톰윈드 마법사 지구 (<code>42.0, 76.2</code>)] (1~150) &middot; <code>조지오 볼레로</code> (<code>43.2, 73.6</code>) (125~225)<br>
+                실타래는 반드시 옆 상인(<code>10c</code>/<code>1s</code>)에게 직구하세요.
+              </p>
               <div class="table-wrap" style="margin-bottom:10px;">
                 <table>
                   <thead>
@@ -5200,11 +5213,18 @@
                 </table>
               </div>
               <div class="callout verified" style="margin-top:0; margin-bottom:18px;">
-                <strong>🧾 <code>1 &rarr; 125</code> 요약 (훈련비 ~55.1s 포함 · 가용 <code>31g 32.17s</code>):</strong> 현재 보유 차감 <strong><code>5g 78.82s</code></strong> / 리넨 <code>20c</code> 복귀 대기 시 <strong><code>~2g 7.75s</code></strong> 🎯 <small>(&middot; <code>도안: 세공된 진줏빛 머리장식</code> 가방 보유 중 ✅)</small>
+                <div class="callout-prose">
+                  <strong>🧾 <code>1 &rarr; 125</code> 요약 (훈련비 ~55.1s 포함 · 가용 <code>31g 32.17s</code>):</strong> 현재 보유 차감 <strong><code>5g 78.82s</code></strong> / 리넨 <code>20c</code> 복귀 대기 시 <strong><code>~2g 7.75s</code></strong> 🎯<br>
+                  <span class="core-sum-note">&middot; <code>도안: 세공된 진줏빛 머리장식</code> 가방 보유 중 ✅</span>
+                </div>
               </div>
 
               <h3>추천 장비 타임라인</h3>
-              <p style="margin-top:0; font-size:13.2px; color:var(--rd-ink-2);">레벨 구간 카드를 누르면 해당 구간 제작 장비가 열립니다. <strong>아이템명을 호버·탭</strong>하면 스탯과 <strong>현재 착용 장비 비교</strong> 툴팁이 표시됩니다. (<a href="https://wowf.io/ko/professions/tailoring" target="_blank">WOWF.IO 재봉술 DB</a> &middot; <code>Mastercraft 1.60.1</code> 교차검증)</p>
+              <p class="prose-note" style="margin-top:0; font-size:13.2px; color:var(--rd-ink-2);">
+                레벨 구간 카드를 누르면 해당 구간 제작 장비가 열립니다.<br>
+                <strong>아이템명을 호버·탭</strong>하면 스탯과 <strong>현재 착용 장비 비교</strong> 툴팁이 표시됩니다.<br>
+                (<a href="https://wowf.io/ko/professions/tailoring" target="_blank">WOWF.IO 재봉술 DB</a> &middot; <code>Mastercraft 1.60.1</code> 교차검증)
+              </p>
 
               <!-- Horizontal Interactive Stepper (Dedicated Top Dot Rail - Zero Line Overflow) -->
               <div class="tailor-stepper-wrap">
@@ -5742,7 +5762,10 @@
               </div>
 
               <h3>주요 재료 가격 추이</h3>
-              <p style="margin-top:0; font-size:13px; color:var(--rd-ink-2);">모든 재료 추이는 <code>11/22</code>부터 <code>11/24 12:31</code>까지 이어집니다. 각 재료명을 호버·탭하면 획득처&middot;시세 툴팁이 열립니다.</p>
+              <p class="prose-note" style="margin-top:0; font-size:13px; color:var(--rd-ink-2);">
+                모든 재료 추이는 <code>11/22</code>부터 <code>11/24 12:31</code>까지 이어집니다.<br>
+                각 재료명을 호버·탭하면 획득처&middot;시세 툴팁이 열립니다.
+              </p>
               <div id="tailoringPriceChartGrid" class="price-chart-grid" style="margin-bottom:0;"></div>
             </div>
           </details>
@@ -5793,8 +5816,11 @@
               <div id="matPriceChartGrid" class="price-chart-grid" style="margin-bottom:16px;"></div>
 
               <h3>유용한 마법부여 &amp; 제작 원가 <span class="badge arcane">방어구 키트 4부위 제외</span></h3>
-              <p style="margin-top:0;"><strong>💡 각 레시피·재료 이름을 클릭/호버하면 획득처(NPC &middot; 위치 &middot; 귀속 여부) 툴팁이 표시됩니다.</strong><br>
-              <em>※ 방어구 키트 4부위(가슴&middot;장갑&middot;다리&middot;장화)는 <code>신비한 고급 방어구 키트</code>(주문+4/방+24)와 <code>고급 방어구 키트</code>(체+4/방+32)가 Lv.30~50 마법부여보다 우위이므로 제외했습니다. (후반 예외: 장화 이동속도 +8% <code>최하급 속도</code> 숙련 225)</em></p>
+              <p class="prose-note" style="margin-top:0;">
+                <strong>💡 각 레시피·재료 이름을 클릭/호버하면 획득처(NPC &middot; 위치 &middot; 귀속 여부) 툴팁이 표시됩니다.</strong><br>
+                방어구 키트 4부위(가슴&middot;장갑&middot;다리&middot;장화)는 Lv.30~50 마법부여보다 우위이므로 제외했습니다.<br>
+                <em>(후반 예외: 장화 이동속도 +8% <code>최하급 속도</code> 숙련 225)</em>
+              </p>
               <div class="table-wrap" style="margin-bottom:14px;">
                 <table>
                   <thead>
@@ -5905,7 +5931,11 @@
             <summary><span>🎣 <strong>낚시 (Fishing)</strong> <span class="badge">20 / 75</span></span></summary>
             <div class="fold-body">
               <div class="callout gold" style="margin-top:0; margin-bottom:12px;">
-                <strong>와우 포에버 특화 &amp; <code>생선 그릇</code> 시너지:</strong> 최근 패치로 캠핑 <strong><code>낚시 선반 (Fishing Shelves)</code></strong>(모든 유저에게 미끼 제공 &amp; <code>불어오른 물고기</code> 테이블 개선)이 추가되었습니다. 또한 캠핑 버프 <strong><code>생선 그릇 (Fish Bowl)</code></strong>은 5대 기본 능력치(힘&middot;민&middot;체&middot;지&middot;정) 총합에 <strong>+8%</strong>를 부여하여 지능 상승분만큼 <code>비전 작렬</code>&middot;마나&middot;치명타를 함께 끌어올립니다.
+                <div class="callout-prose">
+                  <strong>와우 포에버 특화 &amp; <code>생선 그릇</code> 시너지</strong><br>
+                  최근 패치로 캠핑 <strong><code>낚시 선반 (Fishing Shelves)</code></strong>(모든 유저에게 미끼 제공 &amp; <code>불어오른 물고기</code> 테이블 개선)이 추가되었습니다.<br>
+                  또한 캠핑 버프 <strong><code>생선 그릇 (Fish Bowl)</code></strong>은 5대 기본 능력치(힘&middot;민&middot;체&middot;지&middot;정) 총합에 <strong>+8%</strong>를 부여해 지능 상승분만큼 <code>비전 작렬</code>&middot;마나&middot;치명타를 함께 끌어올립니다.
+                </div>
               </div>
               <div class="table-wrap" style="margin-bottom:0;">
                 <table>
@@ -5927,7 +5957,10 @@
             <summary><span>🪙 <strong>상인의 호의 (Merchant's Favor) &amp; 아제로스 상업 관리국</strong></span></summary>
             <div class="fold-body">
               <div class="callout arcane" style="margin-top:0;">
-                <strong>한 줄 요약 (현재 <code>55개</code> 보유 ✅):</strong> 와우 포에버 전용 전문기술 특수 도안(마법부여 <code>계시/통찰</code>, 목걸이&middot;보조장비 마부, 재봉 <code>진줏빛 화장복</code>&middot;<code>황금 손등싸개</code> 등)을 사기 위한 <strong>캐릭터 귀속 화폐(상인의 호의)</strong>와 <strong>평판 세력(아제로스 상업 관리국)</strong> 시스템입니다.
+                <div class="callout-prose">
+                  <strong>한 줄 요약 (현재 <code>55개</code> 보유 ✅)</strong><br>
+                  와우 포에버 전용 전문기술 특수 도안(마법부여 <code>계시/통찰</code>, 목걸이&middot;보조장비 마부, 재봉 <code>진줏빛 화장복</code>&middot;<code>황금 손등싸개</code> 등)을 사기 위한 <strong>캐릭터 귀속 화폐(상인의 호의)</strong>와 <strong>평판 세력(아제로스 상업 관리국)</strong> 시스템입니다.
+                </div>
               </div>
               <details class="fold-card dismissible-fold" data-dismiss-id="prof-favor-howto" data-restore-scope="tab-prof">
                 <summary>
@@ -14945,8 +14978,8 @@ const RECENTLY_UPDATED_TABS = {
     text: '11/24 애드온 패치노트 일괄 토글 + 내 캐릭터 핵심 요약 최상단 통합 · Attune koKR 패치'
   },
   'tab-prof': {
-    v: '2026-11-24-v6',
-    text: '11/24 재봉술 Core/검증 2박스 삭제 + WOWF.IO·Mastercraft 기반 추천 장비 11종(진줏빛 다리·황천광채 어깨/손목·황금 장식끈/허리끈/장갑·마술매듭 로브·유령매듭 장화/두건·주문 전문화 장갑·마나섬광 예복) 대거 추가'
+    v: '2026-11-24-v7',
+    text: '코멘트/안내 문단 문장별 줄바꿈 + 최대 폭 68ch 가독성 제한 적용'
   },
   'tab-rules': {
     v: '2026-11-24-v2',
