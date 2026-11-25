@@ -49,10 +49,10 @@ const WOW_DB_TALENTS = {
     note: '📘 Lv.30 핵심 전환점 (21번째 포인트)'
   },
   '신비한 정신': {
-    en: 'Arcane Mind', kind: '비전 특성 · 5티어', quality: 'talent', icon: 'spell_shadow_charm',
-    rows: [['최대 지능 % 증가', 'Lv.31+ 투자']],
-    desc: '총 지능을 비율(%)로 증가시켜 최대 마나, 주문 극대화, 그리고 비전 작렬의 지능 12% 주문력 전환 효율을 동시에 끌어올립니다.',
-    note: '비전 작렬 & 비전 격노(최대 마나 5%) 이중 시너지'
+    en: 'Arcane Mind', kind: '비전 특성 · 5티어 (현재 3/5 ✅)', quality: 'talent', icon: 'spell_shadow_charm',
+    rows: [['총 지능 +6% · 비전 치명 피해 +60%', 'Lv.35 3/5 투자 ✅ (배율 180%)']],
+    desc: '총 지능을 비율(%)로 증가시켜 최대 마나, 주문 극대화, 비전 작렬의 지능 12% 주문력 전환 효율과 비전 치명타 배율(150%→180%→200%)을 동시에 끌어올립니다.',
+    note: '✅ Lv.35 3/5 달성 — 비전 작렬 & 비전 격노(최대 마나 5%) 이중 시너지'
   },
   '신비한 불안정성': {
     en: 'Arcane Instability', kind: '비전 특성 · 6티어', quality: 'talent', icon: 'spell_shadow_teleport',
@@ -89,6 +89,6 @@ const WOW_DB_TALENTS = {
     en: 'Precision', kind: '냉기 특성 · 1티어 (현재 1/3 ✅)', quality: 'spell', icon: 'spell_frost_frost',
     rows: [['냉기 1티어 (ID: #105778)', '모든 학파 통합 적중!'], ['투자당 +2% / +4% / +6%', '현재 1/3 투자 → 총 적중 +2%']],
     desc: '와우 포에버에서 비전·화염·냉기 모든 주문 적중률을 올려주도록 통합 개편된 필수 특성입니다. 2/3 달성 시 동레벨 4% 만적중 완성!',
-    note: '⭐ Lv.34 2/3 우선 투자 최강 추천'
+    note: '⭐ Lv.36 2/3 우선 투자 추천 (동레벨 4% 만적중 완성)'
   }
 };
