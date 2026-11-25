@@ -37,7 +37,7 @@
       </div>
       <div class="brand-sub">휴먼 비전 · Memphis Edition</div>
       <div class="char-mini">
-        <div class="stat-cell"><span class="k">레벨 / HP·MP</span><span class="v">Lv.34 · 1,213 / 2,712</span></div>
+        <div class="stat-cell"><span class="k">레벨 / HP·MP</span><span class="v">Lv.34 · 863 / 2,262</span></div>
         <div class="stat-cell"><span class="k">비전 주문력</span><span class="v arcane">+160 (86+74)</span></div>
         <div class="stat-cell"><span class="k">마부 / 무두</span><span class="v gold">128 / 205</span></div>
         <div class="stat-cell"><span class="k">요리·응급·낚시</span><span class="v">150 · 91 · 22</span></div>
@@ -176,19 +176,19 @@
         <div class="hero-deck">
           <div class="hero-top">
             <div class="hero-id">
-              <h2>휴먼 비전 <span class="badge verified">✅ Lv.34 실측 (11/25 01:52)</span></h2>
-              <p>레벨 <strong>34</strong> · 특성 <strong>24/0/1</strong> (<code>신비한 정신</code> 2/5 · <code>정밀함</code> 1/3) · 01:52 버프 실측 <strong>HP 1,213 / MP 2,712</strong> <em>(노버프 추정 ~853 / ~2,277)</em> · <strong>62체 / 152지 / 108정</strong> · 비전 <strong>+160</strong> (일반 86 + 비전 74) · 치명 <strong>6.17%</strong>(배율 170%) · <code>마법사 갑옷</code> 습득(시전 중 재생 100%) ✅</p>
+              <h2>휴먼 비전 <span class="badge verified">✅ Lv.34 실측 (11/25 15:34)</span></h2>
+              <p>레벨 <strong>34</strong> · 특성 <strong>24/0/1</strong> (<code>신비한 정신</code> 2/5 · <code>정밀함</code> 1/3) · 기본 <strong>HP 863 / MP 2,262</strong> <em>(15:34 실측 1,163 / 2,502)</em> · <strong>57체 / 122지(지능3 138) / 99정</strong> · 비전 <strong>+160</strong> (일반 86 + 비전 74) · 치명 <strong>5.19%</strong>(지능3 5.71% · 배율 170%) · 방어 <strong>466</strong> · <code>마법사 갑옷</code> 재생 100% ✅</p>
             </div>
             <div class="hero-actions">
               <button class="action-chip" onclick="openTab('tab-skills')"><strong>비전 +160</strong> 마갑 100% · 치명배율 170%</button>
-              <button class="action-chip" onclick="openTab('tab-quests')"><strong>놈리건 1회차 완료</strong> 2회차 잔여 6종</button>
+              <button class="action-chip" onclick="openTab('tab-quests')"><strong>놈리건 마무리</strong> 잔여 2종(치료법·천공카드)</button>
               <button class="action-chip" onclick="openTab('tab-gear')"><strong>신규 3부위 장착</strong> 기가볼트 · 녹색비단 · 땅거미</button>
             </div>
           </div>
           <div class="kpi-grid" style="margin-bottom:0;">
-            <div class="kpi"><div class="label">HP / MP (01:52 실측 · 노버프 추정)</div><div class="val">1,213 / 2,712</div><div class="sub">노버프 추정 ~853 / ~2,277 · 방어 470(기본 464)</div></div>
+            <div class="kpi"><div class="label">HP / MP (기본 · 15:34 실측)</div><div class="val">863 / 2,262</div><div class="sub">15:34(지능+스톰힘) 1,163 / 2,502 · 방어 466</div></div>
             <div class="kpi"><div class="label">비전 유효 주문력</div><div class="val" style="color:var(--arcane);">+160</div><div class="sub">일반 86(+16↑) + 비전 74 · 적중 +2%(정밀함)</div></div>
-            <div class="kpi"><div class="label">체력 / 지능 / 정신 (버프 실측)</div><div class="val">62 / 152 / 108</div><div class="sub">치명 6.17%(배율 170%) · 명상+마갑 100%</div></div>
+            <div class="kpi"><div class="label">체력 / 지능 / 정신 (기본 확정)</div><div class="val">57 / 122 / 99</div><div class="sub">치명 5.19%(지능3 5.71% · 배율 170%) · 전투 MP5 94.4</div></div>
             <div class="kpi"><div class="label">전문 · 보조 기술</div><div class="val" style="color:var(--gold);">마부 128 · 무두 205</div><div class="sub">요리 150 · 응급 91 · 낚시 22</div></div>
           </div>
         </div>
@@ -200,7 +200,7 @@
             <div class="equip-doll-summary">
               <span class="equip-pill">일반 SP +86</span>
               <span class="equip-pill" style="color:var(--arcane);">비전 SP +160 (+74)</span>
-              <span class="equip-pill">방어도 464 (버프 470)</span>
+              <span class="equip-pill">방어도 466</span>
               <span class="equip-pill">호버/클릭 시 상세 툴팁 비교</span>
             </div>
           </div>
@@ -361,21 +361,21 @@
           <h2>캐릭터 스탯 시뮬레이터 &amp; 대표 스킬 화력 분석 <span class="badge arcane">실시간 조정</span></h2>
           <div class="sim-toolbar" style="margin-top:0;">
             <div class="sim-toolbar-left">
-              <button class="sim-btn primary" onclick="applyCharPreset('base')">기본값 복원 (Lv.34 노버프 추정)</button>
-              <button class="sim-btn" onclick="applyCharPreset('fullbuff')">01:52 버프 실측 (1,213 / 2,712)</button>
-              <button class="sim-btn" onclick="applyCharPreset('haste')">+스톰윈드의 힘 (HP+300·15% 가속)</button>
-              <button class="sim-btn" onclick="applyCharPreset('intbuff')">+신비한 지능 3레벨 (지+15)</button>
+              <button class="sim-btn primary" onclick="applyCharPreset('base')">기본값 복원 (Lv.34 노버프)</button>
+              <button class="sim-btn" onclick="applyCharPreset('snap1534')">15:34 실측 (1,163 / 2,502)</button>
+              <button class="sim-btn" onclick="applyCharPreset('fullbuff')">01:52 +왕축 (1,213 / 2,712)</button>
+              <button class="sim-btn" onclick="applyCharPreset('intbuff')">+신비한 지능 3레벨 (지 138)</button>
               <button class="sim-btn" onclick="applyCharPreset('oil')">+최하급 마술사 오일 (+8 SP)</button>
             </div>
           </div>
 
           <div class="stat-input-grid">
-            <label class="stat-field"><span>총 체력 (Sta)</span><input type="number" id="stSta" value="56" min="10" max="1000" oninput="updateCharStatLab()"></label>
-            <label class="stat-field"><span>총 지능 (Int)</span><input type="number" id="stInt" value="123" min="10" max="1000" oninput="updateCharStatLab()"></label>
-            <label class="stat-field"><span>총 정신력 (Spi)</span><input type="number" id="stSpi" value="98" min="10" max="1000" oninput="updateCharStatLab()"></label>
+            <label class="stat-field"><span>총 체력 (Sta)</span><input type="number" id="stSta" value="57" min="10" max="1000" oninput="updateCharStatLab()"></label>
+            <label class="stat-field"><span>총 지능 (Int)</span><input type="number" id="stInt" value="122" min="10" max="1000" oninput="updateCharStatLab()"></label>
+            <label class="stat-field"><span>총 정신력 (Spi)</span><input type="number" id="stSpi" value="99" min="10" max="1000" oninput="updateCharStatLab()"></label>
             <label class="stat-field"><span>일반 주문력</span><input type="number" id="stGenSp" value="86" min="0" max="1500" oninput="updateCharStatLab()"></label>
             <label class="stat-field"><span>비전 전용 주문력</span><input type="number" id="stArcSp" value="74" min="0" max="1500" oninput="updateCharStatLab()"></label>
-            <label class="stat-field"><span>주문 치명타 (%)</span><input type="number" id="stCrit" value="5.35" step="0.01" min="0" max="100" oninput="updateCharStatLab()"></label>
+            <label class="stat-field"><span>주문 치명타 (%)</span><input type="number" id="stCrit" value="5.19" step="0.01" min="0" max="100" oninput="updateCharStatLab()"></label>
             <label class="stat-field"><span>주문 가속 (%)</span><input type="number" id="stHaste" value="0" min="0" max="200" oninput="updateCharStatLab()"></label>
             <label class="stat-field"><span>신비한 명상</span>
               <select id="stMed" onchange="updateCharStatLab()">
@@ -392,9 +392,9 @@
             <!-- Left: Live Stat Outputs & Insights -->
             <div>
               <div class="kpi-grid" style="grid-template-columns:repeat(2,minmax(0,1fr)); margin-bottom:10px;">
-                <div class="kpi"><div class="label">예상 HP / MP</div><div class="val" id="outStaInt">853 HP / 2,277 MP</div><div class="sub" id="outStaIntSub">체력 56 · 지능 123 · 비전 SP +160</div></div>
-                <div class="kpi"><div class="label">비작 중첩 SP &amp; 비격 5%</div><div class="val" id="outIntScale">+14.8 ~ +59.0 SP</div><div class="sub" id="outIntCritSub">비작 1중 +14.8(전학파) · 비격 +114 SP</div></div>
-                <div class="kpi"><div class="label">정신력 재생 (비시전 &rarr; 시전)</div><div class="val" id="outSpiRegen">MP5 93.8 (2s 37.5)</div><div class="sub" id="outSpiCombat">전투 MP5 93.8 (100% 유지)</div></div>
+                <div class="kpi"><div class="label">예상 HP / MP</div><div class="val" id="outStaInt">863 HP / 2,262 MP</div><div class="sub" id="outStaIntSub">체력 57 · 지능 122 · 비전 SP +160</div></div>
+                <div class="kpi"><div class="label">비작 중첩 SP &amp; 비격 5%</div><div class="val" id="outIntScale">+14.6 ~ +58.6 SP</div><div class="sub" id="outIntCritSub">비작 1중 +14.6(전학파) · 비격 +113 SP</div></div>
+                <div class="kpi"><div class="label">정신력 재생 (비시전 &rarr; 시전)</div><div class="val" id="outSpiRegen">MP5 94.4 (2s 37.8)</div><div class="sub" id="outSpiCombat">전투 MP5 94.4 (100% 유지)</div></div>
                 <div class="kpi"><div class="label">가속 시전 &amp; GCD</div><div class="val" id="outHasteGcd">GCD 1.50s</div><div class="sub" id="outHasteCap">땅거미 1.30s · 하한 1.00s</div></div>
               </div>
               <div class="insight-grid" id="charInsightsMount"></div>
@@ -535,7 +535,7 @@
                     <tr><td><strong>2순위</strong></td><td><strong>주문 공격력</strong> <em>(모든 주문 &ge; 비전)</em></td><td><strong>주문 적중</strong> / 가속·극대화</td><td><strong><code>모든 주문 공격력</code></strong>은 냉기 전환 시 100% 유지 (<code>악성 뿌리</code> +4 / <code>벌목기 칼날</code> +22)</td></tr>
                     <tr><td><strong>3순위</strong></td><td><strong>극대화 / 가속</strong></td><td><strong>극대화 (<code>산산조각</code>) / 가속</strong></td><td>비전 <code>화살 탄막</code> 및 냉기 <code>산산조각</code> 폭딜과 시전 속도 단축에 직결</td></tr>
                     <tr><td><strong>4순위</strong></td><td><strong>지능 (Intellect)</strong></td><td><strong>지능 (Intellect)</strong></td><td>마나통(+15) + 치명타 + <strong>비전 작렬 지능 12% &amp; 비전 격노 마나 5%</strong> 이중 시너지</td></tr>
-                    <tr><td><strong>5순위</strong></td><td><strong>정신력</strong> <em>(명상+갑옷 이후 상승)</em></td><td><strong>체력</strong> &rarr; 정신력</td><td><code>신비한 명상</code>(2/3 완료) + Lv.32~34 <code>마법사 갑옷</code> 완성 시 시전 중 재생 100%</td></tr>
+                    <tr><td><strong>5순위</strong></td><td><strong>정신력</strong> <em>(명상+갑옷 이후 상승)</em></td><td><strong>체력</strong> &rarr; 정신력</td><td><code>신비한 명상</code>(3/3) + <code>마법사 갑옷</code> 습득 완료 ✅ (시전 중 재생 100%)</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -713,7 +713,7 @@
         <!-- 1. INTEGRATED UPGRADE SUMMARY BANNER -->
         <div class="callout verified" style="margin-top:0;">
           <strong>✨ 최근 장비 업그레이드 요약 (15 / 17 슬롯 장착 · Lv.34)</strong><br>
-          <span style="font-size:13.2px;"><strong>01:52 버프 실측 HP 1,213 / MP 2,712</strong> <em>(노버프 추정 ~853 / ~2,277)</em> <strong>· 일반 주문력 86 (+16↑) + 비전 전용 74 = 총 비전 +160 (+10↑)</strong> (방어도 464 · 버프 470)</span>
+          <span style="font-size:13.2px;"><strong>기본 HP 863 / MP 2,262</strong> <em>(15:34 실측 1,163 / 2,502)</em> <strong>· 일반 주문력 86 (+16↑) + 비전 전용 74 = 총 비전 +160 (+10↑)</strong> (체 57 · 지 122 · 정 99 · 방어 466)</span>
           <div class="gear-summary-list">
             <span class="gear-summary-chip">머리 <code>기가볼트 전자반응기</code> <strong>지+8 · 정+9 · 모든 주문 +8</strong> (놈리건 막넴 BiS 득템 ✅)</span>
             <span class="gear-summary-chip">어깨 <code>녹색 비단 어깨보호구</code> <strong>지+11 · 모든 주문 +8</strong> (지+6·주문+3↑ ✅)</span>
@@ -972,7 +972,7 @@
               <!-- Stage 0 (Default Active): Lv.31~35 -->
               <div class="tailor-tl-panel active" data-tstage="0">
                 <div class="tailor-tl-head">
-                  <span>Lv.31 ~ 35 구간 (현재 Lv.33 &middot; 숙련 125~175)</span>
+                  <span>Lv.31 ~ 35 구간 (현재 Lv.34 &middot; 숙련 125~175)</span>
                   <span class="badge verified">현재 활성 구간</span>
                 </div>
                 <div class="tailor-tl-grid">
@@ -1631,7 +1631,7 @@
 
               <h3>주요 재료 가격 추이</h3>
               <p class="prose-note" style="margin-top:0; font-size:13px; color:var(--rd-ink-2);">
-                11/22 ~ 11/24 14:49 추이 &middot; 재료명을 호버·탭하면 획득처와 시세 툴팁이 열립니다.
+                11/22 ~ 11/25 15:34 추이 &middot; 재료명을 호버·탭하면 획득처와 시세 툴팁이 열립니다.
               </p>
               <div id="tailoringPriceChartGrid" class="price-chart-grid" style="margin-bottom:0;"></div>
             </div>
@@ -2731,7 +2731,7 @@
             <summary><span>🚫 <strong>경험치 획득 불가 (0 XP)</strong></span></summary>
             <div class="fold-body">
               <ul style="margin:0;">
-                <li><strong>① 회색(Gray) 몬스터 처치:</strong> 몹 레벨이 <code>Gray Level</code> 이하(현재 Lv.32 기준 <strong><code>Lv.24 이하</code></strong>)면 솔플·파티 무관 무조건 <code>0 XP</code>.</li>
+                <li><strong>① 회색(Gray) 몬스터 처치:</strong> 몹 레벨이 <code>Gray Level</code> 이하(현재 Lv.34 기준 <strong>Lv.26 이하</strong>)면 솔플·파티 무관 무조건 0 XP.</li>
                 <li><strong>② 인던 고레벨 동행 (포에버 12레벨 초과 룰):</strong> 파티 내 최고레벨 플레이어가 처치 몹보다 <strong>12레벨 초과(<code>13레벨 이상</code> 차이)</strong>일 경우 <strong>파티원 전원 몹 처치 XP <code>0</code></strong>! <em>(※ 던전 퀘스트 완료 보상 XP는 정상 지급)</em></li>
                 <li><strong>③ 타인 선점(회색 이름표 / Tap):</strong> 파티 외 다른 유저가 먼저 타격해 선점된 몬스터는 처치해도 <code>0 XP</code> 및 전리품 획득 불가.</li>
                 <li><strong>④ 경비병(NPC) 과다 기여 &amp; 특수 소환 쫄:</strong> 마을 경비병이 피해 대부분을 입힌 몹이나 보스전 무한 소환 쫄은 경험치 대폭 삭감 또는 <code>0 XP</code>.</li>
