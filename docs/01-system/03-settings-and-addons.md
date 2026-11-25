@@ -25,10 +25,11 @@
 ## 2. 로컬 실측 설치 애드온 관리부 (`2026-11-25` 직접 스캔 ✅)
 - **스캔 경로 (영구 등록)**: `C:\Program Files (x86)\World of Warcraft\_forever_\Interface\AddOns`
 - **캐릭터 활성 설정**: `C:\Program Files (x86)\World of Warcraft\_forever_\WTF\Account\1524025208#1\92\폴-최\AddOns.txt`
-- **진단 요약**: **총 26개 스위트 (71개 폴더)** · **24/26 스위트(62/71 폴더) `Interface: 16001` (`1.60.1`) 지원 ✅** (`BetterBlizzFrames`, `Details!` 계열은 `120105` TOC) · **정면 충돌 `0건` ✅** · **`Details!` + `Attune` 한글 로컬 패치 모두 적용 완료 ✅**
+- **진단 요약**: **총 26개 스위트 (71개 폴더)** · **24/26 스위트(62/71 폴더) `Interface: 16001` (`1.60.1`) 지원 ✅** (`BetterBlizzFrames`, `Details!` 계열은 `120105` TOC) · **정면 충돌 `0건` ✅** · **`Details!` + `Attune` 한글 + `EzWoW-MapFinder` 메모리 경량화 로컬 패치 적용 완료 ✅**
 
-### A. 진단 & 최적화 포인트 (`2026-11-25 11:37` 실측)
-1. **✅ 11/25 2차 애드온 업데이트 7종 (`Details!` 한글 재패치 완료 · `Auctionator` · `Questie` · `LayerSwap` · `SquareMinimap` · `Spoken` · `EzWoW-MapFinder`)**:
+### A. 진단 & 최적화 포인트 (`2026-11-25 15:20` 실측)
+1. **✅ 11/25 2차 애드온 업데이트 7종 & `EzWoW-MapFinder` 메모리 최적화 패치**:
+   - **`EzWoW-MapFinder (2.0.49)` — ✅ 미사용 6개 외국어 DB 지연 로드 패치 완료**: `EzWoW-MapFinder` 고메모리의 직접 원인은 `EzWoW-Data`(`LoadOnDemand: 1` 구조 · 내장 DB 존재 시 조기 종료)가 아니라 **`EzWoW-MapFinder.toc`가 로그인 시 내장 DB(`Locations_001..042` `6.43MB` / `217,344` 테이블 + `AllNames_*` 7개 언어 `6.60MB` + `QuestData` + `ShareSeed`)를 일괄 파싱하기 때문**입니다. `.toc`에서 한국어(`AllNames_koKR.lua`)와 영문만 남기고 **미사용 6개 외국어(`deDE`·`frFR`·`esES`·`ruRU`·`zhCN`·`zhTW`, 총 `5.55MB` / `151,724` 항목) 로드를 제외**하고 `Core/SharedData.lua`에서 옵션 언어 변경 시에만 `EzWoW-Data` 지연 로드(`lazyLocales`)되도록 패치했습니다. *(인게임 `/reload` 시 즉시 적용)*
    - **`Details! (20261124.15450.172)` — ✅ 한글 메뉴 글꼴 재패치 완료**: 그룹 창 개별 크기 유지 옵션(`Keep Size of Grouped Windows`), `Animate Bars` 이동, 비전투 자동 숨김 깜빡임/비교 리포트 오류/전투 중 상세창 차단/사망 시간 `??`/기본 글꼴 선택 목록 수정이 반영되었습니다. 업데이트로 초기화되었던 한글 패치를 즉시 재적용(`Libs/DF/cooltip.lua` 1168·1283행 `fontFace = font or fontFace`, `Libs/DF/languages.lua` `DetectLanguageId` 한글 UTF-8 선감지, `core/windows.lua` `CooltipPreset` `koKR` `"2002"` 분기)했습니다. *(인게임 `/reload` 시 즉시 적용)*
    - **`Auctionator (353)`**: 접두사/접미사(Suffix) 전체 문자열 대신 인덱스만 저장하도록 경량화(CBOR 오류 완화)하고, **타 언어(한국어 등) 랜덤 접미사 감지 수정**(`DBKeyFromLink.lua`에서 `SuffixesExtraChecks` bonusID 기반 로컬 이름 대조 추가)이 적용되었습니다. *(단, `Tooltips/Main.lua` 로컬 `pcall` 가드는 미적용 상태)*
    - **`Questie (12.14.0)`**: 블리자드 UI 오염(Taint) 추적용 **TaintWatch** 추가, `[Forever]` 지도가 없는 퀘스트도 추적기에서 상세창 열기 지원, `[Forever]` Strahad Farsan 흑마법사 상급자 표기, `ruRU` 번역 수정(`QuestieTrace 1.14.0` 동시 갱신).
@@ -58,7 +59,7 @@
 | | **`ForeverCombatText`** | `0.17.0` | ✅ | **활성 (`enabled`)** · 네임플레이트 주문 학파 색상 전투 피해 텍스트 |
 | | **`RangeDisplay`** (+`_Options`) | `v6.3.7` | ✅ | **활성 (`enabled`)** · 적대적 대상 전용 (`enemyOnly = true`, 33m 경계) |
 | **지도 · 퀘스트 · 던전 · 도서관** (9종 / 33폴더) | **`Questie`** + **`QuestieDB`** + **`QuestieTrace`** | `12.14.0` / `1.1.6` / `1.14.0` | ✅ | **활성 (`enabled`)** · 포에버 퀘스트 핀/추적 + DB (`TaintWatch` 추가 · `Trace`는 수집 로거) |
-| | **`EzWoW-MapFinder`** (+`EzWoW-Data*` 21폴더) | `2.0.49` / `1.0.19` | ✅ | 활성 · 오프라인 몹·NPC·오브젝트·희귀·퀘스트 위치 검색 & 웨이포인트 |
+| | **`EzWoW-MapFinder`** (+`EzWoW-Data*` 21폴더) | `2.0.49` / `1.0.19` | ✅ | 활성 · 오프라인 위치 검색 & 웨이포인트 *(미사용 6개국어 제외 메모리 패치 ✅)* |
 | | **`Books_on_map_Forever`** | `2.4.0` | ✅ | 활성 · **와우 포에버 도서관 책 월드맵 핀 표시!** |
 | | **`OpenMap`** + **`OpenMap_NoDungeonMap`** | `v0.8.13` / `v1.2` | ✅ | 활성 · 끊김 없는 통합 세계 지도 + 던전 도감 호환 패치 |
 | | **`SquareMinimap`** | `1.5.0` | ✅ | 활성 · 포에버 사각 브론즈 프레임 미니맵 (**그림자 패널·버튼 숨김 추가**) |
