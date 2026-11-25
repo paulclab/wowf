@@ -566,6 +566,254 @@ const WOW_DB_ITEMS = {
     enchantable: '부여 불가 (열쇠)'
   },
   'Workshop Key': { alias: '작업실 열쇠' },
+  '달라란 하수도 열쇠': {
+    en: 'Dalaran Sewer Key', kind: '열쇠 · 달라란 던전 입장', quality: 'uncommon', icon: 'inv_misc_orb_03',
+    rows: [['열쇠 (열쇠고리)', '와우 포에버 달라란 도시 입장 필수'], ['획득처', '사우스쇼어 [다급한 요청] → 모데라의 환영']],
+    desc: '로다미어 호숫가 달라란 서쪽 하수구 철창문을 여는 필수 열쇠입니다.',
+    note: '📍 사우스쇼어 사절 자크(/way 48.3 60.1) → 달라란 입구 대마법사 모데라의 환영(/way 68.6 45.2)',
+    bind: '획득 시 귀속 (BoP)',
+    source: '동부왕국 > 사우스쇼어 [다급한 요청] → 달라란 입구 [모데라의 환영](/way 68.6 45.2)',
+    enchantable: '부여 불가 (열쇠)'
+  },
+  'Dalaran Sewer Key': { alias: '달라란 하수도 열쇠' },
+  '달라란의 고서': {
+    en: 'Tome of Dalaran', kind: '소환 템 · 달라란 비밀 보스', quality: 'rare', icon: 'inv_misc_book_08',
+    rows: [['사용/소환 아이템', '달라란 비밀 보스 [외면받는 린] 소환'], ['제작 순서', '성채 [검은 고서] → 호박석 농장 지맥 핵']],
+    desc: '그림자송곳니 성채 아루갈 뒤 테이블의 [검은 고서]를 은빛소나무 숲 호박석 농장(/way 63.4 64.3) 지맥 핵에 사용해 제작합니다.',
+    note: '📍 내부 [무덤 기사 아트렉시스] 처치 후 하수도 갈림길 직진 보라색 룬 위에서 사용',
+    bind: '획득 시 귀속 (BoP)',
+    source: '그림자송곳니 성채 [검은 고서] → 은빛소나무 숲 호박석 농장(/way 63.4 64.3) 지맥 핵',
+    enchantable: '부여 불가'
+  },
+  'Tome of Dalaran': { alias: '달라란의 고서' },
+  '덧없는 손장갑': {
+    en: 'Ephemeral Grips', kind: '손 · 천 · 희귀', quality: 'rare', icon: 'inv_gauntlets_17',
+    rows: [['손 · 천', '방어도 31 · i32 · 요구 Lv.27'], ['달라란 도시 [비전 변형물] (33.5%)', '획득 시 귀속']],
+    stats: ['체력 +7', '지능 +7'],
+    effects: ['착용 효과: 비전 마법 주문 및 효과로 입히는 피해 +9 / 암흑 주문 +9'],
+    compare: {
+      equipped: '성난 비전의 현인 장갑',
+      deltas: [
+        { v: '+7 체력', type: 'pos' },
+        { v: '+7 지능', type: 'pos' },
+        { v: '-2 비전 주문력 (키트 주문+4 재적용 가능)', type: 'neg' }
+      ]
+    },
+    note: '⭐ 달라란 1순위 업글! 체7·지7 대폭 상승 + 방어구 키트 주문+4 재적용 시 비전 딜도 사실상 동급',
+    bind: '획득 시 귀속 (BoP)',
+    source: '동부왕국 > 달라란 도시(/way 68.6 45.2) [비전 변형물] (33.5%)',
+    enchantable: '방어구 키트 / 장갑 마부 가능'
+  },
+  'Ephemeral Grips': { alias: '덧없는 손장갑' },
+  '보랏빛 마술사의 로브': {
+    en: "Violet Sorcerer's Robes", kind: '가슴 · 천 · 희귀', quality: 'rare', icon: 'inv_chest_cloth_07',
+    rows: [['가슴 · 천', '방어도 49 · i32 · 요구 Lv.27'], ['달라란 도시 [신비한 수수께끼] (32.8%)', '획득 시 귀속']],
+    stats: ['지능 +15'],
+    effects: ['착용 효과: 모든 주문 공격력 및 치유량이 최대 9만큼 증가합니다.'],
+    compare: {
+      equipped: '성난 비전의 엉겅퀴가죽 로브',
+      deltas: [
+        { v: '+15 지능 (마나 +225)', type: 'pos' },
+        { v: '-11 비전 주문력 (키트 전 -15)', type: 'neg' }
+      ]
+    },
+    note: '📍 비전 극딜은 현 로브(+24) 우위 · 지능+15·모든 주문+9로 냉기/장기전 광역 스왑 가치 높음',
+    bind: '획득 시 귀속 (BoP)',
+    source: '동부왕국 > 달라란 도시(/way 68.6 45.2) [신비한 수수께끼] (32.8%)',
+    enchantable: '방어구 키트 / 가슴 마부 가능'
+  },
+  "Violet Sorcerer's Robes": { alias: '보랏빛 마술사의 로브' },
+  '역병잎 밧줄': {
+    en: 'Blightleaf Rope', kind: '허리 · 천 · 희귀', quality: 'rare', icon: 'inv_belt_03',
+    rows: [['허리 · 천', '방어도 28 · i34 · 요구 Lv.29'], ['달라란 도시 [지옥의 고대정령] (35.8%)', '획득 시 귀속']],
+    stats: ['지능 +10'],
+    effects: ['착용 효과: 5초마다 생명력 5 회복', '착용 효과: 모든 주문 공격력 및 치유량이 최대 7만큼 증가합니다.'],
+    compare: {
+      equipped: '성난 비전의 장로 장식띠',
+      deltas: [
+        { v: '+10 지능 (마나 +150)', type: 'pos' },
+        { v: '-6 비전 주문력 (모든 주문 +7)', type: 'neg' }
+      ]
+    },
+    note: '📍 [지옥의 고대정령] 드랍 — 현 비전+13 허리 대비 마나통·모든 주문 스왑용 추천',
+    bind: '획득 시 귀속 (BoP)',
+    source: '동부왕국 > 달라란 도시(/way 68.6 45.2) [지옥의 고대정령] (35.8%)',
+    enchantable: '부여 불가 (허리)'
+  },
+  'Blightleaf Rope': { alias: '역병잎 밧줄' },
+  '보랏빛 장식띠': {
+    en: 'Violet Sash', kind: '허리 · 천 · 고급 · 퀘스트 보상', quality: 'uncommon', icon: 'inv_belt_03',
+    rows: [['허리 · 천', '방어도 27 · i36 · 달라란 [압도적인 힘]'], ['수락: 스톰윈드 [안드로매스](/way 48.7 87.6)', '획득 시 귀속']],
+    stats: ['지능 +9'],
+    effects: ['착용 효과: 모든 주문 공격력 및 치유량이 최대 6만큼 증가합니다.'],
+    compare: {
+      equipped: '성난 비전의 장로 장식띠',
+      deltas: [
+        { v: '+9 지능', type: 'pos' },
+        { v: '-7 비전 주문력', type: 'neg' }
+      ]
+    },
+    note: '📍 스톰윈드 성소 탑 [고위마술사 안드로매스] 9,400 XP + 1골드 보상 — 냉기 겸용 스왑/추출',
+    bind: '획득 시 귀속 (BoP)',
+    source: '동부왕국 > 스톰윈드 마법사 성소(/way 48.7 87.6) 달라란 [압도적인 힘] 보상',
+    enchantable: '부여 불가 (허리)'
+  },
+  'Violet Sash': { alias: '보랏빛 장식띠' },
+  '보랏빛 마술사의 어깨보호대': {
+    en: "Violet Sorcerer's Mantle", kind: '어깨 · 천 · 희귀', quality: 'rare', icon: 'inv_shoulder_09',
+    rows: [['어깨 · 천', '방어도 38 · i35 · 요구 Lv.30'], ['달라란 도시 막넴 [대마법사의 망령] (31.3%)', '획득 시 귀속']],
+    stats: ['지능 +9'],
+    effects: ['착용 효과: 주문 대상의 마법 저항력을 4만큼 감소시킵니다.'],
+    compare: {
+      equipped: '녹색 비단 어깨보호구',
+      deltas: [
+        { v: '-2 지능', type: 'neg' },
+        { v: '-8 모든 주문력', type: 'neg' },
+        { v: '+4 주문 관통력', type: 'pos' }
+      ]
+    },
+    note: '📍 현 [녹색 비단 어깨보호구](지11/주문+8)가 사냥·던전 압도적 우위 → PVP/추출용',
+    bind: '획득 시 귀속 (BoP)',
+    source: '동부왕국 > 달라란 도시(/way 68.6 45.2) [대마법사의 망령] (31.3%)',
+    enchantable: '부여 불가 (현 구간)'
+  },
+  "Violet Sorcerer's Mantle": { alias: '보랏빛 마술사의 어깨보호대' },
+  '마나 집중의 마법봉': {
+    en: 'Wand of Mana Concentration', kind: '원거리 · 마법봉 · 희귀', quality: 'rare', icon: 'inv_wand_07',
+    rows: [['원거리 · 마법봉 · 속도 1.70', '37 - 69 (31.2 DPS) · i32 · 요구 Lv.27'], ['달라란 도시 [신비한 수수께끼] (31.7%)', '획득 시 귀속']],
+    stats: ['지능 +4'],
+    effects: ['착용 효과: 5초마다 마나가 2만큼 회복됩니다. (MP5 +2)'],
+    compare: {
+      equipped: '땅거미 마법봉',
+      deltas: [
+        { v: '+4 지능 · MP5 +2', type: 'pos' },
+        { v: '-5 모든 주문력', type: 'neg' }
+      ]
+    },
+    note: '📍 마나 유지용 스왑 마법봉 — 평소엔 [땅거미 마법봉](주문+5·속도 1.30) 유지 추천',
+    bind: '획득 시 귀속 (BoP)',
+    source: '동부왕국 > 달라란 도시(/way 68.6 45.2) [신비한 수수께끼] (31.7%)',
+    enchantable: '부여 불가'
+  },
+  'Wand of Mana Concentration': { alias: '마나 집중의 마법봉' },
+  '포식자의 가시': {
+    en: 'Spine of the Devourer', kind: '양손 · 지팡이 · 희귀', quality: 'rare', icon: 'inv_staff_13',
+    rows: [['양손 지팡이', 'i33 · 요구 Lv.28'], ['달라란 도시 [마나 포식자] (30.4%)', '획득 시 귀속']],
+    stats: ['체력 +14'],
+    effects: ['착용 효과: 모든 주문 공격력 및 치유량 +36', '착용 효과: 주문 관통력 +3'],
+    compare: {
+      equipped: '타락한 용의 홀',
+      deltas: [
+        { v: '+14 체력', type: 'pos' },
+        { v: '-11 지능 · -13 정신력', type: 'neg' }
+      ]
+    },
+    note: '📍 현 [타락한 용의 홀](지11/정13/주문+36)이 마나·치명·MP5 압도적 우위 → 체력 스왑용',
+    bind: '획득 시 귀속 (BoP)',
+    source: '동부왕국 > 달라란 도시(/way 68.6 45.2) [마나 포식자] (30.4%)',
+    enchantable: '무기 마부·오일 가능'
+  },
+  'Spine of the Devourer': { alias: '포식자의 가시' },
+  '힘줄긁개 단검': {
+    en: 'Tendonscraper Dagger', kind: '주장비 · 단검 · 희귀', quality: 'rare', icon: 'inv_weapon_shortblade_05',
+    rows: [['주장비 · 단검 · 속도 1.60', 'i33 · 요구 Lv.28'], ['달라란 비밀보스 [외면받는 린] (33.0%)', '획득 시 귀속']],
+    stats: ['체력 +5'],
+    effects: ['착용 효과: 모든 주문 공격력 및 치유량 +36', '착용 효과: 5초당 생명력 8 회복'],
+    compare: {
+      equipped: '타락한 용의 홀',
+      deltas: [
+        { v: '+5 체력 (한손이라 보조장비 추가 가능)', type: 'pos' },
+        { v: '-11 지능 · -13 정신력', type: 'neg' }
+      ]
+    },
+    note: '📍 [달라란의 고서]로 [외면받는 린] 소환 시 드랍 — 보조장비 조합 시 양손 지팡이 상회 가능',
+    bind: '획득 시 귀속 (BoP)',
+    source: '동부왕국 > 달라란 도시(/way 68.6 45.2) 비밀보스 [외면받는 린] (33.0%)',
+    enchantable: '무기 마부·오일 가능'
+  },
+  'Tendonscraper Dagger': { alias: '힘줄긁개 단검' },
+  '묵직한 보주': {
+    en: 'Ponderous Orb', kind: '보조장비 · 희귀', quality: 'rare', icon: 'inv_misc_orb_03',
+    rows: [['보조장비', 'i35 · 요구 Lv.30'], ['달라란 도시 막넴 [대마법사의 망령] (32.7%)', '획득 시 귀속']],
+    stats: ['지능 +2', '정신력 +8'],
+    effects: ['착용 효과: 치유량 +11 / 주문 공격력 +4'],
+    note: '📍 한손 무기([힘줄긁개 단검]/[빚 수금인])와 조합 시 활용 · 현재는 양손 지팡이 착용 중',
+    bind: '획득 시 귀속 (BoP)',
+    source: '동부왕국 > 달라란 도시(/way 68.6 45.2) [대마법사의 망령] (32.7%)',
+    enchantable: '포에버 보조장비 마부 가능'
+  },
+  'Ponderous Orb': { alias: '묵직한 보주' },
+  '룬치유사의 인장': {
+    en: "Runemender's Seal", kind: '손가락 · 희귀', quality: 'rare', icon: 'inv_jewelry_ring_03',
+    rows: [['손가락 (반지)', 'i32 · 요구 Lv.27 · 고유 장착'], ['달라란 도시 [비전 변형물] (31.6%)', '획득 시 귀속']],
+    stats: ['지능 +6', '정신력 +6'],
+    effects: ['착용 효과: 치유량 +9 / 주문 공격력 +3'],
+    note: '📍 현재 쌍반지([암흑 호드 고리] 체6/주6 + [악성 뿌리] 체7/주4)가 딜 우위',
+    bind: '획득 시 귀속 (BoP)',
+    source: '동부왕국 > 달라란 도시(/way 68.6 45.2) [비전 변형물] (31.6%)',
+    enchantable: '부여 불가'
+  },
+  "Runemender's Seal": { alias: '룬치유사의 인장' },
+  '무덤매듭 손목띠': {
+    en: 'Graveweave Bindings', kind: '손목 · 천 · 희귀', quality: 'rare', icon: 'inv_bracer_07',
+    rows: [['손목 · 천', '방어도 21 · i31 · 요구 Lv.26'], ['달라란 도시 [무덤 기사 아트렉시스] (38.2%)', '획득 시 귀속']],
+    stats: ['힘 +6'],
+    effects: ['착용 효과: MP5 +2 / 모든 주문 공격력 +5'],
+    note: '📍 현 [성난 비전의 현인 팔보호구](비전+9/체3) 및 놈리건 [거미전차 기름걸레](MP5+3/주9)가 우위',
+    bind: '획득 시 귀속 (BoP)',
+    source: '동부왕국 > 달라란 도시(/way 68.6 45.2) [무덤 기사 아트렉시스] (38.2%)',
+    enchantable: '손목 마부 가능'
+  },
+  'Graveweave Bindings': { alias: '무덤매듭 손목띠' },
+  '덩굴치기의 망토': {
+    en: "Vine Pruner's Cloak", kind: '등 · 고급 · 퀘스트 보상', quality: 'uncommon', icon: 'inv_misc_cape_02',
+    rows: [['등 (망토)', '방어도 24 · i36 · 달라란 [녹빛 표본]'], ['수락: 스톰윈드 [샤이라미르](/way 31.3 62.9)', '획득 시 귀속']],
+    stats: ['체력 +6'],
+    effects: ['착용 효과: 모든 주문 공격력 및 치유량이 최대 5만큼 증가합니다.'],
+    note: '📍 현 [성난 비전의 인간사냥꾼 망토](비전+10·방20)가 딜 우위 → 생존 스왑 또는 마부 추출',
+    bind: '획득 시 귀속 (BoP)',
+    source: '동부왕국 > 스톰윈드 공원 [샤이라미르](/way 31.3 62.9) 달라란 [녹빛 표본] 보상',
+    enchantable: '망토 마부 가능 (추출 권장)'
+  },
+  "Vine Pruner's Cloak": { alias: '덩굴치기의 망토' },
+  '보랏빛 마술사의 다리보호구': {
+    en: "Violet Sorcerer's Leggings", kind: '다리 · 천 · 희귀 (BoE)', quality: 'rare', icon: 'inv_pants_06',
+    rows: [['다리 · 천', '방어도 44 · i34 · 요구 Lv.29'], ['달라란·알터랙 월드 드랍', '착용 시 귀속 (경매 거래 가능)']],
+    stats: ['지능 +13', '정신력 +5'],
+    effects: ['착용 효과: 모든 주문 공격력 및 치유량이 최대 12만큼 증가합니다.'],
+    compare: {
+      equipped: '집정관의 바지',
+      deltas: [
+        { v: '+5 정신력 · +5 모든 주문력 (키트 포함 시 +1)', type: 'pos' }
+      ]
+    },
+    note: '💰 달라란 착귀 BoE! 현 [집정관의 바지](지13/주7+키트4)의 상위 스왑 또는 고가 경매 판매',
+    bind: '착용 시 귀속 (BoE)',
+    source: '동부왕국 > 알터랙 산맥 · 달라란 일대 착귀(BoE) 드랍 / 경매장',
+    enchantable: '방어구 키트 / 바지 마부 가능'
+  },
+  "Violet Sorcerer's Leggings": { alias: '보랏빛 마술사의 다리보호구' },
+  '보랏빛 마술사의 싸개': {
+    en: "Violet Sorcerer's Wraps", kind: '손 · 천 · 희귀 (BoE)', quality: 'rare', icon: 'inv_gauntlets_17',
+    rows: [['손 · 천', '방어도 31 · i33 · 요구 Lv.28'], ['달라란·알터랙 월드 드랍', '착용 시 귀속 (경매 거래 가능)']],
+    stats: ['지능 +9'],
+    effects: ['착용 효과: 주문 적중률이 1%만큼 증가합니다.'],
+    note: '💰 적중 +1% 붙은 BoE 장갑 — 정밀함 1/3(+2%) 보강 또는 경매장 판매',
+    bind: '착용 시 귀속 (BoE)',
+    source: '동부왕국 > 알터랙 산맥 · 달라란 일대 착귀(BoE) 드랍 / 경매장',
+    enchantable: '방어구 키트 / 장갑 마부 가능'
+  },
+  "Violet Sorcerer's Wraps": { alias: '보랏빛 마술사의 싸개' },
+  '보랏빛 마술사의 덧신': {
+    en: "Violet Sorcerer's Sandals", kind: '발 · 천 · 희귀 (BoE)', quality: 'rare', icon: 'inv_boots_05',
+    rows: [['발 · 천', '방어도 34 · i33 · 요구 Lv.28'], ['달라란·알터랙 월드 드랍', '착용 시 귀속 (경매 거래 가능)']],
+    stats: ['체력 +7', '지능 +11'],
+    note: '💰 높은 체력·지능 BoE 천 장화 — 경매장 판매 또는 마나통 스왑용',
+    bind: '착용 시 귀속 (BoE)',
+    source: '동부왕국 > 알터랙 산맥 · 달라란 일대 착귀(BoE) 드랍 / 경매장',
+    enchantable: '방어구 키트 / 장화 마부 가능'
+  },
+  "Violet Sorcerer's Sandals": { alias: '보랏빛 마술사의 덧신' },
   '연구자의 야간등': {
     en: "Researcher's Nightlight", kind: '보조장비 · 도서관 25권 보상 · 희귀', quality: 'rare', icon: 'inv_misc_orb_03',
     rows: [['보조장비', '아이템 레벨 45 · 요구 Lv.40'], ['도서관 책 25권 반납 보상', '획득 시 귀속']],

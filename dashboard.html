@@ -66,8 +66,8 @@
         <button class="nav-btn" data-tab="tab-prof" data-group="모험" data-title="전문기술" onclick="openTab('tab-prof', this)">
           <span>전문기술</span><span class="pill">마부 128</span>
         </button>
-        <button class="nav-btn" data-tab="tab-quests" data-group="모험" data-title="던전 &amp; 퀘스트 (놈리건 · 5인 던전 · 연퀘 · 완료)" onclick="openTab('tab-quests', this)">
-          <span>던전 &amp; 퀘스트</span><span class="pill">놈리건</span>
+        <button class="nav-btn" data-tab="tab-quests" data-group="모험" data-title="던전 &amp; 퀘스트 (달라란 · 놈리건 · 5인 던전)" onclick="openTab('tab-quests', this)">
+          <span>던전 &amp; 퀘스트</span><span class="pill">달라란</span>
         </button>
         <button class="nav-btn" data-tab="tab-books" data-group="모험" data-title="도서관 책 찾기 &amp; 연구/두루마리" onclick="openTab('tab-books', this)">
           <span>도서관 책찾기 &amp; 연구</span><span class="pill">40권</span>
@@ -181,7 +181,7 @@
             </div>
             <div class="hero-actions">
               <button class="action-chip" onclick="openTab('tab-skills')"><strong>비전 +160</strong> 마갑 100% · 치명배율 170%</button>
-              <button class="action-chip" onclick="openTab('tab-quests')"><strong>놈리건 마무리</strong> 잔여 2종(치료법·천공카드)</button>
+              <button class="action-chip" onclick="openTab('tab-quests')"><strong>달라란 준비</strong> 열쇠·퀘스트 5종 · 놈리건 2종</button>
               <button class="action-chip" onclick="openTab('tab-gear')"><strong>신규 3부위 장착</strong> 기가볼트 · 녹색비단 · 땅거미</button>
             </div>
           </div>
@@ -782,6 +782,12 @@
                   <td><strong>놈리건</strong> 막넴 <code>기계박사 텔마플러그</code><br><small>동부왕국 &gt; 던 모로 신 땜장이 마을 승강기(<code>/way 24.4 39.6</code>) 지하 포탈</small><br><button type="button" class="quest-jump-btn" onclick="jumpToTabAnchor('tab-quests','q-sec-gnomer')">🔗 던전&amp;퀘스트: 놈리건</button></td>
                 </tr>
                 <tr>
+                  <td><strong>1순위 · 손</strong></td>
+                  <td><strong><code>덧없는 손장갑</code></strong> (희귀 · Lv.27)</td>
+                  <td><strong>체+7 · 지+7 · 비전 +9 · 암흑 +9</strong><br><small>현 <code>성난 비전의 현인 장갑</code>(비전+11+키트4) 대비 비전-2이나 <strong>체7·지7 대폭 업글!</strong> (키트 +4 재적용 가능)</small></td>
+                  <td><strong>달라란 도시</strong> <code>비전 변형물</code> (33.5%)<br><small>은빛소나무·알터랙 경계(<code>/way 68.6 45.2</code> · 열쇠 필수)</small><br><button type="button" class="quest-jump-btn" onclick="jumpToTabAnchor('tab-quests','q-sec-dalaran')">🔗 던전&amp;퀘스트: 달라란</button></td>
+                </tr>
+                <tr>
                   <td><strong>1순위 · 손목</strong></td>
                   <td><strong><code>거미전차 기름걸레</code></strong> (희귀 · Lv.29)</td>
                   <td><strong>MP5 +3 · 모든 주문 +9</strong><br><small>현 <code>성난 비전의 현인 팔보호구</code>(비전+9/체3) 대비 <strong>모든 주문+9 + MP5+3</strong> 상급 스왑</small></td>
@@ -818,10 +824,10 @@
                   <td><strong>가시덩굴 우리</strong> <code>저주의가시 아겜</code> (2.5%)<br><small>칼림도어 &gt; 불모의 땅 최남단 가시 통로(<code>42.9, 90.2</code>)</small><br><button type="button" class="quest-jump-btn" onclick="jumpToTabAnchor('tab-quests','q-sec-rfk')">🔗 던전&amp;퀘스트: 가시덩굴 우리</button></td>
                 </tr>
                 <tr>
-                  <td><strong>3순위 · 등/가슴</strong></td>
-                  <td><code>가시직조 외투</code> / <code>선민의 로브</code></td>
-                  <td><code>외투</code> 정+6·주문+7 / <code>로브</code> 체+7·정+12·주문+9·치유+26<br><small>일반 주문력·장기전 대비 스왑용 (마부 추출 가능)</small></td>
-                  <td><strong>가시덩굴 우리</strong> <code>루구그</code>(<code>42.9, 90.2</code>) / <strong>놈리건</strong> <code>대배반</code>(<code>/way 69.0 49.0</code>)<br><button type="button" class="quest-jump-btn" onclick="jumpToTabAnchor('tab-quests','q-sec-rfk')">🔗 가시덩굴 우리</button> <button type="button" class="quest-jump-btn" onclick="jumpToTabAnchor('tab-quests','q-sec-gnomer')">🔗 놈리건</button></td>
+                  <td><strong>3순위 · 등/가슴/허리</strong></td>
+                  <td><code>보랏빛 마술사의 로브</code> / <code>역병잎 밧줄</code> / <code>선민의 로브</code></td>
+                  <td><code>보랏빛 로브</code> 지+15·주+9 / <code>역병잎</code> 지+10·HP5+5·주+7 / <code>선민</code> 체+7·정+12·주+9<br><small>냉기·장기전 마나통 스왑용 (마부 추출 가능)</small></td>
+                  <td><strong>달라란 도시</strong>(<code>/way 68.6 45.2</code>) / <strong>놈리건</strong> <code>대배반</code>(<code>/way 69.0 49.0</code>)<br><button type="button" class="quest-jump-btn" onclick="jumpToTabAnchor('tab-quests','q-sec-dalaran')">🔗 달라란</button> <button type="button" class="quest-jump-btn" onclick="jumpToTabAnchor('tab-quests','q-sec-gnomer')">🔗 놈리건</button></td>
                 </tr>
                 <tr>
                   <td><strong>대안 · 원거리/보조</strong></td>
@@ -1896,7 +1902,84 @@
       <!-- TAB: QUESTS -->
       <section id="tab-quests" class="tab">
         <div class="card">
-          <h2 id="q-sec-gnomer">1. 마무리 단계 ⭐ &mdash; 놈리건 (Gnomeregan, Lv.29~38) 남은 2종 공략 &amp; 반납 정리 <span class="badge arcane">인던 내 2종 남음 (11/25)</span></h2>
+          <h2 id="q-sec-dalaran">1. 다음 목표 ⭐ &mdash; 달라란 도시 (City of Dalaran, Lv.28~35) 위치 &middot; 열쇠 &middot; 퀘스트 &middot; 득템 <span class="badge arcane">신규 5인 던전 ⭐ (11/25)</span></h2>
+          <div class="callout" style="margin-top:0;">
+            <strong>📍 던전 위치 &amp; 하수구 열쇠 동선 (동부왕국 북부):</strong> 로다미어 호숫가 달라란 서쪽 하수구 철창문 안쪽에 포탈이 있습니다. <button class="map-jump-btn macro" onclick="jumpToMacroNode('dalaran')">🌍 대륙 맵</button><br>
+            &bull; <strong>입구 위치:</strong> 동부왕국 북부 &gt; 은빛소나무 숲&middot;알터랙 경계 <strong>로다미어 호숫가 서쪽 하수구</strong> (은빛소나무 <code>/way 68.6 45.2</code> &middot; 알터랙 <code>/way 8.5 59.2</code>) &mdash; 비행 거점 <code>사우스쇼어</code>에서 북서쪽 호숫가 따라 이동!<br>
+            &bull; <strong>필수 열쇠:</strong> 사우스쇼어 <code>사절 자크</code>(<code>/way 48.3 60.1</code>)에게 <code>다급한 요청</code>을 받아 입구 앞 <code>대마법사 모데라의 환영</code>(<code>/way 68.6 45.2</code>)에게 보고하면 <strong><code>달라란 하수도 열쇠</code></strong>와 내부 연퀘가 열립니다!
+          </div>
+
+          <div class="callout warn">
+            <strong>⚠️ 달라란 공략 전 3대 핵심 특이사항:</strong><br>
+            1. <strong>스톰윈드 2종 먼저 받고 북상:</strong> 출발 전 스톰윈드에서 <code>녹빛 표본</code>(<code>샤이라미르</code> <code>/way 31.3 62.9</code>) &middot; <code>압도적인 힘</code>(<code>고위마술사 안드로매스</code> <code>/way 48.7 87.6</code>) 2개를 먼저 챙기고 <code>사우스쇼어</code>로 날아가세요.<br>
+            2. <strong>전투 패턴 (차단 &amp; 산개 &amp; 해제):</strong> 비전/지옥/마나 흡수 보스들이라 <code>마법 차단</code> &middot; <code>저주 해제</code>가 매우 유용합니다. <code>비전 변형물</code>은 쫄 소환 시전 차단, <code>불안정한 파수꾼</code>은 폭발 시 산개, 막넴 <code>대마법사의 망령</code>은 성채 계단 <code>모데라</code> 대화 후 진행!<br>
+            3. <strong>선택 비밀 보스 (<code>외면받는 린</code>):</strong> <code>그림자송곳니 성채</code> 아루갈 뒤 <code>검은 고서</code>를 은빛소나무 숲 호박석 농장(<code>/way 63.4 64.3</code>) 지맥 핵에 사용해 <strong><code>달라란의 고서</code></strong>를 만들면, <code>무덤 기사 아트렉시스</code> 처치 후 갈림길 직진 보라색 룬 위에서 소환 가능!
+          </div>
+
+          <h3>달라란 도시 사전 연퀘 &amp; 비밀 보스 체크리스트 (4+1종 총 37,600 XP+ · 자동 저장)</h3>
+          <label class="quest-check">
+            <input type="checkbox" data-qcheck="dalaran-1" onchange="toggleQuestCheck(this)">
+            <span class="q-body">
+              <span class="q-title">[스톰윈드 ①] 녹빛 표본 (Lv.33D &middot; 요구 24) &rarr; 보상 <code>덩굴치기의 망토</code></span>
+              수락/반납: 스톰윈드 공원 지구 약초 교관 <code>샤이라미르</code>(<code>/way 31.3 62.9</code>) &rarr; 내부 룬술사 광장 <code>지옥 마력이 깃든 꽃</code> 수집 (9,400 XP)
+            </span>
+          </label>
+          <label class="quest-check">
+            <input type="checkbox" data-qcheck="dalaran-2" onchange="toggleQuestCheck(this)">
+            <span class="q-body">
+              <span class="q-title">[스톰윈드 ②] 압도적인 힘 (Lv.33D &middot; 요구 24) &rarr; 보상 <code>보랏빛 장식띠</code> (지9/주6)</span>
+              수락/반납: 스톰윈드 마법사 성소 탑 <code>고위마술사 안드로매스</code>(<code>/way 48.7 87.6</code>) &rarr; 보스 <code>신비한 수수께끼</code> 처치 (9,400 XP &middot; 1골드)
+            </span>
+          </label>
+          <label class="quest-check">
+            <input type="checkbox" data-qcheck="dalaran-3" onchange="toggleQuestCheck(this)">
+            <span class="q-body">
+              <span class="q-title">[사우스쇼어 &rarr; 입구 열쇠] 다급한 요청 (Lv.33D &middot; 요구 30) &rarr; <code>달라란 하수도 열쇠</code></span>
+              사우스쇼어 마을회관 <code>사절 자크</code>(<code>/way 48.3 60.1</code>) 수락 &rarr; 달라란 서쪽 하수구 앞 <code>대마법사 모데라의 환영</code>(<code>/way 68.6 45.2</code>) 반납 (650 XP &middot; 열쇠 &amp; 후속 2종 개방!)
+            </span>
+          </label>
+          <label class="quest-check">
+            <input type="checkbox" data-qcheck="dalaran-4" onchange="toggleQuestCheck(this)">
+            <span class="q-body">
+              <span class="q-title">[입구 앞 ①] 비전에 굶주린 자들 (Lv.33D &middot; 요구 24)</span>
+              <code>대마법사 모데라의 환영</code>(<code>/way 68.6 45.2</code>) 수락 &rarr; 내부 일반몹 <code>추적하는 잔재</code> 8 &middot; <code>포화된 잔재</code> 8 &middot; <code>마나 메아리</code> 8 처치 (9,400 XP &middot; 마법사 보상 없음)
+            </span>
+          </label>
+          <label class="quest-check">
+            <input type="checkbox" data-qcheck="dalaran-5" onchange="toggleQuestCheck(this)">
+            <span class="q-body">
+              <span class="q-title">[입구 앞 ②] 분열의 심장 (Lv.33D &middot; 요구 24)</span>
+              <code>대마법사 모데라의 환영</code>(<code>/way 68.6 45.2</code>) 수락 &rarr; 내부 보라빛 성채 계단 <code>모데라</code> 대화 후 막넴 <strong><code>대마법사의 망령</code></strong> 처치 (<code>비전의 티끌</code> &middot; 9,400 XP &middot; 마법사 착용 보상 없음)
+            </span>
+          </label>
+          <label class="quest-check">
+            <input type="checkbox" data-qcheck="dalaran-6" onchange="toggleQuestCheck(this)">
+            <span class="q-body">
+              <span class="q-title">[선택 비밀 보스] <code>달라란의 고서</code> 제작 &amp; <code>외면받는 린</code> 소환</span>
+              성채 아루갈 뒤 <code>검은 고서</code> &rarr; 호박석 농장(<code>/way 63.4 64.3</code>) 지맥 핵 사용 &rarr; 달라란 내부 <code>아트렉시스</code> 후 보라색 룬 위 소환 (<code>힘줄긁개 단검</code> 주+36!)
+            </span>
+          </label>
+
+          <h3>🎯 달라란 도시 마법사용 국문 득템 리스트 &amp; 현재 Lv.34 장비 비교 (와우 포에버 1.60.1)</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>순위 · 국문 아이템 (부위/요구 Lv)</th><th>획득처 / 드랍률</th><th>핵심 스탯</th><th>현재 Lv.34 착용템 대비 비교</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>1순위 · <code>덧없는 손장갑</code></strong> (손 천 / Lv.27) <span class="badge arcane">핵심 업글 ⭐</span></td><td><strong><code>비전 변형물</code></strong> (33.5%)</td><td>방어 31 &middot; <strong>체+7 &middot; 지+7 &middot; 비전 +9</strong> &middot; 암흑 +9</td><td>현 <code>성난 비전의 현인 장갑</code>(비전+11+키트4) 대비 비전-2이나 <strong>체7&middot;지7 대폭 업글 + 키트 재적용 시 최상!</strong></td></tr>
+                <tr><td><strong>2순위 · <code>보랏빛 마술사의 로브</code></strong> (가슴 천 / Lv.27)</td><td><strong><code>신비한 수수께끼</code></strong> (32.8%)</td><td>방어 49 &middot; <strong>지능 +15 &middot; 모든 주문 +9</strong></td><td>현 <code>성난 비전의 엉겅퀴가죽 로브</code>(비전+20+키트4)가 딜 우위 &rarr; <strong>냉기&middot;장기전 마나통 스왑!</strong></td></tr>
+                <tr><td><strong>2순위 · <code>역병잎 밧줄</code></strong> (허리 천 / Lv.29)</td><td><strong><code>지옥의 고대정령</code></strong> (35.8%)</td><td>방어 28 &middot; <strong>지능 +10 &middot; HP5 +5 &middot; 모든 주문 +7</strong></td><td>현 <code>성난 비전의 장로 장식띠</code>(비전+13) 대비 비전-6이나 <strong>마나+150 &middot; 모든 주문 스왑!</strong></td></tr>
+                <tr><td><strong>퀘스트 · <code>보랏빛 장식띠</code> / <code>덩굴치기의 망토</code></strong></td><td><code>압도적인 힘</code> / <code>녹빛 표본</code></td><td>허리(지9/주+6) &middot; 등(체6/주+5)</td><td>현 비전+13 허리 &middot; 비전+10 망토가 딜 우위 &rarr; <strong>냉기 스왑 또는 마부 추출</strong></td></tr>
+                <tr><td><strong>무기/마법봉 · <code>힘줄긁개 단검</code> / <code>포식자의 가시</code> / <code>마나 집중의 마법봉</code></strong></td><td><code>외면받는 린</code> / <code>마나 포식자</code> / <code>수수께끼</code></td><td>단검(체5/주+36) &middot; 지팡이(체14/관통3/주+36) &middot; 봉(지4/MP5+2)</td><td><code>타락한 용의 홀</code>(지11/정13/주+36) &middot; <code>땅거미 마법봉</code>(주+5)이 주력 우위 &rarr; <strong>생존&middot;보조조합 스왑</strong></td></tr>
+                <tr><td><strong>참고/BoE · <code>보랏빛 마술사의 다리보호구</code> / <code>싸개</code> / <code>덧신</code></strong></td><td>달라란&middot;알터랙 월드 드랍 (BoE)</td><td>다리(지13/정5/주+12) &middot; 손(지9/적중+1%) &middot; 발(지11/체7)</td><td><strong>적중+1% 장갑&middot;주문+12 바지</strong> 등 고가 착귀! (<code>보랏빛 마술사의 어깨</code>는 현 <code>녹색 비단</code> 우위라 추출)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 id="q-sec-gnomer">2. 마무리 단계 &mdash; 놈리건 (Gnomeregan, Lv.29~38) 남은 2종 공략 &amp; 반납 정리 <span class="badge db">인던 내 2종 남음</span></h2>
           <div class="callout" style="margin-top:0;">
             <strong>✅ 11/25 최신 진행 현황 &amp; 남은 일 정리:</strong> <code>필수 인공장치</code>(완료) · <code>케르노비</code>(완료, 반납만 남음) · <code>꼬질꼬질한 반지</code>&rarr;<code>반지의 귀환</code>(완료)까지 끝났습니다! <button class="map-jump-btn macro" onclick="jumpToMacroNode('gnomer')">🌍 대륙 맵</button><br>
             &bull; <strong>인던 안에서 할 일 (딱 2개):</strong> ① <strong><code>자료 회수</code></strong>(단말기 <strong>황&rarr;청&rarr;적&rarr;오색 천공 카드</strong> 순서 클릭), ② <strong><code>유일한 치료법</code></strong>(<code>고농축 방사성 폐기물</code> 루팅 &mdash; 타이머 주의!)<br>
@@ -1995,7 +2078,7 @@
         </div>
 
         <details class="fold-card" id="q-sec-excav">
-          <summary><span>✅ <strong>2. 완료 &mdash; 발굴 현장: 저습지 (Excavation Site: Wetlands, Lv.26~33)</strong> <span class="badge verified">5/5 졸업 ✅</span></span></summary>
+          <summary><span>✅ <strong>3. 완료 &mdash; 발굴 현장: 저습지 (Excavation Site: Wetlands, Lv.26~33)</strong> <span class="badge verified">5/5 졸업 ✅</span></span></summary>
           <div class="fold-body">
             <div class="callout verified" style="margin-top:0;">
               <strong>2026-11-24 누락 퀘스트까지 5/5 완전 졸업 완료 ✅:</strong> <strong><code>타락한 용의 홀</code></strong>(지+11·정+13·모든 주문 +36) &amp; <strong><code>물약 가방</code></strong>(첫 장신구!) 획득 및 Lv.33 달성!<br>
@@ -2059,7 +2142,7 @@
         </details>
 
         <div class="card">
-          <h2>3. 26~40레벨 핵심 5인 던전 로드맵 (외부 입구 &rarr; 내부 포탈 동선 &amp; 지도 연동)</h2>
+          <h2>4. 26~40레벨 핵심 5인 던전 로드맵 (외부 입구 &rarr; 내부 포탈 동선 &amp; 지도 연동)</h2>
           <div class="table-wrap">
             <table>
               <thead>
@@ -2067,8 +2150,14 @@
               </thead>
               <tbody>
                 <tr>
+                  <td><strong>달라란 도시 (City of Dalaran)</strong><br><button class="map-jump-btn macro" onclick="jumpToMacroNode('dalaran')">🌍 대륙 맵</button></td>
+                  <td><strong>Lv.28~35</strong><br><span class="badge arcane">다음 목표 ⭐</span></td>
+                  <td>동부왕국 북부 &gt; 은빛소나무&middot;알터랙 경계 로다미어 호숫가 서쪽 하수구(<code>/way 68.6 45.2</code> &middot; 알터랙 <code>/way 8.5 59.2</code>) &mdash; 사우스쇼어 <code>다급한 요청</code> 후 <code>달라란 하수도 열쇠</code> 개방</td>
+                  <td>손 <strong><code>덧없는 손장갑</code></strong>(체7/지7/비전+9), 가슴 <strong><code>보랏빛 마술사의 로브</code></strong>(지15/주+9), 허리 <strong><code>역병잎 밧줄</code></strong>(지10/주+7), 퀘스트 4종 37,600 XP</td>
+                </tr>
+                <tr>
                   <td><strong>놈리건 (Gnomeregan)</strong><br><button class="map-jump-btn macro" onclick="jumpToMacroNode('gnomer')">🌍 대륙 맵</button></td>
-                  <td><strong>Lv.29~38</strong><br><span class="badge arcane">다음 목표 ⭐</span></td>
+                  <td><strong>Lv.29~38</strong><br><span class="badge db">마무리 2종</span></td>
                   <td>동부왕국 &gt; 던 모로 서부 신 땜장이 마을 지상 승강기(<code>/way 24.4 39.6</code>) 지하 하강 &rarr; 비인던 방사능 통로 통과 후 포탈 (<code>작업실 열쇠</code> 보유 시 북쪽 뒷문 단축)</td>
                   <td>머리 <strong><code>기가볼트 전자반응기</code></strong>(지8/정9/주8), 손목 <strong><code>거미전차 기름걸레</code></strong>(MP5+3/주9), 발 <strong><code>방사능처리 장화</code></strong>(지8/주5), 퀘 <strong><code>선민의 로브</code></strong></td>
                 </tr>
@@ -2114,7 +2203,7 @@
         </div>
 
         <div class="card">
-          <h2 id="q-sec-rfk">4. 추천 &mdash; 가시덩굴 우리 BiS 획득 계획 &amp; 30~40레벨 퀘스트·직업 연퀘 <span class="badge db">추천 순위</span></h2>
+          <h2 id="q-sec-rfk">5. 추천 &mdash; 가시덩굴 우리 BiS 획득 계획 &amp; 30~40레벨 퀘스트·직업 연퀘 <span class="badge db">추천 순위</span></h2>
           <div class="callout" style="margin-top:0;">
             <strong>🎯 가시덩굴 우리 (Razorfen Kraul, Lv.29~38) BiS 획득 계획:</strong> <code>발굴 현장: 저습지</code> 이후 <strong><code>뱀고리</code>(반지)</strong> + <strong><code>죽음의 예언자 가시</code>(양손 지팡이)</strong> + <strong><code>담녹색 어깨보호대</code></strong>를 한 번에 노리는 칼림도어 남부 파밍 코스입니다! (비행 거점 <code>톱니항</code> 착지 후 남서쪽 불모의 땅 남단 가시 통로 <code>42.9, 90.2</code> 진입)
           </div>
@@ -2158,7 +2247,8 @@
                 <tr><td><strong>발굴 현장: 저습지 (Lv.26~33)</strong> <span class="badge verified">5/5 졸업 ✅</span></td><td><code>고원 가죽</code>, <code>송블레이드 수색</code>, <code>고원의 공포</code>, <code>갈대로 엮은 마음</code>, <code>태고의 분광경</code></td><td>메네실 항구 <code>제임스 할로란(8.0,55.0)</code> · <code>레시엘(56.2,40.6)</code> · <code>웰가르(38.8,52.4)</code></td><td><strong><code>타락한 용의 홀</code></strong>(지11/정13/주+36) &middot; <strong><code>물약 가방</code></strong> 장착 + 전 퀘스트 5/5 졸업 완료 ✅</td></tr>
                 <tr><td><strong>가시덩굴 우리 (Lv.29~38)</strong> <span class="badge arcane">BiS 파밍</span></td><td><code>수입업자 윌릭스</code>, <code>가시덩굴 우리의 대모</code>, <code>청엽수 줄기</code>, <code>꺼져가는 생명의 불씨</code></td><td>던전 내 <code>수입업자 윌릭스</code> / 톱니항 <code>메복 미지릭스</code> / 탈라나르 <code>팔핀델 웨이워더</code></td><td><strong><code>뱀고리</code></strong>(지5/주6), <strong><code>죽음의 예언자 가시</code></strong>(<code>저주의가시 아겜</code>, 체11/MP5+5/주34), <strong><code>담녹색 어깨보호대</code></strong>(체5/지10/주7)</td></tr>
                 <tr id="q-sec-mage-chain"><td><strong>마법사 직업 (Lv.30~40)</strong></td><td>Lv.30 <strong><code>습지대로의 여정</code> &rarr; <code>마력의 의식</code></strong> &rarr; Lv.40 <strong><code>천공의 힘</code></strong></td><td><code>제니아 캐논</code> [스톰윈드 성소 (<code>38.6, 79.4</code>)] &rarr; <code>타베사</code> [먼지진흙 습지대 (<code>46.0, 57.0</code>)]</td><td><strong><code>황천의 마법봉</code></strong>(비전+9/지+3) &middot; <strong><code>맹위의 얼음마법봉</code></strong>(냉기+9/지+3) / Lv.40 <strong><code>천공의 보주</code></strong>(보조, 주문+13/지+3/마나 회복)</td></tr>
-                <tr><td><strong>놈리건 (Lv.29~38)</strong> <span class="badge arcane">다음 목표 ⭐</span></td><td><code>대배반</code>, <code>필수 인공장치</code>, <code>고장난 첨단로봇 수리</code>, <code>자료 회수</code>, <code>유일한 치료법</code>, <code>회전천공식 발굴기</code>, <code>곤경에 빠진 케르노비</code>, <code>꼬질꼬질한 반지</code></td><td><code>땜장이왕 멕카토크</code> [아이언포지 땜장이 마을 (<code>/way 69.0 49.0</code>)] / <code>오지 토글볼트</code> [카라노스 (<code>/way 45.8 49.2</code>)]</td><td><strong><code>기가볼트 전자반응기</code></strong>(머리, 지8/정9/주8), <strong><code>거미전차 기름걸레</code></strong>(손목, MP5+3/주9), <strong><code>방사능처리 장화</code></strong>(발, 지8/정4/주5), <strong><code>선민의 로브</code></strong>(가슴, 체7/정12/주9)</td></tr>
+                <tr><td><strong>달라란 도시 (Lv.28~35)</strong> <span class="badge arcane">다음 목표 ⭐</span></td><td><code>녹빛 표본</code>, <code>압도적인 힘</code>, <code>다급한 요청</code>, <code>비전에 굶주린 자들</code>, <code>분열의 심장</code></td><td>스톰윈드 <code>샤이라미르</code>(<code>/way 31.3 62.9</code>) &middot; <code>안드로매스</code>(<code>/way 48.7 87.6</code>) / 사우스쇼어 <code>자크</code>(<code>/way 48.3 60.1</code>) &rarr; <code>모데라</code>(<code>/way 68.6 45.2</code>)</td><td><strong><code>덧없는 손장갑</code></strong>(손, 체7/지7/비전+9), <strong><code>보랏빛 마술사의 로브</code></strong>(지15/주9), <strong><code>역병잎 밧줄</code></strong>(지10/주7), <strong><code>보랏빛 장식띠</code></strong>(지9/주6)</td></tr>
+                <tr><td><strong>놈리건 (Lv.29~38)</strong> <span class="badge db">마무리 2종</span></td><td><code>대배반</code>, <code>필수 인공장치</code>, <code>고장난 첨단로봇 수리</code>, <code>자료 회수</code>, <code>유일한 치료법</code>, <code>회전천공식 발굴기</code>, <code>곤경에 빠진 케르노비</code>, <code>꼬질꼬질한 반지</code></td><td><code>땜장이왕 멕카토크</code> [아이언포지 땜장이 마을 (<code>/way 69.0 49.0</code>)] / <code>오지 토글볼트</code> [카라노스 (<code>/way 45.8 49.2</code>)]</td><td><strong><code>기가볼트 전자반응기</code></strong>(머리, 지8/정9/주8), <strong><code>거미전차 기름걸레</code></strong>(손목, MP5+3/주9), <strong><code>방사능처리 장화</code></strong>(발, 지8/정4/주5), <strong><code>선민의 로브</code></strong>(가슴, 체7/정12/주9)</td></tr>
                 <tr><td><strong>붉은십자군 수도원</strong> (Lv.30~42)</td><td><code>티탄의 신화</code>, <code>빛의 이름으로!</code></td><td><code>메이 페일더스트</code> [아이언포지 탐험가의 전당] / <code>추모자 롤리</code> [사우스쇼어 (<code>51.0, 56.0</code>)]</td><td><strong><code>환영의 지팡이</code></strong>(지팡이, 체력+10/지능+6/치명+1.4%), <strong><code>최면의 단검</code></strong>(단검, 지능+8/주문+9), <strong><code>화이트메인의 모자</code></strong>(머리 천, 지능+10/체력+9/주문+7)</td></tr>
               </tbody>
             </table>
@@ -2166,7 +2256,7 @@
         </div>
 
         <div class="card">
-          <h2>5. 완료 &mdash; 스톰윈드 지하감옥 &amp; 데피아즈단 연퀘 (<code>국왕 알현</code>까지 완전 졸업!) <span class="badge verified">완전 졸업 ✅ (261121)</span></h2>
+          <h2>6. 완료 &mdash; 스톰윈드 지하감옥 &amp; 데피아즈단 연퀘 (<code>국왕 알현</code>까지 완전 졸업!) <span class="badge verified">완전 졸업 ✅ (261121)</span></h2>
           <div class="callout" style="margin-top:0;">
             <strong>2026-11-21 지하감옥 + 데피아즈단 연퀘 완전 졸업 기록:</strong> 던전 6종 퀘스트 + 후속 연계 <strong><code>데피아즈단의 종말</code> &rarr; <code>국왕 알현</code> (보상 <code>린의 인장</code>)</strong>까지 모두 완료 ✅!<br>
             &bull; <strong>핵심 졸업템 3종 장착 완료:</strong> <strong><code>빚 수금인</code></strong>(+34 한손 도검) &middot; <strong><code>암흑 호드 고리</code></strong>(체+6/주문+6) &middot; <strong><code>집정관의 바지</code></strong>(지+13/주문+7 + <code>신비한 고급 방어구 키트</code> 주문+4/방+24).<br>
@@ -2234,7 +2324,7 @@
         </div>
 
         <div class="card">
-          <h2>6. 완료함 &mdash; 확인된 완료 이력 <span class="badge verified">✅ 실측 / 확인</span></h2>
+          <h2>7. 완료함 &mdash; 확인된 완료 이력 <span class="badge verified">✅ 실측 / 확인</span></h2>
           <div class="table-wrap">
             <table>
               <thead>
