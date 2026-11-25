@@ -36,9 +36,9 @@ const ADDON_DB = {
     kind: '전투 · 사거리 측정',
     quality: 'rare',
     icon: 'ability_hunter_snipershot',
-    rows: [['다운로드: ~400만+ (CurseForge)', '인기도: 장수 원거리 표준'], ['설정: 적대 대상 전용 (33m)', '명령어: /rangedisplay']],
+    rows: [['다운로드: ~400만+ (CurseForge)', '인기도: 장수 원거리 표준'], ['패치: 인던 Secret Value 보정 ✅', '명령어: /rangedisplay']],
     desc: '대상·주시·마우스오버까지의 예상 거리를 미터 단위로 실시간 표시합니다(/rangedisplay).',
-    note: '🎯 비전 마법사 주력 사거리(30m)에 맞춰 Target 장거리 기준을 30으로 조정 추천'
+    note: '✅ LibRangeCheck-3.0의 16001 인던 Secret GUID/주문 판정 패치 적용됨 (/reload 즉시 반영)'
   },
   'addon:Questie': {
     title: 'Questie',

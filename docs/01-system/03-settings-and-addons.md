@@ -43,7 +43,8 @@
    - `QuestieDB (1.1.6)`: `[Forever]` 퀘스트 경험치 데이터 재갱신, `Tattered Journal` 시작점, 드랍률/NPC 부제목·번역 갱신.
 3. **✅ 로컬 커스텀 & 유지 중인 패치 (`Attune` · `Mastercraft` · `CharExport`)**:
    - `Attune (16001-45)` **한국어(`koKR`) 미번역·영문 혼재 패치 유지 ✅**: `Locales/koKR.lua` + `Attune.lua` `Attune_InitLiveKoKRLocale()` 프록시 intact.
-   - `Mastercraft (2.1.1)` · `CharExport (2.3.1)`(`/ce`·`/cea`·`/ceall`, 114종) · `BetterBlizzFrames (v2.2.3c)`(`120105` 구버전 체크 필요) · `RangeDisplay (v6.3.7)`(`enemyOnly = true`, `33m` → `30m` 권장) 정상 유지.
+   - `Mastercraft (2.1.1)` · `CharExport (2.3.1)`(`/ce`·`/cea`·`/ceall`, 114종) · `BetterBlizzFrames (v2.2.3c)`(`120105` 구버전 체크 필요) 정상 유지.
+   - **`RangeDisplay (v6.3.7)` — ✅ 인던 내 Secret Value(`issecretvalue`) 미표시 로컬 패치 완료 (`2026-11-25 23:16`)**: `LibRangeCheck-3.0.lua`의 `isMidnight` 판별이 와우 포에버(`16001`)에서 `false`로 평가되어 인던 진입 시 `UnitGUID(unit)` Secret Value에서 `guid .. "-0"` 문자열 결합 오류가 나고 `RangeDisplay.lua`의 `pcall`이 이를 삼켜 거리가 사라지던 문제를 수정(`isForever and type(issecretvalue) == "function"` 포함 + `IsSpellBookItemInRange`/`C_Item.IsItemInRange`/`CheckInteractDistance` 시크릿 가드 추가)했습니다. *(인게임 `/reload` 시 즉시 적용)*
 4. **🟡 메모리·로딩 경량화 선택 정리 대상**:
    - `EzWoW-Data-Names-*` (`deDE`·`esES`·`frFR`·`ruRU`·`zhCN`·`zhTW` 6종): `koKR`·`enUS` 외 언어팩은 비활성화해도 정상 작동.
    - `SpokenQuestsAudioHorde_koKR (v0.0.3)`: 얼라이언스(`폴-최`) 전용 플레이 시 꺼두면 로딩/메모리 절약 가능.
@@ -57,7 +58,7 @@
 | **전투 · 프록 · 딜미터** (4종 / 12폴더) | **`Details!`** (+7 플러그인: `Compare2`, `DataStorage`, `EncounterDetails`, `RaidCheck`, `Streamer`, `TinyThreat`, `Vanguard`) | `20261124.15450.172` | `120105` | 활성 · 실시간 DPS·주문별 비중·어그로(`TinyThreat`)·차단 분석 *(한글 메뉴 재패치 완료 ✅)* |
 | | **`Shadowflare`** | `0.26.5` | ✅ | **활성 (`enabled`)** · 포에버 전용 프록 알림 (`화살 탄막` · `신비한 정신 집중` · 최대 중첩 별도 스타일) |
 | | **`ForeverCombatText`** | `0.17.0` | ✅ | **활성 (`enabled`)** · 네임플레이트 주문 학파 색상 전투 피해 텍스트 |
-| | **`RangeDisplay`** (+`_Options`) | `v6.3.7` | ✅ | **활성 (`enabled`)** · 적대적 대상 전용 (`enemyOnly = true`, 33m 경계) |
+| | **`RangeDisplay`** (+`_Options`) | `v6.3.7` | ✅ | **활성 (`enabled`)** · 대상 30m 사거리 표시 *(인던 Secret Value 로컬 패치 ✅)* |
 | **지도 · 퀘스트 · 던전 · 도서관** (9종 / 33폴더) | **`Questie`** + **`QuestieDB`** + **`QuestieTrace`** | `12.14.0` / `1.1.6` / `1.14.0` | ✅ | **활성 (`enabled`)** · 포에버 퀘스트 핀/추적 + DB (`TaintWatch` 추가 · `Trace`는 수집 로거) |
 | | **`EzWoW-MapFinder`** (+`EzWoW-Data*` 21폴더) | `2.0.49` / `1.0.19` | ✅ | 활성 · 오프라인 위치 검색 & 웨이포인트 *(미사용 6개국어 제외 메모리 패치 ✅)* |
 | | **`Books_on_map_Forever`** | `2.4.0` | ✅ | 활성 · **와우 포에버 도서관 책 월드맵 핀 표시!** |

@@ -258,8 +258,8 @@ const DEFAULT_COMBOS = [
 
 const RECENTLY_UPDATED_TABS = {
   'tab-addons': {
-    v: '2026-11-25-v4',
-    text: '11/25 15:20 EzWoW-MapFinder 미사용 6개 외국어 제외 메모리 경량화 패치 ✅ · Details! 한글 재패치 완료'
+    v: '2026-11-25-v5',
+    text: '11/25 23:16 RangeDisplay 인던 내 미표시(LibRangeCheck-3.0 Secret Value) 로컬 패치 ✅ · EzWoW 경량화 · Details 한글 재패치'
   },
   'tab-prof': {
     v: '2026-11-25-v3',
