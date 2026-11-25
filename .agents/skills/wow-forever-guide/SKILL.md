@@ -15,9 +15,16 @@ allowed-tools: google
 - `references/enchanting-guide.md`: 와우 포에버 마법부여 저비용 숙련도 루트(71~175, 제작 마술봉 상점가 1코퍼 너프 반영), 스톰윈드·아조라의 탑 교관·상인 위치, 제작 가능 아이템(마술봉·오일 30분 지속/5회·마법막대·야영 도구·신규 지팡이/보조장비), 선호 스탯 기준 부위별 마법부여 데이터
 - `references/macros-guide.md`: 비전 마법사 핵심 매크로(`신비한 화살(3 레벨)/(2 레벨) + !마법봉 발사`, `[nochanneling]` 보호, 칼차단, 환기 잠금) 및 레벨별(26~60) 매크로 확장 로드맵
 - 워크스페이스 문서 디렉토리:
-  - `docs/01-system/`: 메커니즘/딜계산(`01`), 매크로(`02`), 설정/애드온(`03`), 스탯/공식(`04`), 경험치/캠핑/전투규칙(`05`), 패치노트/핫픽스 KST(`06`)
+  - `docs/01-system/`: 메커니즘/딜계산(`01`), 매크로(`02`), 설정/애드온(`03`), 스탯/공식(`04`), 경험치/캠핑/전투규칙(`05`), 패치노트/핫픽스 KST(`06`), 대시보드 디자인·모듈화 가이드(`07`)
   - `docs/02-growth/`: 캐릭터/특성(`01`), 스킬/사이클(`02`), 사냥터/던전(`03`), 장비/추천아이템(`04`)
   - `docs/03-adventure/`: 전문기술 통합(`01`), 퀘스트(`02`), 도서관 책 찾기/연구(`03`), 지도/NPC 좌표(`04`)
+- **모듈형 대시보드 구조 (`2026-11-25` 적용 — 수정 시 반드시 해당 전용 파일만 편집!)**:
+  - `dashboard.html`: 16개 탭 HTML UI 뼈대
+  - `assets/dashboard.css`: Memphis 라이트/다크(`html[data-theme="dark"]`) 스타일
+  - `data/wow-db-items.js` · `data/wow-db-skills.js` · `data/wow-db-talents.js`: 툴팁 통합 DB *(구 `WOW_ITEM_META`는 각 항목 내부로 병합 완료)*
+  - `data/addons.js` (`ADDON_DB`) · `data/prices.js` (시세 추이) · `data/maps.js` (지도 좌표) · `data/talents-and-sim.js` (`IG_TALENT_TREES` · `SIM_SPELLS` · `RECENTLY_UPDATED_TABS`)
+  - `js/tooltip.js` (툴팁 조립/렌더) · `js/app.js` (시뮬레이터·지도·차트·부팅)
+  - 검증 스크립트: `python tools/verify-dashboard.py` (수정 후 필수 실행)
 
 ## 2. 핵심 수행 절차 (Workflow)
 

@@ -38,7 +38,8 @@ docs/
 - **[04-stats-and-formulas.md](../docs/01-system/04-stats-and-formulas.md)**: 체력(+10 HP)·지능(+15 마나/극대화/`비전 작렬` 12%)·정신력(`13+정신/4`, 인간 +10%, `신비한 명상`+`마법사 갑옷`), 통합 적중(4%/17%)/치명타 150%/가속 GCD 1.0초 하한/저항·주문 관통력 공식
 - **[05-leveling-camping-and-dungeon-rules.md](../docs/01-system/05-leveling-camping-and-dungeon-rules.md)**: 요리 `포만감`(+5% 처치 XP)·`아늑한 침낭`(+1~3%)·캠핑/텐트(5% 휴식 XP)·`생선 그릇`(+8% 기본 스탯), 인던 12레벨 차 패널티, 마나 5초 규칙(5SR) & 시전 밀림 방어
 - **[06-patch-notes-kst.md](../docs/01-system/06-patch-notes-kst.md)**: 최근 와우 포에버 공식 핫픽스 & 패치노트(KST) — **최상단에 내 캐릭터 직·간접 영향 요약 고정**
-- **[07-dashboard-design-guide.md](../docs/01-system/07-dashboard-design-guide.md)**: `dashboard.html` 수정 시 모든 에이전트가 반드시 준수해야 할 **최소 폰트 크기(`>= 12px`/`11px`), 가로 타임라인 분할 레일, 모바일 오버플로 방지, `html[data-theme="dark"]`, 일회성 Q&A 삭제 가능 토글(`.dismissible-fold`), `WOW_DB`+`WOW_ITEM_META` 동시 동기화 표준**
+- **[07-dashboard-design-guide.md](../docs/01-system/07-dashboard-design-guide.md)**: 모듈형 대시보드(`dashboard.html` + `assets/dashboard.css` + `data/*.js` + `js/*.js`) 수정 시 모든 에이전트가 반드시 준수해야 할 **파일별 역할 맵, 단일 통합 툴팁 DB(`data/wow-db-items/skills/talents.js`), 최소 폰트 크기, 가로 타임라인, `html[data-theme="dark"]`, 삭제 가능 토글(`.dismissible-fold`), `python tools/verify-dashboard.py` 검증 표준**
+- **[project-architecture.pdf](../docs/01-system/project-architecture.pdf)**: 워크스페이스 전체 구조·모듈형 DB 아키텍처 시각화 PDF 문서
 
 ## 2. 성장 관련 (`docs/02-growth/`)
 - **[01-character-and-talents.md](../docs/02-growth/01-character-and-talents.md)**: 26레벨 캐릭터 상태(HP 642 / MP 1,380 / 비전 +121) 및 비전 17포인트(`마법봉 전문화 2/2`, `정신 집중 연마 5/5`, `신비한 미묘함 2/2`, `신비한 정신 집중 4/5`, `화살 탄막 2/2`, `비전 작렬 1/1`, `비전 격노 1/1`) 분석과 27~40레벨 특성 로드맵

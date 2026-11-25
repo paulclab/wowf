@@ -124,32 +124,48 @@
 
 ---
 
-## 7. 아이템 툴팁 (`WOW_DB` + `WOW_ITEM_META`) & 데이터 정합성 규칙
+## 7. 모듈형 파일 구조 & 통합 툴팁 DB 규칙 (`2026-11-25` 리팩토링 적용 ✅)
 
-1. **`WOW_DB` vs `ADDON_DB` 블록 경계 엄수 (툴팁 누락 원천 차단 ✅)**:
-   - `dashboard.html`에는 `const WOW_DB = { ... };` 아래에 **`const ADDON_DB = { ... };`** 블록이 별도로 존재하고, 그 아래에 `const WOW_ITEM_META = { ... };`가 위치합니다.
-   - `WOW_MATCH_KEYS`와 `applyWowItemMeta()`는 **오직 `WOW_DB`만 스캔**하므로, 아이템·재료·스킬·특성·소모품 툴팁은 **반드시 `const WOW_DB = {` 내부(즉 `const ADDON_DB = {` 직전 `};` 위)**에 추가해야 합니다! *(잘못해서 `ADDON_DB` 끝에 붙이면 툴팁이 아예 뜨지 않습니다.)*
-   - 본문·표·타임라인에서 축약명이나 띄어쓰기 변형(예: `녹색 비단 어깨 보호구`, `현자 지팡이`, `담쟁이덩굴 장화`, `유령매듭 어깨`)을 사용할 때는 반드시 `WOW_DB` 내부에 `{ alias: '정식 아이템명' }`을 등록합니다.
-2. **양쪽 동시 동기화 필수**:
-   - 아이템·재료 가격/숙련도/획득처를 수정할 때는 **`WOW_DB`와 `WOW_ITEM_META`를 반드시 동시에 갱신**해야 함. (한쪽만 고치면 툴팁 상단과 하단 메타 박스에 서로 다른 시세·숙련도가 동시에 노출됨!)
+> **모든 에이전트 필독**: 대시보드는 **Zero-Build 모듈형 구조**로 분리되었습니다 (`file://` 로컬 더블클릭 + GitHub Pages 100% 호환 — `fetch()`·`type="module"` 금지, `<link>`·`<script src>` 유지). 수정할 영역의 **전용 파일만** 직접 편집해 토큰 소모와 다중 세션 충돌을 최소화하세요.
+
+### A. 역할별 파일 맵
+| 파일 경로 | 담당 영역 | 언제 수정하나요? |
+| :--- | :--- | :--- |
+| `dashboard.html` | 16개 탭 HTML 뼈대 | 탭 본문·표·토글 UI 수정 |
+| `assets/dashboard.css` | 전체 CSS (라이트·다크) | 디자인·레이아웃·다크모드(`html[data-theme="dark"]`) 수정 |
+| `data/wow-db-items.js` | `WOW_DB_ITEMS` (322키 · 장비·재료·도안·마부·소모품) | 아이템/재료 스펙·귀속·획득처·시세·제작원가 추가/갱신 |
+| `data/wow-db-skills.js` | `WOW_DB_SKILLS` (45키 · 주문·버프·전문기술) | 주문·버프·기술 설명 추가/갱신 |
+| `data/wow-db-talents.js` | `WOW_DB_TALENTS` (16키 · 특성 기본 툴팁) | 특성 텍스트·별칭 추가/갱신 |
+| `data/addons.js` | `ADDON_DB` (27키 · 애드온 전용) | 애드온 버전·설명 추가/갱신 |
+| `data/prices.js` | `MAT_PRICE_HISTORY` · `TAILORING_PRICE_HISTORY` | `/cea` 경매 시세 추이 차트 데이터 추가 |
+| `data/maps.js` | `MACRO_ZONES` · `MAP_NODES` · `MICRO_MAPS` · `MICRO_HUNTING_ZONES` | 지도 노드·좌표·사냥터 영역 수정 |
+| `data/talents-and-sim.js` | `IG_TALENT_TREES` · `SIM_SPELLS` · `DEFAULT_COMBOS` · `RECENTLY_UPDATED_TABS` | 레벨업 특성/스킬 변경 · **`N` 뱃지 갱신** |
+| `js/tooltip.js` | `WOW_DB` 통합 조립 · `hydrateWowTooltipsIn` · `renderWowTooltip` | 툴팁 매칭·렌더링 로직 변경 |
+| `js/app.js` | 내비게이션·검색·시뮬레이터·지도/차트 렌더·`safeStorage`·부팅 | 인터랙션·계산기 로직 변경 |
+
+### B. 통합 툴팁 DB 작성 규칙 (구 `WOW_ITEM_META` 폐지 → 단일 객체 통합!)
+1. **단일 진실 원천 (1 아이템 = 1 객체)**:
+   - 구 `WOW_ITEM_META`는 폐지되어 모든 메타 필드(`bind`, `source`, `vendorPrice`/`ahPrice`, `craftCost`, `favorPrice`, `enchantable`)가 **`data/wow-db-items.js`(또는 `skills.js`)의 해당 항목 내부에 직접 통합**되었습니다.
+   - `js/tooltip.js`가 부팅 시 `WOW_DB = Object.assign({}, WOW_DB_SKILLS, WOW_DB_TALENTS, WOW_DB_ITEMS)`로 통합합니다.
+   - 애드온은 반드시 `data/addons.js`(`ADDON_DB`)에만 넣고, 아이템·스킬·특성은 반드시 `data/wow-db-*.js`에 넣으세요!
+2. **별칭(Alias) 등록**:
+   - 본문·표·타임라인에서 축약명/띄어쓰기 변형(`녹색 비단 어깨 보호구`, `현자 지팡이` 등)을 쓸 때는 해당 카테고리 `data/wow-db-*.js`에 `{ alias: '정식 명칭' }`을 등록합니다.
 3. **가격 필드 배타 원칙**:
-   - 상인 판매 품목은 `vendorPrice`만, 경매장 품목은 `ahPrice`만 기입 (둘을 동시에 넣지 말 것).
+   - 상인 판매 품목은 `vendorPrice`만, 경매장 품목은 `ahPrice`만 기입 (동시 존재 금지).
 4. **와우 포에버 `1.60.1` 실측 최우선**:
-   - 클래식(1.12) 기억으로 숙련도·재료 수량을 적지 말고, 반드시 로컬 **`Mastercraft/RecipeData.lua`**, **`Auctionator.lua`**, **`Syndicator.lua`**, **`wowf.io/ko`**, **`db.icy-veins.com/wow-forever`**로 교차 검증.
-   - 아이템 아이콘은 `WOW_DB`에 이미 존재하여 HTTP-200 검증된 아이콘 이름만 재사용.
-5. **중복·오류 방지**:
-   - 수정한 탭은 반드시 `RECENTLY_UPDATED_TABS[tabId]`의 `v`와 `text`를 갱신해 메뉴 제목 우측 위 `N` 뱃지가 정상 표시되도록 유지.
+   - 로컬 `Mastercraft/RecipeData.lua`, `Auctionator.lua`, `Syndicator.lua`, `ForeverLevelingBiS/Items.lua`, `wowf.io/ko`로 교차 검증하고, 아이콘은 검증된 Zamimg 아이콘명만 재사용합니다.
+5. **최근 업데이트 `N` 뱃지 갱신**:
+   - 탭 수정 시 반드시 **`data/talents-and-sim.js`의 `RECENTLY_UPDATED_TABS[tabId]`**(`v`와 `text`)를 갱신합니다.
 
 ---
 
 ## 8. 대시보드 수정 완료 전 필수 체크리스트
 
-수정 후 `git push origin main` 전에 아래 8항목을 Python + 헤드리스 브라우저(`msedge --headless --dump-dom`) 검증 스크립트로 반드시 확인합니다.
-1. JS 괄호 균형 `(brace, paren, bracket) == (0, 0, 0)`
-2. 중복 HTML `id` **0건** 및 `WOW_DB` 내 중복 키 **0건**
-3. `body[data-theme="dark"]` **0건**
-4. `localStorage.` 호출 **정확히 2건** (`safeStorageGet`/`safeStorageSet` 내부)
+수정 후 `git push origin main` 전에 **`python tools/verify-dashboard.py`**를 실행해 아래 7항목을 자동 검증합니다.
+1. 모든 `data/*.js` · `js/*.js` 문법 및 헤드리스 Edge(`msedge --headless --dump-dom`) 런타임 에러 **0건**
+2. 중복 HTML `id` **0건** 및 `data/wow-db-*.js` 간/내부 중복 키 **0건**
+3. `assets/dashboard.css` · `dashboard.html` 내 `body[data-theme="dark"]` **0건**
+4. 전체 JS 파일 내 `localStorage.` 호출 **정확히 2건** (`js/app.js`의 `safeStorageGet`/`safeStorageSet` 내부)
 5. 개인정보/계정 ID/로컬 절대 경로(`C:\Users\...`) **0건**
-6. `WOW_ITEM_META` 가격 충돌(`vendorPrice` + `ahPrice` 동시 존재) **0건**
-7. **실제 `WOW_DB` 블록(`const WOW_DB = {` ~ `const ADDON_DB = {` 사이)** 기준으로 타임라인·가격 추이 차트·핵심 `<code>` 아이템이 100% 등록되어 있는지 검증 (`ADDON_DB` 오배치 차단!)
-8. **실제 헤드리스 브라우저 DOM 하이드레이션 검증**: `msedge --headless --dump-dom` 결과에서 신규/수정 아이템이 `<span class="wow-ref ...">`로 실제 변환되었는지 직접 확인 후 푸시!
+6. `data/wow-db-*.js` 내 `vendorPrice` + `ahPrice` 동시 충돌 **0건**
+7. 헤드리스 Edge `file:///.../dashboard.html` DOM 하이드레이션(`.wow-ref` 칩 · 특성 트리 · 시세 차트 · `N` 뱃지) 정상 렌더링 확인!
