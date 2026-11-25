@@ -1090,21 +1090,21 @@ function renderTalentImpactSummary() {
   if (!grid || !tags) return;
 
   const m = getActiveTalentMods();
-  const baseInt = Number(document.getElementById('stInt')?.value) || 123;
-  const baseSpi = Number(document.getElementById('stSpi')?.value) || 98;
+  const baseInt = Number(document.getElementById('stInt')?.value) || 122;
+  const baseSpi = Number(document.getElementById('stSpi')?.value) || 99;
   const baseGenSp = Number(document.getElementById('stGenSp')?.value) || 86;
   const baseArcSp = Number(document.getElementById('stArcSp')?.value) || 74;
-  const baseCrit = Number(document.getElementById('stCrit')?.value) || 5.35;
+  const baseCrit = Number(document.getElementById('stCrit')?.value) || 5.19;
   const mageArmor = document.getElementById('stMageArmor')?.checked ? 0.50 : 0;
 
-  // Baseline Lv.34 (24/0/1: 신비한 정신 2/5 [+4% 지능 · 170% 비전 치명배율], 정밀함 1/3 [+2% 적중], 신비한 명상 3/3, 냉정 1/1)
+  // Baseline Lv.34 (15:34 실측 확정: 기본 HP 863 / MP 2,262 · 체 57 · 지 122 · 정 99 · 방어 466 · 24/0/1)
   const rawIntBase = baseInt / 1.04;
   const effInt = Math.round(rawIntBase * (1 + m.intPct));
   const intDelta = effInt - baseInt;
-  const effMp = 2277 + (effInt - 123) * 15;
-  const baseMp = 2277 + (baseInt - 123) * 15;
+  const effMp = 2262 + (effInt - 122) * 15;
+  const baseMp = 2262 + (baseInt - 122) * 15;
   const armorBonus = Math.round(effInt * m.armorFromIntPct);
-  const effArmor = 464 + armorBonus;
+  const effArmor = 466 + armorBonus;
 
   const outCastMp5 = Math.round(((13 + baseSpi / 4) * 2.5) * 10) / 10;
   const combatKeep = Math.min(1, m.meditation + mageArmor);
@@ -1552,7 +1552,7 @@ let customComboCounter = 5;
 function getSimEnv() {
   const haste = document.getElementById('rotHasteCb')?.checked ? 1.15 : 1.0;
   const oil = document.getElementById('rotOilCb')?.checked ? 8 : 0;
-  return { haste, oil, wrathMpExtra: 0, abStepSp: 14.8 };
+  return { haste, oil, wrathMpExtra: 0, abStepSp: 14.6 };
 }
 
 function calcComboMetrics(combo, env) {
@@ -2088,15 +2088,16 @@ function cycleRowAbStack(rowKey) {
 
 function applyCharPreset(mode) {
   const setVal = (id, v) => { const el = document.getElementById(id); if (el) el.value = v; };
-  setVal('stSta', 56); setVal('stInt', 123); setVal('stSpi', 98);
-  setVal('stGenSp', 86); setVal('stArcSp', 74); setVal('stCrit', 5.35); setVal('stHaste', 0);
+  setVal('stSta', 57); setVal('stInt', 122); setVal('stSpi', 99);
+  setVal('stGenSp', 86); setVal('stArcSp', 74); setVal('stCrit', 5.19); setVal('stHaste', 0);
   const medDefault = (typeof getActiveTalentMods === 'function') ? getActiveTalentMods().meditation : 0.50;
   setVal('stMed', medDefault === 0 ? '0' : medDefault.toFixed(2));
   const ma = document.getElementById('stMageArmor'); if (ma) ma.checked = true;
 
-  if (mode === 'fullbuff') { setVal('stSta', 62); setVal('stInt', 152); setVal('stSpi', 108); setVal('stCrit', 6.17); setVal('stHaste', 15); if (ma) ma.checked = false; } // 11/25 01:52 버프 실측 (1,213 HP / 2,712 MP)
-  else if (mode === 'haste') { setVal('stHaste', 15); } // 스톰윈드의 힘: +300 HP(853->1,153), +15% 가속
-  else if (mode === 'intbuff') { setVal('stInt', 138); setVal('stCrit', 5.78); } // 신비한 지능 3레벨 (+15 지능)
+  if (mode === 'snap1534') { setVal('stSta', 57); setVal('stInt', 138); setVal('stSpi', 99); setVal('stCrit', 5.71); setVal('stHaste', 15); if (ma) ma.checked = false; } // 11/25 15:34 실측 (지능3+스톰힘: 1,163 HP / 2,502 MP)
+  else if (mode === 'fullbuff') { setVal('stSta', 62); setVal('stInt', 152); setVal('stSpi', 108); setVal('stCrit', 6.17); setVal('stHaste', 15); if (ma) ma.checked = false; } // 11/25 01:52 풀버프 실측 (+왕축: 1,213 HP / 2,712 MP)
+  else if (mode === 'haste') { setVal('stHaste', 15); } // 스톰윈드의 힘: +300 HP(863->1,163), +15% 가속
+  else if (mode === 'intbuff') { setVal('stInt', 138); setVal('stCrit', 5.71); } // 신비한 지능 3레벨 (+15 기본 → +16 반영)
   else if (mode === 'oil') { setVal('stGenSp', 94); } // 최하급 마술사 오일 +8 SP
   else if (mode === 'sp20') { setVal('stGenSp', 106); }
   updateCharStatLab();
@@ -2127,11 +2128,11 @@ function updateCharStatLab() {
   const totalArcSp = genSp + arcOnlySp;
   const deltaArc = totalArcSp - 160;
   const deltaGen = genSp - 86;
-  const deltaSta = sta - 56;
-  const deltaInt = intel - 123;
+  const deltaSta = sta - 57;
+  const deltaInt = intel - 122;
   const swMightHp = hastePct >= 15 ? 300 : 0; // 스톰윈드의 힘 (+300 HP · 15% 가속)
-  const estMaxHp = 853 + deltaSta * 10 + swMightHp;
-  const estMaxMp = 2277 + deltaInt * 15;
+  const estMaxHp = 863 + deltaSta * 10 + swMightHp;
+  const estMaxMp = 2262 + deltaInt * 15;
   const wrathMpBonus = estMaxMp * 0.05;
   const abStep = intel * 0.12;
   const hasteMul = 1 + hastePct / 100;

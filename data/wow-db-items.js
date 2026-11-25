@@ -1553,11 +1553,12 @@ const WOW_DB_ITEMS = {
     stats: ['체력 +12'],
     effects: ['착용 효과: 비전 주문 및 효과의 공격력이 최대 14만큼 증가합니다.'],
     compare: {
-      equipped: '독수리의 내구력 모자',
+      equipped: '기가볼트 전자반응기',
       deltas: [
-        { v: '+4 체력', type: 'pos' },
+        { v: '+12 체력', type: 'pos' },
         { v: '-8 지능', type: 'neg' },
-        { v: '+14 비전 주문력', type: 'pos' }
+        { v: '-9 정신력', type: 'neg' },
+        { v: '+6 비전 주문력 (모든 주문 -8)', type: 'pos' }
       ]
     },
     note: '📍 도안: 27~34레벨 던전/필드 드랍 또는 경매장',
@@ -1628,12 +1629,11 @@ const WOW_DB_ITEMS = {
     stats: ['지능 +10', '정신력 +12'],
     effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 21만큼 증가합니다.'],
     compare: {
-      equipped: '독수리의 내구력 모자',
+      equipped: '기가볼트 전자반응기',
       deltas: [
-        { v: '-8 체력', type: 'neg' },
         { v: '+2 지능', type: 'pos' },
-        { v: '+12 정신력', type: 'pos' },
-        { v: '+21 주문력', type: 'pos' }
+        { v: '+3 정신력', type: 'pos' },
+        { v: '+13 모든 주문력', type: 'pos' }
       ]
     },
     note: '📍 도안: 대가 재봉 교관 학습 (BoE)',
@@ -1647,12 +1647,12 @@ const WOW_DB_ITEMS = {
     stats: ['체력 +8', '지능 +8', '정신력 +6'],
     effects: ['착용 효과: 비전 주문 및 효과의 공격력이 최대 17만큼 증가합니다.'],
     compare: {
-      equipped: '장미 어깨보호대',
+      equipped: '녹색 비단 어깨보호구',
       deltas: [
         { v: '+8 체력', type: 'pos' },
-        { v: '+3 지능', type: 'pos' },
+        { v: '-3 지능', type: 'neg' },
         { v: '+6 정신력', type: 'pos' },
-        { v: '+12 비전 주문력 (모든 주문 -5)', type: 'pos' }
+        { v: '+9 비전 주문력 (모든 주문 -8)', type: 'pos' }
       ]
     },
     note: '📍 도안: 붉은마루 삼거리 [미빈 섀도위브] (상인의 호의 60)',
@@ -1713,10 +1713,12 @@ const WOW_DB_ITEMS = {
     rows: [['요구 레벨 30', '착용 시 귀속 (BoE · 재봉 175)']],
     stats: ['체력 +9', '지능 +9'],
     compare: {
-      equipped: '독수리의 내구력 모자',
+      equipped: '기가볼트 전자반응기',
       deltas: [
-        { v: '+1 체력', type: 'pos' },
-        { v: '+1 지능', type: 'pos' }
+        { v: '+9 체력', type: 'pos' },
+        { v: '+1 지능', type: 'pos' },
+        { v: '-9 정신력', type: 'neg' },
+        { v: '-8 모든 주문력', type: 'neg' }
       ]
     },
     note: '📍 도안: 알터랙 산맥 [대마법사 알바로] 10g 판매 (키린 토 약간 우호적 · 얼라이언스 전용)',
@@ -1831,11 +1833,11 @@ const WOW_DB_ITEMS = {
     stats: ['지능 +20'],
     effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 19만큼 증가합니다.'],
     compare: {
-      equipped: '독수리의 내구력 모자',
+      equipped: '기가볼트 전자반응기',
       deltas: [
-        { v: '-8 체력', type: 'neg' },
-        { v: '+12 지능', type: 'pos' },
-        { v: '+19 주문력', type: 'pos' }
+        { v: '+4 지능', type: 'pos' },
+        { v: '-9 정신력', type: 'neg' },
+        { v: '+8 모든 주문력', type: 'pos' }
       ]
     },
     note: '📍 도안: Lv.40~50 월드 드랍 (BoE · 가성비 최강)',
@@ -1885,10 +1887,10 @@ const WOW_DB_ITEMS = {
     stats: ['지능 +13'],
     effects: ['착용 효과: 주문 공격력 +17 · 주문 극대화 +14 (1%).'],
     compare: {
-      equipped: '장미 어깨보호대',
+      equipped: '녹색 비단 어깨보호구',
       deltas: [
-        { v: '+8 지능', type: 'pos' },
-        { v: '+12 주문력', type: 'pos' },
+        { v: '+2 지능', type: 'pos' },
+        { v: '+9 모든 주문력', type: 'pos' },
         { v: '+1% 주문 극대화', type: 'pos' }
       ]
     },
@@ -2002,11 +2004,11 @@ const WOW_DB_ITEMS = {
     stats: ['정신력 +12'],
     effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 15만큼 증가합니다.'],
     compare: {
-      equipped: '장미 어깨보호대',
+      equipped: '녹색 비단 어깨보호구',
       deltas: [
-        { v: '-5 지능', type: 'neg' },
+        { v: '-11 지능', type: 'neg' },
         { v: '+12 정신력', type: 'pos' },
-        { v: '+10 주문력', type: 'pos' }
+        { v: '+7 모든 주문력', type: 'pos' }
       ]
     },
     note: '📍 포에버 신규 BoE 유령매듭 도안',
@@ -2412,12 +2414,11 @@ const WOW_DB_ITEMS = {
     stats: ['정신력 +18'],
     effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 21만큼 증가합니다.'],
     compare: {
-      equipped: '독수리의 내구력 모자',
+      equipped: '기가볼트 전자반응기',
       deltas: [
-        { v: '-8 체력', type: 'neg' },
         { v: '-8 지능', type: 'neg' },
-        { v: '+18 정신력', type: 'pos' },
-        { v: '+21 주문력', type: 'pos' }
+        { v: '+9 정신력', type: 'pos' },
+        { v: '+13 모든 주문력', type: 'pos' }
       ]
     },
     note: '📍 포에버 신규 BoE 유령매듭 도안 (원가 6g 72.4s)',
@@ -2553,15 +2554,7 @@ const WOW_DB_ITEMS = {
     rows: [['요구 레벨 31', '착용 시 귀속 (BoE · 재봉 145 · 교관)']],
     stats: ['지능 +11'],
     effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 8만큼 증가합니다.'],
-    compare: {
-      equipped: '장미 어깨보호대',
-      deltas: [
-        { v: '+6 지능', type: 'pos' },
-        { v: '+3 모든 주문력', type: 'pos' },
-        { v: '+6 방어도', type: 'pos' }
-      ]
-    },
-    note: '⭐ 현재 Lv.33 즉시 착용 가능! 경매 완제품 24.99s로 장미 어깨 완승',
+    note: '✅ 현재 착용 중! 기존 장미 어깨보호대(지5·주문+5) 대비 지능 +6 · 모든 주문 +3 업그레이드',
     bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
     source: '재봉술 145 제작 — 재봉 교관 학습 (포에버 주문력 +8 상향!)',
     craftCost: '48.6s (경매 완제품 24.99s 특가! · 11/24 14:49)',
@@ -2609,10 +2602,10 @@ const WOW_DB_ITEMS = {
     stats: ['지능 +9'],
     effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 10만큼 증가합니다.'],
     compare: {
-      equipped: '장미 어깨보호대',
+      equipped: '녹색 비단 어깨보호구',
       deltas: [
-        { v: '+4 지능', type: 'pos' },
-        { v: '+5 모든 주문력', type: 'pos' }
+        { v: '-11 지능', type: 'neg' },
+        { v: '+6 모든 주문력', type: 'pos' }
       ]
     },
     note: '📍 교관 무료 학습 · 황천광채 어깨(34g) 안 만들 때 가성비 최고',
@@ -2627,10 +2620,10 @@ const WOW_DB_ITEMS = {
     stats: ['지능 +15'],
     effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 7만큼 증가합니다.'],
     compare: {
-      equipped: '장미 어깨보호대',
+      equipped: '녹색 비단 어깨보호구',
       deltas: [
-        { v: '+10 지능', type: 'pos' },
-        { v: '+2 모든 주문력', type: 'pos' }
+        { v: '+4 지능', type: 'pos' },
+        { v: '-1 모든 주문력', type: 'neg' }
       ]
     },
     note: '📍 지능 +15 확보용 (주문력 우선 시 검은 마법매듭/황천광채 추천)',
@@ -2664,11 +2657,11 @@ const WOW_DB_ITEMS = {
     stats: ['지능 +20'],
     effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 15만큼 증가합니다.'],
     compare: {
-      equipped: '독수리의 내구력 모자',
+      equipped: '기가볼트 전자반응기',
       deltas: [
-        { v: '-8 체력', type: 'neg' },
         { v: '+12 지능', type: 'pos' },
-        { v: '+15 모든 주문력', type: 'pos' }
+        { v: '-9 정신력', type: 'neg' },
+        { v: '+7 모든 주문력', type: 'pos' }
       ]
     },
     note: '📍 유령매듭 두건(정18/주21) 대신 마나풀+치명 선호 비전 법사 최적',
@@ -2683,10 +2676,10 @@ const WOW_DB_ITEMS = {
     stats: ['지능 +15'],
     effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 12만큼 증가합니다.'],
     compare: {
-      equipped: '장미 어깨보호대',
+      equipped: '녹색 비단 어깨보호구',
       deltas: [
-        { v: '+10 지능', type: 'pos' },
-        { v: '+7 모든 주문력', type: 'pos' }
+        { v: '+4 지능', type: 'pos' },
+        { v: '+4 모든 주문력', type: 'pos' }
       ]
     },
     note: '📍 유령매듭 어깨(정12/주15) 대비 지능 +15 우위',
@@ -2720,11 +2713,11 @@ const WOW_DB_ITEMS = {
     stats: ['정신력 +7', '암흑 저항 +5'],
     effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 25만큼 증가합니다.'],
     compare: {
-      equipped: '장미 어깨보호대',
+      equipped: '녹색 비단 어깨보호구',
       deltas: [
-        { v: '-5 지능', type: 'neg' },
+        { v: '-11 지능', type: 'neg' },
         { v: '+7 정신력', type: 'pos' },
-        { v: '+20 모든 주문력', type: 'pos' }
+        { v: '+17 모든 주문력', type: 'pos' }
       ]
     },
     note: '📍 은빛 여명회 매우 우호적 평판 도안 (단일 어깨 주문력 +25 최상위)',
