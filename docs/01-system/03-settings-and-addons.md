@@ -25,11 +25,11 @@
 ## 2. 로컬 실측 설치 애드온 관리부 (`2026-11-25` 직접 스캔 ✅)
 - **스캔 경로 (영구 등록)**: `C:\Program Files (x86)\World of Warcraft\_forever_\Interface\AddOns`
 - **캐릭터 활성 설정**: `C:\Program Files (x86)\World of Warcraft\_forever_\WTF\Account\1524025208#1\92\폴-최\AddOns.txt`
-- **진단 요약**: **총 26개 스위트 (71개 폴더)** · **24/26 스위트(62/71 폴더) `Interface: 16001` (`1.60.1`) 지원 ✅** (`BetterBlizzFrames`, `Details!` 계열은 `120105` TOC) · **정면 충돌 `0건` ✅** *(단, 11/25 11:23 `Details!` 업데이트로 기존 한글 메뉴 글꼴 로컬 패치가 초기화되어 재적용 필요 ⚠️)*
+- **진단 요약**: **총 26개 스위트 (71개 폴더)** · **24/26 스위트(62/71 폴더) `Interface: 16001` (`1.60.1`) 지원 ✅** (`BetterBlizzFrames`, `Details!` 계열은 `120105` TOC) · **정면 충돌 `0건` ✅** · **`Details!` + `Attune` 한글 로컬 패치 모두 적용 완료 ✅**
 
-### A. 진단 & 최적화 포인트 (`2026-11-25 11:23` 2차 실측)
-1. **✅ 11/25 2차 애드온 업데이트 7종 (`Details!` · `Auctionator` · `Questie` · `LayerSwap` · `SquareMinimap` · `Spoken` · `EzWoW-MapFinder`)**:
-   - **`Details! (20261124.15450.172)` — ⚠️ 한글 메뉴 패치 덮어쓰임**: 그룹 창 개별 크기 유지 옵션(`Keep Size of Grouped Windows`), `Animate Bars` 이동, 비전투 자동 숨김 깜빡임/비교 리포트 오류/전투 중 상세창 차단/사망 시간 `??` 처리/기본 글꼴 선택 목록 수정이 반영되었습니다. *(단, 업데이트 덮어쓰기로 `Libs/DF/cooltip.lua:1168` `--fontFace = font or fontFace` 주석 버그가 복원되고 `languages.lua`·`core/windows.lua` 로컬 패치가 초기화되어 인게임 메뉴 한글 `□□□` 현상이 재발할 수 있으므로 재패치 권장)*
+### A. 진단 & 최적화 포인트 (`2026-11-25 11:37` 실측)
+1. **✅ 11/25 2차 애드온 업데이트 7종 (`Details!` 한글 재패치 완료 · `Auctionator` · `Questie` · `LayerSwap` · `SquareMinimap` · `Spoken` · `EzWoW-MapFinder`)**:
+   - **`Details! (20261124.15450.172)` — ✅ 한글 메뉴 글꼴 재패치 완료**: 그룹 창 개별 크기 유지 옵션(`Keep Size of Grouped Windows`), `Animate Bars` 이동, 비전투 자동 숨김 깜빡임/비교 리포트 오류/전투 중 상세창 차단/사망 시간 `??`/기본 글꼴 선택 목록 수정이 반영되었습니다. 업데이트로 초기화되었던 한글 패치를 즉시 재적용(`Libs/DF/cooltip.lua` 1168·1283행 `fontFace = font or fontFace`, `Libs/DF/languages.lua` `DetectLanguageId` 한글 UTF-8 선감지, `core/windows.lua` `CooltipPreset` `koKR` `"2002"` 분기)했습니다. *(인게임 `/reload` 시 즉시 적용)*
    - **`Auctionator (353)`**: 접두사/접미사(Suffix) 전체 문자열 대신 인덱스만 저장하도록 경량화(CBOR 오류 완화)하고, **타 언어(한국어 등) 랜덤 접미사 감지 수정**(`DBKeyFromLink.lua`에서 `SuffixesExtraChecks` bonusID 기반 로컬 이름 대조 추가)이 적용되었습니다. *(단, `Tooltips/Main.lua` 로컬 `pcall` 가드는 미적용 상태)*
    - **`Questie (12.14.0)`**: 블리자드 UI 오염(Taint) 추적용 **TaintWatch** 추가, `[Forever]` 지도가 없는 퀘스트도 추적기에서 상세창 열기 지원, `[Forever]` Strahad Farsan 흑마법사 상급자 표기, `ruRU` 번역 수정(`QuestieTrace 1.14.0` 동시 갱신).
    - **`LayerSwap (1.14.56)`**: `1.14.54~56` 반영 — 시간당 위상 이동 제한 기준을 포에버 실측(`build 71037`)에 맞춰 **10회 → 16회**로 상향(점 16개 표시), 포에버 위상 전환 시 요청 위상 미달성 경우를 제외하고 채팅 로그 출력 억제(조용한 전환), 포에버 호스트 응답 대기(`Host.SKIP`) 및 사설 서버 숫자 숨김.
@@ -53,7 +53,7 @@
 
 | 분류 | 스위트 / 폴더명 | 설치 버전 (`.toc`) | `16001` | 상태 및 핵심 역할 |
 | :--- | :--- | :--- | :---: | :--- |
-| **전투 · 프록 · 딜미터** (4종 / 12폴더) | **`Details!`** (+7 플러그인: `Compare2`, `DataStorage`, `EncounterDetails`, `RaidCheck`, `Streamer`, `TinyThreat`, `Vanguard`) | `20261124.15450.172` | `120105` | 활성 · 실시간 DPS·주문별 비중·어그로(`TinyThreat`)·차단 분석 *(업데이트로 한글 메뉴 패치 초기화 ⚠️)* |
+| **전투 · 프록 · 딜미터** (4종 / 12폴더) | **`Details!`** (+7 플러그인: `Compare2`, `DataStorage`, `EncounterDetails`, `RaidCheck`, `Streamer`, `TinyThreat`, `Vanguard`) | `20261124.15450.172` | `120105` | 활성 · 실시간 DPS·주문별 비중·어그로(`TinyThreat`)·차단 분석 *(한글 메뉴 재패치 완료 ✅)* |
 | | **`Shadowflare`** | `0.26.5` | ✅ | **활성 (`enabled`)** · 포에버 전용 프록 알림 (`화살 탄막` · `신비한 정신 집중` · 최대 중첩 별도 스타일) |
 | | **`ForeverCombatText`** | `0.17.0` | ✅ | **활성 (`enabled`)** · 네임플레이트 주문 학파 색상 전투 피해 텍스트 |
 | | **`RangeDisplay`** (+`_Options`) | `v6.3.7` | ✅ | **활성 (`enabled`)** · 적대적 대상 전용 (`enemyOnly = true`, 33m 경계) |
