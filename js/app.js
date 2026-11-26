@@ -2338,7 +2338,6 @@ function renderPriceChartsInto(mountId, historyArr) {
 function renderMatPriceCharts() {
   renderPriceChartsInto('matPriceChartGrid', MAT_PRICE_HISTORY);
   renderPriceChartsInto('tailoringPriceChartGrid', TAILORING_PRICE_HISTORY);
-  if (typeof FAVOR_CRATE_PRICE_HISTORY !== 'undefined') renderPriceChartsInto('favorCratePriceChartGrid', FAVOR_CRATE_PRICE_HISTORY);
   if (typeof FAVOR_MAT_PRICE_HISTORY !== 'undefined') renderPriceChartsInto('favorMatPriceChartGrid', FAVOR_MAT_PRICE_HISTORY);
 }
 
