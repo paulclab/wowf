@@ -1633,51 +1633,215 @@
             </div>
           </details>
 
-          <!-- 7. MERCHANT'S FAVOR -->
+          <!-- 7. MERCHANT'S FAVOR (OVERHAULED) -->
           <details class="fold-card">
-            <summary><span>🪙 <strong>상인의 호의 (Merchant's Favor) &amp; 아제로스 상업 관리국</strong></span></summary>
+            <summary><span>🪙 <strong>상인의 호의</strong></span></summary>
             <div class="fold-body">
-              <div class="callout arcane" style="margin-top:0;">
-                <div class="callout-prose">
-                  <strong>한 줄 요약 (현재 55개 보유 ✅):</strong> 포에버 전용 특수 도안(마부 <code>무기 - 계시</code>/<code>무기 - 통찰</code>, 재봉 <code>진줏빛 화장복</code>·<code>황금 손등싸개</code>)을 사는 캐릭터 귀속 화폐와 평판 세력입니다.
-                </div>
+              <div class="callout" style="margin-top:0; margin-bottom:14px;">
+                <strong>📍 얼라이언스 야영지 위치:</strong> 동부왕국 &gt; 붉은마루 산맥 남서쪽 '붉은마루 삼거리' <code>11.2, 71.5</code>
               </div>
-              <details class="fold-card dismissible-fold" data-dismiss-id="prof-favor-howto" data-restore-scope="tab-prof">
-                <summary>
-                  <span class="dismiss-fold-title">🔎 <strong>내가 가진 '상인의 호의' 확인 방법</strong></span>
-                  <span class="dismiss-fold-actions">
-                    <span class="dismiss-fold-chevron"><span class="lbl-closed">열기 ▾</span><span class="lbl-open">접기 ▴</span></span>
-                    <button type="button" class="fold-dismiss-btn" onclick="dismissFoldNote(event, 'prof-favor-howto')" title="이 Q&A 영역을 숨깁니다">✕ 지우기</button>
-                  </span>
-                </summary>
-                <div class="fold-body">
-                  1. <strong>기본 확인:</strong> 붉은마루 삼거리 <code>11.2, 71.5</code> 알린시아·마시 베커 상점 창에서 보유량 표시 (캐릭터 귀속).<br>
-                  2. <strong>평판 확인:</strong> 단축키 <strong>U</strong> &rarr; 아제로스 상업 관리국.<br>
-                  3. <strong>추천 애드온:</strong> <strong>Forever Favor</strong> 설치 시 언제든 잔량·경매 최저가 확인 가능.
-                </div>
-              </details>
-              <div class="grid-2" style="margin-bottom:12px;">
-                <div class="callout" style="margin:0;">
-                  <strong>📍 얼라이언스 야영지 &amp; 핵심 NPC</strong><br>
-                  &bull; <strong>위치:</strong> 동부왕국 &gt; 붉은마루 산맥 남서쪽 '붉은마루 삼거리' <code>11.2, 71.5</code><br>
-                  &bull; <strong>상자 반납:</strong> 마시 베커<br>
-                  &bull; <strong>마부 도안 (알린시아):</strong> <code>수습생의 보주</code> 10 · <code>무기 - 계시</code>/<code>무기 - 통찰</code> 45 · <code>목걸이 - 주문력</code> 120 · <code>보조장비 - 지혜</code> 240<br>
-                  &bull; <strong>재봉 도안 (미빈 섀도위브):</strong> <code>진줏빛 화장복</code> 30 · <code>황금 손등싸개</code> 60 · <code>황천광채 어깨보호구</code> 60
-                </div>
-                <div class="callout verified" style="margin:0;">
-                  <strong>⭐ 핵심 팁 2가지</strong><br>
-                  1. <strong>첫 상자 보너스 (+50 호의):</strong> 첫 보급품 상자 반납 시 나오는 <strong>배송 라벨</strong>로 <strong>호의 +50 · 평판 +2,000</strong> 즉시 획득.<br>
-                  2. <strong>녹색 상자 2배 효율:</strong> 원재료(흰색)보다 가공품(녹색) 상자가 같은 등급 대비 호의를 2배 지급.
-                </div>
+
+              <h3>보유 보급품 상자 정산 &amp; 최적 재료</h3>
+              <p class="prose-note" style="margin-top:0;">
+                11/26 00:24 경매가 기준 보유 상자 8개(미봉인 7 + 가방 봉인 1)를 최저가 재료로 채우면 총 재료비 <strong>66.56s</strong>로 <strong>호의 +105개</strong>와 반납 실버 <strong>~50s</strong>를 회수합니다.<br>
+                실질 순비용은 약 <strong>16.56s</strong>(호의당 16c)이며, 상자마다 요구 목록 중 <strong>1종류만</strong> 채우면 봉인됩니다.
+              </p>
+              <div class="table-wrap" style="margin-bottom:16px;">
+                <table>
+                  <thead>
+                    <tr><th>보유 상자 (수량)</th><th>획득 호의 · 반납금</th><th>상자 경매가</th><th>최저가 재료 ⭐ (대안 목록)</th><th>실질 비용 (호의당)</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong><code>잘못 놓인 보급품: 수습 원단</code></strong> &times; 2<br><small>고급 · ID 248705</small></td>
+                      <td><strong>+20 호의</strong><br><small>+10s (2개 합 +40)</small></td>
+                      <td><strong>40.89s</strong><br><small>11/25 20.00s</small></td>
+                      <td><strong><code>경화된 일반 가죽</code> &times; 2 (8.00s ⭐)</strong><br><small>대안: <code>양모 두루마리</code> 6 (16.14s) · <code>비단 두루마리</code> 10 (90.00s)</small></td>
+                      <td><strong>-2.00s 순이득!</strong><br><small>2개 총 16s &rarr; 20s 회수</small></td>
+                    </tr>
+                    <tr>
+                      <td><strong><code>잘못 놓인 보급품: 수습 약초</code></strong> &times; 3<br><small>일반 · ID 248686</small></td>
+                      <td><strong>+10 호의</strong><br><small>+5s (3개 합 +30)</small></td>
+                      <td><strong>15.50s</strong><br><small>11/25 14.00s</small></td>
+                      <td><strong><code>생채기풀</code> &times; 10 (4.80s ⭐)</strong><br><small>대안: <code>무덤이끼</code> 10 (30s) · <code>야생 철쭉</code> 10 (43s) · <code>갈래물풀</code> 10 (60s) · <code>왕꽃잎풀</code> 10 (1g 36.9s)</small></td>
+                      <td><strong>-20c 순이득!</strong><br><small>3개 총 14.4s &rarr; 15s 회수</small></td>
+                    </tr>
+                    <tr>
+                      <td><strong><code>잘못 놓인 보급품: 수습 부품</code></strong> &times; 1<br><small>고급 · ID 248707</small></td>
+                      <td><strong>+20 호의</strong><br><small>+10s</small></td>
+                      <td><strong>19.00s</strong><br><small>11/25 13.30s</small></td>
+                      <td><strong><code>청동 골격</code> &times; 4 (28.76s ⭐)</strong><br><small>대안: <code>청동관</code> 8 (33.20s) · <code>청동 회전장치</code> 7 (97.93s) · <code>황금 동력핵</code> 45 (1g 54.8s)</small></td>
+                      <td><strong>18.76s</strong><br><small>호의당 94c</small></td>
+                    </tr>
+                    <tr>
+                      <td><strong><code>잘못 놓인 보급품: 수습 직물</code></strong> &times; 1<br><small>일반 · ID 248688</small></td>
+                      <td><strong>+10 호의</strong><br><small>+5s</small></td>
+                      <td><strong>5.90s</strong><br><small>11/25 5.90s</small></td>
+                      <td><strong><code>일반 가죽</code> &times; 20 (15.00s ⭐ · 무두 자급 가능)</strong><br><small>대안: <code>양모 옷감</code> 20 (21.20s) · <code>비단 옷감</code> 40 (60.00s)</small></td>
+                      <td><strong>10.00s</strong><br><small>호의당 1.00s</small></td>
+                    </tr>
+                    <tr>
+                      <td><strong><code>봉인된 초급 상자</code></strong> &times; 1<br><small>귀속 · 반납 대기 ✅</small></td>
+                      <td><strong>+5 호의</strong></td>
+                      <td>거래 불가</td>
+                      <td>봉인 완료 상태 (가방 보관 중)</td>
+                      <td><strong>0c (즉시 반납)</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
+
+              <h3>등급별 보급품 상자 호의 수치 &amp; 현재 경매가</h3>
+              <p class="prose-note" style="margin-top:0;">
+                같은 등급이라도 원재료(일반)보다 가공품(고급) 상자가 <strong>상인의 호의를 2배</strong> 지급합니다. (<a href="https://www.method.gg/wow-forever" target="_blank">Method</a> · <a href="https://mobalytics.gg/wow-forever" target="_blank">Mobalytics</a> · 11/26 00:24 실측)
+              </p>
+              <div class="table-wrap" style="margin-bottom:16px;">
+                <table>
+                  <thead>
+                    <tr><th>등급 (요구 Lv)</th><th>구분 (품질)</th><th>획득 호의</th><th>상자 종류별 현재 경매가</th><th>대표 최저가 충전 재료</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>초급</strong> (Lv.10+)</td>
+                      <td>원재료 (일반)</td>
+                      <td><strong>+5 호의</strong></td>
+                      <td>약초 11.00s · 광석 17.00s · 직물 1.00s · 잡화 20.00s</td>
+                      <td><code>은엽수 잎</code> 20 (3.80s) · <code>리넨 옷감</code> 40 (8.80s)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>초급</strong> (Lv.10+)</td>
+                      <td>가공품 (고급)</td>
+                      <td><strong>+10 호의</strong></td>
+                      <td>원단 16.00s · 주괴 17.99s · 부품 8.00s</td>
+                      <td><code>경화된 얇은 가죽</code> 2 (6.68s) · <code>리넨 두루마리</code> 20 (8.60s) · <code>구리 변조기</code> 4 (8.80s)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>수습</strong> (Lv.10+)</td>
+                      <td>원재료 (일반)</td>
+                      <td><strong>+10 호의</strong></td>
+                      <td><strong>약초 15.50s</strong> · 광석 24c · <strong>직물 5.90s</strong> · 잡화 42c</td>
+                      <td><code>생채기풀</code> 10 (4.80s ⭐) · <code>일반 가죽</code> 20 (15.00s)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>수습</strong> (Lv.10+)</td>
+                      <td>가공품 (고급)</td>
+                      <td><strong>+20 호의</strong></td>
+                      <td><strong>원단 40.89s</strong> · 주괴 3.50s · <strong>부품 19.00s</strong></td>
+                      <td><code>경화된 일반 가죽</code> 2 (8.00s ⭐) · <code>청동 골격</code> 4 (28.76s)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>전문</strong> (Lv.20+)</td>
+                      <td>원재료 (일반)</td>
+                      <td><strong>+15 호의</strong></td>
+                      <td>약초 16.49s · 광석 43c · 직물 34c · 잡화 50c</td>
+                      <td>중상급 약초·광석·마법 옷감·질긴/두꺼운 가죽</td>
+                    </tr>
+                    <tr>
+                      <td><strong>전문</strong> (Lv.20+)</td>
+                      <td>가공품 (고급)</td>
+                      <td><strong>+30 호의</strong></td>
+                      <td>원단 20.01s · 주괴 78c · 부품 11.30s</td>
+                      <td>강철·미스릴 주괴 · 마법 두루마리 · 철제 버팀대/조율기</td>
+                    </tr>
+                    <tr>
+                      <td><strong>대가</strong> (Lv.35+)</td>
+                      <td>원재료 / 가공품</td>
+                      <td><strong>+20 / +40</strong> <small>(패턴 추정)</small></td>
+                      <td>일반류 29~90c · 원단 75.74s · 주괴 4.30s · 부품 1.00s</td>
+                      <td>토륨·진은·룬무늬·만렙 약초 (고비용 — 인게임 툴팁 확인 권장)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h3>보유 상자 4종 경매가 추이</h3>
+              <p class="prose-note" style="margin-top:0; font-size:13px; color:var(--rd-ink-2);">
+                11/20 ~ 11/26 00:24 추이 &middot; 상자명을 호버·탭하면 필요 재료와 실측 시세 툴팁이 열립니다.
+              </p>
+              <div id="favorCratePriceChartGrid" class="price-chart-grid" style="margin-bottom:16px;"></div>
+
+              <h3>보유 상자 필요 재료 경매가 추이</h3>
+              <p class="prose-note" style="margin-top:0; font-size:13px; color:var(--rd-ink-2);">
+                <code>수습 원단</code>(3종) · <code>수습 부품</code>(4종) · <code>수습 약초</code>(5종) · <code>수습 직물</code>(3종) 전체 재료 15종의 11/20 ~ 11/26 00:24 경매가 추이입니다.
+              </p>
+              <div id="favorMatPriceChartGrid" class="price-chart-grid" style="margin-bottom:0;"></div>
+            </div>
+          </details>
+
+          <!-- 8. AZEROTH COMMERCE AUTHORITY (SEPARATE SUB-MENU) -->
+          <details class="fold-card">
+            <summary><span>🏛️ <strong>아제로스 상업 관리국</strong></span></summary>
+            <div class="fold-body">
+              <div class="callout" style="margin-top:0; margin-bottom:14px;">
+                <strong>📍 얼라이언스 야영지 위치:</strong> 동부왕국 &gt; 붉은마루 산맥 남서쪽 '붉은마루 삼거리' <code>11.2, 71.5</code>
+              </div>
+
+              <h3>평판 획득 방법 구분</h3>
+              <p class="prose-note" style="margin-top:0;">
+                보급품 상자 납품은 화폐(상인의 호의)만 지급하므로, 평판은 초반 <strong><code>장인의 계약서</code></strong>와 약간 우호적 이후 <strong><code>위조된 배송 영수증</code></strong>으로 구분해 올립니다. (<a href="https://conquestcapped.com/guides/wow-forever/" target="_blank">ConquestCapped</a> · <a href="https://mobalytics.gg/wow-forever" target="_blank">Mobalytics</a>)
+              </p>
+              <div class="table-wrap" style="margin-bottom:16px;">
+                <table>
+                  <thead>
+                    <tr><th>구간 / 방법</th><th>필요 아이템 및 비용</th><th>획득 평판</th><th>제한 및 핵심 특징</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>① 초반~전 구간</strong><br><code>장인의 계약서</code> 납품</td>
+                      <td>계약서 1장 + 지정 제작 아이템 1종<br><small>(드랍 또는 경매 구매)</small></td>
+                      <td>수습 <strong>+75</strong><br>전문 <strong>+125</strong><br>대가 <strong>+200</strong></td>
+                      <td>동일 계약서 <strong>1일 1회 제한</strong> · 지정 고객 NPC에게 직접 배달 필요</td>
+                    </tr>
+                    <tr>
+                      <td><strong>② 약간 우호적 이후 ⭐</strong><br><code>위조된 배송 영수증</code> 변환</td>
+                      <td>상인의 호의 15개 (영수증 구매) + <strong>아무 빈 보급품 상자 1개</strong> (24~42c)</td>
+                      <td><strong>+50 평판</strong><br><small>(공증된 배송 화물 반납)</small></td>
+                      <td><strong>일일 제한 없음 · 이동 없이 제자리 무한 반복!</strong> (계약서 대비 5~7배 저렴)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h3>장인의 계약서 등급별 최저가 경매 시세</h3>
+              <p class="prose-note" style="margin-top:0;">
+                11/26 00:24 경매장 실측 기준 <strong>계약서 가격 + 납품 아이템 경매가</strong>를 분리 산출한 등급별 최저가 순위입니다.
+              </p>
+              <div class="table-wrap" style="margin-bottom:16px;">
+                <table>
+                  <thead>
+                    <tr><th>등급 (평판)</th><th>계약서 명칭 (납품 아이템)</th><th>계약서 경매가</th><th>납품템 경매가</th><th>합계 (평판당)</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>수습 (+75)</strong></td><td>장인의 계약서: 알록달록한 킬트 ⭐</td><td>8.24s</td><td>25.00s</td><td><strong>33.24s</strong> (44c)</td></tr>
+                    <tr><td><strong>수습 (+75)</strong></td><td>장인의 계약서: 그림자 고글</td><td>30.00s</td><td>44.00s</td><td><strong>74.00s</strong> (99c)</td></tr>
+                    <tr><td><strong>수습 (+75)</strong></td><td>장인의 계약서: 수제 합금 탄환 (200발)</td><td>80.00s</td><td>8.00s</td><td><strong>88.00s</strong> (1.17s)</td></tr>
+                    <tr><td><strong>수습 (+75)</strong></td><td>장인의 계약서: 감청색 비단 두건</td><td>77.60s</td><td>10.50s</td><td><strong>88.10s</strong> (1.17s)</td></tr>
+                    <tr><td><strong>수습 (+75)</strong></td><td>장인의 계약서: 지혜의 비약</td><td>91.19s</td><td>99c</td><td><strong>92.18s</strong> (1.23s)</td></tr>
+                    <tr><td><strong>전문 (+125)</strong></td><td>장인의 계약서: 야생 가죽 어깨보호구 ⭐</td><td>20.00s</td><td>90.00s</td><td><strong>1g 10.00s</strong> (88c)</td></tr>
+                    <tr><td><strong>전문 (+125)</strong></td><td>장인의 계약서: 고양이눈 약물</td><td>1g 11.80s</td><td>3.80s</td><td><strong>1g 15.60s</strong> (92c)</td></tr>
+                    <tr><td><strong>전문 (+125)</strong></td><td>장인의 계약서: 장인의 단안경</td><td>19.00s</td><td>98.00s</td><td><strong>1g 17.00s</strong> (94c)</td></tr>
+                    <tr><td><strong>전문 (+125)</strong></td><td>장인의 계약서: 암흑 기름</td><td>70.94s</td><td>49.41s</td><td><strong>1g 20.35s</strong> (96c)</td></tr>
+                    <tr><td><strong>대가 (+200)</strong></td><td>장인의 계약서: 악마 감지의 약물</td><td>2g 80.00s</td><td>6.00s</td><td><strong>2g 86.00s</strong> (1.43s)</td></tr>
+                    <tr><td><strong>대가 (+200)</strong></td><td>장인의 계약서: 숙면의 물약</td><td>2g 90.00s</td><td>6.00s</td><td><strong>2g 96.00s</strong> (1.48s)</td></tr>
+                    <tr><td><strong>대가 (+200)</strong></td><td>장인의 계약서: 제한된 무적 물약</td><td>1g 75.00s</td><td>1g 23.70s</td><td><strong>2g 98.70s</strong> (1.49s)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h3>위조된 배송 영수증용 초저가 빈 상자 경매가</h3>
+              <p class="prose-note" style="margin-top:0;">
+                약간 우호적 이후 <code>위조된 배송 영수증</code>(호의 15개)에 붙일 빈 상자는 등급·종류 무관하므로, 경매장에서 <strong>24~42c대 최하가 빈 상자</strong>를 구매해 조합하는 것이 압도적으로 유리합니다.
+              </p>
               <div class="table-wrap" style="margin-bottom:0;">
                 <table>
                   <thead>
-                    <tr><th>구분</th><th>역할</th><th>획득 방법</th></tr>
+                    <tr><th>초저가 빈 상자 (ID)</th><th>현재 경매가 (11/26)</th><th>조합 비용 (+50 평판)</th><th>비고</th></tr>
                   </thead>
                   <tbody>
-                    <tr><td><strong>① 상인의 호의</strong><br><span class="core-sum-note">(화폐)</span></td><td>특수 도안·주문식 구매</td><td>빈 <code>잘못 놓인 보급품 상자</code>에 재료를 채워 봉인 후 마시 베커 <code>11.2, 71.5</code> 반납</td></tr>
-                    <tr><td><strong>② 아제로스 상업 관리국</strong><br><span class="core-sum-note">(평판)</span></td><td>상위 도안 구매 해금</td><td>초반: 장인의 계약서(+75) · 첫 배송 라벨(+2,000) / 약간 우호적+: 위조된 배송 영수증으로 전환</td></tr>
+                    <tr><td><strong>수습 광석</strong> (248687) ⭐</td><td><strong>24c</strong></td><td>호의 15 + 24c</td><td>현재 경매장 최저가 (매물 102개)</td></tr>
+                    <tr><td><strong>대가 원재료류</strong> (248694)</td><td><strong>29c</strong></td><td>호의 15 + 29c</td><td>매물 245개로 대량 매입 용이</td></tr>
+                    <tr><td><strong>전문 직물</strong> (248692)</td><td><strong>34c</strong></td><td>호의 15 + 34c</td><td>매물 321개 최다 공급</td></tr>
+                    <tr><td><strong>수습 잡화</strong> (248689)</td><td><strong>42c</strong></td><td>호의 15 + 42c</td><td>매물 148개 안정적</td></tr>
                   </tbody>
                 </table>
               </div>
