@@ -2002,18 +2002,20 @@ const WOW_DB_ITEMS = {
   },
   '심홍색 비단 바지': {
     en: 'Crimson Silk Pantaloons', kind: '다리 · 천 · 방어도 45', quality: 'uncommon', icon: 'inv_pants_06',
-    rows: [['요구 레벨 34', '착용 시 귀속 (BoE · 재봉 160)']],
+    rows: [['요구 레벨 34', '착용 시 귀속 (BoE · 재봉 160 · 교관)']],
     stats: ['지능 +13'],
-    effects: ['착용 효과: 주문 공격력 및 치유량이 최대 8만큼 증가합니다.'],
+    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 8만큼 증가합니다.'],
     compare: {
       equipped: '집정관의 바지',
       deltas: [
-        { v: '+1 주문력 (지능 +13 동일)', type: 'pos' }
+        { v: '+1 모든 주문력 (지능 +13 동일 · 방어 +4)', type: 'pos' },
+        { v: '냉법 전환 시 100% 유지 (+1.00 EP)', type: 'pos' }
       ]
     },
-    note: '📍 도안: 스톰윈드 재봉 교관 학습',
+    note: '📍 도안: 스톰윈드 재봉 교관 학습 (원가 35s · 경매 완제품 24.70s 특가!)',
     bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
-    source: '재봉술 195 제작 — 스톰윈드 재봉 교관 학습',
+    source: '재봉술 160 제작 — 스톰윈드 재봉 교관 학습 (30s)',
+    craftCost: '35s (경매 완제품 24.70s 특가 · 매물 92개 · 11/26 00:24)',
     enchantable: '방어구 키트 가능'
   },
   '마력의 로브': {
@@ -2085,39 +2087,40 @@ const WOW_DB_ITEMS = {
     enchantable: '방어구 키트 가능'
   },
   '붉은 마법매듭 머리띠': {
-    en: 'Red Mageweave Headband', kind: '머리 · 천 · 방어도 40', quality: 'uncommon', icon: 'inv_misc_bandana_01',
+    en: 'Red Mageweave Headband', kind: '머리 · 천 · 방어도 51', quality: 'uncommon', icon: 'inv_misc_bandana_01',
     rows: [['요구 레벨 43', '착용 시 귀속 (BoE · 재봉 200)']],
     stats: ['지능 +20'],
     effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 19만큼 증가합니다.'],
     compare: {
       equipped: '기가볼트 전자반응기',
       deltas: [
-        { v: '+4 지능', type: 'pos' },
+        { v: '+12 지능', type: 'pos' },
         { v: '-9 정신력', type: 'neg' },
-        { v: '+8 모든 주문력', type: 'pos' }
+        { v: '+11 모든 주문력 (+18.35 EP!)', type: 'pos' }
       ]
     },
-    note: '📍 도안: Lv.40~50 월드 드랍 (BoE · 가성비 최강)',
+    note: '📍 도안: Lv.43~55 월드 드랍 (BoE · 경매 99.99s 가성비 종결!)',
     bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
-    source: '재봉술 200 제작 — Lv.40~50 월드 드랍 도안',
+    source: '재봉술 200 제작 — Lv.43~55 월드 드랍 도안',
+    craftCost: '1g 45.2s (경매 완제품 99.99s · 11/26 00:24)',
     enchantable: '부여 불가 (현 구간)'
   },
   '룬매듭 튜닉': {
     en: 'Runecloth Tunic', kind: '가슴 · 천 · 방어도 68', quality: 'uncommon', icon: 'inv_chest_cloth_04',
     rows: [['요구 레벨 47', '착용 시 귀속 (BoE · 재봉 215)']],
-    stats: ['지능 +11', '정신력 +17'],
+    stats: ['지능 +11'],
     effects: ['착용 효과: 주문 공격력 및 치유량이 최대 17만큼 증가합니다.'],
     compare: {
       equipped: '성난 비전의 엉겅퀴가죽 로브',
       deltas: [
         { v: '+11 지능', type: 'pos' },
-        { v: '+17 정신력', type: 'pos' },
-        { v: '-3 비전 주문력', type: 'neg' }
+        { v: '-3 비전 주문력 (모든 주문 +17)', type: 'neg' }
       ]
     },
-    note: '📍 도안: 월드 드랍 (BoE)',
+    note: '📍 도안: Lv.50~60 월드 드랍 (BoE · 25.80 EP)',
     bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
     source: '재봉술 215 제작 — 월드 드랍 도안 / 경매장 구매',
+    craftCost: '2g 42.3s (경매 완제품 2g 50s · 11/26 00:24)',
     enchantable: '방어구 키트 / 가슴 마부 가능'
   },
   '유령매듭 바지': {
@@ -2862,8 +2865,8 @@ const WOW_DB_ITEMS = {
     compare: {
       equipped: '녹색 비단 어깨보호구',
       deltas: [
-        { v: '-11 지능', type: 'neg' },
-        { v: '+6 모든 주문력', type: 'pos' }
+        { v: '-2 지능', type: 'neg' },
+        { v: '+2 모든 주문력 (+0.40 EP)', type: 'pos' }
       ]
     },
     note: '📍 교관 무료 학습 · 황천광채 어깨(34g) 안 만들 때 가성비 최고',
@@ -3002,5 +3005,204 @@ const WOW_DB_ITEMS = {
     source: '재봉술 300 제작 — 검은바위 나락 [로크토스] 토륨 대장조합 매우 우호 ([베틀] 필요)',
     craftCost: '15g 28.2s+ (레이드 핵 별도 · 11/26 00:24)',
     enchantable: '혈장/줄구룹 다리 마부 가능'
-  }
+  },
+  '검은 마법매듭 장화': {
+    en: 'Black Mageweave Boots', kind: '발 · 천 · 방어도 41', quality: 'uncommon', icon: 'inv_boots_05',
+    rows: [['요구 레벨 41', '착용 시 귀속 (BoE · 재봉 190 · 교관)']],
+    stats: ['지능 +7'],
+    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 11만큼 증가합니다.'],
+    compare: {
+      equipped: '성난 비전의 현인 장화',
+      deltas: [
+        { v: '+7 지능', type: 'pos' },
+        { v: '동일 +11 주문력 (모든 계열 전환 · +8.35 EP)', type: 'pos' }
+      ]
+    },
+    note: '📍 교관 무료 학습! 현 현인 장화 대비 주문력 손실 없이 지능 +7 · 냉법 호환',
+    bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
+    source: '재봉술 190 제작 — 재봉 교관 학습',
+    craftCost: '1g 27.15s (경매 완제품 3g 80s · 11/26 00:24)',
+    enchantable: '방어구 키트 / 장화 마부 가능'
+  },
+  '룬매듭 장갑': {
+    en: 'Runecloth Gloves', kind: '손 · 천 · 방어도 45', quality: 'uncommon', icon: 'inv_gauntlets_05',
+    rows: [['요구 레벨 50', '착용 시 귀속 (BoE · 재봉 230)']],
+    stats: ['지능 +9', '정신력 +9'],
+    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 12만큼 증가합니다.'],
+    compare: {
+      equipped: '성난 비전의 현인 장갑',
+      deltas: [
+        { v: '+9 지능', type: 'pos' },
+        { v: '+9 정신력', type: 'pos' },
+        { v: '+1 주문력 (모든 계열 +12)', type: 'pos' }
+      ]
+    },
+    note: '📍 여명의 설원 눈망루 마을 [키아] 1g 60s 판매 · 경매 완제품 1g 02s 초가성비!',
+    bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
+    source: '재봉술 230 제작 — 여명의 설원 [키아] 도안 / 경매장',
+    craftCost: '1g 94.6s (경매 완제품 1g 02s · 11/26 00:24)',
+    enchantable: '방어구 키트 / 장갑 마부 가능'
+  },
+  '룬매듭 로브': {
+    en: 'Runecloth Robe', kind: '가슴 · 천 · 방어도 68', quality: 'uncommon', icon: 'inv_chest_cloth_04',
+    rows: [['요구 레벨 47', '착용 시 귀속 (BoE · 재봉 215)']],
+    stats: ['지능 +17'],
+    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 11만큼 증가합니다.'],
+    compare: {
+      equipped: '성난 비전의 엉겅퀴가죽 로브',
+      deltas: [
+        { v: '+17 지능 (마나 +255)', type: 'pos' },
+        { v: '-9 비전 주문력 (모든 주문 +11)', type: 'neg' }
+      ]
+    },
+    note: '📍 달의 숲 [다르날] 1g 20s 판매 · 지능+17 극대화형 (주문력 -9 편차 주의)',
+    bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
+    source: '재봉술 215 제작 — 달의 숲 [다르날] 도안 / 경매장',
+    craftCost: '2g 42.3s (11/26 00:24)',
+    enchantable: '방어구 키트 / 가슴 마부 가능'
+  },
+  '룬매듭 허리띠': {
+    en: 'Runecloth Belt', kind: '허리 · 천 · 방어도 37', quality: 'uncommon', icon: 'inv_belt_06',
+    rows: [['요구 레벨 46', '착용 시 귀속 (BoE · 재봉 210 · 교관)']],
+    stats: ['지능 +12'],
+    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 8만큼 증가합니다.'],
+    compare: {
+      equipped: '성난 비전의 마술사 장식띠',
+      deltas: [
+        { v: '+12 지능', type: 'pos' },
+        { v: '-9 비전 주문력 (모든 주문 +8)', type: 'neg' }
+      ]
+    },
+    note: '⚠️ 현 마술사 장식띠(비전+17) 대비 주문력 -9 편차로 현 단계 보류 (냉법 지능 스왑용)',
+    bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
+    source: '재봉술 210 제작 — 재봉 교관 학습',
+    craftCost: '1g 22.75s (경매 완제품 1g · 11/26 00:24)',
+    enchantable: '부여 불가'
+  },
+  '녹색 비단 갑옷': {
+    en: 'Green Silk Armor', kind: '가슴 · 천 · 방어도 45', quality: 'uncommon', icon: 'inv_chest_cloth_04',
+    rows: [['요구 레벨 28', '착용 시 귀속 (BoE · 재봉 130 · 월드 드랍)']],
+    stats: ['지능 +13'],
+    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 9만큼 증가합니다.'],
+    compare: {
+      equipped: '성난 비전의 엉겅퀴가죽 로브',
+      deltas: [
+        { v: '+13 지능', type: 'pos' },
+        { v: '-11 비전 주문력 (모든 주문 +9)', type: 'neg' }
+      ]
+    },
+    note: '⚠️ 현 엉겅퀴가죽 로브(비전+20) 대비 주문력 -11 편차 과다로 보류 (마력의 로브 +14 추천)',
+    bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
+    source: '재봉술 130 제작 — Lv.27~39 월드 드랍 도안 / 경매장',
+    craftCost: '35s (경매 완제품 70s · 11/26 00:24)',
+    enchantable: '방어구 키트 / 가슴 마부 가능'
+  },
+  '심홍색 비단 허리띠': {
+    en: 'Crimson Silk Belt', kind: '허리 · 천 · 방어도 26', quality: 'uncommon', icon: 'inv_belt_06',
+    rows: [['요구 레벨 30', '착용 시 귀속 (BoE · 재봉 140 · 교관)']],
+    stats: ['지능 +7'],
+    effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 6만큼 증가합니다.'],
+    compare: {
+      equipped: '성난 비전의 마술사 장식띠',
+      deltas: [
+        { v: '+7 지능', type: 'pos' },
+        { v: '-11 비전 주문력 (모든 주문 +6)', type: 'neg' }
+      ]
+    },
+    note: '⚠️ 현 마술사 장식띠(비전+17) 대비 주문력 -11 편차 과다로 보류',
+    bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
+    source: '재봉술 140 제작 — 재봉 교관 학습',
+    craftCost: '40s (경매 완제품 45s · 11/26 00:24)',
+    enchantable: '부여 불가'
+  },
+  '서리매듭 튜닉': {
+    en: 'Frostweave Tunic', kind: '가슴 · 천 · 방어도 66', quality: 'uncommon', icon: 'inv_chest_cloth_04',
+    rows: [['요구 레벨 46', '착용 시 귀속 (BoE · 재봉 210 · 월드 드랍)']],
+    stats: ['지능 +11'],
+    effects: ['착용 효과: 냉기 주문 및 효과의 공격력이 최대 24만큼 증가합니다.'],
+    compare: {
+      equipped: '성난 비전의 엉겅퀴가죽 로브',
+      deltas: [
+        { v: '+11 지능', type: 'pos' },
+        { v: '❄️ 냉법 전환 시 냉기 +24 (비전 시 0)', type: 'pos' }
+      ]
+    },
+    note: '❄️ 냉기 마법사 전환 대비 초가성비 가슴! 원가 1g 80s (경매 3g)',
+    bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
+    source: '재봉술 210 제작 — Lv.50~60 월드 드랍 도안 / 경매장',
+    craftCost: '1g 80.43s (물의 보주 4.59s · 11/26 00:24)',
+    enchantable: '방어구 키트 / 가슴 마부 가능'
+  },
+  '서리매듭 바지': {
+    en: 'Frostweave Pants', kind: '다리 · 천 · 방어도 63', quality: 'uncommon', icon: 'inv_pants_01',
+    rows: [['요구 레벨 51', '착용 시 귀속 (BoE · 재봉 235 · 월드 드랍)']],
+    stats: ['정신력 +12'],
+    effects: ['착용 효과: 냉기 주문 및 효과의 공격력이 최대 26만큼 증가합니다.'],
+    compare: {
+      equipped: '집정관의 바지',
+      deltas: [
+        { v: '-13 지능', type: 'neg' },
+        { v: '+12 정신력', type: 'pos' },
+        { v: '❄️ 냉법 전환 시 냉기 +26 (기존 모든 주문 -7)', type: 'pos' }
+      ]
+    },
+    note: '❄️ 냉기 마법사 전환용 다리 (경매 완제품 6g 02s < 제작 7g 96s)',
+    bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
+    source: '재봉술 235 제작 — Lv.54~61 월드 드랍 도안 / 경매장',
+    craftCost: '7g 96.46s (경매 완제품 6g 02s · 11/26 00:24)',
+    enchantable: '방어구 키트 가능'
+  },
+  '겨울밤의 로브': {
+    en: 'Robe of Winter Night', kind: '가슴 · 천 · 방어도 81', quality: 'rare', icon: 'inv_chest_cloth_04',
+    rows: [['요구 레벨 52', '착용 시 귀속 (BoE · 재봉 245 · 여명의 설원)']],
+    stats: ['지능 +12'],
+    effects: ['착용 효과: 냉기 및 암흑 주문 공격력이 최대 40만큼 증가합니다.'],
+    compare: {
+      equipped: '성난 비전의 엉겅퀴가죽 로브',
+      deltas: [
+        { v: '+12 지능', type: 'pos' },
+        { v: '❄️ 냉법 전환 시 주문력 +40 (대마법사의 로브 전 1티어!)', type: 'pos' }
+      ]
+    },
+    note: '❄️ 냉기 마법사로 전환할 경우 Lv.52 최강 로브! 원가 31g 10s (경매 67.5g)',
+    bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
+    source: '재봉술 245 제작 — 여명의 설원 [푸른비늘혈족 마술사] 2.4% 드랍',
+    craftCost: '31g 9.90s (지옥 옷감 29s 하락 반영 · 11/26 00:24)',
+    enchantable: '방어구 키트 / 가슴 마부 가능'
+  },
+  '서리로 뒤덮인 장화': {
+    en: 'Rime-encrusted Boots', kind: '발 · 천 · 방어도 69', quality: 'epic', icon: 'inv_boots_cloth_05',
+    rows: [['요구 레벨 60', '착용 시 귀속 (BoE · 재봉 300 · 베틀 필요)']],
+    stats: ['체력 +21', '정신력 +18'],
+    effects: ['착용 효과: 냉기 주문 및 효과의 공격력이 최대 20만큼 증가합니다.'],
+    compare: {
+      equipped: '성난 비전의 현인 장화',
+      deltas: [
+        { v: '+17 체력 (키트 포함 현 장화 대비)', type: 'pos' },
+        { v: '+18 정신력', type: 'pos' },
+        { v: '❄️ 냉법 전환 시 냉기 +20', type: 'pos' }
+      ]
+    },
+    note: '❄️ 하이잘 산 포에버 신규 냉기 종결 장화 (비전 전용은 마나 깃든 장식끈)',
+    bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
+    source: '재봉술 300 제작 — 하이잘 산 신규 도안 ([베틀] 필요)',
+    enchantable: '장화 마부 가능'
+  },
+  '불사의 정수': {
+    en: 'Essence of Undeath', kind: '만렙 재봉·마부 재료 · 시세 16.39s', quality: 'uncommon', icon: 'spell_shadow_shadetruesight',
+    rows: [['현재 시세 (11/26 00:24)', '16.39s'], ['용도', '겨울밤의 로브(4개) · 후반 마법부여']],
+    note: '📍 획득처: 역병지대·스칼로맨스·스트라솔름 언데드 몬스터 드랍 / 경매장',
+    bind: '비귀속 (거래·경매 가능)',
+    source: '역병지대·스트라솔름·스칼로맨스 언데드 드랍 / 경매장',
+    ahPrice: '16.39s (11/26 00:24 실측)'
+  },
+  '물의 보주': {
+    en: 'Globe of Water', kind: '재봉·연금 원소 재료 · 시세 4.59s', quality: 'common', icon: 'inv_misc_orb_01',
+    rows: [['현재 시세 (11/26 00:24)', '4.59s'], ['용도', '서리매듭 튜닉(2개)']],
+    note: '📍 획득처: 물의 정령 드랍 / 경매장 구매',
+    bind: '비귀속 (거래·경매 가능)',
+    source: '물의 정령 드랍 / 경매장',
+    ahPrice: '4.59s (11/26 00:24 실측)'
+  },
+  '현인 팔보호구': { alias: '성난 비전의 현인 팔보호구' }
 };
