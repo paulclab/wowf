@@ -2264,8 +2264,8 @@ function formatChartSilver(val, compact) {
     const f = Math.floor(n * 10 + 1e-9) / 10;
     return Number.isInteger(f) ? String(f) : f.toFixed(1);
   };
-  if (val >= 1000) return `${Math.floor(val / 100 + 1e-9)}g`;
-  if (val >= 100) return `${fmt1(val / 100)}g`;
+  if (val >= 1000) return compact ? `${Math.floor(val / 100 + 1e-9)}G` : `${fmt1(val / 100)}G`;
+  if (val >= 100) return `${fmt1(val / 100)}G`;
   if (val < 1) {
     const c = Math.floor((val * 100 + 1e-9) / 10) * 10;
     return `${c}c`;
