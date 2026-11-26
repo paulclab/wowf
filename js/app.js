@@ -2260,10 +2260,17 @@ function selectTailorStage(idx) {
 }
 
 function formatChartSilver(val, compact) {
-  if (val >= 1000) return `${(val / 100).toFixed(0)}g`;
-  if (val >= 100) return `${(val / 100).toFixed(compact ? 1 : 2)}g`;
-  if (val >= 10) return `${val.toFixed(compact ? 0 : 1)}s`;
-  return `${val.toFixed(compact ? 1 : 2)}s`;
+  const fmt1 = (n) => {
+    const f = Math.floor(n * 10 + 1e-9) / 10;
+    return Number.isInteger(f) ? String(f) : f.toFixed(1);
+  };
+  if (val >= 1000) return `${Math.floor(val / 100 + 1e-9)}g`;
+  if (val >= 100) return `${fmt1(val / 100)}g`;
+  if (val < 1) {
+    const c = Math.floor((val * 100 + 1e-9) / 10) * 10;
+    return `${c}c`;
+  }
+  return compact && val >= 10 ? `${Math.floor(val + 1e-9)}s` : `${fmt1(val)}s`;
 }
 
 function renderPriceChartsInto(mountId, historyArr) {
