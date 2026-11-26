@@ -199,28 +199,28 @@ const IG_TALENT_TREES = {
 const SIM_SPELLS = {
   aw: {
     id: 'aw', short: '비격', name: '비전 격노(1 레벨)', wowKey: '비전 격노', icon: 'ability_mage_arcanebarrage',
-    mana: 140, cast: 3.5, baseDmg: 406.4, coeff: 1.0, school: 'arcane',
-    note: '툴팁 ~288.5 + 최대 마나 5%(2,358×5%=+117.9) = ~406 · 6초 쿨 · 냉정 즉시 시전 가능!'
+    mana: 140, cast: 3.5, baseDmg: 410.4, coeff: 1.0, school: 'arcane',
+    note: '툴팁 ~292.5 + 최대 마나 5%(2,358×5%=+117.9) = ~410 · 6초 쿨 · 냉정 즉시 시전 가능!'
   },
   ab: {
     id: 'ab', short: '비작2', name: '비전 작렬(2 레벨)', wowKey: '비전 작렬', icon: 'spell_arcane_blast',
-    mana: 92, cast: 1.5, baseDmg: 154.8, coeff: 0.4286, school: 'arcane', stacksAB: true,
-    note: '2레벨 (비전 +164 반영 ~155) · 기본 마나 15%(~92) · 중첩당 지능 12%(+15.2 SP) 전 학파 적용'
+    mana: 92, cast: 1.5, baseDmg: 156.5, coeff: 0.4286, school: 'arcane', stacksAB: true,
+    note: '2레벨 (비전 +168 반영 ~157) · 기본 마나 15%(~92) · 중첩당 지능 12%(+15.2 SP) 전 학파 적용'
   },
   am: {
     id: 'am', short: '신화4', name: '신비한 화살(4 레벨)', wowKey: '신비한 화살(4 레벨)', icon: 'spell_nature_starfall',
-    mana: 320, cast: 5.0, baseDmg: 579.0, coeff: 1.0, school: 'arcane', isMissiles: true,
-    note: 'Lv.35 4레벨 총 579 (발당 ~115.8 × 5) · 화살 탄막 프록 시 2.5초 & 마나 0 (231.6 DPS!)'
+    mana: 320, cast: 5.0, baseDmg: 583.0, coeff: 1.0, school: 'arcane', isMissiles: true,
+    note: 'Lv.35 4레벨 총 583 (발당 ~116.6 × 5) · 화살 탄막 프록 시 2.5초 & 마나 0 (233.2 DPS!)'
   },
   fb1: {
     id: 'fb1', short: '얼화1', name: '얼음 화살(1 레벨)', wowKey: '얼음 화살(1 레벨)', icon: 'spell_frost_frostshock',
-    mana: 25, cast: 1.5, baseDmg: 48.2, coeff: 0.33, school: 'frost',
-    note: '마나 25 · 1.5초 감속(-40%, 5초) · 일반+86 및 비작 전학파 버프 적용!'
+    mana: 25, cast: 1.5, baseDmg: 53.2, coeff: 0.33, school: 'frost',
+    note: '마나 25 · 1.5초 감속(-40%, 5초) · 일반+101 및 비작 전학파 버프 적용!'
   },
   fbl: {
     id: 'fbl', short: '화작4', name: '화염 작렬(4 레벨)', wowKey: '화염 작렬', icon: 'spell_fire_fireball',
-    mana: 165, cast: 1.5, baseDmg: 199.9, coeff: 0.4286, school: 'fire',
-    note: '4레벨 (마나 165 · 기본 148~178 + 일반 86 = ~200) · 즉시(On-GCD 1.5초) · 8초 쿨'
+    mana: 165, cast: 1.5, baseDmg: 206.3, coeff: 0.4286, school: 'fire',
+    note: '4레벨 (마나 165 · 기본 148~178 + 일반 101 = ~206) · 즉시(On-GCD 1.5초) · 8초 쿨'
   },
   wd: {
     id: 'wd', short: '법봉', name: '땅거미 마법봉', wowKey: '땅거미 마법봉', icon: 'inv_wand_07',
@@ -233,25 +233,25 @@ const DEFAULT_COMBOS = [
   {
     id: 'c_aw', label: '① 비격 선공',
     tipTitle: '① 비전 격노 선공 + 화작(4) 마무리 (필드 정석 ⭐)',
-    tipBody: '풀링 전 3.5초 선타로 <strong>~406</strong>을 꽂고, 비전 작렬(2레벨) → 신비한 화살(4레벨) → <strong>화염 작렬(4레벨, 비작 1중첩 반영!)</strong>로 마무리해 <strong>단일 1,362</strong>! 탄막 시 <strong>9.0초 (151.3 DPS)</strong>.',
+    tipBody: '풀링 전 3.5초 선타로 <strong>~410</strong>을 꽂고, 비전 작렬(2레벨) → 신비한 화살(4레벨) → <strong>화염 작렬(4레벨, 비작 1중첩 반영!)</strong>로 마무리해 <strong>단일 1,378</strong>! 탄막 시 <strong>9.0초 (153.1 DPS)</strong>.',
     seq: ['aw', 'ab', 'am', 'fbl'], barrage: false, clearcast: false, startStack: 0
   },
   {
     id: 'c_ab', label: '② 비작2 선공',
     tipTitle: '② 비전 작렬(2) 2연타 + 화작(4) 마무리 (던전 · 속공)',
-    tipBody: '탱커 풀링/빠른 몹에 적합합니다. 비작(2레벨) 2중첩(+30.4 SP) 후 신비한 화살(4레벨 609) + <strong>화염 작렬(4레벨, 2중첩 ~213!)</strong>로 즉각 마무리! <strong>누적 1,138 · 탄막 7.0초 (162.6 DPS)</strong>.',
+    tipBody: '탱커 풀링/빠른 몹에 적합합니다. 비작(2레벨) 2중첩(+30.4 SP) 후 신비한 화살(4레벨 613) + <strong>화염 작렬(4레벨, 2중첩 ~219!)</strong>로 즉각 마무리! <strong>누적 1,152 · 탄막 7.0초 (164.6 DPS)</strong>.',
     seq: ['ab', 'ab', 'am', 'fbl'], barrage: false, clearcast: false, startStack: 0
   },
   {
     id: 'c_fb1', label: '③ 얼화1 카이팅',
     tipTitle: '③ 얼음 화살(1) 선감속 + 화작(4) 마무리',
-    tipBody: '1레벨(1.5초·25마나)로 5초간 -40% 감속 후 비전 작렬(2레벨) 2타 → 신비한 화살(4레벨) → <strong>화염 작렬(4레벨, 2중첩 ~213)</strong> 마무리. <strong>누적 1,187 (탄막 8.5초 · 139.6 DPS)</strong>.',
+    tipBody: '1레벨(1.5초·25마나)로 5초간 -40% 감속 후 비전 작렬(2레벨) 2타 → 신비한 화살(4레벨) → <strong>화염 작렬(4레벨, 2중첩 ~219)</strong> 마무리. <strong>누적 1,205 (탄막 8.5초 · 141.8 DPS)</strong>.',
     seq: ['fb1', 'ab', 'ab', 'am', 'fbl'], barrage: false, clearcast: false, startStack: 0
   },
   {
     id: 'c_boss', label: '④ 보스 폭딜',
     tipTitle: '④ 던전 보스 프록 폭발 + 화작(4) 마무리',
-    tipBody: '비작(2레벨) 2중첩(+30.4 SP) 후 화살 탄막(2.5초 신화 609) → 2중첩 비전 격노(<strong>437</strong>) → 2중첩 <strong>화염 작렬(4레벨 ~213)</strong>까지 연계해 <strong>누적 1,575 (10.5초 · 150.0 DPS)</strong> 폭딜!',
+    tipBody: '비작(2레벨) 2중첩(+30.4 SP) 후 화살 탄막(2.5초 신화 613) → 2중첩 비전 격노(<strong>441</strong>) → 2중첩 <strong>화염 작렬(4레벨 ~219)</strong>까지 연계해 <strong>누적 1,593 (10.5초 · 151.7 DPS)</strong> 폭딜!',
     seq: ['ab', 'ab', 'am', 'aw', 'fbl'], barrage: true, clearcast: false, startStack: 0
   }
 ];
@@ -262,28 +262,28 @@ const RECENTLY_UPDATED_TABS = {
     text: '11/26 10:00 14종 일괄 업데이트 + FindParty 0.8 신규 설치 (27종/72폴더) · ⚠️ Attune 한글패치 덮어쓰임 · EzWoW 2.0.51 본가 6국어 드랍 반영'
   },
   'tab-prof': {
-    v: '2026-11-26-v3',
-    text: '11/26 상인의 호의 & 아제로스 상업 관리국 분리 전면 개편 (보유 상자 4종 정산 · 19종 경매가 꺾은선 그래프 · 장인의 계약서 최저가)'
+    v: '2026-11-26-v4',
+    text: '11/26 12:45 무두질 210/225 갱신 · 상인의 호의 & 아제로스 상업 관리국 분리 개편 · 화폐 대문자 G 단일 소수 통일'
   },
   'tab-rules': {
     v: '2026-11-26-v1',
     text: '11/26 경험치 계산기·회색몹 기준(Lv.27 이하) 및 5SR 전투 MP5 95.0 Lv.35 최신화'
   },
   'tab-talent': {
-    v: '2026-11-26-v1',
-    text: '11/26 00:26 Lv.35 25/0/1 실측 확정 (노버프 HP 890/MP 2,358 · 신비한 정신 3/5 배율 180% · 비전 +164 · 전투 MP5 95.0)'
+    v: '2026-11-26-v2',
+    text: '11/26 12:45 실측 반영 (일반 SP 101 돌파! · 비전 +168[101+67] · 노버프 HP 850/MP 2,358 · 왕축+스톰힘 1,200/2,538)'
   },
   'tab-skills': {
-    v: '2026-11-26-v1',
-    text: '11/26 Lv.35 비전+164·MP 2,358 기준 시뮬레이터·스킬 툴팁 전면 동기화'
+    v: '2026-11-26-v2',
+    text: '11/26 12:45 일반 SP 101 · 비전 +168 기준 콤보 시뮬레이터·스킬 툴팁 전면 동기화'
   },
   'tab-quests': {
     v: '2026-11-26-v2',
     text: '11/26 놈리건 졸업 ✅ · 달라란 비밀보스 선행(그림자송곳니 성채 아루갈 /way 44.8 67.8 → 호박석 농장) 순서·좌표 보완'
   },
   'tab-gear': {
-    v: '2026-11-26-v2',
-    text: '11/26 폴 맞춤 스탯 가중치(주문력 1.00/비전 0.75 > 지능 0.80 > 체력 0.45 > 정신력 0.25) 반영 · 심홍색 비단 바지 즉시 업글(24.7s) 안내 추가'
+    v: '2026-11-26-v3',
+    text: '11/26 12:45 발 교체(마법의 내구력 장화 모든 주문+11 + 키트 +4/+24 → 일반 SP 101 돌파!) 및 장화 6종 툴팁 비교 교정'
   },
   'tab-agy': {
     v: '2026-11-25-v1',
