@@ -1,4 +1,4 @@
-/* WoW Forever Tooltip DB — Installed AddOns (27 entries) */
+/* WoW Forever Tooltip DB — Installed AddOns (28 entries) */
 const ADDON_DB = {
   'addon:Details!': {
     title: 'Details! Damage Meter',
@@ -26,9 +26,9 @@ const ADDON_DB = {
     kind: '전투 · 피해 텍스트',
     quality: 'spell',
     icon: 'spell_fire_fireball02',
-    rows: [['다운로드: CurseForge 호스팅 (신규)', '인기도: 와우 포에버 전용'], ['특징: 이름표 학파 색상', '유형: 경량 전투 텍스트']],
-    desc: '와우 포에버 클라이언트용 경량 전투 텍스트로, 적 이름표 위에 주문 학파별 색상으로 피해·치유 수치를 직관적으로 띄워줍니다.',
-    note: '✨ 비전·화염·냉기 주문 학파 색 구분에 최적화'
+    rows: [['다운로드: CurseForge 호스팅 (신규)', '인기도: 와우 포에버 전용'], ['특징: 이름표 학파 색상 · Questie 제목', '유형: 경량 전투 텍스트']],
+    desc: '와우 포에버 클라이언트용 경량 전투 텍스트로, 적 이름표 위 학파별 피해 수치와 아군 NPC 이름표 Questie 퀘스트 제목(선택형)을 지원합니다.',
+    note: '✨ 비전·화염·냉기 주문 학파 색 구분에 최적화 (Questie NPC 제목은 기본 꺼짐)'
   },
   'addon:RangeDisplay': {
     title: 'RangeDisplay',
@@ -46,8 +46,8 @@ const ADDON_DB = {
     kind: '퀘스트 · 지도 핀',
     quality: 'rare',
     icon: 'inv_misc_map_01',
-    rows: [['다운로드: ~2억 2,900만+ (CurseForge)', '인기도: 클래식·포에버 절대 표준'], ['구성: Questie + DB + Trace', '기능: 포에버 XP/목표 DB']],
-    desc: '와우 포에버 전역의 수락 가능/진행 중/완료 퀘스트 위치와 목표 몹·오브젝트를 지도와 미니맵에 핀으로 표시합니다.',
+    rows: [['다운로드: ~2억 2,900만+ (CurseForge)', '인기도: 클래식·포에버 절대 표준'], ['구성: Questie + DB + Trace', '기능: By Latest 정렬 · 포에버 XP']],
+    desc: '와우 포에버 전역의 수락 가능/진행 중/완료 퀘스트 위치와 목표를 지도에 표시하고, 최신순(By Latest) 정렬 및 연계 자동완료 감지를 지원합니다.',
     note: '💡 QuestieTrace는 제보 수집용 로거이므로 기여 목적이 아니면 꺼둘 수 있습니다.'
   },
   'addon:EzWoW-MapFinder': {
@@ -56,9 +56,9 @@ const ADDON_DB = {
     kind: '오프라인 위치 검색',
     quality: 'uncommon',
     icon: 'inv_misc_spyglass_03',
-    rows: [['다운로드: CurseForge 호스팅 (신규)', '인기도: 포에버 통합 DB 지도'], ['구성: 본체 + Data 21폴더', '패치: 미사용 6개 외국어 제외 ✅']],
+    rows: [['다운로드: CurseForge 호스팅 (신규)', '인기도: 포에버 통합 DB 지도'], ['구성: 본체 + Data 21폴더', '최적화: 본가 6개 외국어 자동 드랍 ✅']],
     desc: '월드맵에서 몬스터, NPC, 오브젝트, 희귀몹, 퀘스트 및 아이템 드랍 위치를 오프라인 DB로 검색해 지도 핀과 웨이포인트로 안내합니다.',
-    note: '✅ .toc에서 미사용 6개 외국어(15.1만 항목) 제외 + 옵션 변경 시에만 EzWoW-Data 지연 로드'
+    note: '✅ Core/SharedData.lua의 dropUnusedBuiltInNames가 EzWoW-Data 활성 시 미사용 6개국어(~11MB)를 자동 드랍'
   },
   'addon:Books_on_map_Forever': {
     title: 'Books on map (Forever)',
@@ -116,9 +116,9 @@ const ADDON_DB = {
     kind: '입장 연퀘 추적',
     quality: 'uncommon',
     icon: 'inv_misc_key_14',
-    rows: [['다운로드: ~1,480만+ (CurseForge)', '인기도: 클래식 입장 연퀘 표준'], ['지원: 포에버 던전·레이드', '기능: 선행 연퀘·진행도 트리']],
+    rows: [['다운로드: ~1,480만+ (CurseForge)', '인기도: 클래식 입장 연퀘 표준'], ['지원: 포에버 던전·레이드', '상태: ⚠️ 한글패치 업데이트 덮어쓰임']],
     desc: '오닉시아·화산 심장부·검은날개 둥지·던전 열쇠 등 입장 선행 연퀘와 평판 진행률을 단계별 트리로 보여줍니다.',
-    note: '🔑 만렙 레이드/인던 입장 준비도 체크 및 캐릭터별 초기화 지원'
+    note: '⚠️ 16001-46 업데이트로 로컬 실시간 한국어(koKR) 조회 패치가 초기화됨 (원할 시 재패치 가능)'
   },
   'addon:ForeverLootSparkles': {
     title: 'Forever Loot Sparkles',
@@ -136,8 +136,8 @@ const ADDON_DB = {
     kind: '성장 · 장비 BiS',
     quality: 'rare',
     icon: 'inv_chest_cloth_17',
-    rows: [['다운로드: ~95.6만+ (CurseForge)', '인기도: 포에버 레벨링 필수'], ['기능: 다중/계정 위시리스트 · 60 적중상한', '명령어: /bis']],
-    desc: '현재 캐릭터의 종족·직업·특성·레벨에 맞는 퀘스트 보상, 던전 드랍, 제작 BiS 장비를 추천하고 여러 위시리스트/계정 공용 목록으로 관리합니다.',
+    rows: [['다운로드: ~95.6만+ (CurseForge)', '인기도: 포에버 레벨링 필수'], ['기능: Edit Mode · 간략 툴팁 · 다중 위시', '명령어: /bis']],
+    desc: '현재 캐릭터의 종족·직업·특성·레벨에 맞는 장비를 추천하며, Edit Mode에서 레벨 구간별 능력치 가중치 편집과 전문화별 한 줄 간략 툴팁을 지원합니다.',
     note: '⚠️ 월드 드랍 BoE는 출처 텍스트가 생략되므로 경매장(Auctionator)에서 직접 확인 필요'
   },
   'addon:CharExport': {
@@ -156,9 +156,9 @@ const ADDON_DB = {
     kind: '경제 · 경매장',
     quality: 'rare',
     icon: 'inv_misc_coin_02',
-    rows: [['다운로드: ~2억 1,600만+ (CurseForge)', '인기도: 최상위 경매장 표준'], ['기능: 경매장 스캔·시세 툴팁', '상태: 타 언어 접미사 감지 보강']],
+    rows: [['다운로드: ~2억 1,600만+ (CurseForge)', '인기도: 최상위 경매장 표준'], ['기능: 경매장 스캔·시세 툴팁', '상태: 무접미사 장비 가격 수정']],
     desc: '빠른 경매장 전체 스캔, 일괄 판매/언더컷 출품, 쇼핑 리스트 및 아이템 툴팁 시세/상점가 표시를 제공합니다.',
-    note: '✅ 접미사 인덱스 경량화 및 bonusID 대조 기반 다국어 랜덤 접미사 감지 반영'
+    note: '✅ Classic Era/포에버에서 랜덤 접미사가 없는 일반 장비 툴팁 가격 표시 수정 반영'
   },
   'addon:Mastercraft': {
     title: 'Mastercraft',
@@ -166,8 +166,8 @@ const ADDON_DB = {
     kind: '전문기술 · 수익 분석',
     quality: 'rare',
     icon: 'trade_engraving',
-    rows: [['다운로드: ~120만+ (CurseForge)', '인기도: 포에버 전문기술 종합 1순위'], ['기능: 1~300 가이드·손익·마추 판정', '명령어: /mc']],
-    desc: '1~300 전문기술 육성 가이드, 제작법별 손익, 마력 추출 vs 상점가 판정, 채집 노드 지도, 낚시/야영 유틸을 통합 제공합니다.',
+    rows: [['다운로드: ~120만+ (CurseForge)', '인기도: 포에버 전문기술 종합 1순위'], ['기능: 모듈 토글 · 낚싯대 스왑 · 마추 판정', '명령어: /mc']],
+    desc: '1~300 전문기술 육성 가이드, 제작법별 손익, 마력 추출 vs 상점가 판정, 모듈별 On/Off, 원버튼 낚싯대↔무기 교체 단축키를 통합 제공합니다.',
     note: '💡 툴팁의 Auctionator 1d 표시를 숨기려면 /mc → 설정 → 툴팁 → 경매장 가격 끄기'
   },
   'addon:Baganator': {
@@ -176,8 +176,8 @@ const ADDON_DB = {
     kind: '통합 가방 UI',
     quality: 'rare',
     icon: 'inv_misc_bag_08',
-    rows: [['다운로드: ~4,600만+ (CurseForge)', '인기도: 차세대 통합 가방 대세'], ['연동: Syndicator (재고 엔진)', '기능: 카테고리 정렬·검색']],
-    desc: '모든 가방과 은행을 하나의 깔끔한 창으로 통합하고 카테고리 자동 정렬, 실시간 검색, 장비 세트 구분을 지원합니다.',
+    rows: [['다운로드: ~4,600만+ (CurseForge)', '인기도: 차세대 통합 가방 대세'], ['연동: Syndicator · ItemRack', '기능: 카테고리 정렬·검색']],
+    desc: '모든 가방과 은행을 하나의 깔끔한 창으로 통합하고 카테고리 자동 정렬, 실시간 검색, 포에버 ItemRack 장비 세트 연동을 지원합니다.',
     note: '🎒 가벼운 성능과 직관적인 카테고리 뷰 제공'
   },
   'addon:Syndicator': {
@@ -206,9 +206,19 @@ const ADDON_DB = {
     kind: '유틸 · 위상 전환',
     quality: 'uncommon',
     icon: 'spell_arcane_portaldalaran',
-    rows: [['다운로드: CurseForge 호스팅 (인기)', '인기도: 포에버/클래식 위상 필수'], ['명령어: /ls', '기능: 현재 위상 확인 · 원클릭 전환']],
-    desc: '현재 캐릭터가 속한 위상(Layer)을 실시간으로 보여주고, 같은 지역 호스트와 자동 파티 매칭을 통해 위상을 전환하며 시간당 이동 제한을 추적합니다.',
-    note: '🌐 동일 샤드 호스트 자동 제외 및 초대/시스템 채팅 알림 숨김 지원'
+    rows: [['다운로드: CurseForge 호스팅 (인기)', '인기도: 포에버/클래식 위상 필수'], ['명령어: /ls', '기능: 위상 확인 · 시간당 Who.CAP 추적']],
+    desc: '현재 캐릭터가 속한 위상(Layer)을 실시간으로 보여주고, 같은 지역 호스트와 자동 파티 매칭으로 전환하며 거절 제외 모든 합류의 시간당 제한을 추적합니다.',
+    note: '🌐 동일 샤드 이동 예외·단일 위상 지역 감지 및 거절 초대 사운드 복원 지원'
+  },
+  'addon:FindParty': {
+    title: 'FindParty Forever',
+    en: 'by 엘나르핌 / thenotfound · CurseForge #1463574',
+    kind: '파티 찾기 · 채널 필터',
+    quality: 'uncommon',
+    icon: 'inv_misc_groupneedmore',
+    rows: [['지원: Interface 16001 (koKR)', '명령어: /fp · /findparty'], ['기능: 던전·키워드 필터링', '편의: 원클릭 귓말·광고']],
+    desc: '파티찾기 채널 메시지를 던전과 포함/제외 키워드별로 깔끔하게 필터링해 모아 보고, 귓속말 신청 문구와 광고 문구를 원클릭으로 관리합니다.',
+    note: '🆕 11/26 신규 설치 · 수도원/울다만 등 인던 파티 모집 검색에 유용'
   },
   'addon:DialogueUI': {
     title: 'Dialogue UI',

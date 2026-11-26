@@ -258,8 +258,8 @@ const DEFAULT_COMBOS = [
 
 const RECENTLY_UPDATED_TABS = {
   'tab-addons': {
-    v: '2026-11-25-v5',
-    text: '11/25 23:16 RangeDisplay 인던 내 미표시(LibRangeCheck-3.0 Secret Value) 로컬 패치 ✅ · EzWoW 경량화 · Details 한글 재패치'
+    v: '2026-11-26-v1',
+    text: '11/26 10:00 14종 일괄 업데이트 + FindParty 0.8 신규 설치 (27종/72폴더) · ⚠️ Attune 한글패치 덮어쓰임 · EzWoW 2.0.51 본가 6국어 드랍 반영'
   },
   'tab-prof': {
     v: '2026-11-26-v1',
