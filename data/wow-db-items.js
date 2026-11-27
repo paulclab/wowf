@@ -95,12 +95,12 @@ const WOW_DB_ITEMS = {
     enchantable: '키트 적용 중: 신비한 고급 방어구 키트 (주문력 +4 · 방어도 +24)'
   },
   '성난 비전의 마술사 장식띠': {
-    en: 'Sorcerer Sash of Arcane Wrath', kind: '허리 · 천 · 고급 (현재 착용 중 ✅)', quality: 'uncommon', icon: 'inv_belt_03',
+    en: 'Sorcerer Sash of Arcane Wrath', kind: '허리 · 이전 착용 장비', quality: 'uncommon', icon: 'inv_belt_03',
     rows: [['허리', '천 · 아이템 레벨 39'], ['방어도 29', '최소 요구 레벨 34']],
     effects: ['착용 효과: 비전 주문과 효과에 의한 공격력이 최대 17만큼 증가합니다.'],
-    note: '✅ 2026-11-26 신규 업그레이드 착용 중! (기존 장로 장식띠 +13/방25 → +17/방29 · 비전 +4↑ · 방어 +4↑)',
-    bind: '착용 시 귀속 (BoE · 현재 귀속)',
-    source: '34~39대 필드·던전 랜덤 드랍 / 경매장 구매 (ID: 9875)',
+    note: '2026-11-28 달라란 드랍 역병잎 밧줄(지+10/모든 주문+7/HP5+5 · +2.25 EP)로 교체됨',
+    bind: '착용 시 귀속 (BoE)',
+    source: '34~39대 필드·던전 랜덤 드랍 / 경매장 구매 (ID: 9875 · 역병잎 밧줄로 교체됨)',
     enchantable: '부여 불가 (허리 마부·키트 없음)'
   },
   '성난 비전의 장로 장식띠': {
@@ -643,20 +643,13 @@ const WOW_DB_ITEMS = {
   },
   "Violet Sorcerer's Robes": { alias: '보랏빛 마술사의 로브' },
   '역병잎 밧줄': {
-    en: 'Blightleaf Rope', kind: '허리 · 천 · 희귀', quality: 'rare', icon: 'inv_belt_03',
-    rows: [['허리 · 천', '방어도 28 · i34 · 요구 Lv.29'], ['달라란 도시 [지옥의 고대정령] (35.8%)', '획득 시 귀속']],
+    en: 'Blightleaf Rope', kind: '허리 · 천 · 희귀 (현재 착용 중 ✅)', quality: 'rare', icon: 'inv_belt_03',
+    rows: [['허리 · 천', '방어도 28 · i34 · 요구 Lv.29'], ['달라란 도시 [지옥의 고대정령] (35.8%)', '획득 시 귀속 (ID: 273039)']],
     stats: ['지능 +10'],
     effects: ['착용 효과: 5초마다 생명력 5 회복', '착용 효과: 모든 주문 공격력 및 치유량이 최대 7만큼 증가합니다.'],
-    compare: {
-      equipped: '성난 비전의 마술사 장식띠',
-      deltas: [
-        { v: '+10 지능 (마나 +150)', type: 'pos' },
-        { v: '-10 비전 주문력 (모든 주문 +7)', type: 'neg' }
-      ]
-    },
-    note: '📍 [지옥의 고대정령] 드랍 — 현 비전+17 허리 대비 마나통·모든 주문 스왑용 추천',
-    bind: '획득 시 귀속 (BoP)',
-    source: '동부왕국 > 달라란 도시(/way 68.6 45.2) [지옥의 고대정령] (35.8%)',
+    note: '✅ 2026-11-28 달라란 도시 득템·착용 중! (15.00 EP · 기존 마술사 장식띠 12.75 EP 대비 +2.25 EP · 일반 SP 108 & MP 2,604 달성!)',
+    bind: '획득 시 귀속 (BoP · 현재 귀속)',
+    source: '동부왕국 > 달라란 도시(/way 68.6 45.2) [지옥의 고대정령] (35.8% · ID: 273039)',
     enchantable: '부여 불가 (허리)'
   },
   'Blightleaf Rope': { alias: '역병잎 밧줄' },
@@ -666,13 +659,13 @@ const WOW_DB_ITEMS = {
     stats: ['지능 +9'],
     effects: ['착용 효과: 모든 주문 공격력 및 치유량이 최대 6만큼 증가합니다.'],
     compare: {
-      equipped: '성난 비전의 마술사 장식띠',
+      equipped: '역병잎 밧줄',
       deltas: [
-        { v: '+9 지능', type: 'pos' },
-        { v: '-11 비전 주문력 (모든 주문 +6)', type: 'neg' }
+        { v: '-1 지능', type: 'neg' },
+        { v: '-1 모든 주문력 (-5 HP5)', type: 'neg' }
       ]
     },
-    note: '📍 스톰윈드 성소 탑 [고위마술사 안드로매스] 9,400 XP + 1골드 보상 — 냉기 겸용 스왑/추출',
+    note: '📍 스톰윈드 성소 탑 [고위마술사 안드로매스] 9,400 XP + 1G 보상 — 현 역병잎 밧줄 하위 호환 (추출/상점)',
     bind: '획득 시 귀속 (BoP)',
     source: '동부왕국 > 스톰윈드 마법사 성소(/way 48.7 87.6) 달라란 [압도적인 힘] 보상',
     enchantable: '부여 불가 (허리)'
@@ -1859,10 +1852,10 @@ const WOW_DB_ITEMS = {
     stats: ['지능 +8'],
     effects: ['사용 효과: 현재 걸린 이동 불가 효과를 해제하고 5초간 이동 불가 면역 (쿨 30분).'],
     compare: {
-      equipped: '성난 비전의 마술사 장식띠',
+      equipped: '역병잎 밧줄',
       deltas: [
-        { v: '+8 지능', type: 'pos' },
-        { v: '-17 비전 주문력', type: 'neg' },
+        { v: '-2 지능', type: 'neg' },
+        { v: '-7 모든 주문력', type: 'neg' },
         { v: '+이동불가 해제 사용효과', type: 'pos' }
       ]
     },
@@ -2052,10 +2045,10 @@ const WOW_DB_ITEMS = {
     stats: ['정신력 +4'],
     effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 13만큼 증가합니다.'],
     compare: {
-      equipped: '성난 비전의 마술사 장식띠',
+      equipped: '역병잎 밧줄',
       deltas: [
-        { v: '+4 정신력', type: 'pos' },
-        { v: '-4 비전 주문력 (모든 계열 +13)', type: 'neg' }
+        { v: '-10 지능 (+4 정신력)', type: 'neg' },
+        { v: '+6 모든 주문력 (-1.00 EP)', type: 'pos' }
       ]
     },
     note: '📍 도안: 붉은십자군 수도원(용사 0.15%)·줄파락 등 월드 드랍 (BoE)',
@@ -2175,11 +2168,11 @@ const WOW_DB_ITEMS = {
     stats: ['체력 +10', '지능 +16'],
     effects: ['착용 효과: 주문 공격력 +20 · 주문 극대화 +14 (1%).'],
     compare: {
-      equipped: '성난 비전의 마술사 장식띠',
+      equipped: '역병잎 밧줄',
       deltas: [
         { v: '+10 체력', type: 'pos' },
-        { v: '+16 지능', type: 'pos' },
-        { v: '+3 주문력 (모든 계열 +20)', type: 'pos' },
+        { v: '+6 지능', type: 'pos' },
+        { v: '+13 모든 주문력', type: 'pos' },
         { v: '+1% 주문 극대화', type: 'pos' }
       ]
     },
@@ -2212,11 +2205,11 @@ const WOW_DB_ITEMS = {
     stats: ['체력 +21', '정신력 +18'],
     effects: ['착용 효과: 비전 주문 공격력이 최대 20만큼 증가합니다.'],
     compare: {
-      equipped: '성난 비전의 마술사 장식띠',
+      equipped: '역병잎 밧줄',
       deltas: [
-        { v: '+21 체력', type: 'pos' },
-        { v: '+18 정신력', type: 'pos' },
-        { v: '+3 비전 주문력', type: 'pos' }
+        { v: '+21 체력 · +18 정신력', type: 'pos' },
+        { v: '-10 지능', type: 'neg' },
+        { v: '+13 비전 주문력 (모든 주문 -7)', type: 'pos' }
       ]
     },
     note: '📍 하이잘 산 포에버 신규 에픽 허리띠 (BoE)',
@@ -2240,10 +2233,10 @@ const WOW_DB_ITEMS = {
     stats: ['정신력 +11'],
     effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 14만큼 증가합니다.'],
     compare: {
-      equipped: '성난 비전의 마술사 장식띠',
+      equipped: '역병잎 밧줄',
       deltas: [
-        { v: '+11 정신력', type: 'pos' },
-        { v: '-3 비전 주문력 (모든 계열 +14)', type: 'neg' }
+        { v: '+11 정신력 · -10 지능', type: 'neg' },
+        { v: '+7 모든 주문력', type: 'pos' }
       ]
     },
     note: '📍 도안: 아즈샤라 [Haldarr Trickster] 2.2% 드랍 (BoE)',
@@ -2544,12 +2537,11 @@ const WOW_DB_ITEMS = {
     stats: ['체력 +8', '지능 +8', '정신력 +6'],
     effects: ['착용 효과: 비전 주문 및 효과의 공격력이 최대 14만큼 증가합니다.'],
     compare: {
-      equipped: '성난 비전의 마술사 장식띠',
+      equipped: '역병잎 밧줄',
       deltas: [
-        { v: '+8 체력', type: 'pos' },
-        { v: '+8 지능', type: 'pos' },
-        { v: '+6 정신력', type: 'pos' },
-        { v: '-3 비전 주문력', type: 'neg' }
+        { v: '+8 체력 · +6 정신력', type: 'pos' },
+        { v: '-2 지능', type: 'neg' },
+        { v: '+7 비전 주문력 (모든 주문 -7)', type: 'pos' }
       ]
     },
     note: '📍 도안: Lv.39~45 월드 드랍 (원가 42.6G · 11/26 00:24)',
@@ -2606,11 +2598,11 @@ const WOW_DB_ITEMS = {
     stats: ['체력 +12', '지능 +9'],
     effects: ['착용 효과: 비전 주문 및 효과의 공격력이 최대 19만큼 증가합니다.'],
     compare: {
-      equipped: '성난 비전의 마술사 장식띠',
+      equipped: '역병잎 밧줄',
       deltas: [
         { v: '+12 체력', type: 'pos' },
-        { v: '+9 지능', type: 'pos' },
-        { v: '+2 비전 주문력', type: 'pos' }
+        { v: '-1 지능', type: 'neg' },
+        { v: '+12 비전 주문력 (모든 주문 -7)', type: 'pos' }
       ]
     },
     note: '📍 도안: 붉은마루 삼거리 [미빈 섀도위브] (상인의 호의 60 · 원가 40.4G)',
@@ -3074,13 +3066,13 @@ const WOW_DB_ITEMS = {
     stats: ['지능 +12'],
     effects: ['착용 효과: 마법 주문 및 효과로 입히는 피해와 치유량이 최대 8만큼 증가합니다.'],
     compare: {
-      equipped: '성난 비전의 마술사 장식띠',
+      equipped: '역병잎 밧줄',
       deltas: [
-        { v: '+12 지능', type: 'pos' },
-        { v: '-9 비전 주문력 (모든 주문 +8)', type: 'neg' }
+        { v: '+2 지능', type: 'pos' },
+        { v: '+1 모든 주문력 (+2.60 EP)', type: 'pos' }
       ]
     },
-    note: '⚠️ 현 마술사 장식띠(비전+17) 대비 주문력 -9 편차로 현 단계 보류 (냉법 지능 스왑용)',
+    note: '✅ 현 역병잎 밧줄(15.00 EP) 대비 무손실 상위 호환(17.60 EP) · Lv.46 경매 1G 가성비!',
     bind: '착용 시 귀속 (BoE · 경매/의뢰 가능)',
     source: '재봉술 210 제작 — 재봉 교관 학습',
     craftCost: '1.2G (경매 완제품 1G · 11/26 00:24)',

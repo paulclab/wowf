@@ -237,10 +237,10 @@ function updateCalc() {
   const stacks = parseInt(document.getElementById('calcStacks').value, 10) || 0;
   const intel = parseInt(document.getElementById('calcInt').value, 10) || 0;
 
-  const baseSp = 150 + (oil ? 8 : 0);
+  const baseSp = 158 + (oil ? 8 : 0);
   const stackBonus = Math.round(intel * 0.12 * stacks);
   const totalSp = baseSp + stackBonus;
-  const nextMana = 72 * (1 + stacks);
+  const nextMana = 92 * (1 + stacks);
 
   document.getElementById('outSp').textContent = totalSp;
   document.getElementById('outSpDetail').textContent = `기본 ${baseSp}${oil ? '(오일+8)' : ''} + 중첩 보너스 ${stackBonus}`;
@@ -1090,21 +1090,21 @@ function renderTalentImpactSummary() {
   if (!grid || !tags) return;
 
   const m = getActiveTalentMods();
-  const baseInt = Number(document.getElementById('stInt')?.value) || 127;
-  const baseSpi = Number(document.getElementById('stSpi')?.value) || 100;
-  const baseGenSp = Number(document.getElementById('stGenSp')?.value) || 101;
-  const baseArcSp = Number(document.getElementById('stArcSp')?.value) || 67;
-  const baseCrit = Number(document.getElementById('stCrit')?.value) || 5.21;
+  const baseInt = Number(document.getElementById('stInt')?.value) || 142;
+  const baseSpi = Number(document.getElementById('stSpi')?.value) || 102;
+  const baseGenSp = Number(document.getElementById('stGenSp')?.value) || 108;
+  const baseArcSp = Number(document.getElementById('stArcSp')?.value) || 50;
+  const baseCrit = Number(document.getElementById('stCrit')?.value) || 5.57;
   const mageArmor = document.getElementById('stMageArmor')?.checked ? 0.50 : 0;
 
-  // Baseline Lv.35 (11/26 12:45 실측 확정: 기본 HP 850 / MP 2,358 · 체 53 · 지 127 · 정 100 · 방어 463 · 일반 101 / 비전 168 · 25/0/1)
-  const rawIntBase = baseInt / 1.06;
+  // Baseline Lv.36 (11/28 00:16 실측 확정: 기본 HP 878 / MP 2,604 · 체 54 · 지 142 · 정 102 · 방어 464 · 일반 108 / 비전 158 · 26/0/1)
+  const rawIntBase = baseInt / 1.08;
   const effInt = Math.round(rawIntBase * (1 + m.intPct));
   const intDelta = effInt - baseInt;
-  const effMp = 2358 + (effInt - 127) * 15;
-  const baseMp = 2358 + (baseInt - 127) * 15;
+  const effMp = 2604 + (effInt - 142) * 15;
+  const baseMp = 2604 + (baseInt - 142) * 15;
   const armorBonus = Math.round(effInt * m.armorFromIntPct);
-  const effArmor = 463 + armorBonus;
+  const effArmor = 464 + armorBonus;
 
   const outCastMp5 = Math.round(((13 + baseSpi / 4) * 2.5) * 10) / 10;
   const combatKeep = Math.min(1, m.meditation + mageArmor);
@@ -1115,25 +1115,25 @@ function renderTalentImpactSummary() {
   const critFromInt = intDelta * 0.03;
   const effAllCrit = baseCrit + m.allCritPct + critFromInt;
   const effAbCrit = effAllCrit + m.abFblExtraCrit;
-  const effArcCritMult = 1 + m.arcaneCritBonus; // 1.50 ~ 2.00 (실제 Lv.35 기준 1.80)
+  const effArcCritMult = 1 + m.arcaneCritBonus; // 1.50 ~ 2.00 (실제 Lv.36 기준 1.90)
 
   const totalArcSp = baseGenSp + baseArcSp;
-  const deltaArc = totalArcSp - 168;
-  const deltaGen = baseGenSp - 101;
+  const deltaArc = totalArcSp - 158;
+  const deltaGen = baseGenSp - 108;
   const allMul = 1 + m.allDmgPct;
   const abStep = effInt * 0.12;
-  const ab0 = (156.5 + deltaArc * 0.4286) * allMul;
-  const ab0Base = 156.5 + deltaArc * 0.4286;
+  const ab0 = (152.2 + deltaArc * 0.4286) * allMul;
+  const ab0Base = 152.2 + deltaArc * 0.4286;
   const ab0Exp = ab0 * (1 + (effAbCrit / 100) * m.arcaneCritBonus);
-  const ab0BaseExp = ab0Base * (1 + (baseCrit / 100) * 0.80);
+  const ab0BaseExp = ab0Base * (1 + (baseCrit / 100) * 0.90);
 
-  const awDmg = ((292.5 + deltaArc) + effMp * 0.05) * allMul;
-  const awBase = (292.5 + deltaArc) + baseMp * 0.05;
+  const awDmg = ((282.5 + deltaArc) + effMp * 0.05) * allMul;
+  const awBase = (282.5 + deltaArc) + baseMp * 0.05;
   const awCast = Math.max(1.0, 3.5 - m.wrathCastReduce);
 
   const wandAvg = 33.5 * (1 + m.wandPct / 100);
-  const fblDmg = (206.3 + deltaGen * 0.4286) * allMul * (1 + m.fireDmgPct);
-  const fblBase = 206.3 + deltaGen * 0.4286;
+  const fblDmg = (209.3 + deltaGen * 0.4286) * allMul * (1 + m.fireDmgPct);
+  const fblBase = 209.3 + deltaGen * 0.4286;
 
   const dBadge = (diff, unit, digits = 0) => {
     if (Math.abs(diff) < 0.05) return '';
@@ -1143,7 +1143,7 @@ function renderTalentImpactSummary() {
 
   if (badge) {
     if (!TALENT_SIM_STATE.simMode) {
-      badge.textContent = '실제 Lv.35 기준 (25/0/1)';
+      badge.textContent = '실제 Lv.36 기준 (26/0/1)';
       badge.className = 'badge verified';
     } else if (TALENT_SIM_STATE.unlimited) {
       badge.textContent = '🔓 무제한 시뮬레이션 반영 중';
@@ -1172,9 +1172,9 @@ function renderTalentImpactSummary() {
     {
       lbl: '비전 치명타율 & 배율',
       val: `${effAbCrit.toFixed(2)}% · ×${Math.round(effArcCritMult*100)}%`,
-      delta: dBadge(effArcCritMult*100 - 170, '%배율'),
+      delta: dBadge(effArcCritMult*100 - 190, '%배율'),
       sub: `공용 ${effAllCrit.toFixed(2)}% · 비작 +${m.abFblExtraCrit}% · 충돌 +${m.arcaneExtraCrit}%`,
-      changed: Math.abs(effAbCrit - baseCrit) >= 0.05 || Math.abs(effArcCritMult - 1.7) >= 0.01
+      changed: Math.abs(effAbCrit - baseCrit) >= 0.05 || Math.abs(effArcCritMult - 1.9) >= 0.01
     },
     {
       lbl: '비전 작렬 (0중 기대값)',
@@ -1248,7 +1248,7 @@ function updateTalentChromeUI() {
   }
   if (modeBadge) {
     if (!TALENT_SIM_STATE.simMode) {
-      modeBadge.textContent = '✅ Lv.35 (26pt 투자 완료)';
+      modeBadge.textContent = '✅ Lv.36 (27pt 투자 완료)';
       modeBadge.className = 'badge verified';
     } else if (TALENT_SIM_STATE.unlimited) {
       modeBadge.textContent = '🔓 무제한 시뮬레이션';
@@ -1261,7 +1261,7 @@ function updateTalentChromeUI() {
   if (ptsTxt) {
     ptsTxt.innerHTML = TALENT_SIM_STATE.unlimited
       ? `무제한 투자: <strong>${total}pt</strong> <small>(트리 순서·포인트 한도 해제됨)</small>`
-      : `투자: <strong>${total}</strong> / ${TALENT_SIM_STATE.maxTotal}pt <small>(Lv.35 실측 · 25/0/1)</small>`;
+      : `투자: <strong>${total}</strong> / ${TALENT_SIM_STATE.maxTotal}pt <small>(Lv.36 실측 · 26/0/1)</small>`;
   }
   if (legendTip) {
     legendTip.textContent = TALENT_SIM_STATE.simMode
@@ -1552,7 +1552,7 @@ let customComboCounter = 5;
 function getSimEnv() {
   const haste = document.getElementById('rotHasteCb')?.checked ? 1.15 : 1.0;
   const oil = document.getElementById('rotOilCb')?.checked ? 8 : 0;
-  return { haste, oil, wrathMpExtra: 0, abStepSp: 15.2 };
+  return { haste, oil, wrathMpExtra: 0, abStepSp: 17.04 };
 }
 
 function calcComboMetrics(combo, env) {
@@ -1626,7 +1626,7 @@ function renderSingleSpellTable() {
   if (pill) {
     const hStr = env.haste > 1 ? '가속 +15% · ' : '';
     const oStr = env.oil > 0 ? ' (오일 +8)' : '';
-    pill.textContent = `${hStr}비전 SP +${168 + env.oil}${oStr} · 일반 +${101 + env.oil}`;
+    pill.textContent = `${hStr}비전 SP +${158 + env.oil}${oStr} · 일반 +${108 + env.oil} (비작 +17.0/중)`;
   }
 
   const mkToggle = (key) => {
@@ -1643,13 +1643,13 @@ function renderSingleSpellTable() {
   const stFb1 = ROW_AB_STACKS.fb1 || 0;
 
   const abMana = 92 * (1 + stAb);
-  const abDmg = Math.round(148.8 + (env.oil + stAb * env.abStepSp) * 0.4286);
-  const awDmg = Math.round(375.8 + env.oil + stAw * env.abStepSp);
-  const amDmg = 565.0 + env.oil + stAm * env.abStepSp;
-  const ambDmg = 565.0 + env.oil + stAmb * env.abStepSp;
-  const fblDmg = Math.round(193.0 + (env.oil + stFbl * env.abStepSp) * 0.4286);
-  const aeDmg = Math.round(122.4 + (env.oil + stAe * env.abStepSp) * 0.1429);
-  const fb1Dmg = Math.round(42.9 + (env.oil + stFb1 * env.abStepSp) * 0.33);
+  const abDmg = Math.round(152.2 + (env.oil + stAb * env.abStepSp) * 0.4286);
+  const awDmg = Math.round(412.7 + env.oil + stAw * env.abStepSp);
+  const amDmg = 573.0 + env.oil + stAm * env.abStepSp;
+  const ambDmg = 573.0 + env.oil + stAmb * env.abStepSp;
+  const fblDmg = Math.round(209.3 + (env.oil + stFbl * env.abStepSp) * 0.4286);
+  const aeDmg = Math.round(123.6 + (env.oil + stAe * env.abStepSp) * 0.1429);
+  const fb1Dmg = Math.round(55.5 + (env.oil + stFb1 * env.abStepSp) * 0.33);
 
   // Exact order: 비작 -> 비격 -> 신화 -> 신화(탄막) -> 화작 -> 법봉 (+ 신폭3 · 얼화1)
   const rows = [
@@ -1657,24 +1657,24 @@ function renderSingleSpellTable() {
       name: `<code>비전 작렬</code> <em>(2 레벨)</em> ${mkToggle('ab')}`,
       mana: `<strong>~${abMana}</strong>` + (stAb > 0 ? ` <em>(${stAb}중 &times;${1+stAb})</em>` : ' <em>(기본마나 15%)</em>'),
       time: (1.5 / env.haste).toFixed(2) + '초',
-      coeff: '<span class="coeff-pill">42.9%</span> <em style="font-size:11px;">전학파 +12 SP/중</em>',
+      coeff: '<span class="coeff-pill">42.9%</span> <em style="font-size:11px;">전학파 +17.0 SP/중</em>',
       dmg: `<strong>~${abDmg}</strong>` + (stAb > 0 ? ` <em>(+${Math.round(stAb * env.abStepSp * 0.4286)})</em>` : ' <em>(시전 시 중첩 +1)</em>'),
       dps: `<strong>${(abDmg / (1.5 / env.haste)).toFixed(1)} DPS</strong>`
     },
     {
-      name: `<code>비전 격노</code> <em>(1 레벨 · 6초 쿨)</em> ${mkToggle('aw')}`,
-      mana: '140',
+      name: `<code>비전 격노</code> <em>(2 레벨 · 6초 쿨)</em> ${mkToggle('aw')}`,
+      mana: '220',
       time: (3.5 / env.haste).toFixed(2) + '초',
       coeff: '<span class="coeff-pill">100%</span> <em style="font-size:11px;">비전+일반 (+10/10SP)</em>',
-      dmg: `<strong>~${awDmg}</strong> <em>(267 + 마나5% +92${stAw > 0 ? ' +중첩' + (stAw*12) : ''})</em>`,
-      dps: `<strong>${(awDmg / (3.5 / env.haste)).toFixed(1)} DPS</strong>`
+      dmg: `<strong>~${awDmg}+</strong> <em>(하한 283 + 마나5% +130${stAw > 0 ? ' +중첩' + Math.round(stAw * env.abStepSp) : ''} · 2Lv 실측 대기)</em>`,
+      dps: `<strong>${(awDmg / (3.5 / env.haste)).toFixed(1)}+ DPS</strong>`
     },
     {
       name: `<code>신비한 화살(4 레벨)</code> ${mkToggle('am')}`,
       mana: '320',
       time: (5.0 / env.haste).toFixed(2) + '초',
       coeff: '<span class="coeff-pill">100%</span> <em style="font-size:11px;">비전+일반 (발당 20%)</em>',
-      dmg: `<strong>${Math.round(amDmg)}</strong> <em>(발당 ~${(amDmg/5).toFixed(1)} &times; 5${stAm > 0 ? ' · +' + (stAm*12) : ''})</em>`,
+      dmg: `<strong>${Math.round(amDmg)}</strong> <em>(발당 ~${(amDmg/5).toFixed(1)} &times; 5${stAm > 0 ? ' · +' + Math.round(stAm * env.abStepSp) : ''})</em>`,
       dps: `<strong>${(amDmg / (5.0 / env.haste)).toFixed(1)} DPS</strong>`
     },
     {
@@ -2088,18 +2088,18 @@ function cycleRowAbStack(rowKey) {
 
 function applyCharPreset(mode) {
   const setVal = (id, v) => { const el = document.getElementById(id); if (el) el.value = v; };
-  setVal('stSta', 53); setVal('stInt', 127); setVal('stSpi', 100);
-  setVal('stGenSp', 101); setVal('stArcSp', 67); setVal('stCrit', 5.21); setVal('stHaste', 0);
+  setVal('stSta', 54); setVal('stInt', 142); setVal('stSpi', 102);
+  setVal('stGenSp', 108); setVal('stArcSp', 50); setVal('stCrit', 5.57); setVal('stHaste', 0);
   const medDefault = (typeof getActiveTalentMods === 'function') ? getActiveTalentMods().meditation : 0.50;
   setVal('stMed', medDefault === 0 ? '0' : medDefault.toFixed(2));
   const ma = document.getElementById('stMageArmor'); if (ma) ma.checked = true;
 
-  if (mode === 'snap1245' || mode === 'snap0026') { setVal('stSta', 58); setVal('stInt', 139); setVal('stSpi', 110); setVal('stCrit', 5.59); setVal('stHaste', 15); } // 11/26 12:45 실측 (왕축+스톰힘: 1,200 HP / 2,538 MP)
-  else if (mode === 'haste') { setVal('stHaste', 15); } // 스톰윈드의 힘: +300 HP(850->1,150), +15% 가속
-  else if (mode === 'intbuff') { setVal('stInt', 143); setVal('stCrit', 5.73); } // 신비한 지능 3레벨 (+15 원지능 × 1.06 → +16 반영)
-  else if (mode === 'fullbuff') { setVal('stSta', 58); setVal('stInt', 157); setVal('stSpi', 110); setVal('stCrit', 6.19); setVal('stHaste', 15); } // 지능3 + 왕축 + 스톰힘 예상
-  else if (mode === 'oil') { setVal('stGenSp', 109); } // 최하급 마술사 오일 +8 SP
-  else if (mode === 'sp20') { setVal('stGenSp', 121); }
+  if (mode === 'snap0016' || mode === 'snap1245' || mode === 'snap0026') { setVal('stHaste', 15); } // 11/28 00:16 실측 (스톰윈드의 힘: 1,178 HP / 2,604 MP · 15% 가속)
+  else if (mode === 'haste') { setVal('stHaste', 15); }
+  else if (mode === 'intbuff') { setVal('stInt', 158); setVal('stCrit', 6.08); } // 신비한 지능 3레벨 (+15 원지능 × 1.08 → +16 반영)
+  else if (mode === 'fullbuff') { setVal('stSta', 59); setVal('stInt', 174); setVal('stSpi', 112); setVal('stCrit', 6.60); setVal('stHaste', 15); } // 지능3 + 왕축 + 스톰힘 예상
+  else if (mode === 'oil') { setVal('stGenSp', 116); } // 최하급 마술사 오일 +8 SP
+  else if (mode === 'sp20') { setVal('stGenSp', 128); }
   updateCharStatLab();
 }
 
@@ -2114,25 +2114,25 @@ function updateCharStatLab() {
   const med = Number(document.getElementById('stMed')?.value) || 0;
   const mageArmor = document.getElementById('stMageArmor')?.checked ? 0.50 : 0;
 
-  // Apply live talent modifiers from Talent Simulator (baseline Lv.35 already includes 신비한 정신 3/5 = +6% Int)
+  // Apply live talent modifiers from Talent Simulator (baseline Lv.36 already includes 신비한 정신 4/5 = +8% Int)
   const tm = (typeof getActiveTalentMods === 'function') ? getActiveTalentMods() : {
-    intPct: 0.06, arcaneCritBonus: 0.80, frostCritBonus: 0.50, wandPct: 25,
+    intPct: 0.08, arcaneCritBonus: 0.90, frostCritBonus: 0.50, wandPct: 25,
     allDmgPct: 0, allCritPct: 0, arcaneExtraCrit: 0, abFblExtraCrit: 0,
     fireExtraCrit: 0, fireDmgPct: 0, wrathCastReduce: 0, frostCastReduce: 0, frostDmgPct: 0, rWand: 2
   };
-  const rawIntel = baseIntel / 1.06;
+  const rawIntel = baseIntel / 1.08;
   const intel = Math.round(rawIntel * (1 + tm.intPct));
   const intDeltaFromTalent = intel - baseIntel;
   const critPct = baseCritPct + tm.allCritPct + (intDeltaFromTalent * 0.03);
 
   const totalArcSp = genSp + arcOnlySp;
-  const deltaArc = totalArcSp - 168;
-  const deltaGen = genSp - 101;
-  const deltaSta = sta - 53;
-  const deltaInt = intel - 127;
+  const deltaArc = totalArcSp - 158;
+  const deltaGen = genSp - 108;
+  const deltaSta = sta - 54;
+  const deltaInt = intel - 142;
   const swMightHp = hastePct >= 15 ? 300 : 0; // 스톰윈드의 힘 (+300 HP · 15% 가속)
-  const estMaxHp = 850 + deltaSta * 10 + swMightHp;
-  const estMaxMp = 2358 + deltaInt * 15;
+  const estMaxHp = 878 + deltaSta * 10 + swMightHp;
+  const estMaxMp = 2604 + deltaInt * 15;
   const wrathMpBonus = estMaxMp * 0.05;
   const abStep = intel * 0.12;
   const hasteMul = 1 + hastePct / 100;
@@ -2165,21 +2165,21 @@ function updateCharStatLab() {
   // Representative skill live damage & DPS table
   const tbody = document.getElementById('charSkillDpsBody');
   if (tbody) {
-    const ab0 = (156.5 + deltaArc * 0.4286) * allMul;
-    const ab1 = (156.5 + deltaArc * 0.4286 + abStep * 0.4286) * allMul;
-    const awDmg = ((292.5 + deltaArc) + wrathMpBonus) * allMul;
-    const amDmg = (583.0 + deltaArc) * allMul;
+    const ab0 = (152.2 + deltaArc * 0.4286) * allMul;
+    const ab1 = (152.2 + deltaArc * 0.4286 + abStep * 0.4286) * allMul;
+    const awDmg = ((282.5 + deltaArc) + wrathMpBonus) * allMul;
+    const amDmg = (573.0 + deltaArc) * allMul;
     const amPer = amDmg / 5;
-    const fblDmg = (206.3 + deltaGen * 0.4286) * allMul * (1 + tm.fireDmgPct);
-    const aeDmg = (125.0 + deltaArc * 0.1429) * allMul;
+    const fblDmg = (209.3 + deltaGen * 0.4286) * allMul * (1 + tm.fireDmgPct);
+    const aeDmg = (123.6 + deltaArc * 0.1429) * allMul;
     const wandDmg = 33.5 * (1 + tm.wandPct / 100);
     const wandMin = Math.round(23 * (1 + tm.wandPct / 100));
     const wandMax = Math.round(44 * (1 + tm.wandPct / 100));
-    const fb1Dmg = (53.2 + deltaGen * 0.33) * allMul * (1 + tm.frostDmgPct);
+    const fb1Dmg = (55.5 + deltaGen * 0.33) * allMul * (1 + tm.frostDmgPct);
 
     const skills = [
       { name: '비전 작렬 (2 레벨 · 0→1중)', cast: 1.5 / hasteMul, dmg: ab0, mul: arcCritMul(tm.abFblExtraCrit), dmgText: `<strong>~${Math.round(ab0)}</strong> → ~${Math.round(ab1)}` },
-      { name: '비전 격노 (1 레벨)', cast: Math.max(1.0, 3.5 - tm.wrathCastReduce) / hasteMul, dmg: awDmg, mul: arcCritMul(0), dmgText: `<strong>~${Math.round(awDmg)}</strong>` },
+      { name: '비전 격노 (2 레벨 · 하한)', cast: Math.max(1.0, 3.5 - tm.wrathCastReduce) / hasteMul, dmg: awDmg, mul: arcCritMul(0), dmgText: `<strong>~${Math.round(awDmg)}+</strong>` },
       { name: '신비한 화살 (4 레벨)', cast: 5.0 / hasteMul, dmg: amDmg, mul: arcCritMul(0), dmgText: `<strong>${Math.round(amDmg)}</strong> <em style="font-size:11px;opacity:0.82;">(발당 ~${amPer.toFixed(1)})</em>` },
       { name: '신비한 화살 (화살 탄막)', cast: 2.5 / hasteMul, dmg: amDmg, mul: arcCritMul(0), dmgText: `<strong>${Math.round(amDmg)}</strong> <em style="font-size:11px;opacity:0.82;">(발당 ~${amPer.toFixed(1)})</em>` },
       { name: '화염 작렬 (4 레벨)', cast: effGcd, dmg: fblDmg, mul: fireCritMul(tm.abFblExtraCrit + tm.fireExtraCrit), dmgText: `<strong>~${Math.round(fblDmg)}</strong>` },
@@ -2201,8 +2201,8 @@ function updateCharStatLab() {
   // Interactive Stat Insights
   const ins = document.getElementById('charInsightsMount');
   if (ins) {
-    const comboMana = 140 + 92 + 235 + 165; // 632 (비격+비작2+신화3+화작4)
-    const comboManaBar = 140 + 92 + 0 + 165; // 397 (탄막)
+    const comboMana = 220 + 92 + 320 + 165; // 797 (비격2+비작2+신화4+화작4)
+    const comboManaBar = 220 + 92 + 0 + 165; // 477 (탄막)
     const castsNormal = (estMaxMp / comboMana).toFixed(1);
     const castsBar = (estMaxMp / comboManaBar).toFixed(1);
     const frostLossAm = Math.round(arcOnlySp * 1.0);
@@ -2219,7 +2219,7 @@ function updateCharStatLab() {
       </div>
       <div class="insight-box">
         <div class="ins-t">🔋 현재 마나(${Math.round(estMaxMp).toLocaleString()}) 콤보 지속력</div>
-        비격+비작2+신화3+화작4 기준 일반 <strong>${castsNormal}회</strong> / 탄막 프록 <strong>${castsBar}회</strong> 연속 시전 가능 (치명 기댓값 <strong>+${critGain}%</strong>).
+        비격2+비작2+신화4+화작4 기준 일반 <strong>${castsNormal}회</strong> / 탄막 프록 <strong>${castsBar}회</strong> 연속 시전 가능 (치명 기댓값 <strong>+${critGain}%</strong>).
       </div>
     `;
   }

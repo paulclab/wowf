@@ -1,11 +1,12 @@
 /* WoW Forever Tooltip DB — Mage Talents (Unified w/ Meta) */
 const WOW_DB_TALENTS = {
   '비전 격노': {
-    en: 'Arcane Wrath', kind: '비전 주문 (특성)', quality: 'spell', icon: 'ability_mage_arcanebarrage',
-    rows: [['마나 140', '유효 거리 30미터'], ['기본 시전 3.5초 (가속15% 3초)', '재사용 대기시간 6초']],
-    desc: '순수한 비전 마력 투사체를 발사해 ~249의 비전 피해를 입히며, 이 주문 자체에 한해 최대 마나의 5%(+80 SP)만큼 추가 주문 공격력을 획득합니다. (6초는 순수 쿨타임 · 타 주문 버프 없음 · 비작 스택 수혜)',
-    note: '✅ 2026-11-20 인게임 실측(arcane_wrath_rank1_tooltip_261120.png) · 원거리 선공 핵심기!'
+    en: 'Arcane Wrath', kind: '비전 주문 (특성 · Lv.36 2레벨 습득 ✅)', quality: 'spell', icon: 'ability_mage_arcanebarrage',
+    rows: [['2 레벨 · 마나 220 (Lv.36 ✅)', '유효 거리 30미터'], ['기본 시전 3.5초 (가속15% 3초)', '재사용 대기시간 6초']],
+    desc: '순수한 비전 마력 투사체를 발사하며, 이 주문 자체에 한해 최대 마나의 5%(현재 2,604×5% = +130.2 SP!)만큼 추가 주문 공격력을 획득합니다. (6초는 순수 쿨타임 · 비작 스택 수혜)',
+    note: '✅ Lv.36 2레벨 습득 완료! (2레벨 기본 피해량 인게임 툴팁 실측 대기 · 시뮬은 1레벨 실측 하한 기준)'
   },
+  '비전 격노(2 레벨)': { alias: '비전 격노' },
   '마법봉 전문화': {
     en: 'Wand Specialization', kind: '비전 특성 · 2티어 1열', quality: 'talent', icon: 'inv_wand_01',
     rows: [['현재 투자: 2 / 2 ★', '마스터 완료']],
@@ -49,10 +50,10 @@ const WOW_DB_TALENTS = {
     note: '📘 Lv.30 핵심 전환점 (21번째 포인트)'
   },
   '신비한 정신': {
-    en: 'Arcane Mind', kind: '비전 특성 · 5티어 (현재 3/5 ✅)', quality: 'talent', icon: 'spell_shadow_charm',
-    rows: [['총 지능 +6% · 비전 치명 피해 +60%', 'Lv.35 3/5 투자 ✅ (배율 180%)']],
-    desc: '총 지능을 비율(%)로 증가시켜 최대 마나, 주문 극대화, 비전 작렬의 지능 12% 주문력 전환 효율과 비전 치명타 배율(150%→180%→200%)을 동시에 끌어올립니다.',
-    note: '✅ Lv.35 3/5 달성 — 비전 작렬 & 비전 격노(최대 마나 5%) 이중 시너지'
+    en: 'Arcane Mind', kind: '비전 특성 · 5티어 (현재 4/5 ✅)', quality: 'talent', icon: 'spell_shadow_charm',
+    rows: [['총 지능 +8% · 비전 치명 피해 +80%', 'Lv.36 4/5 투자 ✅ (배율 190%)']],
+    desc: '총 지능을 비율(%)로 증가시켜 최대 마나, 주문 극대화, 비전 작렬의 지능 12% 주문력 전환 효율과 비전 치명타 배율(150%→190%→200%)을 동시에 끌어올립니다.',
+    note: '✅ Lv.36 4/5 달성 — 비전 작렬 & 비전 격노(최대 마나 5%) 이중 시너지'
   },
   '신비한 불안정성': {
     en: 'Arcane Instability', kind: '비전 특성 · 6티어', quality: 'talent', icon: 'spell_shadow_teleport',
@@ -89,6 +90,6 @@ const WOW_DB_TALENTS = {
     en: 'Precision', kind: '냉기 특성 · 1티어 (현재 1/3 ✅)', quality: 'spell', icon: 'spell_frost_frost',
     rows: [['냉기 1티어 (ID: #105778)', '모든 학파 통합 적중!'], ['투자당 +2% / +4% / +6%', '현재 1/3 투자 → 총 적중 +2%']],
     desc: '와우 포에버에서 비전·화염·냉기 모든 주문 적중률을 올려주도록 통합 개편된 필수 특성입니다. 2/3 달성 시 동레벨 4% 만적중 완성!',
-    note: '⭐ Lv.36 2/3 우선 투자 추천 (동레벨 4% 만적중 완성)'
+    note: '⭐ Lv.37 2/3 우선 투자 추천 (동레벨 4% 만적중 완성)'
   }
 };
