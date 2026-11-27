@@ -258,8 +258,8 @@ const DEFAULT_COMBOS = [
 
 const RECENTLY_UPDATED_TABS = {
   'tab-addons': {
-    v: '2026-11-26-v1',
-    text: '11/26 10:00 14종 일괄 업데이트 + FindParty 0.8 신규 설치 (27종/72폴더) · ⚠️ Attune 한글패치 덮어쓰임 · EzWoW 2.0.51 본가 6국어 드랍 반영'
+    v: '2026-11-27-v1',
+    text: '11/27 12:36 11종 업데이트 (FDJ 2.1.7 다크모드·BRD 루트 · LayerSwap 1.14.59 Auto leave/패널 위치 · BiS v1.6.2 · Baganator 870 · Details/Range/EzWoW 패치 유지 ✅)'
   },
   'tab-prof': {
     v: '2026-11-26-v5',

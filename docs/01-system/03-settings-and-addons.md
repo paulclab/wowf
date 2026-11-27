@@ -22,13 +22,24 @@
 
 ---
 
-## 2. 로컬 실측 설치 애드온 관리부 (`2026-11-26 10:09` 직접 스캔 ✅)
+## 2. 로컬 실측 설치 애드온 관리부 (`2026-11-27 12:36` 직접 스캔 ✅)
 - **스캔 경로 (영구 등록)**: `C:\Program Files (x86)\World of Warcraft\_forever_\Interface\AddOns`
 - **캐릭터 활성 설정**: `C:\Program Files (x86)\World of Warcraft\_forever_\WTF\Account\1524025208#1\92\폴-최\AddOns.txt`
-- **진단 요약**: **총 27개 스위트 (72개 폴더)** (`FindParty 0.8` 신규 설치 포함) · **25/27 스위트(63/72 폴더) `Interface: 16001` (`1.60.1`) 네이티브 지원 ✅** (`BetterBlizzFrames`, `Details!` 계열은 `120105` TOC) · **정면 충돌 `0건` ✅** · **`Details!` + `RangeDisplay` 로컬 패치 유지 ✅ · ⚠️ `Attune (16001-46)` 한글 실시간 조회 패치 및 `EzWoW-MapFinder (2.0.51)` `.toc` 주석 제외 패치 업데이트로 덮어쓰임 (`EzWoW`는 `2.0.51` 본가에 6개국어 자동 드랍 공식 반영)**
+- **진단 요약**: **총 27개 스위트 (72개 폴더)** · **25/27 스위트(63/72 폴더) `Interface: 16001` (`1.60.1`) 네이티브 지원 ✅** (`BetterBlizzFrames v2.2.4`, `Details!` 계열은 `120105` TOC) · **정면 충돌 `0건` ✅** · **`Details!` 한글 + `RangeDisplay` 인던 + `EzWoW (2.0.54)` 본가 6국어 드랍 유지 ✅ · ⚠️ `Attune (16001-46)` 한글 패치만 초기화 상태**
 
-### A. 진단 & 최적화 포인트 (`2026-11-26 10:09` 실측)
-1. **⚠️ 11/26 10:00 일괄 업데이트 14종 + `FindParty 0.8` 신규 설치 (로컬 패치 영향 포함)**:
+### A. 진단 & 최적화 포인트 (`2026-11-27 12:36` 실측)
+1. **✅ 11/27 12:36 일괄 업데이트 11개 스위트 (총 31폴더 갱신 · `Details!`·`RangeDisplay` 로컬 패치 유지)**:
+   - **`ForeverDungeonJournal (2.1.6 → 2.1.7)`**: **다크 모드(`Options → General → Dark mode`, 퀘스트 페이지·도감 전체 다크 톤)** 신설, **얼라이언스 검은바위 나락(`BRD`) 루트**(오닉시아 입장 퀘스트 연계·Pyron 반납 순서·Dark Iron Legacy 유령 안내 포함) & Krol'dok Stronghold 호드 루트 추가, 그림자송곳니 성채(`Level 3`/`Level 4`·도서관 책/핀 정리)·검은아귀 요새(`Blackmaw Hold` 7층 및 진입 녹색 화살표)·놈리건(Sparklematic 5200·Kernobee 위치)·붉은십자군 도서관 입구·BRD 투기장 6인 보스 묶음 핀 보정, 가라앉은 도시(`The Drowned City`) Gill 순찰 핀 및 **움직이는 보스 핀 우클릭 정지/재개** 추가, 퀘스트 완료 카운트 헤더·길안내 오류 자동 재그리기 적용.
+   - **`LayerSwap (1.14.57 → 1.14.59)`**: 커스 포지 유저 요청 반영 — **파티 자동 탈퇴(`Auto leave`, 기본 켜짐 · `stayInGroup` 키)** 옵션을 포에버에서 선택 해제 가능하게 부활(탈퇴 시 원래 위상으로 돌아가는 사례 대응), **패널(`LayerSwapPanel`) 위치 저장** 신설, 전투/사망/유령 상태에서 온 초대는 자동 거절, 게스트 단기 해로운 효과(`Host.WATCH_SHORT`) 시 `24시간` 휴식(`Host.rest`) 및 `/ls watch` 그룹 상태 로그 신설.
+   - **`ForeverLevelingBiS (v1.6.1 → v1.6.2)`**: `WhatsNew` 기능 변경 없는 **2026-11-26 최신 스크래핑 DB(`8,447` 아이템·퀘스트·세트·지역)** 및 버그 수정 배포.
+   - **`Baganator (869 → 870)`**: `[Forever]` Single 뷰에서 검색창 비활성화 시 은행 보기 오류 수정, TSM 카테고리 무효 우선순위 슬라이더 숨김, `[Forever]` 블리자드 가방 우클릭 메뉴에 재료 가방 표시 수정.
+   - **`BetterBlizzFrames (v2.2.3c → v2.2.4)`**: `[Forever]` 전투 아이콘 `Humanoids only`(기절·혼절 가능 대상만) + 비전투 모닥불 표시, 사제 `침묵(Silence)` BigDebuffs 차단 효과 분류 추가, 클래식 미니맵 `달력 숨김` 옵션(기본 표시), 보스 해골 아이콘·Secondary Name·클래식 전투 쌍검(`Target/Focus`)·`Dispel Glow`·Castbars 테스트 버튼 및 채팅 시스템 메시지 필터 경고 추가 *(여전히 `120105` TOC라 구버전 불러오기 필요)*.
+   - **`ForeverMove (1.6.4 → 1.6.5)`**: **전리품 주사위 창(`GroupLootContainer`/`GroupLootFrame1-4`) 드래그 & 위치 유지**, 툴팁 이동 시 블리자드 프레임과 충돌해 깜빡이던 문제를 복사본 고정(`Pin`)으로 해결.
+   - **`Shadowflare (0.26.5 → 0.26.8)`**: *전사·흑마 중심 개선* — `0.26.6` 보전 `방패 밀쳐내기(Shield Slam)` 알림 신설(기본 꺼짐), `0.26.7` 악마/고흑 `Decimation` "영혼의 불꽃 쿨타임 중 숨김" 신설, `0.26.8` 다른 태세에서도 Bloodthrill `제압` 보조 프레임 표시 및 GCD 제외 쿨다운 재사용 즉시 감지.
+   - **`WhatsTraining (11.4.10 → 11.4.11)`**: 포에버 Skyborne Druid(드루이드) 관련 일부 퀘스트가 목록에 표시되지 않던 문제 수정.
+   - **`EzWoW-MapFinder (2.0.51 → 2.0.54)` / `EzWoW-Data* (1.0.21 → 1.0.24)`**: 본체 + 데이터 21폴더 버전업 *(별도 로컬 체인지로그 미포함 · `Core/SharedData.lua`의 미사용 6개국어 자동 드랍 `dropUnusedBuiltInNames`는 정상 유지 ✅)*.
+   - **`SquareMinimap (1.5.0 → 1.5.1)`** · **`Books_on_map_Forever (2.4.1 → 2.4.3)`**: 각각 `1.5.1`, `2.4.3`으로 마이너 버전업 *(별도 로컬 체인지로그 미포함)*.
+2. **⚠️ 11/26 10:00 일괄 업데이트 14종 + `FindParty 0.8` 신규 설치 요약**:
    - **⚠️ `Attune (16001-45 → 16001-46)` — 한글 실시간 조회 로컬 패치 덮어쓰임**: 마라우돈 `Inside` 오표기 수정, 검은바위 나락 `Fragment of the Firelands` 추가, 번역 줄바꿈 수정, 완료 업적 소모품(`Black Tome` 등) 완료 유지가 반영되었으나, 업데이트로 **`Locales/koKR.lua` + `Attune.lua` 실시간 한국어 API 조회(`Attune_InitLiveKoKRLocale`) 로컬 패치가 초기화**되었습니다. *(원할 경우 즉시 재패치 가능)*
    - **✅ `EzWoW-MapFinder (2.0.49 → 2.0.51)` / `EzWoW-Data* (1.0.19 → 1.0.21)` — 본가 6개 외국어 자동 드랍 도입 (기존 `.toc` 수정은 덮어쓰임)**: `.toc`에서 6개국어 주석 제외 로컬 패치는 업데이트로 초기화되었으나, 제작자(`qqhrqqhr2`)가 `Core/SharedData.lua`에 **`dropUnusedBuiltInNames`를 공식 구현**해 `EzWoW-Data` 활성화 시 한국어·클라 언어 외 6개국어(`~11MB`)를 자동 드랍하고 옵션에서 선택할 때만 지연 로드합니다.
    - **`FindParty (0.8 · 신규 설치 11/26 00:28)`**: 파티찾기 채널 글을 던전/키워드별로 필터링하고 귓속말 신청·광고 자동화를 지원하는 한국어 지원(`Interface: 16001`, `/fp`) 애드온이 설치되어 미설치 추천 목록에서 설치 목록으로 이동했습니다.
@@ -48,44 +59,44 @@
    - `Shadowflare (0.26.5)`: **중첩 최대치 별도 스타일/위치 (`At the maximum`)** + `Nothing` 중첩 점 제거 + 전사 `Overpower` & `/flare debug`.
    - `QuestieDB (1.1.6)`: `[Forever]` 퀘스트 경험치 데이터 재갱신, `Tattered Journal` 시작점, 드랍률/NPC 부제목·번역 갱신.
 3. **✅ 유지 중인 로컬 패치 (`Details!` · `RangeDisplay` · `CharExport`)**:
-   - **`Details! (20261124.15450.172)`**: 이번 일괄 업데이트 대상에서 제외되어 **한글 메뉴 글꼴 로컬 패치(`cooltip.lua`·`languages.lua`·`windows.lua`)가 그대로 유지 ✅**되었습니다.
-   - **`RangeDisplay (v6.3.7)`**: 이번 업데이트 대상에서 제외되어 **인던 내 `UnitGUID` Secret Value(`issecretvalue`) 미표시 로컬 패치(`LibRangeCheck-3.0.lua`)가 그대로 유지 ✅**되었습니다.
-   - `CharExport (2.3.1)`(`/ce`·`/cea`·`/ceall`, 114종) · `BetterBlizzFrames (v2.2.3c)`(`120105` 구버전 체크 필요) 정상 유지.
+   - **`Details! (20261124.15450.172)`**: 11/26·11/27 업데이트 대상에서 제외되어 **한글 메뉴 글꼴 로컬 패치(`cooltip.lua`·`languages.lua`·`windows.lua`)가 그대로 유지 ✅**되었습니다.
+   - **`RangeDisplay (v6.3.7)`**: 11/26·11/27 업데이트 대상에서 제외되어 **인던 내 `UnitGUID` Secret Value(`issecretvalue`) 미표시 로컬 패치(`LibRangeCheck-3.0.lua`)가 그대로 유지 ✅**되었습니다.
+   - `CharExport (2.3.1)`(`/ce`·`/cea`·`/ceall`, 114종) · `BetterBlizzFrames (v2.2.4)`(`120105` 구버전 체크 필요) 정상 유지.
 4. **🟡 메모리·로딩 경량화 선택 정리 대상**:
    - `EzWoW-Data-Names-*` (`deDE`·`esES`·`frFR`·`ruRU`·`zhCN`·`zhTW` 6종): `koKR`·`enUS` 외 언어팩은 비활성화해도 정상 작동.
    - `SpokenQuestsAudioHorde_koKR (v0.0.3)`: 얼라이언스(`폴-최`) 전용 플레이 시 꺼두면 로딩/메모리 절약 가능.
    - `QuestieTrace (1.14.0)` & `SpokenContributions (3.13.1)`: 개발자 DB 제보/수집용 로거이므로 기여 목적이 아니면 비활성화해도 본 기능 정상 작동.
    - `Details_Streamer` / `Details_Vanguard`: 방송/탱커 전용 플러그인이라 평소 꺼둬도 무방.
 
-### B. 전체 설치 애드온 27종 (72폴더) 실측 목록 (`2026-11-26 10:09` 기준)
+### B. 전체 설치 애드온 27종 (72폴더) 실측 목록 (`2026-11-27 12:36` 기준)
 
 | 분류 | 스위트 / 폴더명 | 설치 버전 (`.toc`) | `16001` | 상태 및 핵심 역할 |
 | :--- | :--- | :--- | :---: | :--- |
-| **전투 · 프록 · 딜미터** (4종 / 12폴더) | **`Details!`** (+7 플러그인: `Compare2`, `DataStorage`, `EncounterDetails`, `RaidCheck`, `Streamer`, `TinyThreat`, `Vanguard`) | `20261124.15450.172` | `120105` | 활성 · 실시간 DPS·주문별 비중·어그로(`TinyThreat`)·차단 분석 *(한글 메뉴 재패치 완료 ✅)* |
-| | **`Shadowflare`** | `0.26.5` | ✅ | **활성 (`enabled`)** · 포에버 전용 프록 알림 (`화살 탄막` · `신비한 정신 집중` · 최대 중첩 별도 스타일) |
+| **전투 · 프록 · 딜미터** (4종 / 12폴더) | **`Details!`** (+7 플러그인: `Compare2`, `DataStorage`, `EncounterDetails`, `RaidCheck`, `Streamer`, `TinyThreat`, `Vanguard`) | `20261124.15450.172` | `120105` | 활성 · 실시간 DPS·주문별 비중·어그로(`TinyThreat`)·차단 분석 *(한글 메뉴 패치 유지 ✅)* |
+| | **`Shadowflare`** | `0.26.8` | ✅ | **활성 (`enabled`)** · 포에버 전용 프록 알림 (`화살 탄막` · `신비한 정신 집중` · 최대 중첩 별도 스타일) |
 | | **`ForeverCombatText`** | `0.18.0` | ✅ | **활성 (`enabled`)** · 네임플레이트 주문 학파 피해 + 선택형 Questie NPC 상태 표시 |
 | | **`RangeDisplay`** (+`_Options`) | `v6.3.7` | ✅ | **활성 (`enabled`)** · 대상 30m 사거리 표시 *(인던 Secret Value 패치 유지 ✅)* |
 | **지도 · 퀘스트 · 던전 · 도서관** (9종 / 33폴더) | **`Questie`** + **`QuestieDB`** + **`QuestieTrace`** | `12.15.0` / `1.1.6` / `1.14.0` | ✅ | **활성 (`enabled`)** · 포에버 퀘스트 핀/추적 + 최신순 정렬·오염 없는 상세 열기 |
-| | **`EzWoW-MapFinder`** (+`EzWoW-Data*` 21폴더) | `2.0.51` / `1.0.21` | ✅ | 활성 · 오프라인 위치 검색 & 웨이포인트 *(본가 6개국어 자동 드랍 적용 · `.toc` 패치 덮어쓰임)* |
-| | **`Books_on_map_Forever`** | `2.4.1` | ✅ | 활성 · **와우 포에버 도서관 책 월드맵 핀 표시!** |
+| | **`EzWoW-MapFinder`** (+`EzWoW-Data*` 21폴더) | `2.0.54` / `1.0.24` | ✅ | 활성 · 오프라인 위치 검색 & 웨이포인트 *(본가 6국어 자동 드랍 유지 ✅)* |
+| | **`Books_on_map_Forever`** | `2.4.3` | ✅ | 활성 · **와우 포에버 도서관 책 월드맵 핀 표시!** |
 | | **`OpenMap`** + **`OpenMap_NoDungeonMap`** | `v0.8.13` / `v1.2` | ✅ | 활성 · 끊김 없는 통합 세계 지도 + 던전 도감 호환 패치 |
-| | **`SquareMinimap`** | `1.5.0` | ✅ | 활성 · 포에버 사각 브론즈 프레임 미니맵 (**그림자 패널·버튼 숨김 추가**) |
+| | **`SquareMinimap`** | `1.5.1` | ✅ | 활성 · 포에버 사각 브론즈 프레임 미니맵 (**그림자 패널·버튼 숨김 추가**) |
 | | **`TomTom`** | `v4.4.1-release` | ✅ | 활성 · `/way` 좌표 화살표 내비게이션 |
-| | **`ForeverDungeonJournal`** | `2.1.6` | ✅ | 활성 · 클래식/포에버 던전 보스·드랍·퀘스트·PvP 보상(전문화 우선) 도감 |
+| | **`ForeverDungeonJournal`** | `2.1.7` | ✅ | 활성 · 클래식/포에버 던전·PvP 도감 (**Dark Mode · 얼라 BRD 루트 · 핀 정지**) |
 | | **`Attune`** | `16001-46` | ✅ | **활성 (`enabled`)** · 던전·공격대 입장 연퀘 추적 *(⚠️ 한글 실시간 패치 덮어쓰임)* |
 | | **`ForeverLootSparkles`** | `v2.1.0` | ✅ | 활성 · 루팅·퀘스트 오브젝트 반짝임 효과 상시 유지 |
-| **경제 · 가방 · 전문기술 · 성장** (6종 / 7폴더) | **`ForeverLevelingBiS`** | `v1.6.1` | ✅ | 활성 · **다중/계정 위시리스트 · Edit Mode 구간별 가중치 · 간략 툴팁** |
+| **경제 · 가방 · 전문기술 · 성장** (6종 / 7폴더) | **`ForeverLevelingBiS`** | `v1.6.2` | ✅ | 활성 · **Edit Mode 구간별 가중치 · 간략 툴팁 · 11/26 스크래핑 8,447 DB** |
 | | **`CharExport`** *(로컬 커스텀 ✅)* | `2.3.1` | ✅ | 활성 · **`/ce` 캐릭터 전용 + `/cea` 시세 전용 + `/ceall` 전체 출력 (114종)** |
 | | **`Auctionator`** | `354` | ✅ | 활성 · 경매장 스캔·최저가 출품·시세 툴팁 (`354` 무접미사 장비 가격 표시 수정) |
 | | **`Mastercraft`** | `2.1.3` | ✅ | 활성 · 전문기술 가이드·모듈 토글·낚싯대 스왑 키·**마력 추출 vs 상점가 비교** |
-| | **`Baganator`** + **`Syndicator`** | `869` / `293` | ✅ | 활성 · 통합 가방 UI(`ItemRack` 연동 수정) + 계정/은행 전체 재고 추적 |
-| | **`WhatsTraining`** | `11.4.10` | ✅ | 활성 · 마법책에 레벨별 습득 가능 스킬 & 비용 미리보기 |
-| **UI · 편의 · 위상 · 파티 · 음성** (8종 / 20폴더) | **`LayerSwap`** | `1.14.57` | ✅ | 활성 · 현재 위상(Layer) 표시 · 원클릭 전환 · 시간당 `Who.CAP` 합류 추적 (`/ls`) |
+| | **`Baganator`** + **`Syndicator`** | `870` / `293` | ✅ | 활성 · 통합 가방 UI(재료가방 우클릭·은행뷰·`ItemRack` 연동 수정) + 재고 추적 |
+| | **`WhatsTraining`** | `11.4.11` | ✅ | 활성 · 마법책에 레벨별 습득 가능 스킬 & 비용 미리보기 |
+| **UI · 편의 · 위상 · 파티 · 음성** (8종 / 20폴더) | **`LayerSwap`** | `1.14.59` | ✅ | 활성 · 현재 위상 확인 · 자동 탈퇴 토글 · 패널 위치 저장 · `Who.CAP` 추적 (`/ls`) |
 | | **`FindParty`** *(🆕 11/26 설치)* | `0.8` | ✅ | 활성 · **파티찾기 채널 던전·키워드 필터링 · 귓말 신청 · 광고 (`/fp`)** |
 | | **`DialogueUI`** | `1.0.7 c` | ✅ | 활성 · 몰입형 카드 퀘스트 대화창 & 키보드 단축 선택 |
-| | **`ForeverMove`** | `1.6.4` | ✅ | 활성 · 블리자드 모든 UI 창 자유 드래그 이동 (`/fm`) |
+| | **`ForeverMove`** | `1.6.5` | ✅ | 활성 · 블리자드 UI 창·주사위·툴팁 핀 고정 자유 드래그 이동 (`/fm`) |
 | | **`ForeverMouseTooltip`** | `@project-version@` | ✅ | 활성 · 기본 게임 툴팁을 마우스 커서 위치에 고정 |
-| | **`BetterBlizzFrames`** | `v2.2.3c` | `120105` | 블리자드 기본 프레임 버프 필터·전투 표시 커스터마이즈 |
+| | **`BetterBlizzFrames`** | `v2.2.4` | `120105` | 블리자드 기본 프레임 버프 필터·전투 아이콘·클래식 달력 숨김 등 커스터마이즈 |
 | | **`WhisperMessenger`** | `v2.1.9` | ✅ | 활성 · 귓속말 메신저 통합 기록/응답 |
 | | **`Spoken`** (`Bosses`·`Places`·`Quests`·`Readables`·`Contributions` + 한국어 음성팩 7종) | `3.13.1` / `koKR` | ✅ | 활성 · 퀘스트/책/지역/보스 한국어 음성 내레이션 (`Horde` 팩은 선택 해제 가능) |
 

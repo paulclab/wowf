@@ -106,8 +106,8 @@ const ADDON_DB = {
     kind: '던전 도감 · 공략',
     quality: 'rare',
     icon: 'inv_misc_book_07',
-    rows: [['다운로드: ~2,070만+ (CurseForge)', '인기도: 글로벌 인기 던전 도감'], ['연동: OpenMap 던전 아이콘', '기능: 캐릭터별 루트 필터']],
-    desc: '클래식·와우 포에버의 각 던전별 보스 목록, 드랍 아이템 테이블, 관련 퀘스트 및 지도 위치를 인게임에서 통합 조회합니다.',
+    rows: [['다운로드: ~2,070만+ (CurseForge)', '인기도: 글로벌 인기 던전 도감'], ['기능: Dark Mode · BRD 루트 · 핀 정지', '연동: OpenMap 던전 아이콘']],
+    desc: '클래식·와우 포에버의 던전별 보스 목록, 드랍 아이템, 퀘스트·Route·PvP 보상을 통합 조회하며 다크 모드와 순찰 보스 핀 우클릭 정지를 지원합니다.',
     note: '🏰 OpenMap_NoDungeonMap과 연동하며 길안내 화살표 지원'
   },
   'addon:Attune': {
@@ -206,9 +206,9 @@ const ADDON_DB = {
     kind: '유틸 · 위상 전환',
     quality: 'uncommon',
     icon: 'spell_arcane_portaldalaran',
-    rows: [['다운로드: CurseForge 호스팅 (인기)', '인기도: 포에버/클래식 위상 필수'], ['명령어: /ls', '기능: 위상 확인 · 시간당 Who.CAP 추적']],
-    desc: '현재 캐릭터가 속한 위상(Layer)을 실시간으로 보여주고, 같은 지역 호스트와 자동 파티 매칭으로 전환하며 거절 제외 모든 합류의 시간당 제한을 추적합니다.',
-    note: '🌐 동일 샤드 이동 예외·단일 위상 지역 감지 및 거절 초대 사운드 복원 지원'
+    rows: [['다운로드: CurseForge 호스팅 (인기)', '인기도: 포에버/클래식 위상 필수'], ['명령어: /ls · /ls watch', '기능: Auto leave · 패널 위치 저장']],
+    desc: '현재 캐릭터가 속한 위상(Layer)을 표시하고 자동 파티 매칭 전환, Auto leave 토글, 패널 위치 저장 및 시간당 Who.CAP 합류 제한 추적을 제공합니다.',
+    note: '🌐 동일 샤드 이동 예외·단일 위상 감지 및 전투/유령 중 초대 자동 거절 지원'
   },
   'addon:FindParty': {
     title: 'FindParty Forever',
@@ -236,8 +236,8 @@ const ADDON_DB = {
     kind: 'UI · 창 이동/저장',
     quality: 'uncommon',
     icon: 'ability_rogue_sprint',
-    rows: [['다운로드: ~19.8만+ (CurseForge)', '인기도: 포에버 UI 편의 인기'], ['명령어: /fm', '기능: 창 이동·크기 저장']],
-    desc: '기본 고정되어 있는 블리자드 UI 창들을 마우스로 자유롭게 드래그해 이동시키고 위치·크기를 저장합니다.',
+    rows: [['다운로드: ~19.8만+ (CurseForge)', '인기도: 포에버 UI 편의 인기'], ['명령어: /fm', '기능: 창·주사위 이동 · 툴팁 핀']],
+    desc: '기본 고정된 블리자드 UI 창과 전리품 주사위 창(GroupLoot)을 자유롭게 드래그해 위치를 저장하고, 툴팁 드래그 시 복사본 핀 고정으로 깜빡임을 방지합니다.',
     note: '🖱️ 커서 아래 특수 프레임도 /fm 명령어로 위치 조절 가능'
   },
   'addon:ForeverMouseTooltip': {
