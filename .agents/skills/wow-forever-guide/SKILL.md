@@ -32,7 +32,7 @@ allowed-tools: google
    - 별도 지시가 없으면 `references/character-context.md`의 최신 캐릭터 정보(26레벨 인간 비전 마법사, 마법부여 71 / 무두질 152 / 요리 76 / 낚시 5 / 응급치료 91, 선호 스탯: 체력·지능·주문력)를 기본 전제로 삼는다.
    - 장비 마법부여 추천 시 가죽세공 방어구 키트가 적용되는 4부위(가슴·장갑·다리·장화)는 후순위로 분리하고, 방어구 키트 미적용 핵심 부위(손목·망토·무기/양손무기·방패/보조장비·목걸이)를 1순위로 제시한다.
 2. **와우 포에버 전용 출처 최우선 교차 검증**:
-   - 한국어 출처: `wowf.io/ko`, 와우 인벤 포에버 게시판(`inven.co.kr/board/wow/6567`, `1896`), `forg.gg/forever/dungeons`
+   - 한국어 출처: `wowf.io/ko` (**스킬북/주문 도감에 포에버 신규·개편 스킬의 랭크별 기본 피해량·마나·해금 레벨이 상세 수록되어 있으므로 스킬 수치 확인 시 최우선 조회!**), 와우 인벤 포에버 게시판(`inven.co.kr/board/wow/6567`, `1896`), `forg.gg/forever/dungeons`
    - 영문 출처 및 클라이언트 DB: 블리자드 공식 포럼, `db.icy-veins.com/wow-forever`, `conquestcapped.com/guides/wow-forever`, `foreverguide.net`, `zockify.com/forever`, `stillsixty.com`, `method.gg/wow-forever`, `mobalytics.gg/wow-forever`, `classicwowforever.com`
    - 모든 패치 및 핫픽스 일시는 한국 시간(**KST**) 기준으로 표기하며, 확인된 팩트와 미확인 영역을 명확히 구분한다.
 3. **컨텍스트 갱신**:

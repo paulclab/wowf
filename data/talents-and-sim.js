@@ -199,8 +199,8 @@ const IG_TALENT_TREES = {
 const SIM_SPELLS = {
   aw: {
     id: 'aw', short: '비격2', name: '비전 격노(2 레벨)', wowKey: '비전 격노', icon: 'ability_mage_arcanebarrage',
-    mana: 220, cast: 3.5, baseDmg: 412.7, coeff: 1.0, school: 'arcane',
-    note: 'Lv.36 2레벨 습득 (마나 220 · 최대 마나 5% = 2,604×5% = +130.2 SP · 2레벨 기본 피해 실측 대기, 1레벨 하한 ~413+)'
+    mana: 220, cast: 3.5, baseDmg: 475.2, coeff: 1.0, school: 'arcane',
+    note: 'Lv.36 2레벨 (WOWF.IO 기본 168~206 평균 187 + 비전 158 + 마나5% 130.2 = ~475 · 마나 220 · 랭크 Lv.25/36/48/60)'
   },
   ab: {
     id: 'ab', short: '비작2', name: '비전 작렬(2 레벨)', wowKey: '비전 작렬', icon: 'spell_arcane_blast',
@@ -233,7 +233,7 @@ const DEFAULT_COMBOS = [
   {
     id: 'c_aw', label: '① 비격 선공',
     tipTitle: '① 비전 격노(2) 선공 + 화작(4) 마무리 (필드 정석 ⭐)',
-    tipBody: '풀링 전 3.5초 선타로 <strong>~413+</strong>(2레벨 실측 시 추가 상승)을 꽂고, 비전 작렬(2레벨) → 신비한 화살(4레벨) → <strong>화염 작렬(4레벨, 비작 1중첩 반영!)</strong>로 마무리해 <strong>단일 1,372+</strong>! 탄막 시 <strong>9.0초 (152.4+ DPS)</strong>.',
+    tipBody: '풀링 전 3.5초 선타로 <strong>~475</strong>(2레벨 기본 168~206 + 비전 158 + 마나5% 130)를 꽂고, 비전 작렬(2레벨) → 신비한 화살(4레벨) → <strong>화염 작렬(4레벨, 비작 1중첩 반영!)</strong>로 마무리해 <strong>단일 1,434</strong>! 탄막 시 <strong>9.0초 (159.3 DPS)</strong>.',
     seq: ['aw', 'ab', 'am', 'fbl'], barrage: false, clearcast: false, startStack: 0
   },
   {
@@ -251,7 +251,7 @@ const DEFAULT_COMBOS = [
   {
     id: 'c_boss', label: '④ 보스 폭딜',
     tipTitle: '④ 던전 보스 프록 폭발 + 화작(4) 마무리',
-    tipBody: '비작(2레벨) 2중첩(+34.1 SP) 후 화살 탄막(2.5초 신화 607) → 2중첩 비전 격노(<strong>447+</strong>) → 2중첩 <strong>화염 작렬(4레벨 ~224)</strong>까지 연계해 <strong>누적 1,589+ (10.5초 · 151.4+ DPS)</strong> 폭딜!',
+    tipBody: '비작(2레벨) 2중첩(+34.1 SP) 후 화살 탄막(2.5초 신화 607) → 2중첩 비전 격노(2레벨 <strong>509</strong>!) → 2중첩 <strong>화염 작렬(4레벨 ~224)</strong>까지 연계해 <strong>누적 1,652 (10.5초 · 157.3 DPS)</strong> 폭딜!',
     seq: ['ab', 'ab', 'am', 'aw', 'fbl'], barrage: true, clearcast: false, startStack: 0
   }
 ];
@@ -270,8 +270,8 @@ const RECENTLY_UPDATED_TABS = {
     text: '11/28 달라란 도시 던전 클리어 ✅ (잔여 퀘스트 1종: [비전에 굶주린 자들] 일반몹 24마리 정리만 남음)'
   },
   'tab-skills': {
-    v: '2026-11-28-v1',
-    text: '11/28 Lv.36 비전 격노(2 레벨)·마나 보호막(3 레벨)·마법 증폭(1 레벨) 습득 & 일반 108/비전 158/지 142 시뮬 동기화'
+    v: '2026-11-28-v2',
+    text: '11/28 WOWF.IO 스킬북 반영 — 비전 격노(2 레벨) 기본 168~206 확정(~475 · 콤보 1,434 / 보스 1,652) & 일반 108/비전 158 시뮬 동기화'
   },
   'tab-prof': {
     v: '2026-11-28-v1',

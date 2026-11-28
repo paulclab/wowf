@@ -1127,8 +1127,8 @@ function renderTalentImpactSummary() {
   const ab0Exp = ab0 * (1 + (effAbCrit / 100) * m.arcaneCritBonus);
   const ab0BaseExp = ab0Base * (1 + (baseCrit / 100) * 0.90);
 
-  const awDmg = ((282.5 + deltaArc) + effMp * 0.05) * allMul;
-  const awBase = (282.5 + deltaArc) + baseMp * 0.05;
+  const awDmg = ((345.0 + deltaArc) + effMp * 0.05) * allMul;
+  const awBase = (345.0 + deltaArc) + baseMp * 0.05;
   const awCast = Math.max(1.0, 3.5 - m.wrathCastReduce);
 
   const wandAvg = 33.5 * (1 + m.wandPct / 100);
@@ -1644,7 +1644,7 @@ function renderSingleSpellTable() {
 
   const abMana = 92 * (1 + stAb);
   const abDmg = Math.round(152.2 + (env.oil + stAb * env.abStepSp) * 0.4286);
-  const awDmg = Math.round(412.7 + env.oil + stAw * env.abStepSp);
+  const awDmg = Math.round(475.2 + env.oil + stAw * env.abStepSp);
   const amDmg = 573.0 + env.oil + stAm * env.abStepSp;
   const ambDmg = 573.0 + env.oil + stAmb * env.abStepSp;
   const fblDmg = Math.round(209.3 + (env.oil + stFbl * env.abStepSp) * 0.4286);
@@ -1666,8 +1666,8 @@ function renderSingleSpellTable() {
       mana: '220',
       time: (3.5 / env.haste).toFixed(2) + '초',
       coeff: '<span class="coeff-pill">100%</span> <em style="font-size:11px;">비전+일반 (+10/10SP)</em>',
-      dmg: `<strong>~${awDmg}+</strong> <em>(하한 283 + 마나5% +130${stAw > 0 ? ' +중첩' + Math.round(stAw * env.abStepSp) : ''} · 2Lv 실측 대기)</em>`,
-      dps: `<strong>${(awDmg / (3.5 / env.haste)).toFixed(1)}+ DPS</strong>`
+      dmg: `<strong>~${awDmg}</strong> <em>(기본 187 + 비전 158 + 마나5% 130${stAw > 0 ? ' +중첩' + Math.round(stAw * env.abStepSp) : ''})</em>`,
+      dps: `<strong>${(awDmg / (3.5 / env.haste)).toFixed(1)} DPS</strong>`
     },
     {
       name: `<code>신비한 화살(4 레벨)</code> ${mkToggle('am')}`,
@@ -2167,7 +2167,7 @@ function updateCharStatLab() {
   if (tbody) {
     const ab0 = (152.2 + deltaArc * 0.4286) * allMul;
     const ab1 = (152.2 + deltaArc * 0.4286 + abStep * 0.4286) * allMul;
-    const awDmg = ((282.5 + deltaArc) + wrathMpBonus) * allMul;
+    const awDmg = ((345.0 + deltaArc) + wrathMpBonus) * allMul;
     const amDmg = (573.0 + deltaArc) * allMul;
     const amPer = amDmg / 5;
     const fblDmg = (209.3 + deltaGen * 0.4286) * allMul * (1 + tm.fireDmgPct);
@@ -2179,7 +2179,7 @@ function updateCharStatLab() {
 
     const skills = [
       { name: '비전 작렬 (2 레벨 · 0→1중)', cast: 1.5 / hasteMul, dmg: ab0, mul: arcCritMul(tm.abFblExtraCrit), dmgText: `<strong>~${Math.round(ab0)}</strong> → ~${Math.round(ab1)}` },
-      { name: '비전 격노 (2 레벨 · 하한)', cast: Math.max(1.0, 3.5 - tm.wrathCastReduce) / hasteMul, dmg: awDmg, mul: arcCritMul(0), dmgText: `<strong>~${Math.round(awDmg)}+</strong>` },
+      { name: '비전 격노 (2 레벨)', cast: Math.max(1.0, 3.5 - tm.wrathCastReduce) / hasteMul, dmg: awDmg, mul: arcCritMul(0), dmgText: `<strong>~${Math.round(awDmg)}</strong>` },
       { name: '신비한 화살 (4 레벨)', cast: 5.0 / hasteMul, dmg: amDmg, mul: arcCritMul(0), dmgText: `<strong>${Math.round(amDmg)}</strong> <em style="font-size:11px;opacity:0.82;">(발당 ~${amPer.toFixed(1)})</em>` },
       { name: '신비한 화살 (화살 탄막)', cast: 2.5 / hasteMul, dmg: amDmg, mul: arcCritMul(0), dmgText: `<strong>${Math.round(amDmg)}</strong> <em style="font-size:11px;opacity:0.82;">(발당 ~${amPer.toFixed(1)})</em>` },
       { name: '화염 작렬 (4 레벨)', cast: effGcd, dmg: fblDmg, mul: fireCritMul(tm.abFblExtraCrit + tm.fireExtraCrit), dmgText: `<strong>~${Math.round(fblDmg)}</strong>` },

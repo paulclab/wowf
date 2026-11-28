@@ -10,7 +10,7 @@
    - 본섭(리테일), 타 확장팩(불타는 성전, 리치 왕의 분노 등), 일반 클래식(1.12), 디스커버리 시즌(SoD), 터틀 와우(Turtle WoW)의 상이한 데이터를 검증 없이 혼용하지 않습니다.
 3. **교차 검증 필수 출처 (단일 커뮤니티 편향 금지)**:
    - `Reddit` 하나에만 의존하지 않고, 반드시 아래 한국어/영문 와우 포에버 전용 출처를 교차 검증하고 모든 수치·주장에 **클릭 가능한 마크다운 출처 링크(`[출처명](URL)`)**와 **검증 상태(`✅ 인게임 실측`, `📘 공식/DB 확인`, `⚠️ 미확인/추정 금지`)**를 표기합니다.
-   - **한국어 우선 출처**: [WOWF.IO](https://wowf.io/ko), [와우 인벤 포에버 게시판](https://www.inven.co.kr/board/wow/6567), [와우 인벤 포에버 정보 게시판](https://www.inven.co.kr/board/wow/1896), `forg.gg` (`https://forg.gg/forever/dungeons`)
+   - **한국어 우선 출처**: [WOWF.IO](https://wowf.io/ko) (**스킬북/주문 도감에 랭크별 기본 피해량·마나·시전시간·해금 레벨이 전부 수록되어 있으므로 신규 스킬/등급 수치 확인 시 최우선 조회! 웹검색 미노출 시 브라우저로 직접 확인**), [와우 인벤 포에버 게시판](https://www.inven.co.kr/board/wow/6567), [와우 인벤 포에버 정보 게시판](https://www.inven.co.kr/board/wow/1896), `forg.gg` (`https://forg.gg/forever/dungeons`)
    - **영문 및 DB 출처**: [Blizzard 공식 포럼](https://us.forums.blizzard.com/en/wow/), [Icy Veins WoW Forever DB](https://db.icy-veins.com/wow-forever/), [ConquestCapped](https://conquestcapped.com/guides/wow-forever/), [ForeverGuide](https://foreverguide.net/), [Zockify](https://www.zockify.com/forever/), [StillSixty](https://www.stillsixty.com/), [Method](https://www.method.gg/wow-forever), [Mobalytics](https://mobalytics.gg/wow-forever), [ClassicWoWForever](https://classicwowforever.com/)
 4. **미확인 영역 추측 금지, KST 시간대 & 패치노트 최상단 요약 규칙**:
    - 출처나 인게임에서 확인되지 않은 내부 메커니즘은 임의로 추측해 단정 짓지 않고 즉시 미확인 영역으로 분리합니다.
